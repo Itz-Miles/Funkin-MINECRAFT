@@ -78,7 +78,7 @@ class DialogueEditorState extends MusicBeatState implements PsychUIEventHandler.
 		add(animText);
 
 		daText = new TypedAlphabet(DialogueBoxPsych.DEFAULT_TEXT_X, DialogueBoxPsych.DEFAULT_TEXT_Y, DEFAULT_TEXT);
-		daText.setScale(0.7);
+		daText.scale.set(0.7, 0.7);
 		add(daText);
 		changeText();
 		super.create();
@@ -250,7 +250,7 @@ class DialogueEditorState extends MusicBeatState implements PsychUIEventHandler.
 		}
 
 		daText.y = DialogueBoxPsych.DEFAULT_TEXT_Y;
-		if (daText.rows > 2)
+		if (daText.height > 128)
 			daText.y -= DialogueBoxPsych.LONG_TEXT_ADD;
 
 		#if DISCORD_ALLOWED

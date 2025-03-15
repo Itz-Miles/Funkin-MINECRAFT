@@ -115,7 +115,7 @@ class NoteOffsetState extends MusicBeatState
 
 		// Note delay stuff
 		beatText = new Alphabet(0, 0, Language.getPhrase('delay_beat_hit', 'Beat Hit!'), true);
-		beatText.setScale(0.6, 0.6);
+		beatText.scale.set(0.6, 0.6);
 		beatText.x += 260;
 		beatText.alpha = 0;
 		beatText.acceleration.y = 250;

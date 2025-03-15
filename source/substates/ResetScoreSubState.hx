@@ -46,7 +46,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 		text.alpha = 0;
 		add(text);
 		var text:Alphabet = new Alphabet(0, text.y + 90, name, true);
-		text.scaleX = tooLong;
+		text.scale.x = tooLong;
 		text.screenCenter(X);
 		if(week == -1) text.x += 60 * tooLong;
 		alphabetArray.push(text);
@@ -70,7 +70,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 		noText.x += 200;
 		add(noText);
 		
-		for(letter in yesText.letters) letter.color = FlxColor.RED;
+		yesText.color = FlxColor.RED;
 		updateOptions();
 	}
 

@@ -107,7 +107,7 @@ class CreditsState extends MusicBeatState
 
 				if(curSelected == -1) curSelected = i;
 			}
-			else optionText.alignment = CENTERED;
+			else optionText.alignment = CENTER;
 		}
 		
 		descBox = new AttachedSprite();
