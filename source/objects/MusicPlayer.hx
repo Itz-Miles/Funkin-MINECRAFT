@@ -51,17 +51,17 @@ class MusicPlayer extends FlxGroup
 		add(playbackBG);
 
 		songTxt = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
-		songTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
+		songTxt.setFormat(Paths.font("monocraft.ttf"), 32, FlxColor.WHITE, RIGHT);
 		add(songTxt);
 
 		timeTxt = new FlxText(xPos, songTxt.y + 60, 0, "", 32);
-		timeTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE, RIGHT);
+		timeTxt.setFormat(Paths.font("monocraft.ttf"), 32, FlxColor.WHITE, RIGHT);
 		add(timeTxt);
 
 		for (i in 0...2)
 		{
 			var text:FlxText = new FlxText();
-			text.setFormat(Paths.font('vcr.ttf'), 32, FlxColor.WHITE, CENTER);
+			text.setFormat(Paths.font('monocraft.ttf'), 32, FlxColor.WHITE, CENTER);
 			text.text = '^';
 			if (i == 1)
 				text.flipY = true;
@@ -75,7 +75,7 @@ class MusicPlayer extends FlxGroup
 		add(progressBar);
 
 		playbackTxt = new FlxText(FlxG.width * 0.6, 20, 0, "", 32);
-		playbackTxt.setFormat(Paths.font("vcr.ttf"), 32, FlxColor.WHITE);
+		playbackTxt.setFormat(Paths.font("monocraft.ttf"), 32, FlxColor.WHITE);
 		add(playbackTxt);
 
 		switchPlayMusic();

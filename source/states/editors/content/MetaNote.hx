@@ -150,7 +150,7 @@ class EventMetaNote extends MetaNote
 		updateHitbox();
 
 		eventText = new FlxText(0, 0, 400, '', 12);
-		eventText.setFormat(Paths.font('vcr.ttf'), 12, FlxColor.WHITE, RIGHT);
+		eventText.setFormat(Paths.font('monocraft.ttf'), 12, FlxColor.WHITE, RIGHT);
 		eventText.scrollFactor.x = 0;
 		updateEventText();
 	}
