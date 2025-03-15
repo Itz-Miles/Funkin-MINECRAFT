@@ -5,20 +5,15 @@ import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.graphics.FlxGraphic;
 import flixel.math.FlxRect;
 import flixel.system.FlxAssets;
-
 import openfl.display.BitmapData;
 import openfl.display3D.textures.RectangleTexture;
 import openfl.utils.AssetType;
 import openfl.utils.Assets as OpenFlAssets;
 import openfl.system.System;
 import openfl.geom.Rectangle;
-
 import lime.utils.Assets;
 import flash.media.Sound;
-
 import haxe.Json;
-
-
 #if MODS_ALLOWED
 import backend.Mods;
 #end
@@ -29,12 +24,14 @@ class Paths
 	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
 	inline public static var VIDEO_EXT = "mp4";
 
-	public static function excludeAsset(key:String) {
+	public static function excludeAsset(key:String)
+	{
 		if (!dumpExclusions.contains(key))
 			dumpExclusions.push(key);
 	}
 
-	public static var dumpExclusions:Array<String> = ['assets/shared/music/freakyMenu.$SOUND_EXT'];
+	public static var dumpExclusions:Array<String> = ['assets/shared/music/where_are_we_going.$SOUND_EXT'];
+
 	// haya I love you for the base cache dump I took to the max
 	public static function clearUnusedMemory()
 	{
@@ -89,19 +86,22 @@ class Paths
 	}
 
 	static public var currentLevel:String;
+
 	static public function setCurrentLevel(name:String)
 		currentLevel = name.toLowerCase();
 
 	public static function getPath(file:String, ?type:AssetType = TEXT, ?parentfolder:String, ?modsAllowed:Bool = true):String
 	{
 		#if MODS_ALLOWED
-		if(modsAllowed)
+		if (modsAllowed)
 		{
 			var customFile:String = file;
-			if (parentfolder != null) customFile = '$parentfolder/$file';
+			if (parentfolder != null)
+				customFile = '$parentfolder/$file';
 
 			var modded:String = modFolders(customFile);
-			if(FileSystem.exists(modded)) return modded;
+			if (FileSystem.exists(modded))
+				return modded;
 		}
 		#end
 
@@ -145,7 +145,8 @@ class Paths
 	{
 		#if MODS_ALLOWED
 		var file:String = modsVideo(key);
-		if(FileSystem.exists(file)) return file;
+		if (FileSystem.exists(file))
+			return file;
 		#end
 		return 'assets/videos/$key.$VIDEO_EXT';
 	}
@@ -162,8 +163,9 @@ class Paths
 	inline static public function voices(song:String, postfix:String = null, ?modsAllowed:Bool = true):Sound
 	{
 		var songKey:String = '${formatToSongPath(song)}/Voices';
-		if(postfix != null) songKey += '-' + postfix;
-		//trace('songKey test: $songKey');
+		if (postfix != null)
+			songKey += '-' + postfix;
+		// trace('songKey test: $songKey');
 		return returnSound(songKey, 'songs', modsAllowed, false);
 	}
 
@@ -171,6 +173,7 @@ class Paths
 		return sound(key + FlxG.random.int(min, max), modsAllowed);
 
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
+
 	static public function image(key:String, ?parentFolder:String = null, ?allowGPU:Bool = true):FlxGraphic
 	{
 		key = Language.getFileTranslation('images/$key') + '.png';
@@ -188,8 +191,7 @@ class Paths
 		if (bitmap == null)
 		{
 			var file:String = getPath(key, IMAGE, parentFolder, true);
-			#if MODS_ALLOWED
-			if (FileSystem.exists(file))
+			#if MODS_ALLOWED if (FileSystem.exists(file))
 				bitmap = BitmapData.fromFile(file);
 			else #end if (OpenFlAssets.exists(file, IMAGE))
 				bitmap = OpenFlAssets.getBitmapData(file);
@@ -240,7 +242,8 @@ class Paths
 		var folderKey:String = Language.getFileTranslation('fonts/$key');
 		#if MODS_ALLOWED
 		var file:String = modFolders(folderKey);
-		if(FileSystem.exists(file)) return file;
+		if (FileSystem.exists(file))
+			return file;
 		#end
 		return 'assets/$folderKey';
 	}
@@ -248,12 +251,13 @@ class Paths
 	public static function fileExists(key:String, type:AssetType, ?ignoreMods:Bool = false, ?parentFolder:String = null)
 	{
 		#if MODS_ALLOWED
-		if(!ignoreMods)
+		if (!ignoreMods)
 		{
 			var modKey:String = key;
-			if(parentFolder == 'songs') modKey = 'songs/$key';
+			if (parentFolder == 'songs')
+				modKey = 'songs/$key';
 
-			for(mod in Mods.getGlobalMods())
+			for (mod in Mods.getGlobalMods())
 				if (FileSystem.exists(mods('$mod/$modKey')))
 					return true;
 
@@ -270,7 +274,7 @@ class Paths
 		var imageLoaded:FlxGraphic = image(key, parentFolder, allowGPU);
 
 		var myXml:Dynamic = getPath('images/$key.xml', TEXT, parentFolder, true);
-		if(OpenFlAssets.exists(myXml) #if MODS_ALLOWED || (FileSystem.exists(myXml) && (useMod = true)) #end )
+		if (OpenFlAssets.exists(myXml) #if MODS_ALLOWED || (FileSystem.exists(myXml) && (useMod = true)) #end)
 		{
 			#if MODS_ALLOWED
 			return FlxAtlasFrames.fromSparrow(imageLoaded, (useMod ? File.getContent(myXml) : myXml));
@@ -281,7 +285,7 @@ class Paths
 		else
 		{
 			var myJson:Dynamic = getPath('images/$key.json', TEXT, parentFolder, true);
-			if(OpenFlAssets.exists(myJson) #if MODS_ALLOWED || (FileSystem.exists(myJson) && (useMod = true)) #end )
+			if (OpenFlAssets.exists(myJson) #if MODS_ALLOWED || (FileSystem.exists(myJson) && (useMod = true)) #end)
 			{
 				#if MODS_ALLOWED
 				return FlxAtlasFrames.fromTexturePackerJson(imageLoaded, (useMod ? File.getContent(myJson) : myJson));
@@ -292,12 +296,11 @@ class Paths
 		}
 		return getPackerAtlas(key, parentFolder);
 	}
-	
+
 	static public function getMultiAtlas(keys:Array<String>, ?parentFolder:String = null, ?allowGPU:Bool = true):FlxAtlasFrames
 	{
-		
 		var parentFrames:FlxAtlasFrames = Paths.getAtlas(keys[0].trim());
-		if(keys.length > 1)
+		if (keys.length > 1)
 		{
 			var original:FlxAtlasFrames = parentFrames;
 			parentFrames = new FlxAtlasFrames(parentFrames.parent);
@@ -305,7 +308,7 @@ class Paths
 			for (i in 1...keys.length)
 			{
 				var extraFrames:FlxAtlasFrames = Paths.getAtlas(keys[i].trim(), parentFolder, allowGPU);
-				if(extraFrames != null)
+				if (extraFrames != null)
 					parentFrames.addAtlas(extraFrames, true);
 			}
 		}
@@ -314,15 +317,18 @@ class Paths
 
 	inline static public function getSparrowAtlas(key:String, ?parentFolder:String = null, ?allowGPU:Bool = true):FlxAtlasFrames
 	{
-		if(key.contains('psychic')) trace(key, parentFolder, allowGPU);
+		if (key.contains('psychic'))
+			trace(key, parentFolder, allowGPU);
 		var imageLoaded:FlxGraphic = image(key, parentFolder, allowGPU);
 		#if MODS_ALLOWED
 		var xmlExists:Bool = false;
 
 		var xml:String = modsXml(key);
-		if(FileSystem.exists(xml)) xmlExists = true;
+		if (FileSystem.exists(xml))
+			xmlExists = true;
 
-		return FlxAtlasFrames.fromSparrow(imageLoaded, (xmlExists ? File.getContent(xml) : getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder)));
+		return FlxAtlasFrames.fromSparrow(imageLoaded,
+			(xmlExists ? File.getContent(xml) : getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder)));
 		#else
 		return FlxAtlasFrames.fromSparrow(imageLoaded, getPath(Language.getFileTranslation('images/$key') + '.xml', TEXT, parentFolder));
 		#end
@@ -333,11 +339,13 @@ class Paths
 		var imageLoaded:FlxGraphic = image(key, parentFolder, allowGPU);
 		#if MODS_ALLOWED
 		var txtExists:Bool = false;
-		
-		var txt:String = modsTxt(key);
-		if(FileSystem.exists(txt)) txtExists = true;
 
-		return FlxAtlasFrames.fromSpriteSheetPacker(imageLoaded, (txtExists ? File.getContent(txt) : getPath(Language.getFileTranslation('images/$key') + '.txt', TEXT, parentFolder)));
+		var txt:String = modsTxt(key);
+		if (FileSystem.exists(txt))
+			txtExists = true;
+
+		return FlxAtlasFrames.fromSpriteSheetPacker(imageLoaded,
+			(txtExists ? File.getContent(txt) : getPath(Language.getFileTranslation('images/$key') + '.txt', TEXT, parentFolder)));
 		#else
 		return FlxAtlasFrames.fromSpriteSheetPacker(imageLoaded, getPath(Language.getFileTranslation('images/$key') + '.txt', TEXT, parentFolder));
 		#end
@@ -350,15 +358,18 @@ class Paths
 		var jsonExists:Bool = false;
 
 		var json:String = modsImagesJson(key);
-		if(FileSystem.exists(json)) jsonExists = true;
+		if (FileSystem.exists(json))
+			jsonExists = true;
 
-		return FlxAtlasFrames.fromTexturePackerJson(imageLoaded, (jsonExists ? File.getContent(json) : getPath(Language.getFileTranslation('images/$key') + '.json', TEXT, parentFolder)));
+		return FlxAtlasFrames.fromTexturePackerJson(imageLoaded,
+			(jsonExists ? File.getContent(json) : getPath(Language.getFileTranslation('images/$key') + '.json', TEXT, parentFolder)));
 		#else
 		return FlxAtlasFrames.fromTexturePackerJson(imageLoaded, getPath(Language.getFileTranslation('images/$key') + '.json', TEXT, parentFolder));
 		#end
 	}
 
-	inline static public function formatToSongPath(path:String) {
+	inline static public function formatToSongPath(path:String)
+	{
 		final invalidChars = ~/[~&;:<>#\s]/g;
 		final hideChars = ~/[.,'"%?!]/g;
 
@@ -366,26 +377,27 @@ class Paths
 	}
 
 	public static var currentTrackedSounds:Map<String, Sound> = [];
+
 	public static function returnSound(key:String, ?path:String, ?modsAllowed:Bool = true, ?beepOnNull:Bool = true)
 	{
 		var file:String = getPath(Language.getFileTranslation(key) + '.$SOUND_EXT', SOUND, path, modsAllowed);
 
-		//trace('precaching sound: $file');
-		if(!currentTrackedSounds.exists(file))
+		// trace('precaching sound: $file');
+		if (!currentTrackedSounds.exists(file))
 		{
 			#if sys
-			if(FileSystem.exists(file))
+			if (FileSystem.exists(file))
 				currentTrackedSounds.set(file, Sound.fromFile(file));
 			#else
-			if(OpenFlAssets.exists(file, SOUND))
+			if (OpenFlAssets.exists(file, SOUND))
 				currentTrackedSounds.set(file, OpenFlAssets.getSound(file));
 			#end
-			else if(beepOnNull)
-			{
-				trace('SOUND NOT FOUND: $key, PATH: $path');
-				FlxG.log.error('SOUND NOT FOUND: $key, PATH: $path');
-				return FlxAssets.getSound('flixel/sounds/beep');
-			}
+		else if (beepOnNull)
+		{
+			trace('SOUND NOT FOUND: $key, PATH: $path');
+			FlxG.log.error('SOUND NOT FOUND: $key, PATH: $path');
+			return FlxAssets.getSound('flixel/sounds/beep');
+		}
 		}
 		localTrackedAssets.push(file);
 		return currentTrackedSounds.get(file);
@@ -418,17 +430,17 @@ class Paths
 
 	static public function modFolders(key:String)
 	{
-		if(Mods.currentModDirectory != null && Mods.currentModDirectory.length > 0)
+		if (Mods.currentModDirectory != null && Mods.currentModDirectory.length > 0)
 		{
 			var fileToCheck:String = mods(Mods.currentModDirectory + '/' + key);
-			if(FileSystem.exists(fileToCheck))
+			if (FileSystem.exists(fileToCheck))
 				return fileToCheck;
 		}
 
-		for(mod in Mods.getGlobalMods())
+		for (mod in Mods.getGlobalMods())
 		{
 			var fileToCheck:String = mods(mod + '/' + key);
-			if(FileSystem.exists(fileToCheck))
+			if (FileSystem.exists(fileToCheck))
 				return fileToCheck;
 		}
 		return 'mods/' + key;
@@ -441,67 +453,68 @@ class Paths
 		var changedAnimJson = false;
 		var changedAtlasJson = false;
 		var changedImage = false;
-		
-		if(spriteJson != null)
+
+		if (spriteJson != null)
 		{
 			changedAtlasJson = true;
 			spriteJson = File.getContent(spriteJson);
 		}
 
-		if(animationJson != null) 
+		if (animationJson != null)
 		{
 			changedAnimJson = true;
 			animationJson = File.getContent(animationJson);
 		}
 
 		// is folder or image path
-		if(Std.isOfType(folderOrImg, String))
+		if (Std.isOfType(folderOrImg, String))
 		{
 			var originalPath:String = folderOrImg;
 			for (i in 0...10)
 			{
 				var st:String = '$i';
-				if(i == 0) st = '';
+				if (i == 0)
+					st = '';
 
-				if(!changedAtlasJson)
+				if (!changedAtlasJson)
 				{
 					spriteJson = getTextFromFile('images/$originalPath/spritemap$st.json');
-					if(spriteJson != null)
+					if (spriteJson != null)
 					{
-						//trace('found Sprite Json');
+						// trace('found Sprite Json');
 						changedImage = true;
 						changedAtlasJson = true;
 						folderOrImg = image('$originalPath/spritemap$st');
 						break;
 					}
 				}
-				else if(fileExists('images/$originalPath/spritemap$st.png', IMAGE))
+				else if (fileExists('images/$originalPath/spritemap$st.png', IMAGE))
 				{
-					//trace('found Sprite PNG');
+					// trace('found Sprite PNG');
 					changedImage = true;
 					folderOrImg = image('$originalPath/spritemap$st');
 					break;
 				}
 			}
 
-			if(!changedImage)
+			if (!changedImage)
 			{
-				//trace('Changing folderOrImg to FlxGraphic');
+				// trace('Changing folderOrImg to FlxGraphic');
 				changedImage = true;
 				folderOrImg = image(originalPath);
 			}
 
-			if(!changedAnimJson)
+			if (!changedAnimJson)
 			{
-				//trace('found Animation Json');
+				// trace('found Animation Json');
 				changedAnimJson = true;
 				animationJson = getTextFromFile('images/$originalPath/Animation.json');
 			}
 		}
 
-		//trace(folderOrImg);
-		//trace(spriteJson);
-		//trace(animationJson);
+		// trace(folderOrImg);
+		// trace(spriteJson);
+		// trace(animationJson);
 		spr.loadAtlasEx(folderOrImg, spriteJson, animationJson);
 	}
 	#end

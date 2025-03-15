@@ -11,8 +11,9 @@ class ExitConfirmationPrompt extends Prompt
 		{
 			FlxG.mouse.visible = false;
 			MusicBeatState.switchState(new states.editors.MasterEditorMenu());
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
-			if(finishCallback != null) finishCallback();
+			FlxG.sound.playMusic(Paths.music('where_are_we_going'));
+			if (finishCallback != null)
+				finishCallback();
 		}, 'Exit');
 	}
 }
@@ -24,10 +25,13 @@ class Prompt extends BasePrompt
 	var noFunction:Void->Void;
 	var _yesTxt:String = 'OK';
 	var _noTxt:String = 'Cancel';
+
 	public function new(title:String, yesFunction:Void->Void, ?noFunction:Void->Void, ?_yesTxt:String, ?_noTxt:String)
 	{
-		if(_yesTxt != null) this._yesTxt = _yesTxt;
-		if(_noTxt != null) this._noTxt = _noTxt;
+		if (_yesTxt != null)
+			this._yesTxt = _yesTxt;
+		if (_noTxt != null)
+			this._noTxt = _noTxt;
 		this.yesFunction = yesFunction;
 		this.noFunction = noFunction;
 		super(title, promptCreate);
@@ -36,7 +40,8 @@ class Prompt extends BasePrompt
 	function promptCreate(_)
 	{
 		var btnY = 390;
-		var btn:PsychUIButton = new PsychUIButton(0, btnY, _yesTxt, function() {
+		var btn:PsychUIButton = new PsychUIButton(0, btnY, _yesTxt, function()
+		{
 			yesFunction();
 			close();
 		});
@@ -56,7 +61,8 @@ class Prompt extends BasePrompt
 
 	override function close()
 	{
-		if(noFunction != null) noFunction();
+		if (noFunction != null)
+			noFunction();
 		super.close();
 	}
 }
@@ -69,6 +75,7 @@ class BasePrompt extends MusicBeatSubstate
 
 	public var onCreate:BasePrompt->Void;
 	public var onUpdate:BasePrompt->Float->Void;
+
 	public function new(?sizeX:Float = 420, ?sizeY:Float = 160, title:String, ?onCreate:BasePrompt->Void, ?onUpdate:BasePrompt->Float->Void)
 	{
 		this._sizeX = sizeX;
@@ -81,6 +88,7 @@ class BasePrompt extends MusicBeatSubstate
 
 	public var bg:FlxSprite;
 	public var titleText:FlxText;
+
 	override function create()
 	{
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
@@ -91,37 +99,39 @@ class BasePrompt extends MusicBeatSubstate
 		bg.screenCenter();
 		bg.cameras = cameras;
 		add(bg);
-		
+
 		titleText = new FlxText(0, bg.y + 30, 400, _title, 16);
 		titleText.screenCenter(X);
 		titleText.alignment = CENTER;
 		titleText.cameras = cameras;
 		add(titleText);
-		
-		if(onCreate != null)
+
+		if (onCreate != null)
 			onCreate(this);
 		super.create();
 	}
 
 	var _blockInput:Float = 0.1;
+
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
 
 		_blockInput = Math.max(0, _blockInput - elapsed);
-		if(_blockInput <= 0 && FlxG.keys.justPressed.ESCAPE)
+		if (_blockInput <= 0 && FlxG.keys.justPressed.ESCAPE)
 		{
 			close();
 			return;
 		}
 
-		if(onUpdate != null)
+		if (onUpdate != null)
 			onUpdate(this, elapsed);
 	}
 
 	override function destroy()
 	{
-		for (member in members) FlxDestroyUtil.destroy(member);
+		for (member in members)
+			FlxDestroyUtil.destroy(member);
 		super.destroy();
 	}
 }
