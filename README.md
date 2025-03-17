@@ -120,6 +120,6 @@ Funkin MINECRAFT is not an official MINECRAFT product. Not approved by nor assos
 
 The source code for Funkin' MINECRAFT is licensed under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0). See the [LICENSE](./LICENSE) file for more details.
 
-The assets in Funkin' MINECRAFT are licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). See the [LICENSE-assets](./LICENSE-assets) file for more details.
+The assets in Funkin' MINECRAFT by It'z Miles are licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
 © It'z Miles 2025 - Some rights reserved.
