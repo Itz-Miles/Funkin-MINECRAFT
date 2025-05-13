@@ -16,22 +16,18 @@ import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.app.Application;
 import states.TitleState;
-
 #if linux
 import lime.graphics.Image;
 #end
-
 #if desktop
 import backend.ALSoftConfig; // Just to make sure DCE doesn't remove this, since it's not directly referenced anywhere else.
 #end
-
-//crash handler stuff
+// crash handler stuff
 #if CRASH_HANDLER
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
 import haxe.io.Path;
 #end
-
 import backend.Highscore;
 
 #if linux
@@ -40,7 +36,6 @@ import backend.Highscore;
 	#define GAMEMODE_AUTO
 ')
 #end
-
 class Main extends Sprite
 {
 	var game = {
@@ -198,7 +193,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = "./crash/" + "FunkinMinecraftFlixel" + dateNow + ".txt";
+		path = "./crash/" + "FunkinMINECRAFT" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
@@ -213,7 +208,7 @@ class Main extends Sprite
 
 		errMsg += "\nUncaught Error: "
 			+ e.error
-			+ "\nPlease report this error to the GitHub page: https://github.com/Itz-Miles/Funkin-Minecraft-flixel\n\n> Crash Handler written by sqirra-rng";
+			+ "\nPlease report this error to the GitHub page: https://github.com/Itz-Miles/Funkin-MINECRAFT\n\n> Crash Handler written by sqirra-rng";
 
 		if (!FileSystem.exists("./crash/"))
 			FileSystem.createDirectory("./crash/");
