@@ -1,5 +1,7 @@
 package states;
 
+import flixel.FlxObject;
+import flixel.system.FlxAssets;
 import objects.Character;
 import flixel.input.keyboard.FlxKey;
 import backend.WeekData;
@@ -35,6 +37,17 @@ class IntroState extends MusicBeatState
 
 	override public function create():Void
 	{
+		// FlxAssets.FONT_DEFAULT = "assets/fonts/Monocraft.ttf";
+		// FlxG.fixedTimestep = !ClientPrefs.data.variableTimestep;
+		FlxG.camera.fade(#if !html5 0x0F0F0F #else 0x000000 #end, 1, true);
+		// FlxTween.tween(FlxG.camera.bgColor, {alphaFloat: 1}, 3);
+		FlxG.sound.muteKeys = muteKeys;
+		FlxG.sound.volumeDownKeys = volumeDownKeys;
+		FlxG.sound.volumeUpKeys = volumeUpKeys;
+		FlxG.keys.preventDefaultKeys = [TAB];
+		FlxObject.defaultMoves = false;
+		gamepad = FlxG.gamepads.lastActive;
+
 		Paths.clearStoredMemory();
 		super.create();
 		Paths.clearUnusedMemory();
@@ -109,122 +122,161 @@ class IntroState extends MusicBeatState
 
 			createCoolText([' Built on '], -30);
 		}
-		#end
-	}
-
-	var sickBeats:Int = 0;
-
-	public static var closedState:Bool = false;
-
-	override function beatHit()
-	{
-		super.beatHit();
-
-		if (introGF != null)
-		{
-			introGF.dance();
 		}
+		#end
 
-		if (!closedState)
+		override function update(elapsed:Float)
 		{
-			FlxG.camera.zoom = 1.02;
-			FlxTween.tween(FlxG.camera, {zoom: 1}, (60 / Conductor.bpm) * 0.5, {ease: FlxEase.quadInOut});
-			sickBeats++;
-			switch (sickBeats)
+			super.update(elapsed);
+			if (FlxG.sound.music != null)
 			{
-				case 2:
-					logoSpr.visible = true;
-				case 3:
-					logoSpr.visible = false;
-					deleteCoolText();
-				case 4:
-					createCoolText([' Based on '], -30);
-					logoSpr.loadGraphic(Paths.image('logos/titlelogo', "shared"));
-					logoSpr.setGraphicSize(Std.int(1280 / 3));
-					logoSpr.updateHitbox();
-					logoSpr.screenCenter(X);
-					logoSpr.x -= 300;
-					logoSpr.y += 50;
-				case 6:
-					logoSpr.visible = true;
-				case 7:
-					deleteCoolText();
-					logoSpr.visible = false;
-				case 8:
-					createCoolText([' Itz Miles '], -30);
-				case 10:
-					addMoreText(' Presents:', 15);
-				case 11:
-					deleteCoolText();
-				case 12:
-					createCoolText([" Funkin'"], -15, 72);
-					addMoreText(' Minecraft ', 30, 64);
-				case 14:
-					addMoreText(' Flixel Edition ', 64, 32);
-				case 15:
+				Conductor.songPosition = FlxG.sound.music.time;
+			}
+
+			if (!pressedEnter)
+			{
+				if (FlxG.mouse.justPressed || controls.ACCEPT)
+					pressedEnter = true;
+
+				#if mobile
+				for (touch in FlxG.touches.list)
+				{
+					if (touch.justPressed)
+					{
+						pressedEnter = true;
+					}
+				}
+				#end
+
+				if (gamepad != null)
+				{
+					if (gamepad.justPressed.START)
+						pressedEnter = true;
+
+					#if switch
+					if (gamepad.justPressed.B)
+						pressedEnter = true;
+					#end
+				}
+
+				if (pressedEnter /*&& !ClientPrefs.data.firstIntro*/)
 					endIntro();
 			}
 		}
-	}
 
-	function createCoolText(textArray:Array<String>, ?offset:Float = 0, ?size:Int = 48)
-	{
-		for (i in 0...textArray.length)
+		var sickBeats:Int = 0;
+
+		public static var closedState:Bool = false;
+
+		override function beatHit()
 		{
-			var money:FlxText = new FlxText(0, 0, 0, textArray[i], size);
-			money.setFormat(Paths.font("Monocraft.ttf"), size,
-				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat,
-					FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat),
-				CENTER, OUTLINE, 0xffffffff);
-			money.borderSize = size / 12;
-			money.screenCenter(X);
-			money.x -= 300;
-			money.y += (i * 60) + 100 + offset;
-			if (credGroup != null && textGroup != null)
+			super.beatHit();
+
+			if (introGF != null)
 			{
-				credGroup.add(money);
-				textGroup.add(money);
+				introGF.dance();
+			}
+
+			if (!closedState)
+			{
+				FlxG.camera.zoom = 1.02;
+				FlxTween.tween(FlxG.camera, {zoom: 1}, (60 / Conductor.bpm) * 0.5, {ease: FlxEase.quadInOut});
+				sickBeats++;
+				switch (sickBeats)
+				{
+					case 2:
+						logoSpr.visible = true;
+					case 3:
+						logoSpr.visible = false;
+						deleteCoolText();
+					case 4:
+						createCoolText([' Based on '], -30);
+						logoSpr.loadGraphic(Paths.image('logos/titlelogo', "shared"));
+						logoSpr.setGraphicSize(Std.int(1280 / 3));
+						logoSpr.updateHitbox();
+						logoSpr.screenCenter(X);
+						logoSpr.x -= 300;
+						logoSpr.y += 50;
+					case 6:
+						logoSpr.visible = true;
+					case 7:
+						deleteCoolText();
+						logoSpr.visible = false;
+					case 8:
+						createCoolText([' Itz Miles '], -30);
+					case 10:
+						addMoreText(' Presents:', 15);
+					case 11:
+						deleteCoolText();
+					case 12:
+						createCoolText([" Funkin'"], -15, 72);
+						addMoreText(' Minecraft ', 30, 64);
+					case 14:
+						addMoreText(' Flixel Edition ', 64, 32);
+					case 15:
+						endIntro();
+				}
 			}
 		}
-	}
 
-	function addMoreText(text:String, ?offset:Float = 0, ?size:Int = 48)
-	{
-		if (textGroup != null && credGroup != null)
+		function createCoolText(textArray:Array<String>, ?offset:Float = 0, ?size:Int = 48)
 		{
-			var coolText:FlxText = new FlxText(0, 0, 0, text, size);
-			coolText.setFormat(Paths.font("Monocraft.ttf"), size,
-				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat,
-					FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat),
-				CENTER, OUTLINE, 0xffffffff);
-			coolText.borderSize = size / 12;
-			coolText.screenCenter(X);
-			coolText.x -= 300;
-			coolText.y += (textGroup.length * 60) + 100 + offset;
-			credGroup.add(coolText);
-			textGroup.add(coolText);
+			for (i in 0...textArray.length)
+			{
+				var money:FlxText = new FlxText(0, 0, 0, textArray[i], size);
+				money.setFormat(Paths.font("Monocraft.ttf"), size,
+					FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat,
+						FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat),
+					CENTER, OUTLINE, 0xffffffff);
+				money.borderSize = size / 12;
+				money.screenCenter(X);
+				money.x -= 300;
+				money.y += (i * 60) + 100 + offset;
+				if (credGroup != null && textGroup != null)
+				{
+					credGroup.add(money);
+					textGroup.add(money);
+				}
+			}
+		}
+
+		function addMoreText(text:String, ?offset:Float = 0, ?size:Int = 48)
+		{
+			if (textGroup != null && credGroup != null)
+			{
+				var coolText:FlxText = new FlxText(0, 0, 0, text, size);
+				coolText.setFormat(Paths.font("Monocraft.ttf"), size,
+					FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat,
+						FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat),
+					CENTER, OUTLINE, 0xffffffff);
+				coolText.borderSize = size / 12;
+				coolText.screenCenter(X);
+				coolText.x -= 300;
+				coolText.y += (textGroup.length * 60) + 100 + offset;
+				credGroup.add(coolText);
+				textGroup.add(coolText);
+			}
+		}
+
+		function deleteCoolText()
+		{
+			while (textGroup.members.length > 0)
+			{
+				credGroup.remove(textGroup.members[0], true);
+				textGroup.remove(textGroup.members[0], true);
+			}
+		}
+
+		function endIntro()
+		{
+			closedState = true;
+			FlxTween.cancelTweensOf(FlxG.camera);
+			FlxTween.tween(FlxG.camera, {zoom: 10}, 0.5, {ease: FlxEase.quadIn});
+			FlxG.camera.fade(0xff82aafa, 0.5, false, function()
+			{
+				// ClientPrefs.data.firstIntro = false;
+				FlxG.save.data.firstIntro = false;
+				FlxG.switchState(new TitleState());
+			}, true);
 		}
 	}
-
-	function deleteCoolText()
-	{
-		while (textGroup.members.length > 0)
-		{
-			credGroup.remove(textGroup.members[0], true);
-			textGroup.remove(textGroup.members[0], true);
-		}
-	}
-
-	function endIntro()
-	{
-		closedState = true;
-		FlxTween.cancelTweensOf(FlxG.camera);
-		FlxTween.tween(FlxG.camera, {zoom: 10}, 0.5, {ease: FlxEase.quadIn});
-		FlxG.camera.fade(0xff82aafa, 0.5, false, function()
-		{
-			// ClientPrefs.data.firstIntro = false;
-			FlxG.save.data.firstIntro = false;
-			FlxG.switchState(new TitleState());
-		}, true);
-	}
-}
