@@ -194,7 +194,7 @@ class Paths
 			#if MODS_ALLOWED if (FileSystem.exists(file))
 				bitmap = BitmapData.fromFile(file);
 			else #end if (OpenFlAssets.exists(file, IMAGE))
-				bitmap = OpenFlAssets.getBitmapData(file);
+				bitmap = BitmapData.fromImage(Assets.getImage(file, false));
 
 			if (bitmap == null)
 			{
@@ -218,7 +218,7 @@ class Paths
 			bitmap.readable = true;
 		}
 
-		var graph:FlxGraphic = FlxGraphic.fromBitmapData(bitmap, false, key);
+		var graph:FlxGraphic = FlxGraphic.fromBitmapData(bitmap, false, null, false);
 		graph.persist = true;
 		graph.destroyOnNoUse = false;
 
