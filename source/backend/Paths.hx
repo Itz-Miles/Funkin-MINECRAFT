@@ -390,7 +390,7 @@ class Paths
 				currentTrackedSounds.set(file, Sound.fromFile(file));
 			#else
 			if (OpenFlAssets.exists(file, SOUND))
-				currentTrackedSounds.set(file, OpenFlAssets.getSound(file));
+				Sound.fromAudioBuffer(LimeAssets.getAudioBuffer(file), false);
 			#end
 		else if (beepOnNull)
 		{
