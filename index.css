@@ -1,3 +1,5 @@
+@import url('https://fonts.cdnfonts.com/css/minecrafter');
+
 :root {
 	--bg-color: #0d1117;
 	--prime-color: #ffcc00;
@@ -26,7 +28,7 @@ body {
 }
 
 .section-header {
-	font-family: 'Minecrafter', sans-serif;
+	font-family: 'minecrafter', sans-serif;
 	font-size: 7vw;
 	color: var(--prime-color);
 	text-align: center;
@@ -65,7 +67,7 @@ p {
 
 .hero-content p {
 	width: 60%;
-	font-family: 'Minecrafter', sans-serif;
+	font-family: 'minecrafter', sans-serif;
 	font-weight: lighter;
 	justify-content: center;
 	background-color: var(--prime-color);
@@ -110,7 +112,7 @@ p a:hover {
 }
 
 .navbar a {
-	font-family: 'Minecrafter', sans-serif;
+	font-family: 'minecrafter', sans-serif;
 	font-size: 1.5em;
 	color: var(--bg-color);
 	background-color: #cedae4;
@@ -134,7 +136,7 @@ p a:hover {
 }
 
 .cta-button {
-	font-family: 'Minecrafter', sans-serif;
+	font-family: 'minecrafter', sans-serif;
 	font-weight: lighter;
 	display: inline-block;
 	background-color: var(--prime-color);
