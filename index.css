@@ -170,29 +170,36 @@ p a:hover {
 
 .platform-table {
 	width: 100%;
-	border-collapse: collapse;
 	background-color: #1e1e1e;
 	box-shadow: 0 0 10px #00000040;
 }
 
-.platform-table th,
 .platform-table td {
 	padding: 1em;
-	border-bottom: 1px solid #333;
+	border-top: 1px solid #333;
+	border-bottom: 1px solid var(--bg-color);
+	border-spacing: 0px 1px;
+		font-size: 1em;
+	margin-top: 0.1em;
+	text-align: center;
+}
+
+.platform-table .top td {
+	border-top: 1px solid #00000000;
+}
+
+.platform-table .bottom td {
+	border-bottom: 1px solid #00000000;
 }
 
 .platform-table th {
+	padding: 1em;
 	background-color: #2a2a2a;
 	color: var(--prime-color);
 	font-family: 'minecrafter', sans-serif;
 	font-weight: lighter;
 	font-size: 1.2em;
 	border-bottom: 4px solid var(--bg-color);
-}
-
-.platform-table td {
-	font-size: 1em;
-	text-align: center;
 }
 
 .platform-button {
@@ -245,7 +252,6 @@ footer.legal a {
 footer.legal a:hover {
 	color: var(--alpha-color);
 }
-
 
 ::-webkit-scrollbar {
 	width: 12px;
