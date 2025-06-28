@@ -49,7 +49,6 @@
 
 	<div class="container">
 
-		<!-- System specs Section -->
 		<section id="about">
 			<h2 class="section-header">what about it</h2>
 			<p>
@@ -124,24 +123,23 @@
 		</section>
 
 
-		<!-- Download Section -->
 		<section id="news">
 			<h2 class="section-header">so whats new</h2>
-			<p>
-				This section will be for new videos, posts, and tweets.
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				wip
-			</p>
+			<p>This section will be for new videos, posts, and tweets.</p>
 
-			<h3>Changelog</h3>
-			<ul>
-				<li>Version -1.0 - dude I don't even have the html5 build uploaded</li>
-			</ul>
+			<div id="changelog-section" class="changelog-wrapper">
+
+				<div class="tab-menu">
+					<button class="tab active" data-tab="changelog">Changelog</button>
+					<button class="tab" data-tab="commits">Commits</button>
+				</div>
+
+				<div id="tab-content" class="changelog-content">
+					<p>Loading...</p>
+				</div>
+			</div>
 		</section>
+
 
 		<!-- Follow Section -->
 		<section id="follow">
@@ -171,6 +169,60 @@
 			© It'z Miles 2025 - Some rights reserved.
 		</p>
 	</footer>
+
+	<script>
+		const tabs = document.querySelectorAll('.tab');
+		const content = document.getElementById('tab-content');
+
+		tabs.forEach(tab => {
+			tab.addEventListener('click', () => {
+				tabs.forEach(t => t.classList.remove('active'));
+				tab.classList.add('active');
+
+				const tabName = tab.dataset.tab;
+				loadTabContent(tabName);
+			});
+		});
+
+		function loadTabContent(tabName) {
+			content.innerHTML = 'Loading...';
+
+			if (tabName === 'changelog') {
+				fetch('https://raw.githubusercontent.com/Itz-Miles/funkinMINECRAFTmod/main/README.md')
+					.then(res => res.text())
+					.then(markdown => {
+						content.innerHTML = marked.parse(markdown);
+					})
+					.catch(() => {
+						content.innerHTML = '<p>Could not load changelog.</p>';
+					});
+			}
+
+			if (tabName === 'commits') {
+				fetch('https://api.github.com/repos/Itz-Miles/funkinMINECRAFTmod/commits')
+					.then(res => res.json())
+					.then(data => {
+						const items = data.slice(0, 5).map(commit => `
+					<div>
+						<strong>${commit.commit.message.split('\n')[0]}</strong>
+						<br>
+						<small> ${commit.commit.author.name} committed ${new Date(commit.commit.author.date).toLocaleString()}</small>
+						<hr>
+					</div>
+				`).join('');
+						content.innerHTML = items;
+					})
+					.catch(() => {
+						content.innerHTML = '<p>Could not load commits.</p>';
+					});
+			}
+		}
+
+		loadTabContent('changelog');
+	</script>
+
+	<!-- Markdown parser (optional) -->
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </body>
 
 </html>
