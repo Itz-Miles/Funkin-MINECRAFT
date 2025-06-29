@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Funkin' MINECRAFT</title>
+
+	<!-- SEO Meta Tags -->
+	<meta name="description" content="A rhythm-based platform fighter inspired by Friday Night Funkin' and Minecraft.">
+	<meta name="keywords" content="Funkin' MINECRAFT, Friday Night Funkin', Minecraft, rhythm game, platform fighter">
+	<meta name="author" content="Itz Miles">
+
+	<!-- Social Meta Tags -->
+	<meta property="og:title" content="Funkin' MINECRAFT">
+	<meta property="og:description"
+		content="A rhythm-based platform fighter inspired by Friday Night Funkin' and Minecraft.">
+	<meta property="og:image" content="https://itz-miles.github.io/funkinMINECRAFTmod/assets/meta-big.png">
+	<meta property="og:url" content="https://itz-miles.github.io/funkinMINECRAFTmod/">
+	<meta property="og:type" content="website">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Funkin' MINECRAFT">
+	<meta name="twitter:description"
+		content="A rhythm-based platform fighter inspired by Friday Night Funkin' and Minecraft.">
+	<meta name="twitter:image" content="https://itz-miles.github.io/funkinMINECRAFTmod/assets/meta-big.png">
+	<meta name="twitter:site" content="@Itz_MilesDev">
+
+	<link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+	<nav class="navbar">
+		<a href="#title">home</a>
+		<a href="#about">about</a>
+		<a href="#play">play</a>
+		<a href="#news">news</a>
+		<a href="#follow">follow</a>
+	</nav>
+
+	<section id="title" class="hero">
+		<div class="hero-content">
+			<img class="title" src="assets/meta-big.png" alt="Funkin' MINECRAFT">
+			<p>RHYTHM PLATFORM FIGHTING | Friday Night Funkin X MINECRAFT</p>
+			<a class="cta-button" href="#play">Play Now</a>
+		</div>
+	</section>
+
+	<div class="container">
+
+		<section id="about">
+			<h2 class="section-header">what about it</h2>
+			<p>
+				Funkin' Minecraft is a rhythm-based platform fighter inspired by Friday Night Funkin' and MINECRAFT.
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				wip
+			</p>
+		</section>
+
+		<section id="play">
+			<h2 class="section-header">Play Your Way</h2>
+			<p>
+				Funkin' Minecraft runs on (almost) anything! Choose your platform below.
+			</p>
+			<div class="table-wrapper">
+				<table class="platform-table">
+					<thead>
+						<tr>
+							<th>Platform</th>
+							<th>Requirements</th>
+							<th>Play / Download</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="top">
+							<td>Web Browser</td>
+							<td>
+								Chrome/Firefox<br>
+								1280x720 or higher
+							</td>
+							<td>
+								<a href="#play" class="platform-button" target="">open in browser</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Windows</td>
+							<td>
+								Windows 10+<br>
+								1 GHz CPU, 500 MB RAM
+							</td>
+							<td>
+								<a href="#play" class="platform-button" target="">download .exe</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Mac</td>
+							<td>
+								Mac OS X<br>
+								1 GHz CPU, 500 MB RAM
+							</td>
+							<td>
+								<a href="#play" class="platform-button" target="">download .app</a>
+							</td>
+						</tr>
+						<tr class="bottom">
+							<td>Linux</td>
+							<td>
+								Any distro<br>
+								1 GHz CPU, 500 MB RAM
+							</td>
+							<td>
+								<a href="#play" class="platform-button" target="">download .appimage</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+
+		<section id="news">
+			<h2 class="section-header">so whats new</h2>
+			<p>This section will be for new videos, posts, and tweets.</p>
+
+			<div id="changelog-section" class="changelog-wrapper">
+
+				<div class="tab-menu">
+					<button class="tab active" data-tab="changelog">Changelog</button>
+					<button class="tab" data-tab="commits">Commits</button>
+				</div>
+
+				<div id="tab-content" class="changelog-content">
+					<p>Loading...</p>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Follow Section -->
+		<section id="follow">
+			<h2 class="section-header">follow for more</h2>
+			<h2>Follow for Updates</h2>
+			<div class="links">
+				<a href="https://twitter.com/Itz_MilesDev" target="_blank">Twitter</a>
+				<a href="https://www.youtube.com/@Itz_Miles" target="_blank">YouTube</a>
+				<a href="https://itzmiles.bsky.social" target="_blank">Bluesky</a>
+			</div>
+
+			<p>Watch me develop LIVE on GitHub:</p>
+			<a href="https://github.com/Itz-Miles/Funkin-MINECRAFT" target="_blank">Game Source Code</a>
+			<a href="https://github.com/Itz-Miles/funkinMINECRAFTmod" target="_blank">Website Repository</a>
+		</section>
+	</div>
+	<footer class="legal">
+		<p>
+			Funkin' MINECRAFT is not an official MINECRAFT product. Not approved by nor associated with Mojang
+			Studios.<br><br>
+			The source code for Funkin' MINECRAFT is licensed under the
+			<a href="https://opensource.org/licenses/Apache-2.0" target="_blank" rel="noopener">Apache License 2.0</a>
+			<br><br>
+			The assets in Funkin' MINECRAFT by It'z Miles are licensed under
+			<a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC
+				4.0</a><br><br>
+			© It'z Miles 2025 - Some rights reserved.
+		</p>
+	</footer>
+
+	<script>
+		const tabs = document.querySelectorAll('.tab');
+		const content = document.getElementById('tab-content');
+
+		tabs.forEach(tab => {
+			tab.addEventListener('click', () => {
+				tabs.forEach(t => t.classList.remove('active'));
+				tab.classList.add('active');
+
+				const tabName = tab.dataset.tab;
+				loadTabContent(tabName);
+			});
+		});
+
+		function loadTabContent(tabName) {
+			content.innerHTML = 'Loading...';
+
+			if (tabName === 'changelog') {
+				fetch('https://raw.githubusercontent.com/Itz-Miles/funkinMINECRAFTmod/main/README.md')
+					.then(res => res.text())
+					.then(markdown => {
+						content.innerHTML = marked.parse(markdown);
+					})
+					.catch(() => {
+						content.innerHTML = '<p>Could not load changelog.</p>';
+					});
+			}
+
+			if (tabName === 'commits') {
+				fetch('https://api.github.com/repos/Itz-Miles/funkinMINECRAFTmod/commits')
+					.then(res => res.json())
+					.then(data => {
+						const items = data.slice(0, 5).map(commit => `
+					<div>
+						<strong>${commit.commit.message.split('\n')[0]}</strong>
+						<br>
+						<small> ${commit.commit.author.name} committed ${new Date(commit.commit.author.date).toLocaleString()}</small>
+						<hr>
+					</div>
+				`).join('');
+						content.innerHTML = items;
+					})
+					.catch(() => {
+						content.innerHTML = '<p>Could not load commits.</p>';
+					});
+			}
+		}
+
+		loadTabContent('changelog');
+	</script>
+
+	<!-- Markdown parser (optional) -->
+	<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</body>
+
+</html>

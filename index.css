@@ -1,0 +1,337 @@
+@font-face {
+	font-family: 'minecrafter';
+	src: url('./assets/minecrafter.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+:root {
+	--bg-color: #0d1117;
+	--btn-face-color: #cedae4;
+	--btn-btm-color: #5f697a;
+	--prime-color: #ffcc00;
+	--alpha-color: #ffa500;
+	--beta-color: #c9a100;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	background-color: var(--bg-color);
+	color: #d3d3d3;
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+.container {
+	width: 80%;
+	margin: auto;
+}
+
+section {
+	scroll-margin-top: 18vh;
+}
+
+.section-header {
+	font-family: 'minecrafter', sans-serif;
+	margin: 0.5em 0em 0.5em 0em;
+	font-size: 7vw;
+	color: var(--prime-color);
+	text-align: center;
+	font-weight: lighter;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+p {
+	font-size: 1.2em;
+	padding: 0.5em;
+	background-color: #39393952;
+	border: #25252584 0.25em solid;
+}
+
+.hero {
+	height: min(60vh, 40vw);
+	margin-bottom: 40vh;
+	padding-top: 20vh;
+	margin-top: -20vh;
+	background-image: url('assets/panorama.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	text-align: center;
+	z-index: 1;
+}
+
+.title {
+	max-width: min(120vh, 80vw);
+	height: auto;
+}
+
+.hero-content p {
+	font-size: 1.1em;
+	padding: 0.2em 0em 0.2em 0em;
+	max-width: max(30vh, 50%);
+	font-family: 'minecrafter', sans-serif;
+	font-weight: lighter;
+	justify-content: center;
+	background-color: var(--prime-color);
+	margin: 1em auto;
+	color: var(--bg-color);
+	border: 0px;
+	border-bottom: #24282f 0.25em solid;
+	transform: scaleY(1.5);
+}
+
+.cta-button {
+	font-size: 1.2em;
+}
+
+.links a,
+p a {
+	color: var(--prime-color);
+	text-decoration: none;
+	margin: 10px;
+	display: inline-block;
+	font-weight: bold;
+	font-size: 1.2em;
+	transition: color 0.3s ease-in-out;
+}
+
+.links a:hover,
+p a:hover {
+	color: var(--alpha-color);
+	text-decoration: underline;
+}
+
+.navbar {
+	background-color: #3e3e46f4;
+	backdrop-filter: saturate(180%) blur(10px);
+	padding: 2vh;
+	position: sticky;
+	top: 0;
+	overflow-x: scroll;
+	display: flex;
+	justify-items: center;
+	z-index: 10;
+	box-shadow: #15161d89 0 0em 0.5em 1em;
+}
+
+.navbar a {
+	font-family: 'minecrafter', sans-serif;
+	font-size: 1.5em;
+	color: var(--bg-color);
+	background-color: var(--btn-face-color);
+	padding: 0.5em;
+	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431);
+	border-bottom: var(--btn-btm-color) 0.3em solid;
+	text-decoration: none;
+	margin: 0.1em 0.5em 0.1em 0.5em;
+	font-weight: lighter;
+	transition: color 0.1s ease-in-out, margin 0.1s ease-in-out, border 0.1s ease-in-out;
+}
+
+.navbar a:hover {
+	color: var(--beta-color);
+	border-bottom: var(--btn-btm-color) 0.4em solid;
+	margin-top: 0em;
+}
+
+.navbar a:active {
+	color: var(--alpha-color);
+	border-bottom: 0.15em var(--prime-color) solid;
+	margin-top: 0.2em;
+}
+
+.cta-button {
+	font-family: 'minecrafter', sans-serif;
+	font-weight: lighter;
+	display: inline-block;
+	background-color: var(--prime-color);
+	color: var(--bg-color);
+	padding: 0.5em;
+	text-decoration: none;
+	transition: background-color 0.2s ease-in-out;
+}
+
+.cta-button:hover {
+	background-color: var(--alpha-color);
+	outline: 3px solid var(--prime-color);
+	outline-offset: 4px;
+}
+
+.table-wrapper {
+	width: 100%;
+	overflow-x: scroll;
+}
+
+.platform-table {
+	width: 100%;
+	background-color: #1e1e1e;
+	box-shadow: 0 0 10px #00000040;
+}
+
+.platform-table td {
+	padding: 1em;
+	border-top: 1px solid #333;
+	border-bottom: 1px solid var(--bg-color);
+	border-spacing: 0px 1px;
+	font-size: 1em;
+	margin-top: 0.1em;
+	text-align: center;
+}
+
+.platform-table .top td {
+	border-top: 1px solid #00000000;
+}
+
+.platform-table .bottom td {
+	border-bottom: 1px solid #00000000;
+}
+
+.platform-table th {
+	padding: 1em;
+	background-color: #2a2a2a;
+	color: var(--prime-color);
+	font-family: 'minecrafter', sans-serif;
+	font-weight: lighter;
+	font-size: 1.2em;
+	border-bottom: 4px solid var(--bg-color);
+}
+
+.platform-button {
+	min-width: 50%;
+	text-align: center;
+	font-family: 'minecrafter', sans-serif;
+	font-size: 1em;
+	background-color: #22a31d;
+	color: white;
+	padding: 0.5em 0.5em;
+	text-decoration: none;
+	border-bottom: 0.25em solid #197e3e;
+	transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+	display: inline-block;
+}
+
+.platform-button:hover {
+	background-color: #27ae60;
+}
+
+.platform-button:active {
+	background-color: #136434;
+}
+
+.changelog-wrapper {
+	background-color: var(--bg-color);
+	border: 1px solid #3d444d;
+	border-radius: 6px;
+	padding: 1em;
+	margin: 1.5em 0;
+}
+
+.tab-menu {
+	display: flex;
+	width: 100%;
+	margin-bottom: 1em;
+}
+
+.tab {
+	flex: auto;
+	font-family: 'minecrafter', sans-serif;
+	font-size: 1.5em;
+	color: #ffffff9f;
+	background-color: unset;
+	padding: 0.5em;
+	text-align: center;
+	text-decoration: none;
+	box-shadow: inset 0px 0px 0px 2px #ffffff88;
+	border: 0px;
+	border-bottom: var(--btn-btm-color) 0.35em solid;
+	margin: 0.1em;
+	font-weight: lighter;
+	cursor: pointer;
+	transition: color 0.1s ease-in-out, margin 0.1s ease-in-out, border 0.1s ease-in-out;
+}
+
+.tab.active {
+	color: #ffffff;
+	box-shadow: inset 0px 0px 0px 2px #ffffff;
+	border-bottom: 0.1em #b9b9b9 solid;
+	margin-top: 0.3em;
+}
+
+.changelog-content {
+	background-color: #0d1117;
+	color: #eee;
+	padding: 1em;
+	height: 50vh;
+	overflow-y: auto;
+	font-family: 'Segoe UI';
+}
+
+.changelog-content p {
+	background-color: unset;
+	border: 1px solid #3d444d;
+	padding: 0.5em;
+	border-radius: 6px;
+}
+
+footer.legal {
+	background-color: #1a1a1a;
+	color: #888;
+	text-align: center;
+	font-size: 0.9em;
+	padding: 2em 1em;
+	border-top: 1px solid #333;
+	margin-top: 5em;
+}
+
+footer.legal p {
+	max-width: 70%;
+	margin: 0 auto;
+	padding: 1em;
+	background-color: #2a2a2a;
+	border: 0px;
+	box-shadow: 0 0 10px #00000030;
+}
+
+footer.legal a {
+	color: var(--prime-color);
+	text-decoration: underline;
+}
+
+footer.legal a:hover {
+	color: var(--alpha-color);
+}
+
+::-webkit-scrollbar {
+	width: 12px;
+	height: 12px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #24282f;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--prime-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: var(--alpha-color);
+}
+
+#tab-content::-webkit-scrollbar-thumb {
+	background-color: #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: var(--alpha-color);
+}
