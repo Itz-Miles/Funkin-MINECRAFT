@@ -188,7 +188,7 @@
 			content.innerHTML = 'Loading...';
 
 			if (tabName === 'changelog') {
-				fetch('https://raw.githubusercontent.com/Itz-Miles/funkinMINECRAFTmod/main/README.md')
+				fetch('https://raw.githubusercontent.com/Itz-Miles/funkin-MINECRAFT/main/CHANGELOG.md')
 					.then(res => res.text())
 					.then(markdown => {
 						content.innerHTML = marked.parse(markdown);
@@ -199,7 +199,7 @@
 			}
 
 			if (tabName === 'commits') {
-				fetch('https://api.github.com/repos/Itz-Miles/funkinMINECRAFTmod/commits')
+				fetch('https://api.github.com/repos/Itz-Miles/funkin-MINECRAFT/commits')
 					.then(res => res.json())
 					.then(data => {
 						const items = data.slice(0, 5).map(commit => `
