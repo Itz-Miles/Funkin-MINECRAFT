@@ -1,6 +1,5 @@
 package;
 
-// import flixel.system.FlxAssets;
 import openfl.text.TextFormat;
 import openfl.text.TextField;
 import flixel.system.FlxAssets;
@@ -32,7 +31,6 @@ using StringTools;
 class Main extends Sprite
 {
 	public static var fpsVar:PerformanceCounter;
-
 	public static var buildInfo:TextField;
 
 	public static function main():Void
@@ -62,12 +60,11 @@ class Main extends Sprite
 		}
 
 		setupGame();
+		stage.addEventListener(Event.RESIZE, onResize);
 	}
 
 	function setupGame():Void
 	{
-		// Sys.sleep(5);
-
 		FlxAssets.FONT_DEFAULT = "Monocraft";
 		addChild(new FlxGame(1280, 720, LoadingState, 60, 60, true, false));
 
@@ -90,12 +87,13 @@ class Main extends Sprite
 		mouseEnabled = false;
 		buildInfo.defaultTextFormat = new TextFormat("Monocraft", 16, 0xffffff);
 		buildInfo.autoSize = CENTER;
+		buildInfo.wordWrap = true;
 		buildInfo.background = true;
 		buildInfo.backgroundColor = 0x24000000;
 		buildInfo.alpha = 0.6;
 		addChild(buildInfo);
 		buildInfo.text = "Funkin' MINECRAFT Open Alpha Build (0.0.0) - August 4 2024";
-
+		onResize(null);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
 		if (fpsVar != null)
@@ -122,6 +120,15 @@ class Main extends Sprite
 		#if CRASH_HANDLER
 		Lib.current.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onCrash);
 		#end
+	}
+
+	function onResize(e:Event):Void
+	{
+		if (buildInfo != null && stage != null)
+		{
+			buildInfo.width = stage.stageWidth;
+			buildInfo.y = stage.stageHeight - buildInfo.height;
+		}
 	}
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
