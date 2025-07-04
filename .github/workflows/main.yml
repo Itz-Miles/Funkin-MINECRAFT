@@ -41,8 +41,8 @@ jobs:
           mkdir -p ~/haxelib
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null --quiet
-          chmod +x ./setup-unix.sh
-          ./setup-unix.sh
+          chmod +x ./setup/setup-unix.sh
+          ./setup/setup-unix.sh
 
       # Cache build artifacts with better key
       - name: Cache build artifacts
@@ -141,8 +141,8 @@ jobs:
           mkdir -p ~/haxelib
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null --quiet
-          chmod +x ./setup-unix.sh
-          ./setup-unix.sh
+          chmod +x ./setup/setup-unix.sh
+          ./setup/setup-unix.sh
 
       # Cache MacOS build artifacts
       - name: Cache build artifacts
