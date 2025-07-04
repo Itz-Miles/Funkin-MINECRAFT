@@ -3,7 +3,7 @@
 <!--This is the markdown readme. View the pretty format on the webpage:
 https://github.com/Itz-Miles/Funkin-Minecraft-flixel
 -->
-![logo](./art/logos/logo/logoHD.png)
+![logo](./art/logos/logo_HD.png)
 ___
 # Source for Funkin' MINECRAFT
 If you want to funkin' play, visit [here](https://itz-miles.github.io/funkinMinecraft/play).
