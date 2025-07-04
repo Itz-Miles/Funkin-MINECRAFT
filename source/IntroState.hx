@@ -217,8 +217,8 @@ class IntroState extends MusicBeatState
 				case 11:
 					deleteCoolText();
 				case 12:
-					createCoolText([" Funkin'"], -15, 72);
-					addMoreText(' Minecraft ', 30, 64);
+					createCoolText([" Funkin'"], -30, 96);
+					addMoreText(' MINECRAFT ', 30, 64);
 				case 14:
 					addMoreText(' Flixel Edition ', 64, 32);
 				case 15:

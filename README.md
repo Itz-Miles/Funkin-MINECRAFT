@@ -5,12 +5,12 @@ https://github.com/Itz-Miles/Funkin-Minecraft-flixel
 -->
 ![logo](./art/logos/logo/logoHD.png)
 ___
-# Source for Funkin' Minecraft: Flixel Edition
+# Source for Funkin' MINECRAFT
 If you want to funkin' play, visit [here](https://itz-miles.github.io/funkinMinecraft/play).
 
 If you just want to funkin' download, visit [releases](https://github.com/Itz-Miles/Funkin-Minecraft/releases/latest).
 
-If you want to know what the funk Funkin Minecraft: Flixel Edition is, visit the [webpage](https://itz-miles.github.io/funkinMinecraft)!
+If you want to know what the funk Funkin' MINECRAFT is, visit the [webpage](https://itz-miles.github.io/funkinMinecraft)!
 
 # Building From Source
 
@@ -27,7 +27,7 @@ For Lime / OpenFL project support, install the [Lime Extension](https://marketpl
 
 
 ## Setup Scripts
-To install the libraries that Funkin' Minecraft: Flixel Edition needs to compile, locate the setup folder and run the setup script:
+To install the libraries that Funkin' MINECRAFT needs to compile, locate the setup folder and run the setup script:
 
 `windows`
 setup-windows.bat
@@ -97,36 +97,36 @@ lime build mac
 
 # Credits:
 
-## Funkin' Minecraft: Flixel Edition
+## Funkin' MINECRAFT
 
-| **Developer/ParallaxLT**         | **It'z_Miles** <img src="./assets/shared/images/icons/miles.png" width="16">          |
-| --------------------------------- | ------------------------------------------------------------------------------------------ |
-| **GitHub Contributors**          | [contributors](https://github.com/Itz-Miles/Funkin-Minecraft/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16">           |
+| **Developer/ParallaxLT** | **It'z_Miles** <img src="./assets/shared/images/icons/miles.png" width="16">                                                                      |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **GitHub Contributors**  | [contributors](https://github.com/Itz-Miles/Funkin-Minecraft/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16"> |
 
 ## Psych Engine
 
-| **Programmer/Owner of Psych**    | **Shadow Mario** <img src="./assets/shared/images/icons/shadowmario.png" width="16">  |
-| --------------------------------- | ------------------------------------------------------------------------------------------ |
-| **New Input System**             | shubs <img src="./assets/shared/images/icons/shubs.png" width="16">                      |
-| **HxCodec Video Support**        | PolybiusProxy <img src="./assets/shared/images/icons/polybiusproxy.png" width="16">     |
-| **GitHub Contributors**          | [contributors](https://github.com/ShadowMario/FNF-PsychEngine/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16">           |
+| **Programmer/Owner of Psych** | **Shadow Mario** <img src="./assets/shared/images/icons/shadowmario.png" width="16">                                                               |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **New Input System**          | shubs <img src="./assets/shared/images/icons/shubs.png" width="16">                                                                                |
+| **HxCodec Video Support**     | PolybiusProxy <img src="./assets/shared/images/icons/polybiusproxy.png" width="16">                                                                |
+| **GitHub Contributors**       | [contributors](https://github.com/ShadowMario/FNF-PsychEngine/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16"> |
 
 ## Funkin' Crew
 
-| **Programmer of FNF**            | **ninjamuffin99** <img src="./assets/shared/images/icons/ninjamuffin99.png" width="16"> |
-| --------------------------------- | ------------------------------------------------------------------------------------------ |
-| **Animator of FNF**              | **PhantomArcade** <img src="./assets/shared/images/icons/phantomarcade.png" width="16">  |
-| **Artist of FNF**                | **evilsk8r** <img src="./assets/shared/images/icons/evilsk8r.png" width="16">            |
-| **Composer of FNF**              | **kawaisprite** <img src="./assets/shared/images/icons/kawaisprite.png" width="16">      |
-| **GitHub Contributors**          | [contributors](https://github.com/FunkinCrew/Funkin/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16">           |
+| **Programmer of FNF**   | **ninjamuffin99** <img src="./assets/shared/images/icons/ninjamuffin99.png" width="16">                                                  |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **Animator of FNF**     | **PhantomArcade** <img src="./assets/shared/images/icons/phantomarcade.png" width="16">                                                  |
+| **Artist of FNF**       | **evilsk8r** <img src="./assets/shared/images/icons/evilsk8r.png" width="16">                                                            |
+| **Composer of FNF**     | **kawaisprite** <img src="./assets/shared/images/icons/kawaisprite.png" width="16">                                                      |
+| **GitHub Contributors** | [contributors](https://github.com/FunkinCrew/Funkin/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16"> |
 
 
 # Licensing
 
-Funkin Minecraft: Flixel Edition is not an official MINECRAFT product. Not approved by or assosiated with Mojang Studios.
+Funkin MINECRAFT is not an official MINECRAFT product. Not approved by or assosiated with Mojang Studios.
 
-The source code for Funkin' Minecraft: Flixel Edition is licensed under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0). See the [LICENSE](./LICENSE) file for more details.
+The source code for Funkin' MINECRAFT is licensed under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0). See the [LICENSE](./LICENSE) file for more details.
 
-The assets in Funkin' Minecraft: Flixel Edition are licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). See the [LICENSE-assets](./LICENSE-assets) file for more details.
+The assets in Funkin' MINECRAFT are licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). See the [LICENSE-assets](./LICENSE-assets) file for more details.
 
 © It'z_Miles 2023 - Some rights reserved.
