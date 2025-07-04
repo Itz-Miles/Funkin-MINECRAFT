@@ -1,0 +1,132 @@
+{
+	"song": {
+		"sections": [
+			{
+				"beats": 4,
+				"sectionNotes": [],
+				"characterGroup": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": false,
+				"changeBPM": false,
+				"bpm": 159
+			},
+			{
+				"beats": 4,
+				"sectionNotes": [],
+				"characterGroup": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": true,
+				"changeBPM": false,
+				"bpm": 159
+			},
+			{
+				"beats": 4,
+				"sectionNotes": [],
+				"characterGroup": 0,
+				"gfSection": false,
+				"altAnim": false,
+				"mustHitSection": false,
+				"changeBPM": false,
+				"bpm": 159
+			},
+			{
+				"gfSection": false,
+				"altAnim": false,
+				"characterGroup": 0,
+				"sectionNotes": [],
+				"bpm": 159,
+				"beats": 4,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"gfSection": false,
+				"altAnim": false,
+				"characterGroup": 0,
+				"sectionNotes": [],
+				"bpm": 159,
+				"beats": 4,
+				"changeBPM": false,
+				"mustHitSection": false
+			},
+			{
+				"gfSection": false,
+				"altAnim": false,
+				"characterGroup": 0,
+				"sectionNotes": [],
+				"bpm": 159,
+				"beats": 4,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"gfSection": false,
+				"altAnim": false,
+				"characterGroup": 0,
+				"sectionNotes": [],
+				"bpm": 159,
+				"beats": 4,
+				"changeBPM": false,
+				"mustHitSection": false
+			},
+			{
+				"gfSection": false,
+				"altAnim": false,
+				"characterGroup": 0,
+				"sectionNotes": [],
+				"bpm": 159,
+				"beats": 4,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"gfSection": false,
+				"altAnim": false,
+				"characterGroup": 0,
+				"sectionNotes": [],
+				"bpm": 159,
+				"beats": 4,
+				"changeBPM": false,
+				"mustHitSection": false
+			},
+			{
+				"gfSection": false,
+				"altAnim": false,
+				"characterGroup": 0,
+				"sectionNotes": [],
+				"bpm": 159,
+				"beats": 4,
+				"changeBPM": false,
+				"mustHitSection": true
+			},
+			{
+				"gfSection": false,
+				"altAnim": false,
+				"characterGroup": 0,
+				"sectionNotes": [],
+				"bpm": 159,
+				"beats": 4,
+				"changeBPM": false,
+				"mustHitSection": false
+			}
+		],
+		"events": [],
+		"players": [
+			"bf_arch"
+		],
+		"neutrals": [
+			"menuGF"
+		],
+		"name": "stalstruck",
+		"needsVoices": false,
+		"arrowSkin": "",
+		"stage": "arch",
+		"opponents": [
+			"miles_arch"
+		],
+		"bpm": 159,
+		"speed": 1
+	}
+}

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<TextureAtlas imagePath="outlineBF.png">
+<SubTexture name="BF idle dance0000" x="0" y="0" width="414" height="400" frameX="-1" frameY="-20" frameWidth="411" frameHeight="412" />
+<SubTexture name="BF idle dance0001" x="0" y="0" width="414" height="400" frameX="-1" frameY="-20" frameWidth="411" frameHeight="412" />
+<SubTexture name="BF idle dance0002" x="414" y="0" width="416" height="401" frameX="0" frameY="-19" frameWidth="411" frameHeight="412" />
+<SubTexture name="BF idle dance0003" x="414" y="0" width="416" height="401" frameX="0" frameY="-19" frameWidth="411" frameHeight="412" />
+<SubTexture name="BF idle dance0004" x="0" y="401" width="413" height="406" frameX="-3" frameY="-14" frameWidth="411" frameHeight="412" />
+<SubTexture name="BF idle dance0005" x="0" y="401" width="413" height="406" frameX="-3" frameY="-14" frameWidth="411" frameHeight="412" />
+<SubTexture name="BF idle dance0006" x="413" y="401" width="418" height="419" frameX="-1" frameY="-1" frameWidth="411" frameHeight="412" />
+<SubTexture name="BF idle dance0007" x="413" y="401" width="418" height="419" frameX="-1" frameY="-1" frameWidth="411" frameHeight="412" />
+<SubTexture name="BF idle dance0008" x="0" y="820" width="416" height="420" frameX="-2" frameY="0" frameWidth="411" frameHeight="412" />
+</TextureAtlas>

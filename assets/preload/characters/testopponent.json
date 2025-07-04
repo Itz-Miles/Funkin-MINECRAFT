@@ -1,0 +1,22 @@
+{
+    "animations": [
+        {
+            "loop": false,
+            "offsets": [
+                0,
+                0
+            ],
+            "anim": "idle",
+            "fps": 1,
+            "name": "miles_arch idle",
+            "indices": []
+        }
+    ],
+    "image": "characters/miles_arch",
+    "color": "0x000000",
+    "scale": 0.5845,
+    "s_xy": [
+        0,
+        0
+    ]
+}

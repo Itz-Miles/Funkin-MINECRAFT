@@ -1,0 +1,18 @@
+{
+	"songs": [
+		["stalstruck", "miles", [0, 0, 0]],
+		["practice", "menuface", [0, 0, 0]],
+		["ceramicism", "menuface", [0, 0, 0]],
+		["take 1", "take-1", [0, 0, 0]],
+		["take 2", "take-2", [0, 0, 0]],
+		["take 3", "take-3", [0, 0, 0]]
+	],
+
+	"storyName": "demo",
+	"weekBefore": "demo",
+	"weekName": "demo",
+	"startUnlocked": true,
+
+	"hideStoryMode": false,
+	"hideFreeplay": false
+}

@@ -1,0 +1,10 @@
+bf
+bf_arch
+menuBF
+outlineBF
+gf
+titleGF
+outlineGF
+miles_arch
+testplayer
+testopponent

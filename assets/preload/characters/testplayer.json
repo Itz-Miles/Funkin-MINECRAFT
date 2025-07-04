@@ -1,0 +1,22 @@
+{
+    "animations": [
+        {
+            "loop": false,
+            "offsets": [
+                -5,
+                0
+            ],
+            "anim": "idle",
+            "fps": 24,
+            "name": "BF idle dance",
+            "indices": []
+        }
+    ],
+    "antialiasing": true,
+    "image": "characters/menuBF",
+    "s_xy": [
+        0,
+        0
+    ],
+    "color": "0x000000"
+}

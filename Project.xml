@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://lime.software/project/1.0.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://lime.software/project/1.0.2 http://lime.software/xsd/project-1.0.2.xsd">
+
+	<!-- ____________________ Application Settings ____________________ -->
+
+	<app title="Funkin' Minecraft: Flixel Edition" file="FunkinMinecraftFlixel" packageName="com.itzMiles.FunkinMinecraftFlixel" package="com.itzMiles.FunkinMinecraftFlixel" main="Main" version="0" company="Itz_Miles" />
+
+	<!--Switch Export with Unique ApplicationID and Icon-->
+	<set name="APP_ID" value="0x0100f6c013bbc000" />
+
+
+	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
+		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
+	<!-- <app preloader="Preloader" /> -->
+	<app preloader="flixel.system.FlxPreloader" />
+
+	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
+	<set name="SWF_VERSION" value="11.8" />
+
+	<!-- ____________________ Window Settings ____________________ -->
+
+	<!--These window settings apply to all targets-->
+	<window width="1280" height="720" background="0x0F0F0F" hardware="true" vsync="false" />
+
+	<!--HTML5-specific-->
+	<window if="html5" resizable="true" background="0x000000"/>
+
+	<!--Desktop-specific-->
+	<window if="desktop" orientation="landscape" fullscreen="false" resizable="true" vsync="false"/>
+
+	<!--Mobile-specific-->
+	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" resizable="false"/>
+
+	<!-- ____________________ Export Settings ____________________ -->
+
+	<set name="BUILD_DIR" value="export/debug" if="debug" />
+	<set name="BUILD_DIR" value="export/release" unless="debug" />
+	<set name="BUILD_DIR" value="export/32bit" if="32bits" />
+
+	<classpath name="source"/>
+
+	<assets path="assets/preload" rename="assets" embed="true" exclude="*.ogg" if="web"/>
+	<assets path="assets/preload" rename="assets" embed="true" exclude="*.mp3" unless="web"/>
+
+	<library name="videos" preload="true" />
+
+	<library name="songs" preload="true" />
+	<library name="shared" preload="false" />
+	<library name="arch" preload="true" />
+	<library name="camp" preload="false" />
+	<library name="forge" preload="false" />
+	<library name="gates" preload="false" />
+	<library name="rift" preload="false" />
+	<library name="ruins" preload="false" />
+
+	<assets path="assets/videos" embed="true" library="videos" if="VIDEOS_ALLOWED"/>
+	<assets path="assets/songs" embed="true" library="songs" exclude="*.ogg" if="web"/>
+	<assets path="assets/songs" embed="true" library="songs" exclude="*.mp3" unless="web"/>
+	<assets path="assets/shared" embed="true" library="shared" exclude="*.ogg" if="web"/>
+	<assets path="assets/shared" embed="true" library="shared" exclude="*.mp3" unless="web"/>
+	<assets path="assets/arch" embed="true" library="arch" exclude="*.ogg" if="web"/>
+	<assets path="assets/arch" embed="true" library="arch" exclude="*.mp3" unless="web"/>
+	<assets path="assets/camp" embed="true" library="camp" exclude="*.ogg" if="web"/>
+	<assets path="assets/camp" embed="true" library="camp" exclude="*.mp3" unless="web"/>
+	<assets path="assets/forge" embed="true" library="forge" exclude="*.ogg" if="web"/>
+	<assets path="assets/forge" embed="true" library="forge" exclude="*.mp3" unless="web"/>
+	<assets path="assets/gates" embed="true" library="gates" exclude="*.ogg" if="web"/>
+	<assets path="assets/gates" embed="true" library="gates" exclude="*.mp3" unless="web"/>
+	<assets path="assets/rift" embed="true" library="rift" exclude="*.ogg" if="web"/>
+	<assets path="assets/rift" embed="true" library="rift" exclude="*.mp3" unless="web"/>
+	<assets path="assets/ruins" embed="true" library="ruins" exclude="*.ogg" if="web"/>
+	<assets path="assets/ruins" embed="true" library="ruins" exclude="*.mp3" unless="web"/>
+
+	<assets path="assets/fonts" embed="true"/>
+
+	<assets path="README.md" rename='README.txt'/>
+
+	<!-- ____________________ Customization ____________________ -->
+
+	<haxedef name="HXC_DEBUG_TRACE" if="debug" />
+	<haxedef name="CRASH_HANDLER" if="desktop"/>
+	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
+	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
+	<!--Macro fixes-->
+	<haxeflag name="--macro" value="allowPackage('flash')" />
+	<haxeflag name="--macro" value="include('my.pack')" />
+	<haxedev set='webgl'/>
+	<!--Disable the Flixel core focus lost screen-->
+	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
+	<haxedef name="FLX_NO_HEALTH" />
+
+	<!--Disable deprecated warnings-->
+	<haxedef name="no-deprecation-warnings"/>
+
+	<!--Allow working memory greater than 1 Gig-->
+	<haxedef name="HXCPP_GC_BIG_BLOCKS"/>
+
+	<!--Disable the Flixel core debugger. Automatically gets set whenever you compile in release mode!-->
+	<haxedef name="FLX_NO_DEBUG" unless="debug" />
+
+	<!--Enable this for Nape release builds for a serious peformance improvement-->
+	<haxedef name="NAPE_RELEASE_BUILD" unless="debug"/>
+
+	<haxedef name="FLX_NO_MOUSE" if="mobile" />
+	<haxedef name="FLX_NO_KEYBOARD" if="mobile" />
+	<haxedef name="FLX_NO_GAMEPAD" if="mobile" />
+	<haxedef name="FLX_NO_TOUCH" if="desktop"/>
+
+
+	<!-- ____________________ Libraries ____________________ -->
+
+	<haxelib name="flixel"/>
+	<haxelib name="flixel-addons"/>
+	<haxelib name="flixel-ui"/>
+	<haxelib name="hxcpp"/>
+	<haxelib name="parallaxlt"/>
+	<haxelib name="hxcpp-debug-server" if="debug"/>
+	<haxelib name="discord_rpc" if="desktop"/>
+
+	<!-- _____________________ Icons ____________________ -->
+
+	<icon path="art/icons/icon16.png" size='16'/>
+	<icon path="art/icons/icon32.png" size='32'/>
+	<icon path="art/icons/icon64.png" size='64'/>
+	<icon path="art/icons/iconOG.png"/>
+
+	<!-- ____________________ Errors ____________________ -->
+	<error value="Seems like you're using Haxe ${haxe}. See https://haxe.org/download for 4.3.6" if="${haxe != 4.3.6}"/>
+	
+	<error value="flixel ${flixel} isn't supported. Run the setup script for the proper lib versions!" if="${flixel != 6.0.0}"/>
+	<error value="flixel-addons ${flixel-addons} isn't supported. Run the setup script for the proper lib versions!" if="${flixel-addons != 3.3.2}"/>
+	<error value="flixel-ui ${flixel-ui} isn't supported. Run the setup script for the proper lib versions!" if="${flixel-ui != 2.6.3}"/>
+</project>
