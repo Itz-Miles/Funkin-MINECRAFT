@@ -4,7 +4,7 @@
 
 	<!-- ____________________ Application Settings ____________________ -->
 
-	<app title="Funkin' Minecraft: Flixel Edition" file="FunkinMinecraftFlixel" packageName="com.itzMiles.FunkinMinecraftFlixel" package="com.itzMiles.FunkinMinecraftFlixel" main="Main" version="0" company="Itz_Miles" />
+	<app title="Funkin' MINECRAFT" file="FunkinMINECRAFT" packageName="com.itzMiles.FunkinMINECRAFT" package="com.itzMiles.FunkinMINECRAFT" main="Main" version="0.0.0" company="Itz_Miles" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -127,7 +127,7 @@
 
 	<!-- ____________________ Errors ____________________ -->
 	<error value="Seems like you're using Haxe ${haxe}. See https://haxe.org/download for 4.3.6" if="${haxe != 4.3.6}"/>
-	
+
 	<error value="flixel ${flixel} isn't supported. Run the setup script for the proper lib versions!" if="${flixel != 6.0.0}"/>
 	<error value="flixel-addons ${flixel-addons} isn't supported. Run the setup script for the proper lib versions!" if="${flixel-addons != 3.3.2}"/>
 	<error value="flixel-ui ${flixel-ui} isn't supported. Run the setup script for the proper lib versions!" if="${flixel-ui != 2.6.3}"/>

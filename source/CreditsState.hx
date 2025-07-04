@@ -48,12 +48,12 @@ class CreditsState extends MusicBeatState
 		var credits:Array<Array<String>> = [
 			// Name - Icon name - Description - Link - BG Color
 
-			[" Funkin' Minecraft: Flixel Edition "],
+			[" Funkin' MINECRAFT "],
 
 			[
 				"It'z_Miles",
 				'miles',
-				"It'z_Miles is the director, composer, and developer of Funkin' Minecraft: Flixel Edition.",
+				"It'z_Miles is the director, composer, and developer of Funkin' MINECRAFT.",
 				'https://twitter.com/Itz_MilesDev'
 			],
 			[
@@ -200,12 +200,7 @@ class CreditsState extends MusicBeatState
 			],
 			[''],
 			["..And how could I forget you?"],
-			[
-				"The Player",
-				'face',
-				"Thanks for playing Funkin' Minecraft: Flixel Edition!",
-				''
-			]
+			["The Player", 'face', "Thanks for playing Funkin' MINECRAFT!", '']
 
 		];
 

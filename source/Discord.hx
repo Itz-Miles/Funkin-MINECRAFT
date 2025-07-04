@@ -42,7 +42,7 @@ class DiscordClient
 			details: "Starting Up",
 			state: null,
 			largeImageKey: 'icon',
-			largeImageText: "Funkin Minecraft: Flixel Edition"
+			largeImageText: "Funkin MINECRAFT"
 		});
 	}
 
@@ -79,7 +79,7 @@ class DiscordClient
 			details: details,
 			state: state,
 			largeImageKey: 'icon',
-			largeImageText: "Funkin Minecraft: Flixel Edition",
+			largeImageText: "Funkin MINECRAFT",
 			smallImageKey: smallImageKey,
 			// Obtained times are in milliseconds so they are divided so Discord can use it
 			startTimestamp: Std.int(startTimestamp * 0.001),
