@@ -42,7 +42,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null --quiet
           chmod +x ./setup/setup-unix.sh
-          ./setup/setup-unix.sh
+          sh ./setup/setup-unix.sh
 
       # Cache build artifacts with better key
       - name: Cache build artifacts
@@ -89,10 +89,10 @@ jobs:
 
       - name: Install Haxelib
         run: |
-          mkdir C:\haxelib
-          haxelib setup C:\haxelib
-          haxelib install hxcpp > nul
-          .\setup\windows.bat
+          haxelib setup C:/haxelib
+          haxelib install hxcpp > /dev/null --quiet
+          .\"setup/windows.bat"
+        shell: cmd
 
       # Cache Windows build artifacts
       - name: Cache build artifacts
@@ -142,7 +142,7 @@ jobs:
           haxelib setup ~/haxelib
           haxelib install hxcpp > /dev/null --quiet
           chmod +x ./setup/setup-unix.sh
-          ./setup/setup-unix.sh
+          sh ./setup/setup-unix.sh
 
       # Cache MacOS build artifacts
       - name: Cache build artifacts
