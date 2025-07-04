@@ -78,7 +78,7 @@ class IntroState extends MusicBeatState
 		logoSpr.updateHitbox();
 		logoSpr.antialiasing = ClientPrefs.data.antialiasing;
 		logoSpr.screenCenter(X);
-		logoSpr.x -= 300;
+		logoSpr.x -= 250;
 		logoSpr.y -= 150;
 		add(logoSpr);
 
@@ -124,7 +124,7 @@ class IntroState extends MusicBeatState
 		}
 	}
 
-	function createCoolText(textArray:Array<String>, ?offset:Float = 0, ?size:Int = 48)
+	function createCoolText(textArray:Array<String>, ?offset:Float = 0, ?size:Int = 48, ?scale:Float = 1.0)
 	{
 		for (i in 0...textArray.length)
 		{
@@ -135,7 +135,8 @@ class IntroState extends MusicBeatState
 				CENTER, OUTLINE, 0xffffffff);
 			money.borderSize = size / 12;
 			money.screenCenter(X);
-			money.x -= 300;
+			money.scale.y = scale;
+			money.x -= 250;
 			money.y += (i * 60) + 100 + offset;
 			if (credGroup != null && textGroup != null)
 			{
@@ -156,7 +157,7 @@ class IntroState extends MusicBeatState
 				CENTER, OUTLINE, 0xffffffff);
 			coolText.borderSize = size / 12;
 			coolText.screenCenter(X);
-			coolText.x -= 300;
+			coolText.x -= 250;
 			coolText.y += (textGroup.length * 60) + 100 + offset;
 			credGroup.add(coolText);
 			textGroup.add(coolText);
@@ -194,34 +195,32 @@ class IntroState extends MusicBeatState
 			{
 				case 2:
 					logoSpr.visible = true;
-				case 3:
+				case 6:
 					logoSpr.visible = false;
 					deleteCoolText();
-				case 4:
+				case 7:
 					createCoolText([' Based on '], -30);
 					logoSpr.loadGraphic(Paths.image('logos/titlelogo', "shared"));
 					logoSpr.setGraphicSize(Std.int(1280 / 3));
 					logoSpr.updateHitbox();
 					logoSpr.screenCenter(X);
-					logoSpr.x -= 300;
+					logoSpr.x -= 250;
 					logoSpr.y += 50;
-				case 6:
+				case 8:
 					logoSpr.visible = true;
-				case 7:
+				case 13:
 					deleteCoolText();
 					logoSpr.visible = false;
-				case 8:
-					createCoolText([' Itz_Miles '], -30);
-				case 10:
-					addMoreText(' Presents:', 15);
-				case 11:
-					deleteCoolText();
-				case 12:
-					createCoolText([" Funkin'"], -30, 96);
-					addMoreText(' MINECRAFT ', 30, 64);
-				case 14:
-					addMoreText(' Flixel Edition ', 64, 32);
 				case 15:
+					createCoolText([" It'z Miles "], -15);
+				case 16:
+					addMoreText(' Presents:', 15);
+				case 18:
+					deleteCoolText();
+					createCoolText([" Funkin'"], -15, 148, 1.3);
+				case 19:
+					addMoreText(' MINECRAFT ', 110, 112);
+				case 21:
 					endIntro();
 			}
 		}
@@ -231,8 +230,8 @@ class IntroState extends MusicBeatState
 	{
 		closedState = true;
 		FlxTween.cancelTweensOf(FlxG.camera);
-		FlxTween.tween(FlxG.camera, {zoom: 10}, 0.5, {ease: FlxEase.quadIn});
-		FlxG.camera.fade(0xff82aafa, 0.5, false, function()
+		FlxTween.tween(FlxG.camera, {zoom: 10}, 1, {ease: FlxEase.quadIn}); // torn between this & beat 22/0.5 duration
+		FlxG.camera.fade(0xff82aafa, 1, false, function()
 		{
 			ClientPrefs.data.firstIntro = false;
 			FlxG.save.data.firstIntro = false;
