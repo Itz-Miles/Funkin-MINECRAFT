@@ -1,0 +1,19 @@
+### VS Code
+export/*
+.vscode/*
+.haxelib/
+*.code-workspace
+vs_Community.exe
+# Local history which shouldn't be shared.
+.history
+.ionide
+# I'll handle codespaces configuration later.
+!.vscode/* 
+!.vscode/settings.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json 
+.history.vscode/settings.json
+# Nobody needs storage configurations for my school district's mac.
+.DS_Store

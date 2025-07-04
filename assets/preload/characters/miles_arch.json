@@ -1,0 +1,51 @@
+{
+	"animations": [
+		{
+			"loop": false,
+			"offsets": [
+				0,
+				0
+			],
+			"anim": "idle",
+			"fps": 1,
+			"name": "miles_arch idle",
+			"indices": []
+		},
+		{
+			"loop": true,
+			"offsets": [
+				55,
+				0
+			],
+			"anim": "singLEFT",
+			"fps": 1,
+			"name": "miles_arch singLEFT",
+			"indices": []
+		}
+	],
+	"image": "characters/miles_arch",
+	"healthicon": "itz-miles",
+	"facing_right": true,
+	"healthbar_colors": [
+		207,
+		145,
+		103
+	],
+	"s_xy": [
+		270,
+		370
+	],
+	"c_xy": [
+		0,
+		-100
+	],
+	"scroll_factor": [
+		0.684210526,
+		0.684210526
+	],
+	"camera_position": [
+		0,
+		0
+	],
+	"zoom": 1.2
+}

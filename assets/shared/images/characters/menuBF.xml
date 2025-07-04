@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="menuBF.png">
+  <SubTexture name="BF HEY!!0000" x="0" y="0" width="197" height="208" frameX="0" frameY="0" frameWidth="207" frameHeight="209" />
+  <SubTexture name="BF HEY!!0001" x="0" y="0" width="197" height="208" frameX="0" frameY="0" frameWidth="207" frameHeight="209" />
+  <SubTexture name="BF HEY!!0002" x="197" y="0" width="206" height="205" frameX="-0" frameY="-4" frameWidth="207" frameHeight="209" />
+  <SubTexture name="BF HEY!!0003" x="197" y="0" width="206" height="205" frameX="-0" frameY="-4" frameWidth="207" frameHeight="209" />
+  <SubTexture name="BF HEY!!0004" x="0" y="208" width="207" height="206" frameX="-0" frameY="-3" frameWidth="207" frameHeight="209" />
+  <SubTexture name="BF idle dance0000" x="207" y="208" width="203" height="196" frameX="-0" frameY="-10" frameWidth="205" frameHeight="206" />
+  <SubTexture name="BF idle dance0001" x="207" y="208" width="203" height="196" frameX="-0" frameY="-10" frameWidth="205" frameHeight="206" />
+  <SubTexture name="BF idle dance0002" x="0" y="414" width="204" height="196" frameX="0" frameY="-9" frameWidth="205" frameHeight="206" />
+  <SubTexture name="BF idle dance0003" x="0" y="414" width="204" height="196" frameX="0" frameY="-9" frameWidth="205" frameHeight="206" />
+  <SubTexture name="BF idle dance0004" x="204" y="414" width="202" height="199" frameX="-1" frameY="-7" frameWidth="205" frameHeight="206" />
+  <SubTexture name="BF idle dance0005" x="204" y="414" width="202" height="199" frameX="-1" frameY="-7" frameWidth="205" frameHeight="206" />
+  <SubTexture name="BF idle dance0006" x="0" y="613" width="205" height="205" frameX="-0" frameY="-0" frameWidth="205" frameHeight="206" />
+  <SubTexture name="BF idle dance0007" x="0" y="613" width="205" height="205" frameX="-0" frameY="-0" frameWidth="205" frameHeight="206" />
+  <SubTexture name="BF idle dance0008" x="205" y="613" width="204" height="206" frameX="-1" frameY="0" frameWidth="205.5" frameHeight="206" />
+</TextureAtlas>
