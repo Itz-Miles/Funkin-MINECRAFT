@@ -159,7 +159,7 @@ class Main extends Sprite
 
 		errMsg += "\nUncaught Error: "
 			+ e.error
-			+ "\nPlease report this error to the GitHub page: https://github.com/Itz-Miles/Funkin-MINECRAFT\n\n> Crash Handler written by sqirra-rng";
+			+ "\nPlease report this error to the GitHub page: https://github.com/Itz-Miles/Funkin-MINECRAFT \n\n> Crash Handler written by sqirra-rng";
 
 		if (!FileSystem.exists("./crash/"))
 			FileSystem.createDirectory("./crash/");
