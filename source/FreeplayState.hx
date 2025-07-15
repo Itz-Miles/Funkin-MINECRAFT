@@ -257,7 +257,7 @@ class FreeplayState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 			this.camera.fade(FlxG.camera.bgColor, 0.35, false, function()
 			{
-				FlxG.switchState(new MainMenuState());
+				FlxG.switchState(() -> new MainMenuState());
 			}, true);
 		}
 

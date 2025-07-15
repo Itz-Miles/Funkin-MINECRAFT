@@ -183,11 +183,11 @@ class MainMenuState extends MusicBeatState
 			{
 				selected = true;
 				curSelection = 5;
-				FlxG.switchState(new TitleState());
+				FlxG.switchState(() -> new TitleState());
 			}
 
 			if (FlxG.keys.pressed.SEVEN)
-				FlxG.switchState(new ParallaxDebugState());
+				FlxG.switchState(() -> new ParallaxDebugState());
 		}
 		camFollow.x = FlxMath.bound(FlxG.mouse.viewX, 0, 1280);
 		camFollow.y = FlxMath.bound(FlxG.mouse.viewY, 0, 720);
@@ -267,12 +267,12 @@ class MainMenuState extends MusicBeatState
 				case 0:
 					LoadingState.loadAndSwitchState(new PlayState(), true);
 				case 1:
-					// FlxG.switchState(new ChartingState());
-					FlxG.switchState(new FreeplayState());
+					// FlxG.switchState(()-> new ChartingState());
+					FlxG.switchState(() -> new FreeplayState());
 				case 2:
-					FlxG.switchState(new options.OptionsState());
+					FlxG.switchState(() -> new options.OptionsState());
 				case 3:
-					FlxG.switchState(new CreditsState());
+					FlxG.switchState(() -> new CreditsState());
 			}
 		});
 	}

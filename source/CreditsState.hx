@@ -303,7 +303,7 @@ class CreditsState extends MusicBeatState
 					colorTween.cancel();
 				}
 
-				FlxG.switchState(new MainMenuState());
+				FlxG.switchState(() -> new MainMenuState());
 			}, true);
 		}
 		if (controls.ACCEPT)
