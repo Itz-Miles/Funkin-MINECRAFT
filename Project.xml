@@ -126,9 +126,9 @@
 	<icon path="art/icons/iconOG.png"/>
 
 	<!-- ____________________ Errors ____________________ -->
-	<error value="Seems like you're using Haxe ${haxe}. See https://haxe.org/download for 4.3.6" if="${haxe != 4.3.6}"/>
+	<error value="Seems like you're using Haxe ${haxe}. See https://haxe.org/download for 4.3.6" if="${haxe != 4.3.7}"/>
 
-	<error value="flixel ${flixel} isn't supported. Run the setup script for the proper lib versions!" if="${flixel != 6.0.0}"/>
+	<error value="flixel ${flixel} isn't supported. Run the setup script for the proper lib versions!" if="${flixel != 5.9.0}"/>
 	<error value="flixel-addons ${flixel-addons} isn't supported. Run the setup script for the proper lib versions!" if="${flixel-addons != 3.3.2}"/>
 	<error value="flixel-ui ${flixel-ui} isn't supported. Run the setup script for the proper lib versions!" if="${flixel-ui != 2.6.3}"/>
 </project>
