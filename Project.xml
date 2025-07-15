@@ -82,16 +82,10 @@
 	<haxedef name="CRASH_HANDLER" if="desktop"/>
 	<haxedef name="HXCPP_CHECK_POINTER" if="CRASH_HANDLER" />
 	<haxedef name="HXCPP_STACK_LINE" if="CRASH_HANDLER" />
-	<!--Macro fixes-->
-	<haxeflag name="--macro" value="allowPackage('flash')" />
-	<haxeflag name="--macro" value="include('my.pack')" />
 	<haxedev set='webgl'/>
 	<!--Disable the Flixel core focus lost screen-->
 	<haxedef name="FLX_NO_FOCUS_LOST_SCREEN" />
 	<haxedef name="FLX_NO_HEALTH" />
-
-	<!--Disable deprecated warnings-->
-	<haxedef name="no-deprecation-warnings"/>
 
 	<!--Allow working memory greater than 1 Gig-->
 	<haxedef name="HXCPP_GC_BIG_BLOCKS"/>
