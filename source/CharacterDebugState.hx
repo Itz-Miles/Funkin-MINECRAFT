@@ -59,7 +59,7 @@ class CharacterDebugState extends MusicBeatState
 		}
 
 		if (controls.BACK)
-			FlxG.switchState(new MainMenuState());
+			FlxG.switchState(() -> new MainMenuState());
 
 		statusText.text = "status: " + char.status.getName();
 	}

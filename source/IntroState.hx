@@ -235,7 +235,7 @@ class IntroState extends MusicBeatState
 		{
 			ClientPrefs.data.firstIntro = false;
 			FlxG.save.data.firstIntro = false;
-			FlxG.switchState(new TitleState());
+			FlxG.switchState(() -> new TitleState());
 		}, true);
 	}
 }

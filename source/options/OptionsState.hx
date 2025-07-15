@@ -163,7 +163,7 @@ class OptionsState extends MusicBeatState
 				else
 				{ // No? Then return to the main menu.
 					Conductor.bpm = 100;
-					FlxG.switchState(new MainMenuState());
+					FlxG.switchState(() -> new MainMenuState());
 				}
 			}, true);
 		}

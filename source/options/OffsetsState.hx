@@ -145,7 +145,7 @@ class OffsetsState extends MusicBeatState
 				beatTween.cancel();
 
 			persistentUpdate = false;
-			FlxG.switchState(new options.OptionsState());
+			FlxG.switchState(() -> new options.OptionsState());
 		}
 
 		Conductor.songPosition = FlxG.sound.music.time;

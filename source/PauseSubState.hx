@@ -160,7 +160,7 @@ class PauseSubState extends MusicBeatSubstate
 					{
 						FlxG.sound.playMusic(Paths.music('where_are_we_going'));
 						FlxG.sound.music.fadeIn(2, 0, 1);
-						FlxG.switchState(new options.OptionsState());
+						FlxG.switchState(() -> new options.OptionsState());
 					}, true);
 
 				case "Leave Editor":
@@ -179,11 +179,11 @@ class PauseSubState extends MusicBeatSubstate
 						FlxG.sound.music.fadeIn(2, 0, 1);
 						if (PlayState.isStoryMode)
 						{
-							FlxG.switchState(new MainMenuState());
+							FlxG.switchState(() -> new MainMenuState());
 						}
 						else
 						{
-							FlxG.switchState(new FreeplayState());
+							FlxG.switchState(() -> new FreeplayState());
 						}
 					}, true);
 			}
