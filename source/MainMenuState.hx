@@ -121,7 +121,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.label.letterSpacing = -3;
 			menuItem.label.fieldWidth = 447.04;
 			menuItem.label.fieldHeight = menuItem.height;
-			menuItem.label.shadowOffset.set(-5, 0);
+			menuItem.label.setBorderStyle(SHADOW_XY(-5, 0));
 			menuItem.label.setFormat(Paths.font('Monocraft.ttf'), 64, 0xFFFFFFFF, CENTER, SHADOW, 0x76000000);
 			menuItem.label.text = labels[i];
 			menuItem.labelOffsets[0].set(0, 24);

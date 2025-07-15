@@ -57,7 +57,7 @@ class Paths
 		// run the garbage collector for good measure lmfao
 		System.gc();
 		#if cpp
-		//cpp.vm.Gc.compact();
+		cpp.vm.Gc.compact();
 		#end
 
 	}

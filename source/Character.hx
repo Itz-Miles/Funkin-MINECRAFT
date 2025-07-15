@@ -163,7 +163,6 @@ class Character extends FlxSprite
 	/**
 	 * Stats may be different but the message is the same
 	 */
-
 	/**
 	 * The map for the character's animation offsets.
 	 */
