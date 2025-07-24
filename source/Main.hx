@@ -30,7 +30,7 @@ using StringTools;
 
 class Main extends Sprite
 {
-	public static var fpsVar:PerformanceCounter;
+	public static var fpsVar:FPSCounter;
 	public static var buildInfo:TextField;
 
 	public static function main():Void
@@ -75,7 +75,7 @@ class Main extends Sprite
 		Controls.init();
 
 		#if !mobile
-		fpsVar = new PerformanceCounter(0, 0, 0xFFFFFF);
+		fpsVar = new FPSCounter(0, 0, 0xFFFFFF);
 		addChild(fpsVar);
 
 		buildInfo = new TextField();
@@ -96,6 +96,7 @@ class Main extends Sprite
 		onResize(null);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
+
 		if (fpsVar != null)
 		{
 			fpsVar.visible = ClientPrefs.data.showFPS;
