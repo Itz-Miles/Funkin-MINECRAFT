@@ -731,8 +731,8 @@ class PlayState extends MusicBeatState
 		/*
 			if (SONG.sections[curSection] != null && SONG.sections[curSection].mustHitSection)
 			{
-				camTarget.x += FlxG.mouse.deltaViewX;
-				camTarget.y += FlxG.mouse.deltaViewY;
+				camTarget.x += FlxG.mouse.deltaScreenX;
+				camTarget.y += FlxG.mouse.deltaScreenY;
 			}
 		 */
 

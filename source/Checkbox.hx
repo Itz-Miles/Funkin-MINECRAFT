@@ -25,7 +25,7 @@ class Checkbox extends FlxSprite
 		updateHitbox();
 
 		animationFinished(checked ? 'checking' : 'unchecking');
-		animation.onFinish.add(animationFinished);
+		animation.finishCallback = animationFinished;
 		daValue = checked;
 	}
 

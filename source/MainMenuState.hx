@@ -121,7 +121,7 @@ class MainMenuState extends MusicBeatState
 			menuItem.label.letterSpacing = -3;
 			menuItem.label.fieldWidth = 447.04;
 			menuItem.label.fieldHeight = menuItem.height;
-			menuItem.label.setBorderStyle(SHADOW_XY(-5, 0));
+			menuItem.label.shadowOffset.set(-5, 0);
 			menuItem.label.setFormat(Paths.font('Monocraft.ttf'), 64, 0xFFFFFFFF, CENTER, SHADOW, 0x76000000);
 			menuItem.label.text = labels[i];
 			menuItem.labelOffsets[0].set(0, 24);
@@ -189,8 +189,8 @@ class MainMenuState extends MusicBeatState
 			if (FlxG.keys.pressed.SEVEN)
 				FlxG.switchState(() -> new ParallaxDebugState());
 		}
-		camFollow.x = FlxMath.bound(FlxG.mouse.viewX, 0, 1280);
-		camFollow.y = FlxMath.bound(FlxG.mouse.viewY, 0, 720);
+		camFollow.x = FlxMath.bound(FlxG.mouse.screenX, 0, 1280);
+		camFollow.y = FlxMath.bound(FlxG.mouse.screenY, 0, 720);
 		super.update(elapsed);
 	}
 
