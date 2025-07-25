@@ -75,7 +75,7 @@ class Main extends Sprite
 		Controls.init();
 
 		#if !mobile
-		fpsVar = new FPSCounter(0, 0, 0xFFFFFF);
+		fpsVar = new FPSCounter();
 		addChild(fpsVar);
 
 		buildInfo = new TextField();

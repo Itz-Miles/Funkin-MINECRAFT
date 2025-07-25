@@ -13,69 +13,60 @@ import openfl.events.Event;
 class FPSCounter extends TextField
 {
 	/**
-		The current frame rate, expressed using frames-per-second
+		The current frame rate, expressed as frames-per-second.
 	**/
 	public static var currentFPS(default, null):Int;
 
 	/**
-		Represents the number of frames 
+		The number of frames rendered in the last second.
 	**/
 	@:noCompletion private static var times:Array<Int> = [];
 
 	/**
 		The number of milliseconds to wait before updating the TextField. 
 	**/
-	public static var updateFrequency:Int = 250; // something is happening
+	public static var updateInterval:Int = 250; // keep this high
 
-	public function new(x:Float = 0, y:Float = 0, color:Int = 0x000000)
+	public function new(x:Float = 0, y:Float = 0)
 	{
 		super();
 
 		this.x = x;
 		this.y = y;
-		currentFPS = 0;
 		selectable = false;
 		mouseEnabled = false;
-		defaultTextFormat = new TextFormat("Monocraft", 12, color);
+		defaultTextFormat = new TextFormat("Monocraft", 12, 0xFFFFFF);
+		multiline = false;
+		wordWrap = false;
 		autoSize = LEFT;
-		multiline = true;
 		background = true;
-		backgroundColor = 0x6F000000;
+		backgroundColor = 0xFF000000;
 		alpha = 0.8;
-		cacheAsBitmap = true;
-		addEventListener(Event.DEACTIVATE, onFocusLost);
-		addEventListener(Event.ACTIVATE, onFocusRegained);
+		cacheAsBitmap = false;
+		addEventListener(Event.DEACTIVATE, _ -> focus = false);
+		addEventListener(Event.ACTIVATE, _ -> focus = true);
 	}
 
-	private static function onFocusLost(event:Event):Void
-	{
-		focus = false;
-	}
-
-	private static function onFocusRegained(event:Event):Void
-	{
-		focus = true;
-	}
-
-	private static var focus:Bool = false;
 	private static var then:Int = 0;
+	private static var now:Int = 0;
+	private static var focus:Bool = true;
 
 	private override function __enterFrame(deltaTime:Float):Void
 	{
-		if (focus)
-		{
-			final now:Int = lime.system.System.getTimer();
-			times.push(now);
-			while (times[0] < now - 1000)
-				times.shift();
+		if (!focus || !visible)
+			return;
 
-			if (now - then < updateFrequency)
-			{
-				return;
-			}
-			then = now;
-			currentFPS = times.length < FlxG.updateFramerate ? times.length : FlxG.updateFramerate;
-			text = 'FPS: $currentFPS[${deltaTime}ms]\nRAM: ${flixel.util.FlxStringUtil.formatBytes(System.totalMemory)}';
-		}
+		now = lime.system.System.getTimer();
+		times.push(now);
+		while (times[0] < now - 1000)
+			times.shift();
+
+		if (now - then < updateInterval)
+			return;
+
+		then = now;
+		currentFPS = times.length < FlxG.updateFramerate ? times.length : FlxG.updateFramerate;
+		text = 'FPS: $currentFPS[${Std.int(1000 / currentFPS)}ms]\nRAM: ${flixel.util.FlxStringUtil.formatBytes(System.totalMemory)}';
+		// The frametime is currently a lie. Using deltaTime causes the TextField to regen more frequently, which is hideously memory intensive.
 	}
 }
