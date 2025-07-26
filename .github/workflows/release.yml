@@ -14,19 +14,19 @@ jobs:
       - name: Download Linux Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: linuxBuild
+          name: buildLinux
           path: artifacts/linux
 
       - name: Download Windows Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: windowsBuild
+          name: buildWindows
           path: artifacts/windows
 
       - name: Download Mac Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: macBuild
+          name: buildMac
           path: artifacts/mac
 
       - name: Zip Artifacts (Flat Contents)
