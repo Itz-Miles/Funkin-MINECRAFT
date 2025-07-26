@@ -45,27 +45,28 @@ class TitleState extends MusicBeatState
 		titleGF = new Character(710, 220, "titleGF", "shared");
 		add(titleGF);
 
-		var fg:ParallaxFG = new ParallaxFG('arch');
-		fg.setPosition(-130, -70);
-		add(fg);
-
 		logoBl = new FlxSprite(-15, -10).loadGraphic(Paths.image('logos/logo', "shared"));
 		logoBl.updateHitbox();
 		logoBl.antialiasing = ClientPrefs.data.antialiasing;
 		add(logoBl);
+
+		splashText = new FlxText(0, 560, 0, ' click ANYWHERE to start! ', 80);
+		splashText.setFormat(Paths.font("Monocraft.ttf"), 80, 0xffffff00, CENTER, OUTLINE, 0xffdea300);
+		splashText.borderSize = 4;
+		splashText.antialiasing = ClientPrefs.data.antialiasing;
+		splashText.screenCenter(X);
+		add(splashText);
+		FlxTween.tween(splashText.scale, {x: 0.96, y: 0.96}, 0.1, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
+
+		var fg:ParallaxFG = new ParallaxFG('arch');
+		fg.setPosition(-130, -70);
+		add(fg);
 
 		/*
 			touch ANYWHERE to start!
 			click ANYWHERE to start!
 			press ANYTHING to start!
 		 */
-		splashText = new FlxText(0, 560, 0, ' click ANYWHERE to start! ', 80);
-		splashText.setFormat(Paths.font("Monocraft.ttf"), 80, 0xffffff00, CENTER, OUTLINE, 0xffffbb00);
-		splashText.borderSize = 4;
-		splashText.antialiasing = ClientPrefs.data.antialiasing;
-		splashText.screenCenter(X);
-		add(splashText);
-		FlxTween.tween(splashText.scale, {x: 0.96, y: 0.96}, 0.1, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
 
 		FlxG.camera.flash(FlxG.camera.bgColor, 0.7);
 		FlxG.camera.zoom = 3.5;
