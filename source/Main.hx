@@ -92,7 +92,7 @@ class Main extends Sprite
 		buildInfo.backgroundColor = 0x24000000;
 		buildInfo.alpha = 0.6;
 		addChild(buildInfo);
-		buildInfo.text = "Funkin' MINECRAFT Open Pre-Alpha Build (0.0.0) - August 4 2024";
+		buildInfo.text = '${FlxG.stage.application.meta.get("name")} Open Pre-Alpha Build (${FlxG.stage.application.meta.get("version")}) - ${haxe.macro.Compiler.getDefine("BUILD_DATE")}';
 		onResize(null);
 		Lib.current.stage.align = "tl";
 		Lib.current.stage.scaleMode = StageScaleMode.NO_SCALE;
