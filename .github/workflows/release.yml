@@ -1,0 +1,45 @@
+name: Upload Release Builds
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  uploadReleaseAssets:
+    name: Upload Build Artifacts to GitHub Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Linux Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: linuxBuild
+          path: artifacts/linux
+
+      - name: Download Windows Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: windowsBuild
+          path: artifacts/windows
+
+      - name: Download Mac Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: macBuild
+          path: artifacts/mac
+
+      - name: Zip Artifacts (Flat Contents)
+        run: |
+          cd artifacts/linux/bin && zip -r ../../../buildLinux.zip . && cd ../../../
+          cd artifacts/windows/bin && zip -r ../../../buildWindows.zip . && cd ../../../
+          cd artifacts/mac/bin && zip -r ../../../buildMac.zip . && cd ../../../
+
+      - name: Upload to Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            buildLinux.zip
+            buildWindows.zip
+            buildMac.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
