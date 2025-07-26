@@ -13,6 +13,7 @@
 	--prime-color: #ffcc00;
 	--alpha-color: #ffa500;
 	--beta-color: #c9a100;
+	--git-bdr-color: #3d444d;
 }
 
 html {
@@ -229,31 +230,37 @@ p a:hover {
 }
 
 .changelog-wrapper {
-	background-color: var(--bg-color);
-	border: 1px solid #3d444d;
+	border: 1px solid var(--git-bdr-color);
 	border-radius: 6px;
 	padding: 1em;
 	margin: 1.5em 0;
 }
 
 .tab-menu {
+	border: 1px solid var(--git-bdr-color);
+	border-radius: 8px;
 	display: flex;
-	width: 100%;
-	margin-bottom: 1em;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	padding: 0.5em;
+	padding-bottom: 0.75em;
+	justify-content: center;
+	max-width: 100%;
 }
 
 .tab {
-	flex: auto;
+	flex: 1 1 20rem;
+	min-width: 10rem;
 	font-family: 'minecrafter', sans-serif;
 	font-size: 1.5em;
-	color: #ffffff9f;
+	color: #ffffffad;
 	background-color: unset;
 	padding: 0.5em;
 	text-align: center;
 	text-decoration: none;
-	box-shadow: inset 0px 0px 0px 2px #ffffff88;
+	box-shadow: inset 0px 0px 0px 4px #ffffff92;
 	border: 0px;
-	border-bottom: var(--btn-btm-color) 0.35em solid;
+	border-bottom: #ffffff35 0.35em solid;
 	margin: 0.1em;
 	font-weight: lighter;
 	cursor: pointer;
@@ -262,12 +269,13 @@ p a:hover {
 
 .tab.active {
 	color: #ffffff;
-	box-shadow: inset 0px 0px 0px 2px #ffffff;
+	box-shadow: inset 0px 0px 0px 4px #ffffff;
 	border-bottom: 0.1em #b9b9b9 solid;
 	margin-top: 0.3em;
 }
 
 .changelog-content {
+	margin-top: 1em;
 	background-color: #0d1117;
 	color: #eee;
 	padding: 1em;
