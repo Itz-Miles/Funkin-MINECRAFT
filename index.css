@@ -47,10 +47,6 @@ section {
 	font-weight: lighter;
 }
 
-h1 {
-	font-size: 2em;
-}
-
 p {
 	font-size: 1.2em;
 	padding: 0.5em;
@@ -58,9 +54,14 @@ p {
 	border: #25252584 0.25em solid;
 }
 
+.title {
+	width: min(120vh, 80vw);
+	height: auto;
+}
+
 .hero {
 	height: min(60vh, 40vw);
-	margin-bottom: 40vh;
+	margin-bottom: min(30vh, 30vw);
 	padding-top: 20vh;
 	margin-top: -20vh;
 	background-image: url('assets/panorama.png');
@@ -71,15 +72,10 @@ p {
 	z-index: 1;
 }
 
-.title {
-	max-width: min(120vh, 80vw);
-	height: auto;
-}
-
 .hero-content p {
-	font-size: 1.1em;
 	padding: 0.2em 0em 0.2em 0em;
-	max-width: max(30vh, 50%);
+	font-size: min(3vh, 2vw);
+	width: min(112vh, 75vw);
 	font-family: 'minecrafter', sans-serif;
 	font-weight: lighter;
 	justify-content: center;
@@ -89,10 +85,6 @@ p {
 	border: 0px;
 	border-bottom: #24282f 0.25em solid;
 	transform: scaleY(1.5);
-}
-
-.cta-button {
-	font-size: 1.2em;
 }
 
 .links a,
@@ -149,23 +141,6 @@ p a:hover {
 	color: var(--alpha-color);
 	border-bottom: 0.15em var(--prime-color) solid;
 	margin-top: 0.2em;
-}
-
-.cta-button {
-	font-family: 'minecrafter', sans-serif;
-	font-weight: lighter;
-	display: inline-block;
-	background-color: var(--prime-color);
-	color: var(--bg-color);
-	padding: 0.5em;
-	text-decoration: none;
-	transition: background-color 0.2s ease-in-out;
-}
-
-.cta-button:hover {
-	background-color: var(--alpha-color);
-	outline: 3px solid var(--prime-color);
-	outline-offset: 4px;
 }
 
 .table-wrapper {
