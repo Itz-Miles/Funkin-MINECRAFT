@@ -204,13 +204,11 @@ class Character extends FlxSprite
 
 	override function set_x(value:Float)
 	{
-		// statBar.x = value - width * 0.5;
 		return x = value;
 	}
 
 	override function set_y(value:Float)
 	{
-		// statBar.y = value;
 		return y = value;
 	}
 
