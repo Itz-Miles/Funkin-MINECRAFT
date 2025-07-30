@@ -245,13 +245,12 @@ p a:hover {
 	margin: 1.5em 0;
 }
 
-/*ooh i hate specificity*/
-.changelog-wrapper p {
+.changelog-wrapper .changelog-content p {
 	border: 0px solid transparent;
 	box-shadow: unset;
 	border-radius: 0px;
 	padding: 1em;
-	margin: 1.5em 0;
+	margin: 0.25em;
 }
 
 .tab-menu {
