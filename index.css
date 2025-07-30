@@ -58,8 +58,9 @@ p {
 }
 
 .title {
-	width: min(120vh, 80vw);
+	width: min(120vh, 95vw);
 	height: auto;
+	filter: drop-shadow(0px 0.5em 0.25em #03002287);
 }
 
 .hero {
@@ -78,8 +79,8 @@ p {
 
 .hero-content p {
 	padding: 0.2em 0em 0.2em 0em;
-	font-size: min(3vh, 2vw);
-	width: min(112vh, 75vw);
+	font-size: min(3vh, 2.4vw);
+	width: min(112vh, 90vw);
 	font-family: 'minecrafter', sans-serif;
 	font-weight: lighter;
 	justify-content: center;
@@ -90,6 +91,7 @@ p {
 	border-bottom: var(--bar) 0.25em solid;
 	transform: scaleY(1.5);
 	box-shadow: unset;
+	filter: drop-shadow(0px 0.5em 0.25em #03002287);
 }
 
 .links a,
@@ -176,12 +178,14 @@ p a:hover {
 .table-wrapper {
 	width: 100%;
 	overflow-x: scroll;
+	border: 0.25em solid #323232;
+	box-shadow: 0px 5px 20px 5px #00000063;
+	box-sizing: border-box;
 }
 
 .platform-table {
 	width: 100%;
 	background-color: #1e1e1e;
-	box-shadow: 0 0 10px #00000040;
 }
 
 .platform-table td {
@@ -240,6 +244,7 @@ p a:hover {
 	padding: 1em;
 	margin: 1.5em 0;
 }
+
 /*ooh i hate specificity*/
 .changelog-wrapper p {
 	border: 0px solid transparent;
