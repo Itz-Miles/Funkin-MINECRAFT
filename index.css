@@ -15,6 +15,7 @@
 	--beta: #c9a100;
 	--git: #3d444d;
 	--bar: #24282f;
+	--pg: #222227;
 }
 
 html {
@@ -50,9 +51,10 @@ section {
 
 p {
 	font-size: 1.2em;
-	padding: 0.5em;
-	background-color: #39393952;
-	border: #25252584 0.25em solid;
+	padding: 0.75em;
+	background-color: var(--pg);
+	border-bottom: #1e1e23 0.5em solid;
+	box-shadow: inset 0px 0px 0px 0.25em #323232, 0px 5px 20px 5px #00000063;
 }
 
 .title {
@@ -61,14 +63,15 @@ p {
 }
 
 .hero {
-	height: min(60vh, 40vw);
+	height: min(90vh, 70vw);
 	margin-bottom: min(30vh, 30vw);
 	padding-top: 20vh;
 	margin-top: -20vh;
 	background-image: url('assets/panorama.png');
 	background-size: cover;
-	background-position: center;
+	background-position: center top;
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	text-align: center;
 	z-index: 1;
 }
@@ -86,6 +89,7 @@ p {
 	border: 0px;
 	border-bottom: var(--bar) 0.25em solid;
 	transform: scaleY(1.5);
+	box-shadow: unset;
 }
 
 .links a,
@@ -115,7 +119,7 @@ p a:hover {
 	justify-content: space-between;
 	align-items: center;
 	z-index: 10;
-	box-shadow: #15161d89 0 0em 0.5em 1em;
+	box-shadow: #0c0c1099 0 0em 0.5em 1em;
 }
 
 .nav-links {
@@ -132,12 +136,12 @@ p a:hover {
 	color: var(--bg);
 	background-color: var(--face);
 	padding: 0.5em;
-	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431);
+	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431), 0px 5px 5px 2px #00000043;
 	border-bottom: var(--botm) 0.3em solid;
 	text-decoration: none;
 	margin: 0.1em 0.25em 0.1em 0.25em;
 	font-weight: lighter;
-	transition: color 0.1s ease-in-out, margin 0.1s ease-in-out, border 0.1s ease-in-out;
+	transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, margin 0.1s ease-in-out, border 0.1s ease-in-out;
 }
 
 .nav-links a:hover {
@@ -149,6 +153,7 @@ p a:hover {
 .nav-links a:active {
 	color: var(--alpha);
 	border-bottom: 0.15em var(--prime) solid;
+	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431), 0px 5px 5px 2px #ffdd002a;
 	margin-top: 0.2em;
 }
 
@@ -161,6 +166,7 @@ p a:hover {
 }
 
 .avatar img {
+	transform: scaleX(-1);
 	width: 64px;
 	height: 64px;
 	margin-top: -0.05em;
@@ -203,7 +209,7 @@ p a:hover {
 	font-family: 'minecrafter', sans-serif;
 	font-weight: lighter;
 	font-size: 1.2em;
-	border-bottom: 4px solid var(--bg);
+	border-bottom: 0.25em solid var(--bg);
 }
 
 .platform-button {
@@ -231,6 +237,14 @@ p a:hover {
 .changelog-wrapper {
 	border: 1px solid var(--git);
 	border-radius: 6px;
+	padding: 1em;
+	margin: 1.5em 0;
+}
+/*ooh i hate specificity*/
+.changelog-wrapper p {
+	border: 0px solid transparent;
+	box-shadow: unset;
+	border-radius: 0px;
 	padding: 1em;
 	margin: 1.5em 0;
 }
@@ -275,7 +289,7 @@ p a:hover {
 
 .changelog-content {
 	margin-top: 1em;
-	background-color: #0d1117;
+	background-color: var(--bg);
 	color: #eee;
 	padding: 1em;
 	height: 50vh;
@@ -302,9 +316,9 @@ footer.legal {
 
 footer.legal p {
 	max-width: 70%;
-	margin: 0 auto;
+	margin: 2em auto;
 	padding: 1em;
-	box-shadow: 0 0 10px #00000030;
+	line-height: normal;
 }
 
 footer.legal a {
