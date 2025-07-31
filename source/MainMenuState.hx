@@ -1,5 +1,6 @@
 package;
 
+import blockUI.Panel;
 import flixel.math.FlxMath;
 import flixel.FlxCamera;
 import haxe.ds.Vector;
@@ -21,6 +22,7 @@ import flixel.FlxObject;
 import parallax.ParallaxBG;
 import flixel.text.FlxText;
 import flixel.FlxSprite;
+import flixel.math.FlxRect;
 import flixel.group.FlxGroup.FlxTypedGroup;
 
 using StringTools;
@@ -74,6 +76,18 @@ class MainMenuState extends MusicBeatState
 		menuGF.color = 0x7D7D7B;
 		menuGF.scrollFactor.set(0.27741228 * 0.2, 0.27741228 * 0.2);
 		add(menuGF);
+		/*
+			var panel:Panel = new Panel([
+				new FlxRect(0, 10, 200, 300),
+				new FlxRect(0, 0, 200, 300),
+				new FlxRect(0, 0, 200, 290),
+				new FlxRect(8, 8, 200 - 16, 290 - 16)
+			], [0x58000000, 0xFF2A2A2A, 0xFF848484, 0xFF3F3F3F]);
+			panel.x = 800;
+			panel.y = 300;
+			panel.scrollFactor.set(0.2, 0.2);
+			add(panel);
+		 */
 
 		var fg:ParallaxFG = new ParallaxFG('arch', 0.2);
 		fg.setPosition(-130, -70);
@@ -133,6 +147,7 @@ class MainMenuState extends MusicBeatState
 			add(menuItem);
 			FlxTween.tween(menuItem, {alpha: 1, x: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
 		}
+
 		directoryBar = new FlxSprite(0, 0).loadGraphic(Paths.image('menus/menubar gradient', "shared"));
 		directoryBar.scrollFactor.set(0, 0);
 		directoryBar.origin.set(0, 0);
