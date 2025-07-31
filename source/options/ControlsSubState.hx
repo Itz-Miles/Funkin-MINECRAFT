@@ -4,8 +4,6 @@ import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import InputFormatter;
-import flixel.addons.display.FlxBackdrop;
-import flixel.addons.display.FlxGridOverlay;
 import AttachedSprite;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -14,7 +12,6 @@ import flixel.tweens.FlxTween;
 import flixel.input.keyboard.FlxKey;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.input.gamepad.FlxGamepadInputID;
-import flixel.input.gamepad.FlxGamepadManager;
 
 class ControlsSubState extends MusicBeatSubstate
 {

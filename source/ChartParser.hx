@@ -1,9 +1,7 @@
 package;
 
 import flixel.math.FlxMath;
-import flixel.FlxG;
 import Section.SwagSection;
-import flixel.util.FlxStringUtil;
 import Song.SwagSong;
 
 using StringTools;

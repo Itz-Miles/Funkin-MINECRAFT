@@ -1,7 +1,5 @@
 package parallax;
 
-import flixel_5_3_1.ParallaxSprite;
-import flixel.text.FlxText;
 import flixel.FlxG;
 
 class ParallaxDebugState extends MusicBeatState

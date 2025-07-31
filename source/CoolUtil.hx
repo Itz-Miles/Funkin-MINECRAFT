@@ -1,11 +1,6 @@
 package;
 
 import flixel.tweens.FlxEase;
-import flixel.util.FlxColor;
-import openfl.geom.Point;
-import openfl.geom.Rectangle;
-import openfl.display.BitmapData;
-import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import openfl.utils.Assets;

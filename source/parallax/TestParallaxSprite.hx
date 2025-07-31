@@ -187,8 +187,7 @@ class TestParallaxSprite extends FlxSprite
 		if (newRect == null)
 			newRect = FlxRect.get();
 
-		if (camera == null)
-			camera = getDefaultCamera();
+		camera ??= FlxG.camera; // getDefaultCamera();
 		_scaledOrigin.set(origin.x * scale.x, origin.y * scale.y);
 		_scroll.set(x - camera.scroll.x * scrollFactor.x, y - camera.scroll.y * scrollFactor.y + origin.x - _scaledOrigin.x);
 		_scroll2.set(x2 - camera.scroll.x * scrollFactor2.x, y2 - camera.scroll.y * scrollFactor2.y + origin.y - _scaledOrigin.y);
@@ -196,7 +195,6 @@ class TestParallaxSprite extends FlxSprite
 
 		if (pixelPerfectPosition)
 			newRect.floor();
-
 
 		if (isPixelPerfectRender(camera))
 			newRect.floor();
@@ -216,8 +214,7 @@ class TestParallaxSprite extends FlxSprite
 		if (newRect == null)
 			newRect = FlxRect.get();
 
-		if (camera == null)
-			camera = getDefaultCamera();
+		camera ??= FlxG.camera;
 
 		newRect.setPosition(x, y);
 		if (pixelPerfectPosition)
