@@ -5,8 +5,6 @@ import flixel.tweens.FlxEase;
 import Discord.DiscordClient;
 #end
 import MainMenuState;
-import flixel.group.FlxGroup.FlxTypedGroup;
-import flixel.math.FlxMath;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.text.FlxText;

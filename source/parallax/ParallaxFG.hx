@@ -4,7 +4,6 @@ import flixel.FlxBasic;
 import flixel.effects.particles.FlxParticle;
 import flixel.effects.particles.FlxEmitter;
 import flixel.FlxSprite;
-import flixel.util.FlxAxes;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
 

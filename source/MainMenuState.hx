@@ -2,14 +2,10 @@ package;
 
 import blockUI.Panel;
 import flixel.math.FlxMath;
-import flixel.FlxCamera;
 import haxe.ds.Vector;
 import parallax.ParallaxDebugState;
 import flixel.ui.FlxButton;
 import parallax.ParallaxFG;
-import flixel.effects.particles.FlxEmitter;
-import flixel.effects.particles.FlxParticle;
-import editors.ChartingState;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -22,8 +18,6 @@ import flixel.FlxObject;
 import parallax.ParallaxBG;
 import flixel.text.FlxText;
 import flixel.FlxSprite;
-import flixel.math.FlxRect;
-import flixel.group.FlxGroup.FlxTypedGroup;
 
 using StringTools;
 
