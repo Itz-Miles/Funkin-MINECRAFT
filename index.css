@@ -1,7 +1,7 @@
 @font-face {
 	font-family: 'minecrafter';
 	src: url('https://raw.githubusercontent.com/Itz-Miles/Funkin-MINECRAFT/refs/heads/main/assets/fonts/Minecrafter.ttf') format('truetype');
-	font-weight: normal;
+	font-weight: lighter;
 	font-style: normal;
 	font-display: swap;
 }
@@ -241,6 +241,7 @@ p a:hover {
 .character-card h3 {
 	margin: 0em 0 0em;
 	font-family: 'minecrafter', sans-serif;
+	font-weight: lighter;
 	font-size: 1.2em;
 	color: var(--prime);
 }
@@ -251,6 +252,62 @@ p a:hover {
 	padding: 0.5em;
 	overflow-y: hidden;
 }
+
+.external-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	justify-content: center;
+	margin-bottom: 2em;
+	min-height: 5em;
+}
+
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: 'minecrafter', sans-serif;
+	font-size: 1.5em;
+	text-decoration: none;
+	padding: 0.5em;
+	flex: 1 1 15em;
+	border-bottom: 0.3em solid;
+	transition: all 0.1s ease-in-out;
+	margin: 0.5em 0em 0em 0em;
+	text-align: center;
+	gap: 0.75em;
+	max-height: 2em;
+}
+
+.button img {
+	height: 1em;
+	width: auto;
+}
+
+.button.gamebanana {
+	background-color: var(--prime);
+	color: black;
+	box-shadow: inset 0px 0px 0px 3px rgba(255, 255, 255, 0.5), 0px 0px 10px 2px rgba(255, 225, 0, 0.719);
+	border-bottom-color: var(--beta);
+}
+
+.button.github {
+	background-color: black;
+	color: white;
+	box-shadow: inset 0px 0px 0px 3px white;
+	border-bottom-color: #b9b9b9;
+}
+
+.button:hover {
+	border-bottom-width: 0.4em;
+	margin-top: 0.4em;
+}
+
+.button:active {
+	margin-top: 0.7em;
+	border-bottom-width: 0.1em;
+}
+
 
 
 .table-wrapper {
@@ -298,6 +355,7 @@ p a:hover {
 	min-width: 50%;
 	text-align: center;
 	font-family: 'minecrafter', sans-serif;
+	font-weight: lighter;
 	font-size: 1em;
 	background-color: #22a31d;
 	color: white;
