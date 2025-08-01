@@ -8,14 +8,21 @@
 
 :root {
 	--bg: #0d1117;
+	--pg: #222227;
+	--git: #3d444d;
+	--bar: #24282f;
+
 	--face: #cedae4;
 	--botm: #5f697a;
+
 	--prime: #ffcc00;
 	--alpha: #ffa500;
 	--beta: #c9a100;
-	--git: #3d444d;
-	--bar: #24282f;
-	--pg: #222227;
+
+	--load: #00ff00;
+
+	--inset: inset 0px 0px 0px 0.25em #323232;
+	--shade: 0px 5px 20px 5px #00000063;
 }
 
 html {
@@ -59,7 +66,7 @@ h2 {
 .legal p {
 	background-color: var(--pg);
 	border-bottom: #1e1e23 0.5em solid;
-	box-shadow: inset 0px 0px 0px 0.25em #323232, 0px 5px 20px 5px #00000063;
+	box-shadow: var(--inset), var(--shade);
 }
 
 p {
@@ -222,7 +229,7 @@ p a:hover {
 	background-color: var(--pg);
 	width: 200px;
 	border-bottom: #1e1e23 0.5em solid;
-	box-shadow: inset 0px 0px 0px 0.25em #323232, 0px 5px 20px 5px #00000063;
+	box-shadow: var(--inset), var(--shade);
 	flex: 0 0 auto;
 	text-align: center;
 	color: var(--face);
@@ -314,7 +321,7 @@ p a:hover {
 	width: 100%;
 	overflow-x: scroll;
 	border: 0.25em solid #323232;
-	box-shadow: 0px 5px 20px 5px #00000063;
+	box-shadow: var(--shade);
 	box-sizing: border-box;
 }
 
