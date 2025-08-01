@@ -9,6 +9,7 @@
 :root {
 	--bg: #0d1117;
 	--pg: #222227;
+	--pb: #1e1e23ff;
 	--git: #3d444d;
 	--bar: #24282f;
 
@@ -65,7 +66,7 @@ h2 {
 .tooltip,
 .legal p {
 	background-color: var(--pg);
-	border-bottom: #1e1e23 0.5em solid;
+	border-bottom: var(--pb) 0.5em solid;
 	box-shadow: var(--inset), var(--shade);
 }
 
@@ -228,7 +229,7 @@ p a:hover {
 .character-card {
 	background-color: var(--pg);
 	width: 200px;
-	border-bottom: #1e1e23 0.5em solid;
+	border-bottom: var(--pb) 0.5em solid;
 	box-shadow: var(--inset), var(--shade);
 	flex: 0 0 auto;
 	text-align: center;
@@ -327,7 +328,7 @@ p a:hover {
 
 .platform-table {
 	width: 100%;
-	background-color: #1e1e1e;
+	background-color: var(--pb);
 }
 
 .platform-table td {
