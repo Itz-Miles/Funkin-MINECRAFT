@@ -49,12 +49,22 @@ section {
 	font-weight: lighter;
 }
 
-p {
-	font-size: 1.2em;
-	padding: 0.75em;
+h2 {
+	text-align: center;
+}
+
+
+
+.tooltip,
+.legal p {
 	background-color: var(--pg);
 	border-bottom: #1e1e23 0.5em solid;
 	box-shadow: inset 0px 0px 0px 0.25em #323232, 0px 5px 20px 5px #00000063;
+}
+
+p {
+	font-size: 1.2em;
+	padding: 0.75em;
 }
 
 .title {
