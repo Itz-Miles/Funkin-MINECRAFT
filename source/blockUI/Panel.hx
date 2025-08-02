@@ -13,6 +13,30 @@ import blockUI.Layer;
 class Panel extends FlxSpriteGroup
 {
 	/**
+	 * Sets the first FlxText's text. 
+	 * 
+	 * Shorthand + null check for fields[0].text.
+	 */
+	public var text(get, set):String;
+
+	function get_text():String
+	{
+		return fields.length > 0 ? fields[0].text : "";
+	}
+
+	function set_text(value:String):String
+	{
+		if (fields.length > 0)
+			fields[0].text = value;
+		return value;
+	}
+
+	/**
+	 * An array of this panel's FlxTexts.
+	 */
+	public var fields:Array<FlxText> = [];
+
+	/**
 	 * Constructs the panel using an array of layer definitions.
 	 * @param layers Array of Layers (x, y, width, height, color, text, font, size).
 	 */
@@ -41,9 +65,11 @@ class Panel extends FlxSpriteGroup
 				text.text = layer.text;
 
 				add(text);
+
+				fields.push(text);
 			}
 		}
-		
+
 		scrollFactor.set(0, 0);
 	}
 }
