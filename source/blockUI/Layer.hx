@@ -9,4 +9,8 @@ typedef Layer =
 	var width:Float;
 	var height:Float;
 	var color:FlxColor;
+
+	var ?text:String;
+	var ?font:String;
+	var ?size:Int;
 }
