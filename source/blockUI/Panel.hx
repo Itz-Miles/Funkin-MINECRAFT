@@ -59,7 +59,7 @@ class Panel extends FlxSpriteGroup
 			else
 			{
 				var text = new FlxText(layer.x, layer.y, layer.width);
-				text.setFormat(Paths.font(layer.font), layer.size, layer.color, layer.align);
+				text.setFormat(layer.font, layer.size, layer.color, layer.align);
 				text.text = layer.text;
 				fields.push(text);
 				obj = text;

@@ -35,7 +35,7 @@ class LayerData
 			height: 0,
 			color: 0xffffffff,
 			text: "",
-			font: "Minecrafter.ttf",
+			font: Paths.font("Minecrafter.ttf"),
 			size: 40,
 			align: CENTER,
 			objectCode: function(obj)
