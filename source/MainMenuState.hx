@@ -1,5 +1,7 @@
 package;
 
+import blockUI.LayerData;
+import blockUI.Layer;
 import blockUI.Panel;
 import flixel.math.FlxMath;
 import haxe.ds.Vector;
@@ -26,8 +28,7 @@ class MainMenuState extends MusicBeatState
 	var menuItems:Vector<FlxButton>;
 
 	var sideBar:FlxSprite;
-	var directoryBar:FlxSprite;
-	var directoryTitle:FlxText;
+	var header:Panel;
 	var menuBF:Character;
 	var menuGF:Character;
 	var camFollow:FlxObject;
@@ -70,18 +71,6 @@ class MainMenuState extends MusicBeatState
 		menuGF.color = 0x7D7D7B;
 		menuGF.scrollFactor.set(0.27741228 * 0.2, 0.27741228 * 0.2);
 		add(menuGF);
-		/*
-			var panel:Panel = new Panel([
-				new FlxRect(0, 10, 200, 300),
-				new FlxRect(0, 0, 200, 300),
-				new FlxRect(0, 0, 200, 290),
-				new FlxRect(8, 8, 200 - 16, 290 - 16)
-			], [0x58000000, 0xFF2A2A2A, 0xFF848484, 0xFF3F3F3F]);
-			panel.x = 800;
-			panel.y = 300;
-			panel.scrollFactor.set(0.2, 0.2);
-			add(panel);
-		 */
 
 		var fg:ParallaxFG = new ParallaxFG('arch', 0.2);
 		fg.setPosition(-130, -70);
@@ -138,24 +127,18 @@ class MainMenuState extends MusicBeatState
 			menuItem.scrollFactor.set(0, 0);
 			menuItem.alpha = 0;
 			menuItems.set(i, menuItem);
+			menuItem.moves = true; // https://github.com/HaxeFlixel/flixel/pull/3232
 			add(menuItem);
 			FlxTween.tween(menuItem, {alpha: 1, x: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
 		}
 
-		directoryBar = new FlxSprite(0, 0).loadGraphic(Paths.image('menus/menubar gradient', "shared"));
-		directoryBar.scrollFactor.set(0, 0);
-		directoryBar.origin.set(0, 0);
-		directoryBar.scale.set(1280, 0);
-		add(directoryBar);
-		FlxTween.tween(directoryBar, {"scale.y": 1}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
+		header = new Panel(LayerData.HEADER);
+		header.setPosition(0, -72);
+		header.text = "select a submenu";
+		header.runFunctions();
+		add(header);
 
-		directoryTitle = new FlxText(0, -32, 0, "select a submenu", 36);
-		directoryTitle.scrollFactor.set(0, 0);
-		directoryTitle.setFormat(Paths.font('Minecrafter.ttf'), 36, 0xFF000000);
-		directoryTitle.updateHitbox();
-		directoryTitle.screenCenter(X);
-		add(directoryTitle);
-		FlxTween.tween(directoryTitle, {y: 12}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
+		FlxTween.tween(header, {y: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
 
 		Paths.clearUnusedMemory();
 
@@ -219,11 +202,9 @@ class MainMenuState extends MusicBeatState
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.3);
 
 		FlxTween.completeTweensOf(sideBar);
-		FlxTween.completeTweensOf(directoryTitle);
-		FlxTween.completeTweensOf(directoryBar);
+		FlxTween.completeTweensOf(header);
 		FlxTween.tween(sideBar, {alpha: 0, "scale.x": 1.4}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
-		FlxTween.tween(directoryTitle, {y: -32}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
-		FlxTween.tween(directoryBar, {"scale.y": 0}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
+		FlxTween.tween(header, {y: -72}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
 
 		for (spr in menuItems)
 		{
