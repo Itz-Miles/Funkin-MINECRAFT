@@ -39,9 +39,11 @@ class Panel extends FlxSpriteGroup
 
 				text.setFormat(Paths.font(layer.font), layer.size, layer.color);
 				text.text = layer.text;
-				
+
 				add(text);
 			}
 		}
+		
+		scrollFactor.set(0, 0);
 	}
 }
