@@ -46,30 +46,48 @@ class Panel extends FlxSpriteGroup
 
 		for (layer in layers)
 		{
+			var obj:FlxSprite;
+
 			if (layer.text == null)
 			{
-				var sprite = new FlxSprite();
-
-				sprite.makeGraphic(1, 1, layer.color);
-				sprite.setPosition(layer.x, layer.y);
-				sprite.scale.set(layer.width, layer.height);
-				sprite.updateHitbox();
-
-				add(sprite);
+				obj = new FlxSprite();
+				obj.makeGraphic(1, 1, layer.color);
+				obj.setPosition(layer.x, layer.y);
+				obj.scale.set(layer.width, layer.height);
+				obj.updateHitbox();
 			}
 			else
 			{
-				var text:FlxText = new FlxText(layer.x, layer.y, layer.width);
-
-				text.setFormat(Paths.font(layer.font), layer.size, layer.color);
+				var text = new FlxText(layer.x, layer.y, layer.width);
+				text.setFormat(Paths.font(layer.font), layer.size, layer.color, layer.align);
 				text.text = layer.text;
-
-				add(text);
-
 				fields.push(text);
+				obj = text;
+			}
+
+			add(obj);
+
+			if (layer.objectCode != null)
+			{
+				var code = layer.objectCode;
+				var target = obj;
+				_deferredFunctions.push(() -> code(target));
 			}
 		}
 
 		scrollFactor.set(0, 0);
+	}
+
+	/**
+	 * A list of functions
+	 */
+	public var _deferredFunctions:Array<Void->Void> = [];
+	/**
+	 * Calls the members' objectCode functions.
+	 */
+	public function runFunctions()
+	{
+		for (fn in _deferredFunctions)
+			fn();
 	}
 }
