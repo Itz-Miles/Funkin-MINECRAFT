@@ -133,7 +133,7 @@ class TitleState extends MusicBeatState
 			if (controls.BACK)
 			{
 				transitioning = true;
-				FlxG.camera.fade(#if html5 FlxColor.BLACK #else 0x0F0F0F #end, 2, false);
+				FlxG.camera.fade(#if html5 FlxColor.BLACK #else 0xFF0F0F0F #end, 2, false);
 				FlxTween.tween(FlxG.sound.music, {pitch: 0}, 2, {
 					ease: FlxEase.cubeIn,
 					onComplete: function(twn:FlxTween)

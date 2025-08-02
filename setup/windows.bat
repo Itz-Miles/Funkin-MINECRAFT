@@ -5,8 +5,8 @@ cd ..
 echo Installing dependencies.
 haxelib install lime
 haxelib install openfl
-haxelib install flixel 5.8.0
-haxelib set flixel 5.8.0
+haxelib install flixel 5.9.0
+haxelib set flixel 5.9.0
 haxelib install flixel-addons 3.3.2
 haxelib install flixel-addons 3.3.2
 haxelib set flixel-addons 3.3.2

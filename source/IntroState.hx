@@ -37,7 +37,7 @@ class IntroState extends MusicBeatState
 		FlxAssets.FONT_DEFAULT = "assets/fonts/Monocraft.ttf";
 		FlxG.game.focusLostFramerate = 60;
 		FlxG.fixedTimestep = !ClientPrefs.data.variableTimestep;
-		FlxG.camera.fade(#if !html5 0x0F0F0F #else 0x000000 #end, 1, true);
+		FlxG.camera.fade(#if !html5 0xFF0F0F0F #else 0xFF000000 #end, 1, true);
 		// FlxTween.tween(FlxG.camera.bgColor, {alphaFloat: 1}, 3);
 		FlxG.sound.muteKeys = muteKeys;
 		FlxG.sound.volumeDownKeys = volumeDownKeys;
