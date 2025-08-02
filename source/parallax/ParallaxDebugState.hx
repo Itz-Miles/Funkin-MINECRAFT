@@ -42,8 +42,8 @@ class ParallaxDebugState extends MusicBeatState
 
 		if (FlxG.mouse.pressed)
 		{
-			FlxG.camera.scroll.x -= FlxG.mouse.deltaScreenX * FlxG.camera.zoom;
-			FlxG.camera.scroll.y -= FlxG.mouse.deltaScreenY * FlxG.camera.zoom;
+			FlxG.camera.scroll.x -= FlxG.mouse.deltaViewX * FlxG.camera.zoom;
+			FlxG.camera.scroll.y -= FlxG.mouse.deltaViewY * FlxG.camera.zoom;
 		}
 
 		if (FlxG.mouse.wheel != 0)
