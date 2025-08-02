@@ -4,6 +4,7 @@ import lime.system.System;
 import parallax.ParallaxBG;
 import parallax.ParallaxFG;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
 #if desktop
 import Discord.DiscordClient;
 import sys.thread.Thread;
@@ -14,6 +15,7 @@ import flixel.input.gamepad.FlxGamepad;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
+
 using StringTools;
 
 class TitleState extends MusicBeatState
