@@ -136,11 +136,10 @@ class FreeplayState extends MusicBeatState
 		add(scoreText);
 
 		var header:Panel = new Panel(LayerData.HEADER);
-		header.setPosition(0, -72);
 		header.text = "decide the objective";
 		header.runFunctions();
 		add(header);
-		FlxTween.tween(header, {y: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
+
 		FlxG.camera.flash(FlxG.camera.bgColor, 0.4);
 
 		if (curSelected >= songs.length)
