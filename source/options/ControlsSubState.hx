@@ -1,5 +1,8 @@
 package options;
 
+import blockUI.LayerData;
+import blockUI.Panel;
+import openfl.display.BlendMode;
 import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
@@ -83,25 +86,17 @@ class ControlsSubState extends MusicBeatSubstate
 		grpBinds = new FlxTypedGroup<Alphabet>();
 		add(grpBinds);
 
-		var directoryBar:FlxSprite = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.WHITE);
-		directoryBar.scrollFactor.set(0, 0);
-		directoryBar.origin.set(0, 0);
-		directoryBar.scale.x = 1280;
-		directoryBar.scale.y = 60;
-		add(directoryBar);
+		var header:Panel = new Panel(LayerData.HEADER);
+		header.text = "bind your controls     ";
+		header.fields[0].screenCenter(X); // changing this later
+		add(header);
 
-		var directoryTitle:FlxText = new FlxText(0, 12, 0, "bind your controls     ", 36);
-		directoryTitle.scrollFactor.set(0, 0);
-		directoryTitle.setFormat(Paths.font('Minecrafter.ttf'), 36, 0xFF000000);
-		directoryTitle.updateHitbox();
-		directoryTitle.screenCenter(X);
-		add(directoryTitle);
-
-		controllerSpr = new FlxSprite(820, -5).loadGraphic(Paths.image('controllertype', "shared"), true, 82, 0);
-		controllerSpr.antialiasing = ClientPrefs.data.antialiasing;
+		controllerSpr = new FlxSprite(845, 9).loadGraphic(Paths.image('settings/controller_type', "shared"), true, 18, 0);
+		controllerSpr.antialiasing = false;
 		controllerSpr.animation.add('keyboard', [0], 1, false);
 		controllerSpr.animation.add('gamepad', [1], 1, false);
 		controllerSpr.setGraphicSize(60);
+		controllerSpr.updateHitbox();
 		add(controllerSpr);
 
 		createTexts();
