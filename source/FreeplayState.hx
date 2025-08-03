@@ -1,5 +1,7 @@
 package;
 
+import blockUI.LayerData;
+import blockUI.Panel;
 import flixel.util.FlxTimer;
 import flixel.tweens.FlxEase;
 #if desktop
@@ -133,21 +135,12 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
-		var directoryBar:FlxSprite = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.WHITE);
-		directoryBar.scrollFactor.set(0, 0);
-		directoryBar.origin.set(0, 0);
-		directoryBar.scale.x = 1280;
-		directoryBar.scale.y = 0;
-		add(directoryBar);
-		FlxTween.tween(directoryBar, {"scale.y": 60}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
-
-		var directoryTitle:FlxText = new FlxText(0, -32, 0, "ignore the objective", 36);
-		directoryTitle.scrollFactor.set(0, 0);
-		directoryTitle.setFormat(Paths.font('Minecrafter.ttf'), 36, 0xFF000000);
-		directoryTitle.updateHitbox();
-		directoryTitle.screenCenter(X);
-		add(directoryTitle);
-		FlxTween.tween(directoryTitle, {y: 12}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
+		var header:Panel = new Panel(LayerData.HEADER);
+		header.setPosition(0, -72);
+		header.text = "decide the objective";
+		header.runFunctions();
+		add(header);
+		FlxTween.tween(header, {y: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
 		FlxG.camera.flash(FlxG.camera.bgColor, 0.4);
 
 		if (curSelected >= songs.length)
