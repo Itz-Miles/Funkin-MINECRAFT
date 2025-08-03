@@ -46,7 +46,7 @@ class Panel extends FlxSpriteGroup
 
 		for (layer in layers)
 		{
-			var obj:FlxSprite;
+			var obj:FlxSprite = null;
 
 			if (layer.text == null)
 			{
@@ -70,7 +70,9 @@ class Panel extends FlxSpriteGroup
 			if (layer.objectCode != null)
 			{
 				var code = layer.objectCode;
-				var target = obj;
+
+				var target = isOnlyObjectCode(layer) ? this : obj;
+
 				_deferredFunctions.push(() -> code(target));
 			}
 		}
@@ -82,12 +84,25 @@ class Panel extends FlxSpriteGroup
 	 * A list of functions
 	 */
 	public var _deferredFunctions:Array<Void->Void> = [];
+
 	/**
 	 * Calls the members' objectCode functions.
+	 * 
+	 * TODO: add a way to run functions by index
 	 */
 	public function runFunctions()
 	{
 		for (fn in _deferredFunctions)
 			fn();
+	}
+	/**
+	 * Check to see if there's only objectCode in the Layer.
+	 * @param layer 
+	 * @return Bool
+	 */
+	function isOnlyObjectCode(layer:Layer):Bool
+	{
+		return layer.x == null && layer.y == null && layer.width == null && layer.height == null && layer.color == null && layer.text == null
+			&& layer.font == null && layer.size == null && layer.align == null && layer.objectCode != null;
 	}
 }

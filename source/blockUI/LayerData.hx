@@ -14,7 +14,6 @@ class LayerData
 			y: 64,
 			width: 1280,
 			height: 8,
-			color: 0xff000000
 		},
 		{ // border
 			x: 0,
@@ -54,5 +53,12 @@ class LayerData
 				FlxTween.tween(obj, {alpha: 1}, 1.5, {ease: FlxEase.quintOut, startDelay: 0.6});
 			}
 		},
+		{ // panel code
+			objectCode: function(obj)
+			{
+				obj.y = -72;
+				FlxTween.tween(obj, {y: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
+			}
+		}
 	];
 }

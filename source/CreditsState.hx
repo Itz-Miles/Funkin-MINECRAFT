@@ -249,11 +249,9 @@ class CreditsState extends MusicBeatState
 		FlxTween.tween(descText, {y: 600}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.6});
 
 		var header:Panel = new Panel(LayerData.HEADER);
-		header.setPosition(0, -72);
 		header.text = "credit the creators";
 		header.runFunctions();
 		add(header);
-		FlxTween.tween(header, {y: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
 
 		FlxG.camera.flash(FlxG.camera.bgColor, 0.4);
 
