@@ -1,5 +1,7 @@
 package options;
 
+import blockUI.LayerData;
+import blockUI.Panel;
 import flixel.math.FlxMath;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -66,19 +68,10 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		add(descBox);
 		FlxTween.tween(descBox, {y: 580}, 1.1, {ease: FlxEase.quintOut});
 
-		var directoryBar:FlxSprite = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.WHITE);
-		directoryBar.scrollFactor.set(0, 0);
-		directoryBar.origin.set(0, 0);
-		directoryBar.scale.x = 1280;
-		directoryBar.scale.y = 60;
-		add(directoryBar);
-
-		var directoryTitle:FlxText = new FlxText(0, 12, 0, title, 36);
-		directoryTitle.scrollFactor.set(0, 0);
-		directoryTitle.setFormat(Paths.font('Minecrafter.ttf'), 36, 0xFF000000);
-		directoryTitle.updateHitbox();
-		directoryTitle.screenCenter(X);
-		add(directoryTitle);
+		var header:Panel = new Panel(LayerData.HEADER);
+		header.text = title;
+		header.fields[0].screenCenter(X); //changing this later
+		add(header);
 
 		descText = new FlxText(50, 720, 1180, "", 32);
 		descText.setFormat(Paths.font("Monocraft.ttf"), 32, FlxColor.WHITE, CENTER);
