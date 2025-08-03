@@ -9,28 +9,35 @@ import flixel.tweens.FlxTween;
 class LayerData
 {
 	public static var HEADER:Array<Layer> = [
-		{
-			x: 0,
-			y: 0,
-			width: 1280,
-			height: 64,
-			color: 0xff353535
-		},
-		{
-			x: 8,
-			y: 8,
-			width: 1280 - 16,
-			height: 64 - 16,
-			color: 0xFF0f0f0f
-		},
-		{
+		{ // bottom
 			x: 0,
 			y: 64,
 			width: 1280,
 			height: 8,
 			color: 0xff000000
 		},
-		{
+		{ // border
+			x: 0,
+			y: 0,
+			width: 1280,
+			height: 64,
+			color: 0xff353535
+		},
+		{ // content
+			x: 8,
+			y: 8,
+			width: 1280 - 16,
+			height: 64 - 16,
+			color: 0xFF0f0f0f
+		},
+		{ // top shadow
+			x: 8,
+			y: 8,
+			width: 1280 - 16,
+			height: 6,
+			color: 0xff000000
+		},
+		{ // header
 			x: 0,
 			y: 16,
 			width: 0,
