@@ -1,5 +1,7 @@
 package options;
 
+import blockUI.LayerData;
+import blockUI.Panel;
 import Discord;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
@@ -40,20 +42,12 @@ class OffsetsState extends MusicBeatState
 		DiscordClient.changePresence("Offsets", null);
 		#end
 
-		var directoryBar:FlxSprite = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.WHITE);
-		directoryBar.scrollFactor.set(0, 0);
-		directoryBar.origin.set(0, 0);
-		directoryBar.scale.x = 1280;
-		directoryBar.scale.y = 60;
-		add(directoryBar);
+		var header:Panel = new Panel(LayerData.HEADER);
+		header.text = "delay the audio";
+		header.fields[0].screenCenter(X); // changing this later
+		add(header);
 
-		var directoryTitle:FlxText = new FlxText(0, 12, 0, "delay the audio", 36);
-		directoryTitle.scrollFactor.set(0, 0);
-		directoryTitle.setFormat(Paths.font('Minecrafter.ttf'), 36, 0xFF000000);
-		directoryTitle.updateHitbox();
-		directoryTitle.screenCenter(X);
-		add(directoryTitle);
-		directoryTitle.cameras = directoryBar.cameras = [camHUD];
+		header.cameras = [camHUD];
 
 		// Characters
 		gf = new Character(350, 0, 'outlineGF', "shared");
