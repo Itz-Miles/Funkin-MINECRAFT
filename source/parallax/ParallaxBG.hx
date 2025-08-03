@@ -1,5 +1,6 @@
 package parallax;
 
+import flixel.math.FlxRect;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
@@ -176,22 +177,16 @@ class ParallaxBG extends FlxTypedGroup<FlxSprite>
 				var piece29:ParallaxSprite = new ParallaxSprite(1, 584, Paths.image('archway/piece_26', stage));
 				piece29.fixate(768, 432, 0.807017544 * scrollMult, 0.807017544 * scrollMult, 0.807017544 * scrollMult, 0.807017544 * scrollMult, 'veetical');
 				add(piece29);
-				/*
-					}
-					else
-					{
-						var bg:FlxSprite = new FlxSprite(12, -3, Paths.image('backgrounds/menuBG', stage));
-						bg.scrollFactor.set(scrollMult, scrollMult);
-						add(bg);
-					}
-				 */
+
 				setPosition(-130, -70);
 				if (FlxG.state is MainMenuState && MainMenuState.curSelection == 0)
 				{
 					var message:FlxText = new FlxText(500, 240, 0, "ItzMilesDev\nleft the game", 16);
-					message.setFormat(Paths.font('Monocraft.ttf'), 16, 0xFFFFFF, CENTER, OUTLINE_FAST, 0xAA000000);
+					message.setFormat(Paths.font('Monocraft.ttf'), 16, 0xFFFFFF, CENTER, OUTLINE, 0xAA000000);
 					message.borderSize = 32;
 					message.scrollFactor.set(0.565789474 * scrollMult, 0.565789474 * scrollMult);
+					message.clipRect = FlxRect.get(0, 0, 147, 50);
+					message.clipRect = message.clipRect;
 					add(message);
 					FlxTween.tween(message, {alpha: 0, y: 250}, 0.8, {
 						ease: FlxEase.quintOut,
