@@ -1,5 +1,7 @@
 package blockUI;
 
+import blockUI.Layer;
+import flixel.FlxG;
 import lime.system.System;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -41,11 +43,8 @@ class LayerData
 			objectCode: function(obj)
 			{
 				obj.screenCenter(X);
-				if (PlayState.instance == null)
-				{
-					obj.alpha = 0;
-					FlxTween.tween(obj, {alpha: 1}, 1.5, {ease: FlxEase.quintOut, startDelay: 0.6});
-				}
+				obj.alpha = 0;
+				FlxTween.tween(obj, {alpha: 1}, 1.5, {ease: FlxEase.quintOut, startDelay: 0.6});
 			}
 		},
 	];
