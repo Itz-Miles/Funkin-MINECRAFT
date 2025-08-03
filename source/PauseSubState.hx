@@ -80,7 +80,7 @@ class PauseSubState extends MusicBeatSubstate
 		header.runFunctions();
 		add(header);
 
-		FlxTween.tween(header, {y: 1}, dead ? 1.6 : 0.4, {ease: FlxEase.quintOut});
+		FlxTween.tween(header, {y: 0}, dead ? 1.6 : 0.4, {ease: FlxEase.quintOut});
 
 		var chartingText:FlxText = new FlxText(20, 15 + 101, 0, "CHARTING", 32);
 		chartingText.scrollFactor.set();

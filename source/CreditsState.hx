@@ -1,5 +1,7 @@
 package;
 
+import blockUI.LayerData;
+import blockUI.Panel;
 import flixel.tweens.FlxEase;
 #if desktop
 import Discord.DiscordClient;
@@ -25,9 +27,6 @@ class CreditsState extends MusicBeatState
 	var intendedColor:Int;
 	var colorTween:FlxTween;
 	var descBox:FlxSprite;
-
-	var directoryBar:FlxSprite;
-	var directoryTitle:FlxText;
 
 	override function create()
 	{
@@ -249,21 +248,13 @@ class CreditsState extends MusicBeatState
 		add(descText);
 		FlxTween.tween(descText, {y: 600}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.6});
 
-		directoryBar = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.WHITE);
-		directoryBar.scrollFactor.set(0, 0);
-		directoryBar.origin.set(0, 0);
-		directoryBar.scale.x = 1280;
-		directoryBar.scale.y = 0;
-		add(directoryBar);
-		FlxTween.tween(directoryBar, {"scale.y": 60}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
+		var header:Panel = new Panel(LayerData.HEADER);
+		header.setPosition(0, -72);
+		header.text = "credit the creators";
+		header.runFunctions();
+		add(header);
+		FlxTween.tween(header, {y: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
 
-		directoryTitle = new FlxText(0, -32, 0, "credit the creators", 36);
-		directoryTitle.scrollFactor.set(0, 0);
-		directoryTitle.setFormat(Paths.font('Minecrafter.ttf'), 36, 0xFF000000);
-		directoryTitle.updateHitbox();
-		directoryTitle.screenCenter(X);
-		add(directoryTitle);
-		FlxTween.tween(directoryTitle, {y: 12}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
 		FlxG.camera.flash(FlxG.camera.bgColor, 0.4);
 
 		changeSelection();
