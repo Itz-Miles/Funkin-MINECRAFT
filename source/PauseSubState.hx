@@ -1,5 +1,7 @@
 package;
 
+import blockUI.LayerData;
+import blockUI.Panel;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -43,9 +45,6 @@ class PauseSubState extends MusicBeatSubstate
 		return curSelection = value;
 	}
 
-	var directoryBar:FlxSprite;
-	var directoryTitle:FlxText;
-
 	public function new()
 	{
 		super();
@@ -75,21 +74,13 @@ class PauseSubState extends MusicBeatSubstate
 		add(bg);
 		FlxTween.tween(bg, {alpha: dead ? 0.8 : 0.6}, dead ? 1.6 : 0.4, {ease: FlxEase.quintOut});
 
-		var directoryBar:FlxSprite = new FlxSprite(0, 0).loadGraphic(Paths.image('menus/menubar gradient', "shared"));
-		directoryBar.scrollFactor.set(0, 0);
-		directoryBar.origin.y = 0;
-		directoryBar.scale.set(1280, 0);
-		directoryBar.screenCenter(X);
-		add(directoryBar);
-		FlxTween.tween(directoryBar, {"scale.y": 1}, dead ? 1.6 : 0.4, {ease: FlxEase.quintOut});
+		var header:Panel = new Panel(LayerData.HEADER);
+		header.setPosition(0, -72);
+		header.text = dead ? "you have suffered defeat" : "the game is suspended";
+		header.runFunctions();
+		add(header);
 
-		var directoryTitle:FlxText = new FlxText(0, -32, 0, dead ? "you have suffered defeat" : "the game is suspended", 36);
-		directoryTitle.scrollFactor.set(0, 0);
-		directoryTitle.setFormat(Paths.font('Minecrafter.ttf'), 36, 0xFF000000);
-		directoryTitle.updateHitbox();
-		directoryTitle.screenCenter(X);
-		add(directoryTitle);
-		FlxTween.tween(directoryTitle, {y: 12}, dead ? 1.6 : 0.4, {ease: FlxEase.quintOut});
+		FlxTween.tween(header, {y: 1}, dead ? 1.6 : 0.4, {ease: FlxEase.quintOut});
 
 		var chartingText:FlxText = new FlxText(20, 15 + 101, 0, "CHARTING", 32);
 		chartingText.scrollFactor.set();

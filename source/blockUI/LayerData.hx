@@ -41,8 +41,11 @@ class LayerData
 			objectCode: function(obj)
 			{
 				obj.screenCenter(X);
-				obj.alpha = 0;
-				FlxTween.tween(obj, {alpha: 1}, 1.5, {ease: FlxEase.quintOut, startDelay: 0.6});
+				if (PlayState.instance == null)
+				{
+					obj.alpha = 0;
+					FlxTween.tween(obj, {alpha: 1}, 1.5, {ease: FlxEase.quintOut, startDelay: 0.6});
+				}
 			}
 		},
 	];
