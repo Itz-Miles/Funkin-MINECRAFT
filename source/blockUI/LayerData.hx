@@ -14,6 +14,7 @@ class LayerData
 			y: 64,
 			width: 1280,
 			height: 8,
+			color: 0xff000000
 		},
 		{ // border
 			x: 0,
