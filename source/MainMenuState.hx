@@ -34,8 +34,10 @@ class MainMenuState extends MusicBeatState
 	var camFollow:FlxObject;
 	var loadedWeeks:Array<WeekData> = [];
 
+	var backed:Bool = false;
+
 	static var labels:Array<String> = ['story mode', 'freeplay', 'settings', 'credits'];
-	public static var curSelection(default, set):Int = 5;
+	public static var curSelection(default, set):Int = -1;
 	static var selected:Bool = true;
 
 	override function create()
@@ -54,8 +56,9 @@ class MainMenuState extends MusicBeatState
 		var bg:ParallaxBG = new ParallaxBG('arch', 0.2);
 		add(bg);
 
-		if (curSelection != 5)
+		if (curSelection != 5 && curSelection != -1)
 			FlxG.camera.fade(FlxG.camera.bgColor, 0.5, true);
+
 		curSelection = curSelection;
 		selected = false;
 
@@ -171,15 +174,39 @@ class MainMenuState extends MusicBeatState
 			if (controls.BACK)
 			{
 				selected = true;
-				curSelection = 5;
-				FlxG.switchState(() -> new TitleState());
+				backed = true;
+				@:bypassAccessor curSelection = 5;
+
+				FlxTween.completeTweensOf(sideBar);
+				FlxTween.completeTweensOf(header);
+				FlxTween.tween(sideBar, {alpha: 0, "scale.x": 1.4}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
+				header.runAcrossLayers(1);
+
+				for (spr in menuItems)
+				{
+					FlxTween.completeTweensOf(spr);
+					FlxTween.tween(spr, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
+				}
+				new FlxTimer().start(1.1, function(tmr:FlxTimer)
+				{
+					FlxG.switchState(() -> new TitleState());
+				});
 			}
 
 			if (FlxG.keys.pressed.SEVEN)
 				FlxG.switchState(() -> new ParallaxDebugState());
 		}
-		camFollow.x = FlxMath.bound(FlxG.mouse.viewX, 0, 1280);
-		camFollow.y = FlxMath.bound(FlxG.mouse.viewY, 0, 720);
+		if (backed)
+		{
+			camFollow.x = FlxMath.bound(FlxG.mouse.viewX, 640, 640);
+			camFollow.y = FlxMath.bound(FlxG.mouse.viewY, 360, 360);
+		}
+		else
+		{
+			camFollow.x = FlxMath.bound(FlxG.mouse.viewX, 0, 1280);
+			camFollow.y = FlxMath.bound(FlxG.mouse.viewY, 0, 720);
+		}
+
 		super.update(elapsed);
 	}
 

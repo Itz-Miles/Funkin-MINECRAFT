@@ -62,11 +62,13 @@ class TitleState extends MusicBeatState
 			click ANYWHERE to start!
 			press ANYTHING to start!
 		 */
-
-		FlxG.camera.flash(FlxG.camera.bgColor, 0.7);
-		FlxG.camera.zoom = 3.5;
-		FlxG.camera.scroll.y = 300;
-		FlxTween.tween(FlxG.camera, {zoom: 1.0, "scroll.y": 0}, 1.8, {ease: FlxEase.quintOut});
+		if (MainMenuState.curSelection == -1)
+		{
+			FlxG.camera.flash(FlxG.camera.bgColor, 0.7);
+			FlxG.camera.zoom = 3.5;
+			FlxG.camera.scroll.y = 300;
+			FlxTween.tween(FlxG.camera, {zoom: 1.0, "scroll.y": 0}, 1.8, {ease: FlxEase.quintOut});
+		}
 	}
 
 	override function update(elapsed:Float)

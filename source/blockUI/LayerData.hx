@@ -18,7 +18,7 @@ class LayerData
 				},
 				function(obj)
 				{ // tween in
-					FlxTween.tween(obj, {y: -72}, 1, {ease: FlxEase.quintIn, startDelay: 0.0});
+					FlxTween.tween(obj, {y: -72}, 1, {ease: FlxEase.quintInOut, startDelay: 0.0});
 				},
 				function(obj)
 				{ // substate
@@ -80,8 +80,8 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.scale.x *= 0.9;
-					obj.scale.y *= 1.11;
+					obj.scale.x *= 0.95;
+					obj.scale.y *= 1.05;
 					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 6}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
 				},
 			]
