@@ -134,7 +134,7 @@ class MainMenuState extends MusicBeatState
 
 		header = new Panel(LayerData.HEADER);
 		header.text = "select a submenu";
-		header.runFunctions();
+		header.runAcrossLayers(0);
 		add(header);
 
 		Paths.clearUnusedMemory();
@@ -201,7 +201,7 @@ class MainMenuState extends MusicBeatState
 		FlxTween.completeTweensOf(sideBar);
 		FlxTween.completeTweensOf(header);
 		FlxTween.tween(sideBar, {alpha: 0, "scale.x": 1.4}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
-		FlxTween.tween(header, {y: -72}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
+		header.runAcrossLayers(1);
 
 		for (spr in menuItems)
 		{

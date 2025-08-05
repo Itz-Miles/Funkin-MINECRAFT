@@ -9,6 +9,29 @@ import flixel.tweens.FlxTween;
 class LayerData
 {
 	public static var HEADER:Array<Layer> = [
+		{ // panel code
+			_functions: [
+				function(obj)
+				{
+					obj.y = -72;
+					FlxTween.tween(obj, {y: 50}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+				},
+				/*
+					function(obj)
+					{ // tween out (dead)
+						FlxTween.tween(obj, {y: 0}, 1.6, {ease: FlxEase.quintOut});
+					},
+					function(obj)
+					{ // tween out (paused)
+						FlxTween.tween(obj, {y: 0}, 0.4, {ease: FlxEase.quintOut});
+					},
+					function(obj)
+					{ // tween in
+						FlxTween.tween(obj, {y: -72}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
+					}
+				 */
+			]
+		},
 		{ // bottom
 			x: 0,
 			y: 64,
@@ -47,19 +70,14 @@ class LayerData
 			font: Paths.font("Minecrafter.ttf"),
 			size: 40,
 			align: CENTER,
-			objectCode: function(obj)
-			{
-				obj.screenCenter(X);
-				obj.alpha = 0;
-				FlxTween.tween(obj, {alpha: 1}, 1.5, {ease: FlxEase.quintOut, startDelay: 0.6});
-			}
-		},
-		{ // panel code
-			objectCode: function(obj)
-			{
-				obj.y = -72;
-				FlxTween.tween(obj, {y: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
-			}
+			_functions: [
+				function(obj)
+				{
+					obj.screenCenter(X);
+					obj.alpha = 0;
+					FlxTween.tween(obj, {alpha: 1}, 1.5, {ease: FlxEase.quintOut, startDelay: 0});
+				}
+			],
 		}
 	];
 }

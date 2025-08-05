@@ -16,5 +16,5 @@ typedef Layer =
 	var ?font:String;
 	var ?size:Int;
 	var ?align:FlxTextAlign;
-	var ?objectCode:FlxSprite->Void;
+	var ?_functions:Array<FlxSprite->Void>;
 }

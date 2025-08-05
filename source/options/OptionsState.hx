@@ -88,7 +88,6 @@ class OptionsState extends MusicBeatState
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "choose your preferences";
-		header.runFunctions();
 		add(header);
 
 		FlxG.camera.flash(FlxG.camera.bgColor, 0.4);

@@ -2,8 +2,6 @@ package blockUI;
 
 import flixel.text.FlxText;
 import flixel.FlxSprite;
-import flixel.util.FlxColor;
-import flixel.math.FlxRect;
 import flixel.group.FlxSpriteGroup;
 import blockUI.Layer;
 
@@ -32,9 +30,14 @@ class Panel extends FlxSpriteGroup
 	}
 
 	/**
-	 * An array of this panel's FlxTexts.
+	 * An array of this panel's FlxText layers.
 	 */
 	public var fields:Array<FlxText> = [];
+
+	/**
+	 * An array of each layer's functions. [0] is the panel itself.
+	 */
+	private var _layerFunctions:Array<Array<Void->Void>> = new Array();
 
 	/**
 	 * Constructs the panel using an array of layer definitions.
@@ -43,9 +46,18 @@ class Panel extends FlxSpriteGroup
 	public function new(layers:Array<Layer>)
 	{
 		super();
+		_layerFunctions.push([]);
 
+		var index:Int = 1;
 		for (layer in layers)
 		{
+			if (isOnlyFunctions(layer))
+			{
+				for (_function in layer._functions)
+					addFunction(0, () -> _function(this)); // index 0 is always panel code
+				continue;
+			}
+
 			var obj:FlxSprite = null;
 
 			if (layer.text == null)
@@ -66,43 +78,86 @@ class Panel extends FlxSpriteGroup
 			}
 
 			add(obj);
+			_layerFunctions.push([]);
 
-			if (layer.objectCode != null)
-			{
-				var code = layer.objectCode;
-
-				var target = isOnlyObjectCode(layer) ? this : obj;
-
-				_deferredFunctions.push(() -> code(target));
-			}
+			if (layer._functions != null)
+				for (_function in layer._functions)
+					addFunction(index, () -> _function(obj));
+			index++;
 		}
 
 		scrollFactor.set(0, 0);
 	}
 
 	/**
-	 * A list of functions
+	 * Adds a function for the given layer, by index.
 	 */
-	public var _deferredFunctions:Array<Void->Void> = [];
+	public function addFunction(index:Int = 0, _function:Void->Void):Void
+	{
+		_layerFunctions[index].push(_function);
+	}
 
 	/**
-	 * Calls the members' objectCode functions.
-	 * 
-	 * TODO: add a way to run functions by index
+	 * Runs each layer's function by index.
+	 * Runs everything if not given. 
 	 */
-	public function runFunctions()
+	public function runAcrossLayers(?index:Int = 0):Void
 	{
-		for (fn in _deferredFunctions)
-			fn();
+		for (functionsArray in _layerFunctions)
+		{
+			if (index != null && functionsArray[index] != null)
+			{
+				functionsArray[index]();
+			}
+		}
 	}
 	/**
-	 * Check to see if there's only objectCode in the Layer.
+	 * Runs all the functions. All of them.
+	 */
+	public function runAllLayers()
+	{
+		for (functionsArray in _layerFunctions)
+			for (_function in functionsArray)
+			{
+				_function();
+			}
+	}
+
+	/**
+	 * Runs the functions for a specific layer.
+	 * @param layer The layer to run functions on, by index. The Panel itself is [0].
+	 * @param indexes The functions to run, by indexes.
+	 */
+	public function runLayer(layer:Int = 0, ?indexes:Array<Int>):Void
+	{
+		if (_layerFunctions[layer] != null)
+		{
+			if (indexes != null)
+			{
+				for (index in indexes)
+				{
+					if (_layerFunctions[layer][index] != null)
+					{
+						_layerFunctions[layer][index]();
+					}
+				}
+			}
+			else
+			{
+				if (_layerFunctions[layer][0] != null)
+					_layerFunctions[layer][0]();
+			}
+		}
+	}
+
+	/**
+	 * Checks to see if there are only functions in this Layer
 	 * @param layer 
 	 * @return Bool
 	 */
-	function isOnlyObjectCode(layer:Layer):Bool
+	static function isOnlyFunctions(layer:Layer):Bool
 	{
 		return layer.x == null && layer.y == null && layer.width == null && layer.height == null && layer.color == null && layer.text == null
-			&& layer.font == null && layer.size == null && layer.align == null && layer.objectCode != null;
+			&& layer.font == null && layer.size == null && layer.align == null && layer._functions != null;
 	}
 }

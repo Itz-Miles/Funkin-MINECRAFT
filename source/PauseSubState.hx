@@ -76,10 +76,8 @@ class PauseSubState extends MusicBeatSubstate
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = dead ? "you have suffered defeat" : "the game is suspended";
-		header.fields[0].screenCenter(X);
+		header.runAcrossLayers(0);
 		add(header);
-
-		FlxTween.tween(header, {y: 0}, dead ? 1.6 : 0.4, {ease: FlxEase.quintOut});
 
 		var chartingText:FlxText = new FlxText(20, 15 + 101, 0, "CHARTING", 32);
 		chartingText.scrollFactor.set();
