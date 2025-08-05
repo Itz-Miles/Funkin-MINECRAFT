@@ -51,7 +51,16 @@ class TitleState extends MusicBeatState
 		splashText.antialiasing = ClientPrefs.data.antialiasing;
 		splashText.screenCenter(X);
 		add(splashText);
-		FlxTween.tween(splashText.scale, {x: 0.96, y: 0.96}, 0.1, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
+
+		if (MainMenuState.curSelection != -1)
+		{
+			logoBl.alpha = 0;
+			FlxTween.tween(logoBl, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
+			splashText.alpha = 0;
+			FlxTween.tween(splashText, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
+		}
+
+		FlxTween.tween(splashText.scale, {x: 0.96, y: 0.96}, 0.1, {ease: FlxEase.cubeOut});
 
 		var fg:ParallaxFG = new ParallaxFG('arch');
 		fg.setPosition(-130, -70);
