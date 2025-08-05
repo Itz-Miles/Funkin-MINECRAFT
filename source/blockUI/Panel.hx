@@ -2,13 +2,13 @@ package blockUI;
 
 import flixel.text.FlxText;
 import flixel.FlxSprite;
-import flixel.group.FlxSpriteGroup;
+import flixel.group.FlxSpriteContainer;
 import blockUI.Layer;
 
 /**
  * A simple UI panel composed of multiple colored sprite layers.
  */
-class Panel extends FlxSpriteGroup
+class Panel extends FlxSpriteContainer
 {
 	/**
 	 * Sets the first FlxText's text. 

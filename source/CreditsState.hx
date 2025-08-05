@@ -250,7 +250,7 @@ class CreditsState extends MusicBeatState
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "credit the creators";
-		header.runAcrossLayers(0);
+		header.runAcrossLayers();
 		add(header);
 
 		FlxG.camera.flash(FlxG.camera.bgColor, 0.4);
