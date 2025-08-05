@@ -28,16 +28,16 @@ class LayerData
 		},
 		{ // bottom
 			x: 50,
-			y: 64,
+			y: 44,
 			width: 1180,
-			height: 8,
+			height: 28,
 			color: 0xff000000,
 			_functions: [
 				function(obj)
 				{
 					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.05;
-					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 8}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					obj.scale.y *= 1.8;
+					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 28}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
 				},
 			]
 		},
@@ -51,7 +51,7 @@ class LayerData
 				function(obj)
 				{
 					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.05;
+					obj.scale.y *= 1.8;
 					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 64}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
 				},
 			]
@@ -66,7 +66,7 @@ class LayerData
 				function(obj)
 				{
 					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.05;
+					obj.scale.y *= 1.8;
 					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 48}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
 				},
 			]
@@ -81,7 +81,7 @@ class LayerData
 				function(obj)
 				{
 					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.05;
+					obj.scale.y *= 1.8;
 					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 6}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
 				},
 			]
@@ -102,7 +102,7 @@ class LayerData
 					obj.screenCenter(X);
 					obj.alpha = 0;
 					obj.scale.x *= 0.9;
-					obj.scale.y *= 1.11;
+					obj.scale.y *= 1.8;
 					FlxTween.tween(obj, {alpha: 1, "scale.x": 1, "scale.y": 1}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0});
 				},
 				function(obj)
