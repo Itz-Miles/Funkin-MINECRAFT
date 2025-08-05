@@ -88,16 +88,16 @@ class ControlsSubState extends MusicBeatSubstate
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "bind your controls     ";
-		header.runAcrossLayers(2);
-		add(header);
-
 		controllerSpr = new FlxSprite(845, 9).loadGraphic(Paths.image('settings/controller_type', "shared"), true, 18, 0);
 		controllerSpr.antialiasing = false;
 		controllerSpr.animation.add('keyboard', [0], 1, false);
 		controllerSpr.animation.add('gamepad', [1], 1, false);
 		controllerSpr.setGraphicSize(60);
 		controllerSpr.updateHitbox();
-		add(controllerSpr);
+		header.add(controllerSpr);
+
+		header.runAcrossLayers(2);
+		add(header);
 
 		createTexts();
 	}
