@@ -173,6 +173,7 @@ class MainMenuState extends MusicBeatState
 		{
 			if (controls.BACK)
 			{
+				FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 				selected = true;
 				backed = true;
 				@:bypassAccessor curSelection = 5;
