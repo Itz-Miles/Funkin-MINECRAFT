@@ -113,8 +113,9 @@ class LayerData
 				function(obj)
 				{ // substate
 					obj.screenCenter(X);
-					obj.y = 62;
-					FlxTween.tween(obj, {y: 66}, 1, {ease: FlxEase.elasticOut, startDelay: 0});
+					obj.y = 60;
+					obj.scale.set(1.02, 1.02);
+					FlxTween.tween(obj, {y: 66, "scale.x": 1, "scale.y": 1}, 0.5, {ease: FlxEase.quintOut, startDelay: 0});
 				},
 			],
 		}
