@@ -88,7 +88,7 @@ class ControlsSubState extends MusicBeatSubstate
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "bind your controls     ";
-		header.fields[0].screenCenter(X); // changing this later
+		header.runAcrossLayers(2);
 		add(header);
 
 		controllerSpr = new FlxSprite(845, 9).loadGraphic(Paths.image('settings/controller_type', "shared"), true, 18, 0);

@@ -70,7 +70,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = title;
-		header.fields[0].screenCenter(X); //changing this later
+		header.runAcrossLayers(2);
 		add(header);
 
 		descText = new FlxText(50, 720, 1180, "", 32);

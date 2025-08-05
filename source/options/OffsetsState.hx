@@ -44,7 +44,7 @@ class OffsetsState extends MusicBeatState
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "delay the audio";
-		header.fields[0].screenCenter(X); // changing this later
+		header.runAcrossLayers(2);
 		add(header);
 
 		header.cameras = [camHUD];
