@@ -12,7 +12,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 * Changed the keyboard/controller assets to be "more retro"
 
-https://github.com/Itz-Miles/Funkin-MINECRAFT/blob/53c11d61782bffc18ea98c61cf4db4e1d06c6594/assets/shared/images/settings/controller_type.png?raw=true
+<img src="https://github.com/Itz-Miles/Funkin-MINECRAFT/blob/53c11d61782bffc18ea98c61cf4db4e1d06c6594/assets/shared/images/settings/controller_type.png?raw=true?s=200" width="128">
+
 ### Removed
 * Removed some unused classes.
 
