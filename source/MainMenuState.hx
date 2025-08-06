@@ -26,8 +26,6 @@ using StringTools;
 class MainMenuState extends MusicBeatState
 {
 	var menuItems:Vector<FlxButton>;
-
-	var sideBar:FlxSprite;
 	var header:Panel;
 	var menuBF:Character;
 	var menuGF:Character;
@@ -75,19 +73,6 @@ class MainMenuState extends MusicBeatState
 		menuGF.scrollFactor.set(0.27741228 * 0.2, 0.27741228 * 0.2);
 		add(menuGF);
 
-		var fg:ParallaxFG = new ParallaxFG('arch', 0.2);
-		fg.setPosition(-130, -70);
-		add(fg);
-
-		sideBar = new FlxSprite(0, 0).loadGraphic(Paths.image('menus/sidebar gradient', "shared"));
-		sideBar.scrollFactor.set(0, 0);
-		sideBar.scale.set(1.4, 720);
-		sideBar.origin.set(0, 0);
-		sideBar.alpha = 0;
-		add(sideBar);
-
-		FlxTween.tween(sideBar, {alpha: 1, "scale.x": 1.76}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
-
 		menuItems = new Vector<FlxButton>(4);
 
 		for (i in 0...WeekData.weeksList.length)
@@ -98,7 +83,7 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...4)
 		{
-			var menuItem:FlxButton = new FlxButton(-80, 60 + (i * 158) + (i * 7), "", function()
+			var menuItem:FlxButton = new FlxButton(-80, 160 + (i * 108) + (i * 7), "", function()
 			{
 				if (!selected)
 					select();
@@ -110,35 +95,40 @@ class MainMenuState extends MusicBeatState
 			};
 
 			if (ClientPrefs.data.shaders)
-				menuItem.blend = SCREEN;
+				menuItem.blend = MULTIPLY;
 
 			menuItem.labelAlphas = [0.7, 1.0, 0.6, 0.5];
-			menuItem.loadGraphic(Paths.image('menus/item', "shared"), true, 50, 18);
-			menuItem.setGraphicSize(447.04, 0);
+			menuItem.makeGraphic(1, 1, 0xB41A1A1A);
+			//loadGraphic(Paths.image('menus/item', "shared"), true, 50, 18);
+			menuItem.setGraphicSize(326, 96);
 			menuItem.updateHitbox();
 			menuItem.antialiasing = false;
 			menuItem.label.antialiasing = false;
 			menuItem.label.letterSpacing = -3;
-			menuItem.label.fieldWidth = 447.04;
+			menuItem.label.fieldWidth = menuItem.width;
 			menuItem.label.fieldHeight = menuItem.height;
+			menuItem.label.setFormat(Paths.font('Monocraft.ttf'), 48, 0xFFFFFFFF, CENTER, SHADOW, 0x76000000);
 			menuItem.label.setBorderStyle(SHADOW_XY(-5, 0));
-			menuItem.label.setFormat(Paths.font('Monocraft.ttf'), 64, 0xFFFFFFFF, CENTER, SHADOW, 0x76000000);
 			menuItem.label.text = labels[i];
-			menuItem.labelOffsets[0].set(0, 24);
-			menuItem.labelOffsets[1].set(-2, 24);
-			menuItem.labelOffsets[2].set(-6, 24);
+			menuItem.labelOffsets[0].set(0, 10);
+			menuItem.labelOffsets[1].set(-2, 10);
+			menuItem.labelOffsets[2].set(-6, 10);
 			menuItem.scrollFactor.set(0, 0);
 			menuItem.alpha = 0;
 			menuItems.set(i, menuItem);
 			menuItem.moves = true; // https://github.com/HaxeFlixel/flixel/pull/3232
 			add(menuItem);
-			FlxTween.tween(menuItem, {alpha: 1, x: 0}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.4});
+			FlxTween.tween(menuItem, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
 		}
 
 		header = new Panel(LayerData.HEADER);
 		header.text = "select a submenu";
 		header.runAcrossLayers(0);
 		add(header);
+
+		var fg:ParallaxFG = new ParallaxFG('arch', 0.2);
+		fg.setPosition(-130, -70);
+		add(fg);
 
 		Paths.clearUnusedMemory();
 
@@ -178,9 +168,7 @@ class MainMenuState extends MusicBeatState
 				backed = true;
 				@:bypassAccessor curSelection = 5;
 
-				FlxTween.completeTweensOf(sideBar);
 				FlxTween.completeTweensOf(header);
-				FlxTween.tween(sideBar, {alpha: 0, "scale.x": 1.4}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
 				header.runAcrossLayers(1);
 
 				for (spr in menuItems)
@@ -226,9 +214,7 @@ class MainMenuState extends MusicBeatState
 		menuGF.hey(1);
 		FlxG.sound.play(Paths.sound('confirmMenu'), 0.3);
 
-		FlxTween.completeTweensOf(sideBar);
 		FlxTween.completeTweensOf(header);
-		FlxTween.tween(sideBar, {alpha: 0, "scale.x": 1.4}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
 		header.runAcrossLayers(1);
 
 		for (spr in menuItems)
