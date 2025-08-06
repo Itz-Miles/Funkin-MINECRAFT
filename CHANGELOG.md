@@ -7,15 +7,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 * Created blockUI system for procedurally creating and caling UI elements. Soon to ba a haxelib!
-* 
+* Created blockUI Panel, Layer, LayerData for object/deferred code layers.
+* Added a dynamic header with fluid animations.
 
 ### Changed
-* Changed the keyboard/controller assets to be "more retro"
+* Upgraded to flixel 5.9.0.
+* Improved the transition betwwen the Main Menu and Title Menu
+* Changed the keyboard/controller assets to be "more retro".
 
-<img src="https://github.com/Itz-Miles/Funkin-MINECRAFT/blob/53c11d61782bffc18ea98c61cf4db4e1d06c6594/assets/shared/images/settings/controller_type.png?raw=true?s=200" width="128">
+<img src="https://github.com/Itz-Miles/Funkin-MINECRAFT/blob/ebd7f7bfa8c1be2106173217c4bb55293628dfa9/assets/shared/images/controllertype.png?raw=true" width="128">
+<img src="https://github.com/Itz-Miles/Funkin-MINECRAFT/blob/53c11d61782bffc18ea98c61cf4db4e1d06c6594/assets/shared/images/settings/controller_type.png?raw=true" width="128">
+
+### Fixed
+* Upgraded to flixel 5.9.0 to fix camera blendmode issues.
+* Fixed Main Menu message with cliprect.
 
 ### Removed
 * Removed some unused classes.
+* Removed unused imports.
 
 ## [0.0.1] - July 25 2025
 
