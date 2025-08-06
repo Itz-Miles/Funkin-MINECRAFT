@@ -32,9 +32,9 @@ jobs:
 
       - name: Create zip archives
         run: |
-          zip -r linuxBuild.zip linuxBuild
-          zip -r windowsBuild.zip windowsBuild
-          zip -r macBuild.zip macBuild
+         cd linuxBuild/linuxBuild && zip -r ../../linuxBuild.zip . && cd ../../
+         cd windowsBuild/windowsBuild && zip -r ../../windowsBuild.zip . && cd ../../
+         cd macBuild/macBuild && zip -r ../../macBuild.zip . && cd ../../
 
       - name: Upload all artifacts to Release
         uses: softprops/action-gh-release@v1
