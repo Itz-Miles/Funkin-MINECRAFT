@@ -1,0 +1,47 @@
+name: Release Build
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build:
+    uses: ./.github/workflows/main.yml
+
+  upload-release-assets:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Linux build
+        uses: actions/download-artifact@v4
+        with:
+          name: linuxBuild
+          path: linuxBuild
+
+      - name: Download Windows build
+        uses: actions/download-artifact@v4
+        with:
+          name: windowsBuild
+          path: windowsBuild
+
+      - name: Download Mac build
+        uses: actions/download-artifact@v4
+        with:
+          name: macBuild
+          path: macBuild
+
+      - name: Create zip archives
+        run: |
+          zip -r linuxBuild.zip linuxBuild
+          zip -r windowsBuild.zip windowsBuild
+          zip -r macBuild.zip macBuild
+
+      - name: Upload all artifacts to Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            linuxBuild.zip
+            windowsBuild.zip
+            macBuild.zip
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
