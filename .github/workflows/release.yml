@@ -3,7 +3,8 @@ name: Release Build
 on:
   release:
     types: [created]
-
+permissions:
+  contents: write
 jobs:
   build:
     uses: ./.github/workflows/main.yml
