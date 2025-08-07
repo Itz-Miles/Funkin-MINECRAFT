@@ -207,7 +207,7 @@ class CreditsState extends MusicBeatState
 		for (i in 0...creditsStuff.length)
 		{
 			var isSelectable:Bool = !unselectableCheck(i);
-			var optionText:Alphabet = new Alphabet(0, 280, creditsStuff[i][0], !isSelectable);
+			var optionText:Alphabet = new Alphabet(0, 320, creditsStuff[i][0], !isSelectable);
 			optionText.distancePerItem.set(0, 150);
 			optionText.isMenuItem = true;
 			optionText.screenCenter(X);
@@ -234,19 +234,19 @@ class CreditsState extends MusicBeatState
 			}
 		}
 
-		descBox = new FlxSprite(0, 720).makeGraphic(1, 1, 0xFF000000);
-		descBox.scale.set(1280, 140);
+		descBox = new FlxSprite(50, 720).makeGraphic(1, 1, 0xFF000000);
+		descBox.scale.set(1180, 140);
 		descBox.origin.set(0, 0);
 		descBox.alpha = 0.6;
 		add(descBox);
-		FlxTween.tween(descBox, {y: 580}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.6});
+		FlxTween.tween(descBox, {y: 530}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.6});
 
-		descText = new FlxText(50, 720, 1180, "", 32);
-		descText.setFormat(Paths.font("Monocraft.ttf"), 32, FlxColor.WHITE, CENTER);
+		descText = new FlxText(100, 720, 1080, "", 32);
+		descText.setFormat(Paths.font("Monocraft.ttf"), 28, FlxColor.WHITE, CENTER);
 		descText.scrollFactor.set();
 		descText.borderSize = 2.4;
 		add(descText);
-		FlxTween.tween(descText, {y: 600}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.6});
+		FlxTween.tween(descText, {y: 550}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.6});
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "credit the creators";
