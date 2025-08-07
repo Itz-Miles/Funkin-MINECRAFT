@@ -14,10 +14,8 @@ import flixel.util.FlxColor;
 
 class PauseSubState extends MusicBeatSubstate
 {
-	var menuItems:Array<String> = ['Resume', 'Respawn', 'Settings', 'Save and Quit'];
+	var menuItems:Array<String> = ['Resume', 'Respawn', 'Settings', 'Exit to Menu'];
 	var grpMenu:Array<FlxText>;
-
-	public static var songName:String = '';
 
 	var dead:Bool = !PlayState.instance.playerGroup[0].alive;
 
@@ -29,7 +27,7 @@ class PauseSubState extends MusicBeatSubstate
 		if (value != curSelection)
 		{
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.3);
-			if (value > menuItems.length)
+			if (value > menuItems.length - 1)
 				value = 0;
 			if (value < 0)
 				value = menuItems.length - 1;
@@ -67,7 +65,7 @@ class PauseSubState extends MusicBeatSubstate
 		}
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(1, 1, dead ? 0xFF2E0000 : FlxColor.BLACK);
-		bg.scale.set(1280, 720);
+		bg.scale.set(1290, 730);
 		bg.alpha = 0;
 		bg.scrollFactor.set();
 		bg.screenCenter();
@@ -92,7 +90,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		for (i in 0...menuItems.length)
 		{
-			var item:FlxText = new FlxText(0, 200 + (100 * i), 0, menuItems[i], 48);
+			var item:FlxText = new FlxText(0, 175 + (100 * i), 0, menuItems[i], 48);
 			item.screenCenter(X);
 			item.scrollFactor.set();
 			item.ID = i;
@@ -124,7 +122,7 @@ class PauseSubState extends MusicBeatSubstate
 		if (FlxG.mouse.deltaY != 0)
 		{
 			for (item in grpMenu)
-				if (item.ID != curSelection && FlxG.mouse.overlaps(item, item.camera))
+				if (item.ID != curSelection && FlxG.mouse.overlaps(item, this.camera))
 				{
 					curSelection = item.ID;
 				}
@@ -132,47 +130,58 @@ class PauseSubState extends MusicBeatSubstate
 
 		if (controls.ACCEPT)
 		{
-			switch (menuItems[curSelection])
+			accept();
+		}
+
+		for (item in grpMenu)
+			if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(item, this.camera))
 			{
-				case "Resume":
-					close();
-				case "Respawn":
-					restartSong();
-				case "Settings":
-					PlayState.seenCutscene = true;
-					options.OptionsState.fromPlayState = true;
-					Conductor.bpm = 100;
-					this.camera.fade(FlxG.camera.bgColor, 0.1, false, function()
-					{
-						FlxG.sound.playMusic(Paths.music('where_are_we_going'));
-						FlxG.sound.music.fadeIn(2, 0, 1);
-						FlxG.switchState(() -> new options.OptionsState());
-					}, true);
-
-				case "Leave Editor":
-					restartSong();
-					PlayState.chartingMode = false;
-				case "Save and Quit":
-					PlayState.seenCutscene = false;
-
-					this.camera.fade(FlxG.camera.bgColor, 0.1, false, function()
-					{
-						PlayState.cancelMusicFadeTween();
-						PlayState.changedDifficulty = false;
-						PlayState.chartingMode = false;
-						Conductor.bpm = 100;
-						FlxG.sound.playMusic(Paths.music('where_are_we_going'));
-						FlxG.sound.music.fadeIn(2, 0, 1);
-						if (PlayState.isStoryMode)
-						{
-							FlxG.switchState(() -> new MainMenuState());
-						}
-						else
-						{
-							FlxG.switchState(() -> new FreeplayState());
-						}
-					}, true);
+				accept();
 			}
+	}
+
+	function accept()
+	{
+		switch (menuItems[curSelection])
+		{
+			case "Resume":
+				close();
+			case "Respawn":
+				restartSong();
+			case "Settings":
+				PlayState.seenCutscene = true;
+				options.OptionsState.fromPlayState = true;
+				Conductor.bpm = 100;
+				this.camera.fade(FlxG.camera.bgColor, 0.1, false, function()
+				{
+					FlxG.sound.playMusic(Paths.music('where_are_we_going'));
+					FlxG.sound.music.fadeIn(2, 0, 1);
+					FlxG.switchState(() -> new options.OptionsState());
+				}, true);
+
+			case "Leave Editor":
+				restartSong();
+				PlayState.chartingMode = false;
+			case "Exit to Menu":
+				PlayState.seenCutscene = false;
+
+				this.camera.fade(FlxG.camera.bgColor, 0.1, false, function()
+				{
+					PlayState.cancelMusicFadeTween();
+					PlayState.changedDifficulty = false;
+					PlayState.chartingMode = false;
+					Conductor.bpm = 100;
+					FlxG.sound.playMusic(Paths.music('where_are_we_going'));
+					FlxG.sound.music.fadeIn(2, 0, 1);
+					if (PlayState.isStoryMode)
+					{
+						FlxG.switchState(() -> new MainMenuState());
+					}
+					else
+					{
+						FlxG.switchState(() -> new FreeplayState());
+					}
+				}, true);
 		}
 	}
 
