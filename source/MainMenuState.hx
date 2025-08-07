@@ -99,7 +99,7 @@ class MainMenuState extends MusicBeatState
 
 			menuItem.labelAlphas = [0.7, 1.0, 0.6, 0.5];
 			menuItem.makeGraphic(1, 1, 0xB41A1A1A);
-			//loadGraphic(Paths.image('menus/item', "shared"), true, 50, 18);
+			// loadGraphic(Paths.image('menus/item', "shared"), true, 50, 18);
 			menuItem.setGraphicSize(326, 96);
 			menuItem.updateHitbox();
 			menuItem.antialiasing = false;
@@ -159,6 +159,26 @@ class MainMenuState extends MusicBeatState
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;
 		}
+		if (controls.UI_UP_P)
+		{
+			curSelection--;
+
+			@:privateAccess menuItems[curSelection].lastStatus = HIGHLIGHT;
+			menuItems[curSelection].status = HIGHLIGHT;
+		}
+		if (controls.UI_DOWN_P)
+		{
+			curSelection++;
+
+			@:privateAccess menuItems[curSelection].lastStatus = HIGHLIGHT;
+			menuItems[curSelection].status = HIGHLIGHT;
+		}
+
+		if (controls.ACCEPT)
+		{
+			select();
+		}
+
 		if (!selected)
 		{
 			if (controls.BACK)
@@ -181,7 +201,6 @@ class MainMenuState extends MusicBeatState
 					FlxG.switchState(() -> new TitleState());
 				});
 			}
-
 		}
 		if (backed)
 		{
