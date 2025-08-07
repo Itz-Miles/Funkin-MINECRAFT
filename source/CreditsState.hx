@@ -57,54 +57,26 @@ class CreditsState extends MusicBeatState
 				"Idrees Hassan is a veteran software dev who designed the Monocraft typeface & ligatures.",
 				"https://idreesinc.com"
 			],
-			[" Compositions and Sound Effects"],
+			[" Music and Sound Effects"],
 
 			[
 				'Above',
 				'disk_where_are_we_going',
-				"descriptive text is gonna be here, \nand it's gonna be so cool",
+				"Above was composed by It'z Miles",
 				"https://youtu.be/BAfwkjhuv6U"
 			],
 			[
 				'Stalstruck',
 				'disk_stalstruck',
-				"descriptive text is gonna be here, \nand it's gonna be so cool",
+				"",
 				"https://youtube.com",
 			],
-			[
-				'song 2',
-				'miles',
-				"descriptive text is gonna be here, \nand it's gonna be so cool",
-				"https://youtube.com",
-			],
-			[
-				'song 3',
-				'miles',
-				"descriptive text is gonna be here, \nand it's gonna be so cool",
-				"https://youtube.com",
-			],
-			[
-				'song 4',
-				'miles',
-				"descriptive text is gonna be here, \nand it's gonna be so cool",
-				"https://youtube.com",
-			],
-			[
-				'song 5',
-				'miles',
-				"descriptive text is gonna be here, \nand it's gonna be so cool",
-				"https://youtube.com",
-			],
-			[
-				'song 6',
-				'miles',
-				"descriptive text is gonna be here, \nand it's gonna be so cool",
-				"https://youtube.com",
-			],
+
 			[" Build Dependencies "],
+			['BlockUI', 'haxeflixel', "", 'https://lib.haxe.org'],
 			[
 				'ParallaxLT',
-				'flixel',
+				'haxeflixel',
 				"ParallaxLT is a library that transforms sprites to mimic 3D graphics in Haxeflixel.",
 				'https://lib.haxe.org/p/parallaxlt'
 			],
@@ -132,16 +104,12 @@ class CreditsState extends MusicBeatState
 				"Haxe is an open source toolkit for building tools and applications that target many mainstream platforms.",
 				'https://haxe.org'
 			],
-			[''],
-			[" Creative Production Tools "],
-			['Mineimator', 'mineimator', "", 'https://google.com'],
-			['Blender', 'blender', "", 'https://google.com'],
-			['Reaper', 'reaper', "", 'https://google.com'],
-			['GIMP', 'gimp', "", 'https://google.com'],
-			['VsCode', 'vscode', "", 'https://google.com'],
-			['PNGGauntlet', 'gauntlet', "", 'https://google.com'],
-			['Shotcut', 'shotcut', "", 'https://google.com'],
-			[""],
+			[" Production Tools "],
+			['Mineimator', 'face', "", 'https://www.mineimator.com'],
+			['Blender', 'face', "", 'https://www.blender.org'],
+			['Reaper', 'face', "", 'https://www.reaper.fm'],
+			['VsCode', 'face', "", 'https://code.visualstudio.com'],
+			['PNGGauntlet', 'face', "", 'https://pnggauntlet.com'],
 			[" Friday Night Funkin': Psych Engine "],
 			[
 				'Shadow Mario',
@@ -166,31 +134,31 @@ class CreditsState extends MusicBeatState
 			[
 				'ninjamuffin99',
 				'ninjamuffin99',
-				"Programmer of Friday Night Funkin'",
+				" Ninjamuffin is the main programmer of Friday Night Funkin'",
 				'https://twitter.com/ninja_muffin99'
 			],
 			[
 				'PhantomArcade',
 				'phantomarcade',
-				"Animator of Friday Night Funkin'",
+				"Phantom Arcade is the main animator of Friday Night Funkin'",
 				'https://twitter.com/PhantomArcade3K'
 			],
 			[
 				'evilsk8r',
 				'evilsk8r',
-				"Artist of Friday Night Funkin'",
+				"Evilsk9r is the main artist of Friday Night Funkin'",
 				'https://twitter.com/evilsk8r'
 			],
 			[
 				'kawaisprite',
 				'kawaisprite',
-				"Composer of Friday Night Funkin'",
+				"Kawaisprite is the main composer of Friday Night Funkin'",
 				'https://twitter.com/kawaisprite'
 			],
 			[
 				'Github',
 				'github',
-				"Contributions",
+				"Friday Nigt Funkin' has many contributions.",
 				'https://github.com/FunkinCrew/Funkin/graphs/contributors'
 			],
 			[''],
