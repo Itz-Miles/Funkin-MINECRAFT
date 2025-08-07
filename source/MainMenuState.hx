@@ -182,8 +182,6 @@ class MainMenuState extends MusicBeatState
 				});
 			}
 
-			if (FlxG.keys.pressed.SEVEN)
-				FlxG.switchState(() -> new ParallaxDebugState());
 		}
 		if (backed)
 		{
