@@ -36,9 +36,9 @@ using StringTools;
 
 class PlayState extends MusicBeatState
 {
-	public static var STRUM_X = 48.5;
+	public static var STRUM_X = 50;
 
-	var STRUM_Y = (ClientPrefs.data.downScroll ? 570 : 50);
+	var STRUM_Y = (ClientPrefs.data.downScroll ? 560 : 50);
 
 	var songSpeedTween:FlxTween;
 	var camSpeedTween:FlxTween;
@@ -628,14 +628,17 @@ class PlayState extends MusicBeatState
 			babyArrow.cameras = [camUI];
 			if (player == 1)
 			{
-				FlxTween.tween(babyArrow.scale, {x: 5, y: 5}, 1, {ease: FlxEase.sineOut, startDelay: 0.6 + (0.1 * i)});
+				FlxTween.tween(babyArrow.scale, {x: Note.swagWidth / babyArrow.frameWidth, y: Note.swagWidth / babyArrow.frameWidth}, 1,
+					{ease: FlxEase.sineOut, startDelay: 0.6 + (0.1 * i)});
+
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 150, alpha: targetAlpha}, 1, {ease: FlxEase.bounceOut, startDelay: 0.6 + (0.1 * i)});
 				playerStrums.push(babyArrow);
 				add(babyArrow);
 			}
 			else
 			{
-				FlxTween.tween(babyArrow.scale, {x: 5, y: 5}, 1, {ease: FlxEase.sineOut, startDelay: 0.9 - (0.1 * i)});
+				FlxTween.tween(babyArrow.scale, {x: Note.swagWidth / babyArrow.frameWidth, y: Note.swagWidth / babyArrow.frameWidth}, 1,
+					{ease: FlxEase.sineOut, startDelay: 0.9 - (0.1 * i)});
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 150, alpha: targetAlpha}, 1, {ease: FlxEase.bounceOut, startDelay: 0.9 - (0.1 * i)});
 
 				opponentStrums.push(babyArrow);

@@ -102,7 +102,7 @@ class Note extends FlxSprite
 	public var animSuffix:String = '';
 	public var gfNote:Bool = false;
 
-	public static var swagWidth:Float = 112;
+	public static var swagWidth:Float = 110;
 
 	var _laneKeys:Array<String> = ['left', 'down', 'up', 'right'];
 

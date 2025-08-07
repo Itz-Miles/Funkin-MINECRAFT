@@ -22,7 +22,7 @@ class StrumNote extends FlxSprite
 
 	public function new(x:Float, y:Float, leData:Int, player:Int)
 	{
-		super(x + (Note.swagWidth * leData) + 50 + (640 * player), y, Paths.image('notes/slot', "shared"));
+		super(x + (Note.swagWidth * leData) + (740 * player), y, Paths.image('notes/slot', "shared"));
 
 		scrollFactor.set();
 
