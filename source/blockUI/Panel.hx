@@ -1,9 +1,18 @@
 package blockUI;
 
+import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteContainer;
 import blockUI.Layer;
+
+enum abstract ButtonState(Int) from Int to Int
+{
+	var DISABLED = 0;
+	var RELEASED = 1;
+	var HOVERED = 2;
+	var CLICKED = 3;
+}
 
 /**
  * A simple UI panel composed of multiple colored sprite layers.
@@ -35,9 +44,20 @@ class Panel extends FlxSpriteContainer
 	public var fields:Array<FlxText> = [];
 
 	/**
+	 * An array of this panel's FlxText layers.
+	 */
+	public var buttons:Array<FlxSprite> = [];
+
+	/**
 	 * An array of each layer's functions. [0] is the panel itself.
 	 */
 	private var _layerFunctions:Array<Array<Void->Void>> = new Array();
+
+	public var onClick:Array<Void->Void> = new Array();
+	public var onHover:Array<Void->Void> = new Array();
+	public var onRelease:Array<Void->Void> = new Array();
+
+	public var buttonStates:Array<ButtonState> = new Array();
 
 	/**
 	 * Constructs the panel using an array of layer definitions.
@@ -77,7 +97,26 @@ class Panel extends FlxSpriteContainer
 				obj = text;
 			}
 
+			if (layer.onClick != null || layer.onHover != null || layer.onRelease != null)
+			{
+				buttonStates.push(RELEASED);
+				buttons.push(obj);
+				if (layer.onClick != null)
+				{
+					onClick.push(() -> layer.onClick(obj));
+				}
+				if (layer.onHover != null)
+				{
+					onHover.push(() -> layer.onHover(obj));
+				}
+				if (layer.onRelease != null)
+				{
+					onRelease.push(() -> layer.onRelease(obj));
+				}
+			}
+
 			add(obj);
+
 			_layerFunctions.push([]);
 
 			if (layer._functions != null)
@@ -87,6 +126,46 @@ class Panel extends FlxSpriteContainer
 		}
 
 		scrollFactor.set(0, 0);
+	}
+
+	override public function update(elapsed:Float)
+	{
+		super.update(elapsed);
+
+		for (i in 0...buttons.length)
+		{
+			if (buttonStates[i] == DISABLED)
+				continue;
+
+			if (FlxG.mouse.overlaps(buttons[i], this.camera))
+			{
+				if (FlxG.mouse.released && buttonStates[i] != HOVERED)
+				{
+					buttonStates[i] = HOVERED;
+
+					if (onHover[i] != null)
+						onHover[i]();
+				}
+
+				if (FlxG.mouse.justPressed)
+				{
+					buttonStates[i] = CLICKED;
+
+					if (onClick[i] != null)
+						onClick[i]();
+				}
+			}
+			else
+			{
+				if (buttonStates[i] != RELEASED)
+				{
+					buttonStates[i] = RELEASED;
+
+					if (onRelease[i] != null)
+						onRelease[i]();
+				}
+			}
+		}
 	}
 
 	/**
@@ -111,6 +190,7 @@ class Panel extends FlxSpriteContainer
 			}
 		}
 	}
+
 	/**
 	 * Runs all the functions. All of them.
 	 */
