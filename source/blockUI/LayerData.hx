@@ -88,7 +88,7 @@ class LayerData
 			]
 		},
 		{ // button backing
-			x: 64,
+			x: 86,
 			y: 14,
 			width: 38,
 			height: 38,
@@ -98,12 +98,12 @@ class LayerData
 				{
 					obj.scale.x *= 0.95;
 					obj.scale.y *= 1.05;
-					FlxTween.tween(obj, {"scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
 				},
 			]
 		},
 		{ // button
-			x: 64,
+			x: 86,
 			y: 12,
 			width: 38,
 			height: 38,
@@ -114,7 +114,7 @@ class LayerData
 					obj.scale.x *= 0.95;
 					obj.scale.y *= 1.05;
 					obj.offset.y = -16;
-					FlxTween.tween(obj, {"scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
 				},
 			],
 			onClick: function(obj)
