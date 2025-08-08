@@ -5,6 +5,7 @@ import flixel.FlxG;
 import lime.system.System;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
+import MusicBeatState;
 
 class LayerData
 {
@@ -85,6 +86,50 @@ class LayerData
 					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 6}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
 				},
 			]
+		},
+		{ // button backing
+			x: 64,
+			y: 14,
+			width: 38,
+			height: 38,
+			color: 0xff2e2e2e,
+			_functions: [
+				function(obj)
+				{
+					obj.scale.x *= 0.95;
+					obj.scale.y *= 1.05;
+					FlxTween.tween(obj, {"scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+				},
+			]
+		},
+		{ // button
+			x: 64,
+			y: 12,
+			width: 38,
+			height: 38,
+			color: 0xff626262,
+			_functions: [
+				function(obj)
+				{
+					obj.scale.x *= 0.95;
+					obj.scale.y *= 1.05;
+					obj.offset.y = -16;
+					FlxTween.tween(obj, {"scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+				},
+			],
+			onClick: function(obj)
+			{
+				@:bypassAccessor Controls.instance.BACK = true;
+				obj.offset.y = -18;
+			},
+			onHover: function(obj)
+			{
+				obj.offset.y = -14;
+			},
+			onRelease: function(obj)
+			{
+				obj.offset.y = -16;
+			}
 		},
 		{ // header
 			x: 640,
