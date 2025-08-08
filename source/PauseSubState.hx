@@ -47,6 +47,8 @@ class PauseSubState extends MusicBeatSubstate
 	{
 		super();
 
+		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
 		if (dead)
 		{
 			menuItems.remove('Resume');
@@ -74,6 +76,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = dead ? "you have suffered defeat" : "the game is suspended";
+		header.camera = this.camera;
 		header.runAcrossLayers(0);
 		add(header);
 
@@ -98,7 +101,6 @@ class PauseSubState extends MusicBeatSubstate
 			add(item);
 		}
 		curSelection = 0;
-		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
 	}
 
 	var holdTime:Float = 0;
