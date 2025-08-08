@@ -112,7 +112,7 @@ class Controls
 
 	// Pressed buttons (others)
 	public var ACCEPT(get, never):Bool;
-	public var BACK(get, never):Bool;
+	public var BACK(get, default):Bool;
 	public var PAUSE(get, never):Bool;
 	public var RESET(get, never):Bool;
 	public var TAUNT(get, never):Bool;
@@ -122,8 +122,15 @@ class Controls
 	function get_ACCEPT()
 		return justPressed('accept');
 
-	function get_BACK()
+	function get_BACK() // very hacky, change later!!!
+	{
+		if (BACK)
+		{
+			BACK = false;
+			return true;
+		}
 		return justPressed('back');
+	}
 
 	function get_PAUSE()
 		return justPressed('pause');
