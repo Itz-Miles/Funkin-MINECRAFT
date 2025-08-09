@@ -44,9 +44,14 @@ class Panel extends FlxSpriteContainer
 	public var fields:Array<FlxText> = [];
 
 	/**
-	 * An array of this panel's FlxText layers.
+	 * An array of this panel's button layers.
 	 */
 	public var buttons:Array<FlxSprite> = [];
+
+	/**
+	 * An array of this panel's sprite layers.
+	 */
+	public var sprites:Array<FlxSprite> = [];
 
 	/**
 	 * An array of each layer's functions. [0] is the panel itself.
@@ -87,6 +92,7 @@ class Panel extends FlxSpriteContainer
 				obj.setPosition(layer.x, layer.y);
 				obj.scale.set(layer.width, layer.height);
 				obj.updateHitbox();
+				sprites.push(obj);
 			}
 			else
 			{
