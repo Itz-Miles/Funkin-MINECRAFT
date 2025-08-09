@@ -73,65 +73,81 @@ class Panel extends FlxSpriteContainer
 		super();
 		_layerFunctions.push([]);
 
-		var index:Int = 1;
 		for (layer in layers)
 		{
-			if (isOnlyFunctions(layer))
-			{
-				for (_function in layer._functions)
-					addFunction(0, () -> _function(this)); // index 0 is always panel code
-				continue;
-			}
-
-			var obj:FlxSprite = null;
-
-			if (layer.text == null)
-			{
-				obj = new FlxSprite();
-				obj.makeGraphic(1, 1, layer.color);
-				obj.setPosition(layer.x, layer.y);
-				obj.scale.set(layer.width, layer.height);
-				obj.updateHitbox();
-				sprites.push(obj);
-			}
-			else
-			{
-				var text = new FlxText(layer.x, layer.y, layer.width);
-				text.setFormat(layer.font, layer.size, layer.color, layer.align);
-				text.text = layer.text;
-				fields.push(text);
-				obj = text;
-			}
-
-			if (layer.onClick != null || layer.onHover != null || layer.onRelease != null)
-			{
-				buttonStates.push(RELEASED);
-				buttons.push(obj);
-				if (layer.onClick != null)
-				{
-					onClick.push(() -> layer.onClick(obj));
-				}
-				if (layer.onHover != null)
-				{
-					onHover.push(() -> layer.onHover(obj));
-				}
-				if (layer.onRelease != null)
-				{
-					onRelease.push(() -> layer.onRelease(obj));
-				}
-			}
-
-			add(obj);
-
-			_layerFunctions.push([]);
-
-			if (layer._functions != null)
-				for (_function in layer._functions)
-					addFunction(index, () -> _function(obj));
-			index++;
+			addLayerInternal(layer);
 		}
 
 		scrollFactor.set(0, 0);
+	}
+
+	/**
+	 * Dynamically adds a new layer to the panel after creation.
+	 * Returns the index of the added layer.
+	 */
+	public function addLayer(layer:Layer):Void
+	{
+		addLayerInternal(layer);
+	}
+
+	/**
+	 * Internal helper to handle layer creation logic for both constructor and addLayer().
+	 */
+	private function addLayerInternal(layer:Layer):Void
+	{
+		if (isOnlyFunctions(layer))
+		{
+			for (_function in layer._functions)
+				addFunction(0, () -> _function(this));
+			return;
+		}
+
+		var obj:FlxSprite = null;
+
+		if (layer.text == null)
+		{
+			obj = new FlxSprite();
+			obj.makeGraphic(1, 1, layer.color);
+			obj.setPosition(layer.x, layer.y);
+			obj.scale.set(layer.width, layer.height);
+			obj.updateHitbox();
+			sprites.push(obj);
+		}
+		else
+		{
+			var text = new FlxText(layer.x, layer.y, layer.width);
+			text.setFormat(layer.font, layer.size, layer.color, layer.align);
+			text.text = layer.text;
+			fields.push(text);
+			obj = text;
+		}
+
+		if (layer.onClick != null || layer.onHover != null || layer.onRelease != null)
+		{
+			buttonStates.push(RELEASED);
+			buttons.push(obj);
+			if (layer.onClick != null)
+			{
+				onClick.push(() -> layer.onClick(obj));
+			}
+			if (layer.onHover != null)
+			{
+				onHover.push(() -> layer.onHover(obj));
+			}
+			if (layer.onRelease != null)
+			{
+				onRelease.push(() -> layer.onRelease(obj));
+			}
+		}
+
+		add(obj);
+
+		_layerFunctions.push([]);
+		if (layer._functions != null)
+		{
+			for (_function in layer._functions)
+				addFunction(_layerFunctions.length - 1, () -> _function(obj));
+		}
 	}
 
 	override public function update(elapsed:Float)
