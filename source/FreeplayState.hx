@@ -40,6 +40,7 @@ class FreeplayState extends MusicBeatState
 	var grpSongs:FlxTypedGroup<Alphabet>;
 
 	var iconArray:Array<HealthIcon> = [];
+	var header:Panel;
 
 	override function create()
 	{
@@ -135,7 +136,7 @@ class FreeplayState extends MusicBeatState
 
 		add(scoreText);
 
-		var header:Panel = new Panel(LayerData.HEADER);
+		header = new Panel(LayerData.HEADER);
 		header.text = "decide the objective";
 		header.runAcrossLayers(0);
 		add(header);
@@ -246,6 +247,7 @@ class FreeplayState extends MusicBeatState
 		{
 			persistentUpdate = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
+			header.runAcrossLayers(1);
 			this.camera.fade(FlxG.camera.bgColor, 0.35, false, function()
 			{
 				FlxG.switchState(() -> new MainMenuState());

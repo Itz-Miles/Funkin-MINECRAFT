@@ -27,6 +27,7 @@ class CreditsState extends MusicBeatState
 	var intendedColor:Int;
 	var colorTween:FlxTween;
 	var descBox:FlxSprite;
+	var header:Panel;
 
 	override function create()
 	{
@@ -65,12 +66,7 @@ class CreditsState extends MusicBeatState
 				"Above was composed by It'z Miles",
 				"https://youtu.be/BAfwkjhuv6U"
 			],
-			[
-				'Stalstruck',
-				'disk_stalstruck',
-				"",
-				"https://youtube.com",
-			],
+			['Stalstruck', 'disk_stalstruck', "", "https://youtube.com",],
 
 			[" Build Dependencies "],
 			['BlockUI', 'haxeflixel', "", 'https://lib.haxe.org'],
@@ -216,7 +212,7 @@ class CreditsState extends MusicBeatState
 		add(descText);
 		FlxTween.tween(descText, {y: 550}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.6});
 
-		var header:Panel = new Panel(LayerData.HEADER);
+		header = new Panel(LayerData.HEADER);
 		header.text = "credit the creators";
 		header.runAcrossLayers();
 		add(header);
@@ -249,6 +245,7 @@ class CreditsState extends MusicBeatState
 		if (controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
+			header.runAcrossLayers(1);
 			this.camera.fade(FlxG.camera.bgColor, 0.35, false, function()
 			{
 				if (colorTween != null)

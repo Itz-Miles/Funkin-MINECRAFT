@@ -15,11 +15,11 @@ class LayerData
 				function(obj)
 				{
 					obj.y = -72;
-					FlxTween.tween(obj, {y: 50}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {y: 50}, 1.5, {ease: FlxEase.elasticOut});
 				},
 				function(obj)
 				{ // tween in
-					FlxTween.tween(obj, {y: -72}, 1, {ease: FlxEase.quintInOut, startDelay: 0.0});
+					FlxTween.tween(obj, {y: -72}, 1, {ease: FlxEase.quintInOut});
 				},
 				function(obj)
 				{ // substate
@@ -38,7 +38,7 @@ class LayerData
 				{
 					obj.scale.x *= 0.95;
 					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 28}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 28}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
 		},
@@ -53,7 +53,7 @@ class LayerData
 				{
 					obj.scale.x *= 0.95;
 					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 64}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 64}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
 		},
@@ -68,7 +68,7 @@ class LayerData
 				{
 					obj.scale.x *= 0.95;
 					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 48}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 48}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
 		},
@@ -83,7 +83,7 @@ class LayerData
 				{
 					obj.scale.x *= 0.95;
 					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 6}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 6}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
 		},
@@ -98,8 +98,16 @@ class LayerData
 				{
 					obj.scale.x *= 0.95;
 					obj.scale.y *= 1.05;
-					FlxTween.tween(obj, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
 				},
+				function(obj)
+				{
+					FlxTween.tween(obj, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
+				},
+				function(obj)
+				{
+					obj.x = 64;
+				}
 			]
 		},
 		{ // button
@@ -114,8 +122,16 @@ class LayerData
 					obj.scale.x *= 0.95;
 					obj.scale.y *= 1.05;
 					obj.offset.y = -16;
-					FlxTween.tween(obj, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.0});
+					FlxTween.tween(obj, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
 				},
+				function(obj)
+				{
+					FlxTween.tween(obj, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
+				},
+				function(obj)
+				{
+					obj.x = 64;
+				}
 			],
 			onClick: function(obj)
 			{
