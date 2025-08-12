@@ -4,9 +4,7 @@ import blockUI.LayerData;
 import blockUI.Layer;
 import blockUI.Panel;
 import flixel.math.FlxMath;
-import haxe.ds.Vector;
 import parallax.ParallaxDebugState;
-import flixel.ui.FlxButton;
 import parallax.ParallaxFG;
 #if desktop
 import Discord.DiscordClient;
@@ -91,7 +89,8 @@ class MainMenuState extends MusicBeatState
 						function(obj)
 						{
 							obj.setPosition(-80, 160 + (i * 108) + (i * 7));
-							obj.blend = MULTIPLY;
+							if (ClientPrefs.data.shaders)
+								obj.blend = MULTIPLY;
 							obj.alpha = 0;
 							FlxTween.tween(obj, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
 						},
@@ -99,6 +98,18 @@ class MainMenuState extends MusicBeatState
 						{
 							FlxTween.completeTweensOf(obj);
 							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+						},
+						function(obj)
+						{
+							FlxTween.completeTweensOf(obj);
+							if (curSelection != i)
+							{
+								FlxTween.tween(obj, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
+							}
+							else
+							{
+								FlxTween.tween(obj, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
+							}
 						}
 					]
 				});
@@ -118,8 +129,42 @@ class MainMenuState extends MusicBeatState
 						{
 							FlxTween.completeTweensOf(obj);
 							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+						},
+						function(obj)
+						{
+							FlxTween.completeTweensOf(obj);
+							if (curSelection != i)
+							{
+								FlxTween.tween(obj, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
+							}
+							else
+							{
+								FlxTween.tween(obj, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
+							}
 						}
-					]
+
+					],
+					onHover: function(obj)
+					{
+						curSelection = i;
+						for (release in sideBar.onRelease)
+							release();
+						sideBar.fields[i].alpha = 1;
+						obj.offset.y = -44;
+					},
+					onRelease: function(obj)
+					{
+						if (curSelection != i)
+						{
+							sideBar.fields[i].alpha = 0.4;
+							obj.offset.y = -48;
+						}
+					},
+					onClick: function(obj)
+					{
+						select();
+						obj.offset.y = -52;
+					}
 				});
 		}
 		for (i in 0...4)
@@ -146,24 +191,20 @@ class MainMenuState extends MusicBeatState
 						{
 							FlxTween.completeTweensOf(obj);
 							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+						},
+						function(obj)
+						{
+							FlxTween.completeTweensOf(obj);
+							if (curSelection != i)
+							{
+								FlxTween.tween(obj, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
+							}
+							else
+							{
+								FlxTween.tween(obj, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
+							}
 						}
-					],
-					onHover: function(obj)
-					{
-						curSelection = i;
-						for (release in sideBar.onRelease)
-							release();
-						obj.alpha = 1;
-					},
-					onRelease: function(obj)
-					{
-						if (curSelection != i)
-							obj.alpha = 0.4;
-					},
-					onClick: function(_)
-					{
-						select();
-					}
+					]
 				});
 		}
 		sideBar.runAcrossLayers(0);
@@ -282,6 +323,7 @@ class MainMenuState extends MusicBeatState
 
 		FlxTween.completeTweensOf(header);
 		header.runAcrossLayers(1);
+		sideBar.runAcrossLayers(2);
 
 		if (curSelection == 0)
 		{
