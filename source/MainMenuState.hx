@@ -25,8 +25,8 @@ using StringTools;
 
 class MainMenuState extends MusicBeatState
 {
-	var menuItems:Vector<FlxButton>;
 	var header:Panel;
+	var sideBar:Panel;
 	var menuBF:Character;
 	var menuGF:Character;
 	var camFollow:FlxObject;
@@ -57,7 +57,7 @@ class MainMenuState extends MusicBeatState
 		if (curSelection != 5 && curSelection != -1)
 			FlxG.camera.fade(FlxG.camera.bgColor, 0.5, true);
 
-		curSelection = curSelection;
+		// curSelection = curSelection;
 		selected = false;
 
 		camFollow = new FlxObject(0, 0, 1, 1);
@@ -73,53 +73,101 @@ class MainMenuState extends MusicBeatState
 		menuGF.scrollFactor.set(0.27741228 * 0.2, 0.27741228 * 0.2);
 		add(menuGF);
 
-		menuItems = new Vector<FlxButton>(4);
-
 		for (i in 0...WeekData.weeksList.length)
 		{
 			var weekFile:WeekData = WeekData.weeksLoaded.get(WeekData.weeksList[i]);
 			loadedWeeks.push(weekFile);
 		}
+		sideBar = new Panel();
 
 		for (i in 0...4)
 		{
-			var menuItem:FlxButton = new FlxButton(-80, 160 + (i * 108) + (i * 7), "", function()
-			{
-				if (!selected)
-					select();
-			});
-			menuItem.ID = i;
-			menuItem.onOver.callback = function()
-			{
-				curSelection = menuItem.ID;
-			};
-
-			if (ClientPrefs.data.shaders)
-				menuItem.blend = MULTIPLY;
-
-			menuItem.labelAlphas = [0.7, 1.0, 0.6, 0.5];
-			menuItem.makeGraphic(1, 1, 0xB41A1A1A);
-			// loadGraphic(Paths.image('menus/item', "shared"), true, 50, 18);
-			menuItem.setGraphicSize(326, 96);
-			menuItem.updateHitbox();
-			menuItem.antialiasing = false;
-			menuItem.label.antialiasing = false;
-			menuItem.label.letterSpacing = -3;
-			menuItem.label.fieldWidth = menuItem.width;
-			menuItem.label.fieldHeight = menuItem.height;
-			menuItem.label.setFormat(Paths.font('Monocraft.ttf'), 48, 0xFFFFFFFF, CENTER, SHADOW, 0x76000000);
-			menuItem.label.setBorderStyle(SHADOW_XY(-5, 0));
-			menuItem.label.text = labels[i];
-			menuItem.labelOffsets[0].set(0, 10);
-			menuItem.labelOffsets[1].set(-2, 10);
-			menuItem.labelOffsets[2].set(-6, 10);
-			menuItem.scrollFactor.set(0, 0);
-			menuItem.alpha = 0;
-			menuItems.set(i, menuItem);
-			menuItem.moves = true; // https://github.com/HaxeFlixel/flixel/pull/3232
-			add(menuItem);
-			FlxTween.tween(menuItem, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
+			sideBar.addLayer(
+				{
+					width: 326,
+					height: 96,
+					color: 0xC41A1A1A,
+					_functions: [
+						function(obj)
+						{
+							obj.setPosition(-80, 160 + (i * 108) + (i * 7));
+							obj.blend = MULTIPLY;
+							obj.alpha = 0;
+							FlxTween.tween(obj, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
+						},
+						function(obj)
+						{
+							FlxTween.completeTweensOf(obj);
+							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+						}
+					]
+				});
+			sideBar.addLayer(
+				{
+					width: 326,
+					height: 96,
+					color: 0xC24B4B4B,
+					_functions: [
+						function(obj)
+						{
+							obj.setPosition(-80, 150 + (i * 108) + (i * 7));
+							obj.alpha = 0;
+							FlxTween.tween(obj, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.42 + (i * 0.1)});
+						},
+						function(obj)
+						{
+							FlxTween.completeTweensOf(obj);
+							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+						}
+					]
+				});
 		}
+		for (i in 0...4)
+		{
+			sideBar.addLayer(
+				{ // button
+					width: 326,
+					height: 96,
+					text: "",
+					size: 48,
+					align: CENTER,
+					font: Paths.font("Monocraft.ttf"),
+					_functions: [
+						function(obj)
+						{
+							var text:FlxText = cast obj;
+							text.setPosition(-80, 165 + (i * 108) + (i * 7));
+							text.alpha = 0;
+							text.letterSpacing = -3;
+							text.text = labels[i];
+							FlxTween.tween(obj, {alpha: 0.4, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
+						},
+						function(obj)
+						{
+							FlxTween.completeTweensOf(obj);
+							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+						}
+					],
+					onHover: function(obj)
+					{
+						curSelection = i;
+						for (release in sideBar.onRelease)
+							release();
+						obj.alpha = 1;
+					},
+					onRelease: function(obj)
+					{
+						if (curSelection != i)
+							obj.alpha = 0.4;
+					},
+					onClick: function(_)
+					{
+						select();
+					}
+				});
+		}
+		sideBar.runAcrossLayers(0);
+		add(sideBar);
 
 		header = new Panel(LayerData.HEADER);
 		header.text = "select a submenu";
@@ -138,7 +186,7 @@ class MainMenuState extends MusicBeatState
 	@:noCompletion
 	static function set_curSelection(value:Int):Int
 	{
-		if (!selected)
+		if (!selected && curSelection != value)
 		{
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.3);
 			if (value > 3)
@@ -161,17 +209,20 @@ class MainMenuState extends MusicBeatState
 		}
 		if (controls.UI_UP_P)
 		{
+			for (release in sideBar.onRelease)
+				release();
+
 			curSelection--;
 
-			@:privateAccess menuItems[curSelection].lastStatus = HIGHLIGHT;
-			menuItems[curSelection].status = HIGHLIGHT;
+			sideBar.onHover[curSelection]();
 		}
 		if (controls.UI_DOWN_P)
 		{
-			curSelection++;
+			for (release in sideBar.onRelease)
+				release();
 
-			@:privateAccess menuItems[curSelection].lastStatus = HIGHLIGHT;
-			menuItems[curSelection].status = HIGHLIGHT;
+			curSelection++;
+			sideBar.onHover[curSelection]();
 		}
 
 		if (controls.ACCEPT)
@@ -191,11 +242,8 @@ class MainMenuState extends MusicBeatState
 				FlxTween.completeTweensOf(header);
 				header.runAcrossLayers(1);
 
-				for (spr in menuItems)
-				{
-					FlxTween.completeTweensOf(spr);
-					FlxTween.tween(spr, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
-				}
+				sideBar.runAcrossLayers(1);
+
 				new FlxTimer().start(1.1, function(tmr:FlxTimer)
 				{
 					FlxG.switchState(() -> new TitleState());
@@ -212,7 +260,8 @@ class MainMenuState extends MusicBeatState
 			camFollow.x = FlxMath.bound(FlxG.mouse.viewX, 0, 1280);
 			camFollow.y = FlxMath.bound(FlxG.mouse.viewY, 0, 720);
 		}
-
+		if (FlxG.keys.pressed.SEVEN)
+			FlxG.switchState(() -> new ParallaxDebugState());
 		super.update(elapsed);
 	}
 
@@ -233,20 +282,6 @@ class MainMenuState extends MusicBeatState
 
 		FlxTween.completeTweensOf(header);
 		header.runAcrossLayers(1);
-
-		for (spr in menuItems)
-		{
-			FlxTween.completeTweensOf(spr);
-			if (curSelection != spr.ID)
-			{
-				FlxTween.tween(spr, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut, startDelay: 0.0});
-			}
-			else
-			{
-				FlxTween.tween(spr, {alpha: 0, x: -80}, 0.6, {ease: FlxEase.quintIn, startDelay: 0.4});
-				FlxFlicker.flicker(spr, 1.1, 0.07, false);
-			}
-		}
 
 		if (curSelection == 0)
 		{

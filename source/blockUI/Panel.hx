@@ -68,15 +68,15 @@ class Panel extends FlxSpriteContainer
 	 * Constructs the panel using an array of layer definitions.
 	 * @param layers Array of Layers (x, y, width, height, color, text, font, size).
 	 */
-	public function new(layers:Array<Layer>)
+	public function new(?layers:Array<Layer>)
 	{
 		super();
 		_layerFunctions.push([]);
 
-		for (layer in layers)
-		{
-			addLayerInternal(layer);
-		}
+			for (layer in layers ?? [])
+			{
+				addLayerInternal(layer);
+			}
 
 		scrollFactor.set(0, 0);
 	}
