@@ -130,6 +130,7 @@ class LayerData
 				},
 				function(obj)
 				{
+					obj.offset.y = -16;
 					obj.x = 64;
 				}
 			],
