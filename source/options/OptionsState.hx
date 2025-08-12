@@ -24,6 +24,8 @@ class OptionsState extends MusicBeatState
 
 	static var curSelection(default, set):Int = 0;
 
+	var header:Panel;
+
 	@:noCompletion
 	static function set_curSelection(value:Int):Int
 	{
@@ -86,7 +88,7 @@ class OptionsState extends MusicBeatState
 		selectorRight = new Alphabet(0, 0, ']', true);
 		add(selectorRight);
 
-		var header:Panel = new Panel(LayerData.HEADER);
+		header = new Panel(LayerData.HEADER);
 		header.text = "choose your preferences";
 		header.runAcrossLayers();
 		add(header);
@@ -121,23 +123,25 @@ class OptionsState extends MusicBeatState
 			updateItems();
 		}
 
-		if (FlxG.mouse.deltaY != 0)
-		{
-			for (item in grpOptions)
+		for (item in grpOptions)
+			if (FlxG.mouse.overlaps(item, this.camera))
 			{
-				if (item.ID != curSelection && FlxG.mouse.overlaps(item))
+				if (item.ID != curSelection)
 				{
-					curSelection = item.ID;
-					updateItems();
-					if (FlxG.mouse.justPressed)
-						openSelectedSubstate(options[curSelection]);
+					if (FlxG.mouse.deltaY != 0)
+					{
+						curSelection = item.ID;
+						updateItems();
+					}
 				}
+				else if (FlxG.mouse.justPressed)
+					openSelectedSubstate(options[curSelection]);
 			}
-		}
 
 		if (controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
+			header.runAcrossLayers(1);
 			this.camera.fade(FlxG.camera.bgColor, 0.35, false, function()
 			{
 				if (PlayState.instance != null && OptionsState.fromPlayState)

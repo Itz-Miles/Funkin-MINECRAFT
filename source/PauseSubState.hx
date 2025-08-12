@@ -121,25 +121,24 @@ class PauseSubState extends MusicBeatSubstate
 			curSelection++;
 		}
 
-		if (FlxG.mouse.deltaY != 0)
-		{
-			for (item in grpMenu)
-				if (item.ID != curSelection && FlxG.mouse.overlaps(item, this.camera))
+		for (item in grpMenu)
+			if (FlxG.mouse.overlaps(item, this.camera))
+			{
+				if (item.ID != curSelection)
 				{
-					curSelection = item.ID;
+					if (FlxG.mouse.deltaY != 0)
+					{
+						curSelection = item.ID;
+					}
 				}
-		}
+				else if (FlxG.mouse.justPressed)
+					accept();
+			}
 
 		if (controls.ACCEPT)
 		{
 			accept();
 		}
-
-		for (item in grpMenu)
-			if (FlxG.mouse.justPressed && FlxG.mouse.overlaps(item, this.camera))
-			{
-				accept();
-			}
 	}
 
 	function accept()
