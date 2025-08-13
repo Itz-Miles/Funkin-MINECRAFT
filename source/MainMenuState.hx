@@ -10,14 +10,12 @@ import parallax.ParallaxFG;
 import Discord.DiscordClient;
 #end
 import flixel.util.FlxTimer;
-import flixel.effects.FlxFlicker;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.FlxObject;
 import parallax.ParallaxBG;
 import flixel.text.FlxText;
-import flixel.FlxSprite;
 
 using StringTools;
 
@@ -271,7 +269,7 @@ class MainMenuState extends MusicBeatState
 
 		if (controls.ACCEPT)
 		{
-			select();
+			sideBar.onClick[curSelection]();
 		}
 
 		if (!selected)
@@ -326,6 +324,11 @@ class MainMenuState extends MusicBeatState
 		FlxTween.completeTweensOf(header);
 		header.runAcrossLayers(1);
 		sideBar.runAcrossLayers(2);
+
+		new FlxTimer().start(0.25, function(tmr:FlxTimer)
+		{
+			sideBar.onHover[curSelection]();
+		});
 
 		if (curSelection == 0)
 		{
