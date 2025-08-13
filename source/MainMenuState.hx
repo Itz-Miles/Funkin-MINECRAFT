@@ -84,7 +84,7 @@ class MainMenuState extends MusicBeatState
 				{
 					width: 326,
 					height: 96,
-					color: 0xC41A1A1A,
+					color: 0xCF0F0F0F,
 					_functions: [
 						function(obj)
 						{
@@ -117,7 +117,7 @@ class MainMenuState extends MusicBeatState
 				{
 					width: 326,
 					height: 96,
-					color: 0xC24B4B4B,
+					color: 0xC1444444,
 					_functions: [
 						function(obj)
 						{
@@ -150,6 +150,7 @@ class MainMenuState extends MusicBeatState
 						for (release in sideBar.onRelease)
 							release();
 						sideBar.fields[i].alpha = 1;
+						sideBar.fields[i].offset.y = 2;
 						obj.offset.y = -44;
 					},
 					onRelease: function(obj)
@@ -157,12 +158,14 @@ class MainMenuState extends MusicBeatState
 						if (curSelection != i)
 						{
 							sideBar.fields[i].alpha = 0.4;
+							sideBar.fields[i].offset.y = 0;
 							obj.offset.y = -48;
 						}
 					},
 					onClick: function(obj)
 					{
 						select();
+						sideBar.fields[i].offset.y = -2;
 						obj.offset.y = -52;
 					}
 				});
