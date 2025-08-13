@@ -33,7 +33,7 @@ class MainMenuState extends MusicBeatState
 	var backed:Bool = false;
 
 	static var labels:Array<String> = ['story mode', 'freeplay', 'settings', 'credits'];
-	public static var curSelection(default, set):Int = -1;
+	public static var curSelection(default, set):Int = 5;
 	static var selected:Bool = true;
 
 	override function create()
@@ -52,10 +52,10 @@ class MainMenuState extends MusicBeatState
 		var bg:ParallaxBG = new ParallaxBG('arch', 0.2);
 		add(bg);
 
-		if (curSelection != 5 && curSelection != -1)
+		if (curSelection != 5)
 			FlxG.camera.fade(FlxG.camera.bgColor, 0.5, true);
 
-		// curSelection = curSelection;
+		curSelection = curSelection;
 		selected = false;
 
 		camFollow = new FlxObject(0, 0, 1, 1);
@@ -230,16 +230,16 @@ class MainMenuState extends MusicBeatState
 	@:noCompletion
 	static function set_curSelection(value:Int):Int
 	{
+		if (value > 3)
+			value = 0;
+		if (value < 0)
+			value = 3;
+
 		if (!selected && curSelection != value)
 		{
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.3);
-			if (value > 3)
-				value = 0;
-			if (value < 0)
-				value = 3;
-			return curSelection = value;
 		}
-		return curSelection = curSelection;
+		return curSelection = value;
 	}
 
 	override function update(elapsed:Float)
@@ -281,7 +281,6 @@ class MainMenuState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 				selected = true;
 				backed = true;
-				@:bypassAccessor curSelection = 5;
 
 				FlxTween.completeTweensOf(header);
 				header.runAcrossLayers(1);

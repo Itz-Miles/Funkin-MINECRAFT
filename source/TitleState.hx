@@ -52,12 +52,20 @@ class TitleState extends MusicBeatState
 		splashText.screenCenter(X);
 		add(splashText);
 
-		if (MainMenuState.curSelection != -1)
+		if (MainMenuState.curSelection != 5)
 		{
 			logoBl.alpha = 0;
 			FlxTween.tween(logoBl, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
 			splashText.alpha = 0;
 			FlxTween.tween(splashText, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
+			@:bypassAccessor MainMenuState.curSelection = 5;
+		}
+		else
+		{
+			FlxG.camera.flash(FlxG.camera.bgColor, 0.7);
+			FlxG.camera.zoom = 3.5;
+			FlxG.camera.scroll.y = 300;
+			FlxTween.tween(FlxG.camera, {zoom: 1.0, "scroll.y": 0}, 1.8, {ease: FlxEase.quintOut});
 		}
 
 		FlxTween.tween(splashText.scale, {x: 0.96, y: 0.96}, 0.1, {ease: FlxEase.cubeOut});
@@ -71,13 +79,6 @@ class TitleState extends MusicBeatState
 			click ANYWHERE to start!
 			press ANYTHING to start!
 		 */
-		if (MainMenuState.curSelection == -1)
-		{
-			FlxG.camera.flash(FlxG.camera.bgColor, 0.7);
-			FlxG.camera.zoom = 3.5;
-			FlxG.camera.scroll.y = 300;
-			FlxTween.tween(FlxG.camera, {zoom: 1.0, "scroll.y": 0}, 1.8, {ease: FlxEase.quintOut});
-		}
 	}
 
 	override function update(elapsed:Float)
@@ -121,19 +122,21 @@ class TitleState extends MusicBeatState
 				FlxTween.completeTweensOf(splashText);
 				FlxTween.completeTweensOf(logoBl);
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.3);
-				FlxTween.tween(splashText, {
-					alpha: 0,
-					"scale.x": 1.2,
-					"scale.y": 1.2,
-					y: 660
-				}, 0.5, {ease: FlxEase.quadIn, type: FlxTweenType.PERSIST});
-				FlxTween.tween(logoBl, {
-					alpha: 0,
-					"scale.x": 1.4,
-					"scale.y": 1.4,
-					x: -65,
-					y: -100
-				}, 0.5, {ease: FlxEase.quadIn, type: FlxTweenType.PERSIST});
+				FlxTween.tween(splashText,
+					{
+						alpha: 0,
+						"scale.x": 1.2,
+						"scale.y": 1.2,
+						y: 660
+					}, 0.5, {ease: FlxEase.quadIn, type: FlxTweenType.PERSIST});
+				FlxTween.tween(logoBl,
+					{
+						alpha: 0,
+						"scale.x": 1.4,
+						"scale.y": 1.4,
+						x: -65,
+						y: -100
+					}, 0.5, {ease: FlxEase.quadIn, type: FlxTweenType.PERSIST});
 				transitioning = true;
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
@@ -145,13 +148,14 @@ class TitleState extends MusicBeatState
 			{
 				transitioning = true;
 				FlxG.camera.fade(#if html5 FlxColor.BLACK #else 0xFF0F0F0F #end, 2, false);
-				FlxTween.tween(FlxG.sound.music, {pitch: 0}, 2, {
-					ease: FlxEase.cubeIn,
-					onComplete: function(twn:FlxTween)
+				FlxTween.tween(FlxG.sound.music, {pitch: 0}, 2,
 					{
-						System.exit(0);
-					}
-				});
+						ease: FlxEase.cubeIn,
+						onComplete: function(twn:FlxTween)
+						{
+							System.exit(0);
+						}
+					});
 			}
 		}
 		super.update(elapsed);
@@ -161,23 +165,25 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 		if (splashText != null && !transitioning)
-			FlxTween.tween(splashText.scale, {x: 0.79, y: 0.79}, 0.165, {
-				type: FlxTweenType.PERSIST,
-				ease: FlxEase.cubeOut,
-				onComplete: function(twn:FlxTween)
+			FlxTween.tween(splashText.scale, {x: 0.79, y: 0.79}, 0.165,
 				{
-					FlxTween.tween(splashText.scale, {x: 0.76, y: 0.76}, 0.165, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
-				}
-			});
+					type: FlxTweenType.PERSIST,
+					ease: FlxEase.cubeOut,
+					onComplete: function(twn:FlxTween)
+					{
+						FlxTween.tween(splashText.scale, {x: 0.76, y: 0.76}, 0.165, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
+					}
+				});
 		if (logoBl != null && !transitioning)
-			FlxTween.tween(logoBl.scale, {x: 1, y: 1}, 0.165, {
-				type: FlxTweenType.PERSIST,
-				ease: FlxEase.cubeOut,
-				onComplete: function(twn:FlxTween)
+			FlxTween.tween(logoBl.scale, {x: 1, y: 1}, 0.165,
 				{
-					FlxTween.tween(logoBl.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
-				}
-			});
+					type: FlxTweenType.PERSIST,
+					ease: FlxEase.cubeOut,
+					onComplete: function(twn:FlxTween)
+					{
+						FlxTween.tween(logoBl.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut, type: FlxTweenType.PERSIST});
+					}
+				});
 
 		if (titleGF != null)
 		{
