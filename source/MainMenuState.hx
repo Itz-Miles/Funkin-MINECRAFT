@@ -332,6 +332,7 @@ class MainMenuState extends MusicBeatState
 
 		if (curSelection == 0)
 		{
+			FlxG.sound.music.fadeOut(1);
 			var songArray:Array<String> = [];
 			var leWeek:Array<Dynamic> = loadedWeeks[0].songs;
 			for (i in 0...leWeek.length)
