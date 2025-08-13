@@ -208,7 +208,6 @@ class CreditsState extends MusicBeatState
 		descText = new FlxText(100, 720, 1080, "", 32);
 		descText.setFormat(Paths.font("Monocraft.ttf"), 28, FlxColor.WHITE, CENTER);
 		descText.scrollFactor.set();
-		descText.borderSize = 2.4;
 		add(descText);
 		FlxTween.tween(descText, {y: 550}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.6});
 
