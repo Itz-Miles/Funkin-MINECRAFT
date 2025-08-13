@@ -69,7 +69,6 @@ class ControlsSubState extends MusicBeatSubstate
 		super();
 
 		options.push([true]);
-		options.push([true]);
 		options.push([true, defaultKey]);
 
 		grpDisplay = new FlxTypedGroup<Alphabet>();
@@ -88,6 +87,10 @@ class ControlsSubState extends MusicBeatSubstate
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "bind your controls     ";
+		header.onClick[0] = function()
+		{
+			close();
+		};
 		controllerSpr = new FlxSprite(845, 9).loadGraphic(Paths.image('settings/controller_type', "shared"), true, 18, 0);
 		controllerSpr.antialiasing = false;
 		controllerSpr.animation.add('keyboard', [0], 1, false);
@@ -129,7 +132,7 @@ class ControlsSubState extends MusicBeatSubstate
 					var isDefaultKey:Bool = (option[1] == defaultKey);
 					var isDisplayKey:Bool = (isCentered && !isDefaultKey);
 
-					var text:Alphabet = new Alphabet(200, 375, option[1], !isDisplayKey);
+					var text:Alphabet = new Alphabet(60, 375, option[1], !isDisplayKey);
 					text.isMenuItem = true;
 					text.changeX = false;
 					text.distancePerItem.y = 60;
@@ -162,15 +165,17 @@ class ControlsSubState extends MusicBeatSubstate
 	function addCenteredText(text:Alphabet, option:Array<Dynamic>, id:Int)
 	{
 		text.screenCenter(X);
-		text.y -= 55;
-		text.startPosition.y -= 55;
+		text.y -= 25;
+		text.startPosition.y -= 25;
+		if (text.text == defaultKey)
+			text.startPosition.y -= 50;
 	}
 
 	function addKeyText(text:Alphabet, option:Array<Dynamic>, id:Int)
 	{
 		for (n in 0...2)
 		{
-			var textX:Float = 350 + n * 300;
+			var textX:Float = 610 + n * 300;
 
 			var key:String = null;
 			if (onKeyboardMode)
@@ -184,7 +189,7 @@ class ControlsSubState extends MusicBeatSubstate
 				key = InputFormatter.getGamepadName((savKey[n] != null) ? savKey[n] : NONE);
 			}
 
-			var attach:Alphabet = new Alphabet(textX + 210, 375, key, false);
+			var attach:Alphabet = new Alphabet(textX + 70, 375, key, false);
 			attach.isMenuItem = true;
 			attach.changeX = false;
 			attach.distancePerItem.y = 60;
@@ -195,6 +200,7 @@ class ControlsSubState extends MusicBeatSubstate
 			grpBinds.add(attach);
 
 			attach.scale.x = Math.min(1, 230 / attach.width);
+			attach.updateHitbox();
 			// attach.text = key;
 
 			// spawn black bars at the right of the key name
@@ -252,11 +258,15 @@ class ControlsSubState extends MusicBeatSubstate
 				|| FlxG.gamepads.anyJustPressed(LEFT_STICK_DIGITAL_RIGHT))
 				updateAlt(true);
 
-			if (FlxG.keys.justPressed.UP || FlxG.gamepads.anyJustPressed(DPAD_UP) || FlxG.gamepads.anyJustPressed(LEFT_STICK_DIGITAL_UP))
+			if (FlxG.keys.justPressed.UP
+				|| FlxG.gamepads.anyJustPressed(DPAD_UP)
+				|| FlxG.gamepads.anyJustPressed(LEFT_STICK_DIGITAL_UP)
+				|| FlxG.mouse.wheel > 0)
 				updateText(-1);
 			else if (FlxG.keys.justPressed.DOWN
 				|| FlxG.gamepads.anyJustPressed(DPAD_DOWN)
-				|| FlxG.gamepads.anyJustPressed(LEFT_STICK_DIGITAL_DOWN))
+				|| FlxG.gamepads.anyJustPressed(LEFT_STICK_DIGITAL_DOWN)
+				|| FlxG.mouse.wheel < 0)
 				updateText(1);
 
 			if (FlxG.keys.justPressed.ENTER || FlxG.gamepads.anyJustPressed(START) || FlxG.gamepads.anyJustPressed(A))
@@ -290,9 +300,8 @@ class ControlsSubState extends MusicBeatSubstate
 					// Reset to Default
 					ClientPrefs.resetKeys(!onKeyboardMode);
 					ClientPrefs.reloadVolumeKeys();
-					var lastSel:Int = curSelected;
 					createTexts();
-					curSelected = lastSel;
+					curSelected = 0;
 					updateText();
 					FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 				}
