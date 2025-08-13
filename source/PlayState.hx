@@ -271,7 +271,7 @@ class PlayState extends MusicBeatState
 		eventPushedMap.clear();
 		eventPushedMap = null;
 		moveCameraSection(0);
-		prideBar = new FlxBar(752, 720 * 0.87, RIGHT_TO_LEFT, 308, 20, playerGroup[0], 'health', 0, 20, true); // change this later
+		prideBar = new FlxBar(790, 620, RIGHT_TO_LEFT, 308, 20, playerGroup[0], 'health', 0, 20, true); // change this later
 		prideBar.createFilledBar(FlxColor.fromRGB(0, 0, 0), FlxColor.fromRGB(0, 0, 255), true, FlxColor.BLACK);
 		prideBar.updateBar();
 		prideBar.scrollFactor.set();
@@ -280,14 +280,14 @@ class PlayState extends MusicBeatState
 			prideBar.y = 0.13 * 720;
 		add(prideBar);
 
-		nerveBar = new FlxBar(752, prideBar.y - 25, RIGHT_TO_LEFT, 308, 20, playerGroup[0], 'health', 0, 20, true); // change this later
+		nerveBar = new FlxBar(790, prideBar.y - 25, RIGHT_TO_LEFT, 308, 20, playerGroup[0], 'health', 0, 20, true); // change this later
 		nerveBar.createFilledBar(FlxColor.fromRGB(0, 0, 0), FlxColor.fromRGB(255, 255, 0), true, FlxColor.BLACK);
 		nerveBar.updateBar();
 		nerveBar.scrollFactor.set();
 		nerveBar.cameras = [camUI];
 		add(nerveBar);
 
-		rageBar = new FlxBar(752, nerveBar.y - 25, RIGHT_TO_LEFT, 308, 20, playerGroup[0], 'health', 0, 20, true); // change this later
+		rageBar = new FlxBar(790, nerveBar.y - 25, RIGHT_TO_LEFT, 308, 20, playerGroup[0], 'health', 0, 20, true); // change this later
 		rageBar.createFilledBar(FlxColor.fromRGB(0, 0, 0), FlxColor.fromRGB(255, 0, 0), true, FlxColor.BLACK);
 		rageBar.updateBar();
 		rageBar.scrollFactor.set();
