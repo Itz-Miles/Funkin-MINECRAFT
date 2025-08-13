@@ -154,7 +154,7 @@ class CreditsState extends MusicBeatState
 			[
 				'Github',
 				'github',
-				"Friday Nigt Funkin' has many contributions.",
+				"Friday Night Funkin' has many contributions.",
 				'https://github.com/FunkinCrew/Funkin/graphs/contributors'
 			],
 			[''],
