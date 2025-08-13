@@ -110,29 +110,29 @@ class FreeplayState extends MusicBeatState
 		}
 		WeekData.setDirectoryFromWeek();
 
-		var scoreBG:FlxSprite = new FlxSprite(0, 720).makeGraphic(1, 1, 0xFF000000);
-		scoreBG.scale.set(1280, 140);
+		var scoreBG:FlxSprite = new FlxSprite(50, 720).makeGraphic(1, 1, 0xFF000000);
+		scoreBG.scale.set(1180, 140);
 		scoreBG.origin.set(0, 0);
 		scoreBG.alpha = 0.6;
 		add(scoreBG);
-		FlxTween.tween(scoreBG, {y: 580}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.6});
+		FlxTween.tween(scoreBG, {y: 530}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.6});
 
-		scoreText = new FlxText(0, 720, 1220, "", 48);
+		scoreText = new FlxText(100, 720, 1080, "", 48);
 		scoreText.screenCenter(X);
 		scoreText.setFormat(Paths.font("Monocraft.ttf"), 48, FlxColor.WHITE, CENTER);
-		FlxTween.tween(scoreText, {y: 600}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.6});
+		FlxTween.tween(scoreText, {y: 550}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.6});
 
 		resetText = new FlxText(0, 720, 0, 'Press RESET to reset your score.', 24);
 		resetText.setFormat(Paths.font("Monocraft.ttf"), 24, FlxColor.WHITE, CENTER);
 		resetText.screenCenter(X);
 		resetText.x -= resetText.width * 0.32;
 		add(resetText);
-		FlxTween.tween(resetText, {y: 600 + scoreText.height}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.6});
+		FlxTween.tween(resetText, {y: 540 + scoreText.height}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.6});
 
 		diffText = new FlxText(resetText.x + resetText.width, 720, 0, "", 24);
 		diffText.font = scoreText.font;
 		add(diffText);
-		FlxTween.tween(diffText, {y: 600 + scoreText.height}, 1.1, {ease: FlxEase.quintOut, startDelay: 0.6});
+		FlxTween.tween(diffText, {y: 540 + scoreText.height}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.6});
 
 		add(scoreText);
 
