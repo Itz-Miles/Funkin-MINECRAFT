@@ -6,9 +6,9 @@ import flixel.FlxG;
 
 class TestChartingState extends MusicBeatState
 {
-	static final tabNames:Array<String> = ['song', 'note', 'ctrl'];
+	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];
 
-	var panelLayers:Array<Layer> = [
+	var layers:Array<Layer> = [
 		{
 			x: 460,
 			y: 660,
@@ -54,37 +54,59 @@ class TestChartingState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		var panel:Panel = new Panel(panelLayers);
+		var panel:Panel = new Panel(layers);
 		add(panel);
+		var margin = 10;
+		var tabWidth = (layers[2].width - margin * 2 - (margin * (tabNames.length - 1))) / tabNames.length;
 
 		for (i in 0...tabNames.length)
 		{
 			panel.addLayer(
 				{
-					x: 480 + (100 * i) + (10 * i),
-					y: 70,
-					width: 100,
-					height: 50,
-					color: 0xFFd1d1d1,
+					x: layers[2].x + margin + ((tabWidth + margin) * i),
+					y: layers[2].y + 50,
+					width: tabWidth,
+					height: 20,
+					color: 0xff5f697a,
 				});
 
 			panel.addLayer(
 				{
-					x: 480 + (100 * i) + (10 * i),
-					y: 85,
-					width: 100,
+					x: layers[2].x + margin + ((tabWidth + margin) * i),
+					y: layers[2].y + 10,
+					width: tabWidth,
+					height: 50,
+					color: 0xFFcedae4,
+					onHover: function(obj)
+					{
+						obj.offset.y = -30;
+						panel.fields[i].offset.y = -5;
+					},
+					onRelease: function(obj)
+					{
+						obj.offset.y = -25;
+						panel.fields[i].offset.y = 0;
+					},
+				});
+
+			panel.addLayer(
+				{
+					x: layers[2].x + margin + ((tabWidth + margin) * i),
+					y: layers[2].y + 25,
+					width: tabWidth,
 					height: 0,
 					color: 0x00000000,
 					text: tabNames[i],
 					font: Paths.font("Minecrafter.ttf"),
 					align: CENTER,
-					size: Std.int(100 / tabNames[i].length)
+					size: Std.int(Math.min((tabWidth / tabNames[i].length), 25))
 				});
 		}
 	}
 
 	override function update(elapsed:Float)
 	{
+		super.update(elapsed);
 		if (controls.BACK)
 		{
 			FlxG.switchState(() -> new FreeplayState());
