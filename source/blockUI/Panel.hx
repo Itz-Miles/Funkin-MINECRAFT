@@ -156,7 +156,7 @@ class Panel extends FlxSpriteContainer
 
 		for (i in 0...buttons.length)
 		{
-			if (buttonStates[i] == DISABLED)
+			if (buttonStates[i] == DISABLED || !buttons[i].visible)
 				continue;
 
 			if (FlxG.mouse.overlaps(buttons[i], this.camera))
