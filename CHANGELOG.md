@@ -3,6 +3,34 @@ All notable changes will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.0.3] - August 13 2025
+
+### Added
+* Added layer-based button support to blockUI.
+* Added bindable onClick, onHover, onRelease functions for buttons.
+* Added support for procedurally creating layers after panel creation.
+* Added support for indexing through sprites and buttons.
+* Added a clickable back button to the dynamic header.
+
+### Changed
+* Overhauled the Main Menu buttons to be translucent.
+* Implemented mouse and gamepad support for the buttons.
+* Made music fade out when pressing the Story Mode button.
+* Adjusted the strum note size and positions to have a 50 pixel margin.
+* Adjusted the freeplay description box to have a 50 pixel margin.
+* Adjusted the settings description boxes to have a 50 pixel margin.
+* Adjusted the Haxe formatter to handle object literals Allman-style.
+
+### Fixed
+* Fixed unimplemented mouse support for Pause and Settings buttons.
+* Fixed Control Keybinds' offsets and hitboxes to align with backings.
+
+### Removed
+* Removed the old Main Menu's sidebar assets. Images not needed!
+* Removed some placeholder credits for now.
+* Removed some unused imports.
+
 ## [0.0.2] - August 5 2025
 
 ### Added
