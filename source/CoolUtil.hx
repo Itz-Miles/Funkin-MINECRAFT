@@ -90,16 +90,6 @@ class CoolUtil
 		return dumbArray;
 	}
 
-	public static function precacheSound(sound:String, ?library:String = null):Void
-	{
-		Paths.sound(sound, library);
-	}
-
-	public static function precacheMusic(sound:String, ?library:String = null):Void
-	{
-		Paths.music(sound, library);
-	}
-
 	public static function browserLoad(site:String)
 	{
 		#if linux
