@@ -6,6 +6,8 @@ import flixel.FlxG;
 
 class TestChartingState extends MusicBeatState
 {
+	static final tabNames:Array<String> = ['song', 'note', 'ctrl'];
+
 	var panelLayers:Array<Layer> = [
 		{
 			x: 460,
@@ -54,6 +56,31 @@ class TestChartingState extends MusicBeatState
 
 		var panel:Panel = new Panel(panelLayers);
 		add(panel);
+
+		for (i in 0...tabNames.length)
+		{
+			panel.addLayer(
+				{
+					x: 480 + (100 * i) + (10 * i),
+					y: 70,
+					width: 100,
+					height: 50,
+					color: 0xFFd1d1d1,
+				});
+
+			panel.addLayer(
+				{
+					x: 480 + (100 * i) + (10 * i),
+					y: 85,
+					width: 100,
+					height: 0,
+					color: 0x00000000,
+					text: tabNames[i],
+					font: Paths.font("Minecrafter.ttf"),
+					align: CENTER,
+					size: Std.int(100 / tabNames[i].length)
+				});
+		}
 	}
 
 	override function update(elapsed:Float)
