@@ -68,7 +68,7 @@ class Main extends Sprite
 		addChild(new FlxGame(1280, 720, LoadingState, 60, 60, true, false));
 
 		#if !html5 FlxG.camera.bgColor = 0x0F0F0F; #end
-		FlxG.save.bind('funkin', CoolUtil.getSavePath());
+		FlxG.save.bind('funkin', ClientPrefs.getSavePath());
 		ClientPrefs.loadDefaultKeys();
 		ClientPrefs.loadPrefs();
 		Controls.init();
