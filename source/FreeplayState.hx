@@ -1,5 +1,6 @@
 package;
 
+import editors.TextChartingState;
 import blockUI.LayerData;
 import blockUI.Panel;
 import flixel.util.FlxTimer;
@@ -178,7 +179,7 @@ class FreeplayState extends MusicBeatState
 	{
 		var upP = controls.UI_UP_P;
 		var downP = controls.UI_DOWN_P;
-		var accepted = controls.ACCEPT || FlxG.keys.justPressed.SEVEN;
+		var accepted = controls.ACCEPT || FlxG.keys.justPressed.SEVEN || FlxG.keys.justPressed.EIGHT;
 
 		if (!accepted)
 			if (FlxG.sound.music.volume < 0.7)
@@ -273,6 +274,13 @@ class FreeplayState extends MusicBeatState
 				new FlxTimer().start(0.25, function(tmr:FlxTimer)
 				{
 					LoadingState.loadAndSwitchState(new ChartingState());
+				});
+			}
+			else if (FlxG.keys.justPressed.EIGHT)
+			{
+				new FlxTimer().start(0.25, function(tmr:FlxTimer)
+				{
+					LoadingState.loadAndSwitchState(new TestChartingState());
 				});
 			}
 			else
