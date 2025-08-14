@@ -64,6 +64,14 @@ class Conductor
 		return '0/10';
 	}
 
+	inline public static function quantize(f:Float, snap:Float)
+	{
+		// changed so this actually works lol
+		var m:Float = Math.fround(f * snap);
+		trace(snap);
+		return (m / snap);
+	}
+
 	/* 
 		BPM stuff
 	 */
@@ -75,12 +83,13 @@ class Conductor
 
 	public static function getBPMFromSeconds(time:Float)
 	{
-		var lastChange:BPMChangeEvent = {
-			stepTime: 0,
-			songTime: 0,
-			bpm: bpm,
-			stepCrochet: stepCrochet
-		}
+		var lastChange:BPMChangeEvent =
+			{
+				stepTime: 0,
+				songTime: 0,
+				bpm: bpm,
+				stepCrochet: stepCrochet
+			}
 		for (i in 0...Conductor.bpmChangeMap.length)
 		{
 			if (time >= Conductor.bpmChangeMap[i].songTime)
@@ -92,12 +101,13 @@ class Conductor
 
 	public static function getBPMFromStep(step:Float)
 	{
-		var lastChange:BPMChangeEvent = {
-			stepTime: 0,
-			songTime: 0,
-			bpm: bpm,
-			stepCrochet: stepCrochet
-		}
+		var lastChange:BPMChangeEvent =
+			{
+				stepTime: 0,
+				songTime: 0,
+				bpm: bpm,
+				stepCrochet: stepCrochet
+			}
 		for (i in 0...Conductor.bpmChangeMap.length)
 		{
 			if (Conductor.bpmChangeMap[i].stepTime <= step)
@@ -148,12 +158,13 @@ class Conductor
 			if (song.sections[i].changeBPM && song.sections[i].bpm != curBPM)
 			{
 				curBPM = song.sections[i].bpm;
-				var event:BPMChangeEvent = {
-					stepTime: totalSteps,
-					songTime: totalPos,
-					bpm: curBPM,
-					stepCrochet: calculateCrochet(curBPM) * 0.25
-				};
+				var event:BPMChangeEvent =
+					{
+						stepTime: totalSteps,
+						songTime: totalPos,
+						bpm: curBPM,
+						stepCrochet: calculateCrochet(curBPM) * 0.25
+					};
 				bpmChangeMap.push(event);
 			}
 

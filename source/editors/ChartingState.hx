@@ -185,19 +185,20 @@ class ChartingState extends MusicBeatState
 		else
 		{
 			Difficulty.resetList();
-			_song = {
-				name: 'stalstruck',
-				sections: [],
-				events: [],
-				bpm: 159.0,
-				needsVoices: false,
-				arrowSkin: '',
-				players: ['bf'],
-				opponents: ['dad'],
-				neutrals: ['gf'],
-				speed: 1,
-				stage: 'arch'
-			};
+			_song =
+				{
+					name: 'stalstruck',
+					sections: [],
+					events: [],
+					bpm: 159.0,
+					needsVoices: false,
+					arrowSkin: '',
+					players: ['bf'],
+					opponents: ['dad'],
+					neutrals: ['gf'],
+					speed: 1,
+					stage: 'arch'
+				};
 			addSection();
 			PlayState.SONG = _song;
 		}
@@ -1710,12 +1711,12 @@ class ChartingState extends MusicBeatState
 					var increase:Float = 1 / snap;
 					if (FlxG.mouse.wheel > 0)
 					{
-						var quant:Float = CoolUtil.quantize(beat, snap) - increase;
+						var quant:Float = Conductor.quantize(beat, snap) - increase;
 						FlxG.sound.music.time = Conductor.beatToSeconds(quant);
 					}
 					else
 					{
-						var quant:Float = CoolUtil.quantize(beat, snap) + increase;
+						var quant:Float = Conductor.quantize(beat, snap) + increase;
 						FlxG.sound.music.time = Conductor.beatToSeconds(quant);
 					}
 				}
@@ -1753,12 +1754,12 @@ class ChartingState extends MusicBeatState
 					var increase:Float = 1 / snap;
 					if (FlxG.keys.pressed.UP)
 					{
-						var quant:Float = CoolUtil.quantize(beat, snap) - increase; // (Math.floor((beat+snap) / snap) * snap);
+						var quant:Float = Conductor.quantize(beat, snap) - increase; // (Math.floor((beat+snap) / snap) * snap);
 						FlxG.sound.music.time = Conductor.beatToSeconds(quant);
 					}
 					else
 					{
-						var quant:Float = CoolUtil.quantize(beat, snap) + increase; // (Math.floor((beat+snap) / snap) * snap);
+						var quant:Float = Conductor.quantize(beat, snap) + increase; // (Math.floor((beat+snap) / snap) * snap);
 						FlxG.sound.music.time = Conductor.beatToSeconds(quant);
 					}
 				}
@@ -1827,12 +1828,12 @@ class ChartingState extends MusicBeatState
 					var increase:Float = 1 / snap;
 					if (FlxG.keys.pressed.UP)
 					{
-						var quant:Float = CoolUtil.quantize(beat, snap) - increase;
+						var quant:Float = Conductor.quantize(beat, snap) - increase;
 						feces = Conductor.beatToSeconds(quant);
 					}
 					else
 					{
-						var quant:Float = CoolUtil.quantize(beat, snap) + increase; // (Math.floor((beat+snap) / snap) * snap);
+						var quant:Float = Conductor.quantize(beat, snap) + increase; // (Math.floor((beat+snap) / snap) * snap);
 						feces = Conductor.beatToSeconds(quant);
 					}
 					FlxTween.tween(FlxG.sound.music, {time: feces}, 0.1, {ease: FlxEase.circOut});
@@ -2353,11 +2354,12 @@ class ChartingState extends MusicBeatState
 
 	function recalculateSteps(add:Float = 0):Int
 	{
-		var lastChange:BPMChangeEvent = {
-			stepTime: 0,
-			songTime: 0,
-			bpm: 0
-		}
+		var lastChange:BPMChangeEvent =
+			{
+				stepTime: 0,
+				songTime: 0,
+				bpm: 0
+			}
 		for (i in 0...Conductor.bpmChangeMap.length)
 		{
 			if (FlxG.sound.music.time > Conductor.bpmChangeMap[i].songTime)
@@ -2446,10 +2448,11 @@ class ChartingState extends MusicBeatState
 		updateHeads();
 	}
 
-	var characterData:Dynamic = {
-		iconP1: null,
-		iconP2: null
-	};
+	var characterData:Dynamic =
+		{
+			iconP1: null,
+			iconP2: null
+		};
 
 	function updateJsonData():Void
 	{
@@ -2704,16 +2707,17 @@ class ChartingState extends MusicBeatState
 
 	function addSection(beats:Float = 4):Void
 	{
-		var sec:SwagSection = {
-			beats: beats,
-			bpm: _song.bpm,
-			changeBPM: false,
-			mustHitSection: true,
-			gfSection: false,
-			notes: [],
-			characterGroup: 0,
-			altAnim: false
-		};
+		var sec:SwagSection =
+			{
+				beats: beats,
+				bpm: _song.bpm,
+				changeBPM: false,
+				mustHitSection: true,
+				gfSection: false,
+				notes: [],
+				characterGroup: 0,
+				altAnim: false
+			};
 
 		_song.sections.push(sec);
 	}
@@ -2977,9 +2981,10 @@ class ChartingState extends MusicBeatState
 
 	function autosaveSong():Void
 	{
-		FlxG.save.data.autosave = haxe.Json.stringify({
-			"song": _song
-		});
+		FlxG.save.data.autosave = haxe.Json.stringify(
+			{
+				"song": _song
+			});
 		FlxG.save.flush();
 	}
 
@@ -2993,9 +2998,10 @@ class ChartingState extends MusicBeatState
 	{
 		if (_song.events != null && _song.events.length > 1)
 			_song.events.sort(sortByTime);
-		var json = {
-			"song": _song
-		};
+		var json =
+			{
+				"song": _song
+			};
 
 		var data:String = haxe.Json.stringify(json, "\t");
 
@@ -3018,12 +3024,14 @@ class ChartingState extends MusicBeatState
 	{
 		if (_song.events != null && _song.events.length > 1)
 			_song.events.sort(sortByTime);
-		var eventsSong:Dynamic = {
-			events: _song.events
-		};
-		var json = {
-			"song": eventsSong
-		}
+		var eventsSong:Dynamic =
+			{
+				events: _song.events
+			};
+		var json =
+			{
+				"song": eventsSong
+			}
 
 		var data:String = Json.stringify(json, "\t");
 
