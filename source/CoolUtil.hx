@@ -188,10 +188,4 @@ class CoolUtil
 		}
 		return FlxEase.linear;
 	}
-
-	public static function getSavePath(folder:String = 'Itz_Miles'):String
-	{
-		@:privateAccess
-		return '${FlxG.stage.application.meta.get('company')}/${FlxSave.validate(FlxG.stage.application.meta.get('file'))}';
-	}
 }
