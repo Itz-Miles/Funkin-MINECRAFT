@@ -1,6 +1,6 @@
 package;
 
-import editors.TextChartingState;
+import editors.TestChartingState;
 import blockUI.LayerData;
 import blockUI.Panel;
 import flixel.util.FlxTimer;
