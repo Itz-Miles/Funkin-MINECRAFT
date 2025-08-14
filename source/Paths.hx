@@ -59,7 +59,6 @@ class Paths
 		#if cpp
 		cpp.vm.Gc.compact();
 		#end
-
 	}
 
 	// define the locally tracked assets
@@ -91,6 +90,16 @@ class Paths
 
 		localTrackedAssets = [];
 		openfl.Assets.cache.clear("songs");
+	}
+
+	public static function precacheSound(sound:String, ?library:String = null):Void
+	{
+		Paths.sound(sound, library);
+	}
+
+	public static function precacheMusic(sound:String, ?library:String = null):Void
+	{
+		Paths.music(sound, library);
 	}
 
 	static public var currentLevel(default, set):String = "shared";
