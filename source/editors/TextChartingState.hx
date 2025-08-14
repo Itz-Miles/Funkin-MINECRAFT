@@ -34,6 +34,13 @@ class TestChartingState extends MusicBeatState
 			width: 750,
 			height: 10,
 			color: 0xff000000
+		},
+		{
+			x: 50,
+			y: 50,
+			width: 360,
+			height: 620,
+			color: 0x70000000
 		}
 	];
 
