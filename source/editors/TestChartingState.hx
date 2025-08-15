@@ -9,7 +9,7 @@ import flixel.FlxG;
 
 class TestChartingState extends MusicBeatState
 {
-	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info', 'modchart'];
+	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];
 
 	var tabs:Array<Panel>;
 
@@ -101,8 +101,10 @@ class TestChartingState extends MusicBeatState
 							}
 						}
 
+						FlxTween.completeTweensOf(uiBox.sprites[5 + i * 2]);
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
+						FlxTween.color(uiBox.sprites[5 + i * 2], 0.1, uiBox.sprites[5 + i * 2].color, 0xFF44BD44);
 						FlxTween.color(obj, 0.1, obj.color, FlxColor.GREEN);
 						FlxTween.color(uiBox.fields[i], 0.1, uiBox.fields[i].color, FlxColor.WHITE);
 						FlxTween.tween(obj.offset, {y: -30}, 0.1);
@@ -110,6 +112,7 @@ class TestChartingState extends MusicBeatState
 					},
 					onHover: function(obj)
 					{
+						FlxTween.completeTweensOf(uiBox.sprites[5 + i * 2]);
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
 						FlxTween.tween(obj.offset, {y: -23}, 0.1);
@@ -117,8 +120,10 @@ class TestChartingState extends MusicBeatState
 					},
 					onRelease: function(obj)
 					{
+						FlxTween.completeTweensOf(uiBox.sprites[5 + i * 2]);
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
+						FlxTween.color(uiBox.sprites[5 + i * 2], 0.1, uiBox.sprites[5 + i * 2].color, FlxColor.WHITE);
 						FlxTween.color(obj, 0.1, obj.color, FlxColor.WHITE);
 						FlxTween.color(uiBox.fields[i], 0.1, uiBox.fields[i].color, FlxColor.BLACK);
 						FlxTween.tween(obj.offset, {y: -25}, 0.1);
