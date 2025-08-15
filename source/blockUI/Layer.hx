@@ -18,6 +18,7 @@ typedef Layer =
 	var ?align:FlxTextAlign;
 	var ?_functions:Array<FlxSprite->Void>;
 	var ?onClick:FlxSprite->Void;
+	var ?onPush:FlxSprite->Void;
 	var ?onHover:FlxSprite->Void;
 	var ?onRelease:FlxSprite->Void;
 }
