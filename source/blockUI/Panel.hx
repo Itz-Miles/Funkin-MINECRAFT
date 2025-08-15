@@ -75,21 +75,28 @@ class Panel extends FlxSpriteContainer
 		super();
 		_layerFunctions.push([]);
 
-		for (layer in layers ?? [])
-		{
-			addLayerInternal(layer);
-		}
+		addLayers(layers);
 
 		scrollFactor.set(0, 0);
 	}
 
 	/**
 	 * Dynamically adds a new layer to the panel after creation.
-	 * Returns the index of the added layer.
 	 */
 	public function addLayer(layer:Layer):Void
 	{
 		addLayerInternal(layer);
+	}
+
+	/**
+	 * Dynamically adds new layers to the panel after creation.
+	 */
+	public function addLayers(?layers:Array<Layer>):Void
+	{
+		for (layer in layers ?? [])
+		{
+			addLayerInternal(layer);
+		}
 	}
 
 	/**
