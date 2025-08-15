@@ -60,6 +60,9 @@ class TestChartingState extends MusicBeatState
 
 		var uiBox:Panel = new Panel(box);
 		add(uiBox);
+
+		tabs = new Array<Panel>();
+
 		var margin = 10;
 		var tabWidth = (box[2].width - margin * 2 - (margin * (tabNames.length - 1))) / tabNames.length;
 
@@ -89,6 +92,11 @@ class TestChartingState extends MusicBeatState
 							{
 								uiBox.buttonStates[i] = RELEASED;
 								uiBox.onRelease[i]();
+								tabs[i].visible = false;
+							}
+							else
+							{
+								tabs[i].visible = true;
 							}
 						}
 
@@ -138,7 +146,39 @@ class TestChartingState extends MusicBeatState
 					align: CENTER,
 					size: Std.int(Math.min((tabWidth / tabNames[i].length), 28))
 				});
+
+			var tab:Panel = new Panel([
+				{
+					x: box[2].x + margin,
+					y: box[2].y + 80,
+					width: 730,
+					height: 500,
+					color: 0xff353535
+				},
+				{
+					x: box[2].x + margin,
+					y: box[2].y + 150,
+					width: 730,
+					height: 500,
+					color: 0xffffffff,
+					size: 24,
+					align: CENTER,
+					font: Paths.font("Monocraft.ttf"),
+					text: tabNames[i],
+					_functions: [
+						function(obj)
+						{
+							obj.scale.set(8, 8);
+						}
+					]
+				}
+			]);
+
+			add(tab);
+			tabs.push(tab);
+			tab.runAcrossLayers(0);
 		}
+
 		uiBox.runAcrossLayers(0);
 	}
 
