@@ -91,8 +91,11 @@ class TestChartingState extends MusicBeatState
 						{
 							if (uiBox.buttons[i] != obj)
 							{
-								uiBox.buttonStates[i] = RELEASED;
-								uiBox.onRelease[i]();
+								if (uiBox.buttonStates[i] != RELEASED)
+								{
+									uiBox.buttonStates[i] = RELEASED;
+									uiBox.onRelease[i]();
+								}
 								tabs[i].visible = tabs[i].active = false;
 							}
 							else
