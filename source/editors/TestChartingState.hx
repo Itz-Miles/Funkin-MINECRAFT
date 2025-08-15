@@ -9,6 +9,7 @@ import flixel.FlxG;
 class TestChartingState extends MusicBeatState
 {
 	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];
+
 	var tabs:Array<Panel>;
 
 	var box:Array<Layer> = [
@@ -146,6 +147,7 @@ class TestChartingState extends MusicBeatState
 		super.update(elapsed);
 		if (controls.BACK)
 		{
+			FlxG.sound.playMusic(Paths.music('where_are_we_going'));
 			FlxG.switchState(() -> new FreeplayState());
 		}
 	}
