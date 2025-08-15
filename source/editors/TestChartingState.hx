@@ -9,8 +9,9 @@ import flixel.FlxG;
 class TestChartingState extends MusicBeatState
 {
 	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];
+	var tabs:Array<Panel>;
 
-	var layers:Array<Layer> = [
+	var box:Array<Layer> = [
 		{
 			x: 460,
 			y: 660,
@@ -56,78 +57,78 @@ class TestChartingState extends MusicBeatState
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 
-		var panel:Panel = new Panel(layers);
-		add(panel);
+		var uiBox:Panel = new Panel(box);
+		add(uiBox);
 		var margin = 10;
-		var tabWidth = (layers[2].width - margin * 2 - (margin * (tabNames.length - 1))) / tabNames.length;
+		var tabWidth = (box[2].width - margin * 2 - (margin * (tabNames.length - 1))) / tabNames.length;
 
 		for (i in 0...tabNames.length)
 		{
-			panel.addLayer(
+			uiBox.addLayer(
 				{
-					x: layers[2].x + margin + ((tabWidth + margin) * i),
-					y: layers[2].y + 50,
+					x: box[2].x + margin + ((tabWidth + margin) * i),
+					y: box[2].y + 50,
 					width: tabWidth,
 					height: 20,
 					color: 0xff5f697a,
 				});
 
-			panel.addLayer(
+			uiBox.addLayer(
 				{
-					x: layers[2].x + margin + ((tabWidth + margin) * i),
-					y: layers[2].y + 10,
+					x: box[2].x + margin + ((tabWidth + margin) * i),
+					y: box[2].y + 10,
 					width: tabWidth,
 					height: 50,
 					color: 0xFFcedae4,
 					onPush: function(obj)
 					{
-						for (i in 0...panel.buttons.length)
+						for (i in 0...uiBox.buttons.length)
 						{
-							if (panel.buttons[i] != obj)
+							if (uiBox.buttons[i] != obj)
 							{
-								panel.buttonStates[i] = RELEASED;
-								panel.onRelease[i]();
+								uiBox.buttonStates[i] = RELEASED;
+								uiBox.onRelease[i]();
 							}
 						}
 
 						FlxTween.completeTweensOf(obj);
-						FlxTween.completeTweensOf(panel.fields[i]);
+						FlxTween.completeTweensOf(uiBox.fields[i]);
 						FlxTween.color(obj, 0.1, obj.color, FlxColor.GREEN);
-						FlxTween.color(panel.fields[i], 0.1, panel.fields[i].color, FlxColor.WHITE);
+						FlxTween.color(uiBox.fields[i], 0.1, uiBox.fields[i].color, FlxColor.WHITE);
 						FlxTween.tween(obj.offset, {y: -30}, 0.1);
-						FlxTween.tween(panel.fields[i].offset, {y: -5}, 0.1);
+						FlxTween.tween(uiBox.fields[i].offset, {y: -5}, 0.1);
 					},
 					onHover: function(obj)
 					{
 						FlxTween.completeTweensOf(obj);
-						FlxTween.completeTweensOf(panel.fields[i]);
+						FlxTween.completeTweensOf(uiBox.fields[i]);
 						FlxTween.tween(obj.offset, {y: -23}, 0.1);
-						FlxTween.tween(panel.fields[i].offset, {y: 2}, 0.1);
+						FlxTween.tween(uiBox.fields[i].offset, {y: 2}, 0.1);
 					},
 					onRelease: function(obj)
 					{
 						FlxTween.completeTweensOf(obj);
-						FlxTween.completeTweensOf(panel.fields[i]);
+						FlxTween.completeTweensOf(uiBox.fields[i]);
 						FlxTween.color(obj, 0.1, obj.color, FlxColor.WHITE);
-						FlxTween.color(panel.fields[i], 0.1, panel.fields[i].color, FlxColor.BLACK);
+						FlxTween.color(uiBox.fields[i], 0.1, uiBox.fields[i].color, FlxColor.BLACK);
 						FlxTween.tween(obj.offset, {y: -25}, 0.1);
-						FlxTween.tween(panel.fields[i].offset, {y: 0}, 0.1);
+						FlxTween.tween(uiBox.fields[i].offset, {y: 0}, 0.1);
 					},
 					_functions: [
 						function(obj)
 						{
 							obj.color = FlxColor.WHITE;
-							panel.fields[i].color = FlxColor.BLACK;
+							uiBox.fields[i].color = FlxColor.BLACK;
 							FlxTween.tween(obj.offset, {y: -25}, 0.1);
-							FlxTween.tween(panel.fields[i].offset, {y: 0}, 0.1);
+							FlxTween.tween(uiBox.fields[i].offset, {y: 0}, 0.1);
 						},
 					]
 				});
 
-			panel.addLayer(
+			uiBox.addLayer(
 				{
-					x: layers[2].x + margin + ((tabWidth + margin) * i),
-					y: layers[2].y + 25,
+					x: box[2].x + margin + ((tabWidth + margin) * i),
+					y: box[2].y + 25,
 					width: tabWidth,
 					height: 0,
 					color: 0xFFFFFFFF,
@@ -137,7 +138,7 @@ class TestChartingState extends MusicBeatState
 					size: Std.int(Math.min((tabWidth / tabNames[i].length), 28))
 				});
 		}
-		panel.runAcrossLayers(0);
+		uiBox.runAcrossLayers(0);
 	}
 
 	override function update(elapsed:Float)
