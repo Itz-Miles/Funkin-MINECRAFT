@@ -103,6 +103,12 @@ class TestChartingState extends MusicBeatState
 								tabs[i].visible = tabs[i].active = true;
 							}
 						}
+						/* hot potato
+							obj.moves = uiBox.fields[i].moves = uiBox.sprites[5 + i * 2].moves = true;
+							obj.velocity.y = uiBox.fields[i].velocity.y = uiBox.sprites[5 + i * 2].velocity.y  = Math.random() * -250;
+							obj.velocity.x = uiBox.fields[i].velocity.x = uiBox.sprites[5 + i * 2].velocity.x  = Math.random() * -50;
+							obj.acceleration.y = uiBox.fields[i].acceleration.y  = uiBox.sprites[5 + i * 2].acceleration.y = 300;
+						 */
 
 						FlxTween.completeTweensOf(uiBox.sprites[5 + i * 2]);
 						FlxTween.completeTweensOf(obj);
@@ -162,7 +168,7 @@ class TestChartingState extends MusicBeatState
 					y: box[2].y + 80,
 					width: 730,
 					height: 500,
-					color: 0xff353535
+					color: 0x2a353535
 				}
 			]);
 
