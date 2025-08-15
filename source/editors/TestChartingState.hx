@@ -69,16 +69,14 @@ class TestChartingState extends MusicBeatState
 
 		for (i in 0...tabNames.length)
 		{
-			uiBox.addLayer(
+			uiBox.addLayers([
 				{
 					x: box[2].x + margin + ((tabWidth + margin) * i),
 					y: box[2].y + 50,
 					width: tabWidth,
 					height: 20,
 					color: 0xff5f697a,
-				});
-
-			uiBox.addLayer(
+				},
 				{
 					x: box[2].x + margin + ((tabWidth + margin) * i),
 					y: box[2].y + 10,
@@ -147,9 +145,7 @@ class TestChartingState extends MusicBeatState
 							FlxTween.tween(uiBox.fields[i].offset, {y: 0}, 0.1);
 						},
 					]
-				});
-
-			uiBox.addLayer(
+				},
 				{
 					x: box[2].x + margin + ((tabWidth + margin) * i),
 					y: box[2].y + 25,
@@ -160,7 +156,8 @@ class TestChartingState extends MusicBeatState
 					font: Paths.font("Minecrafter.ttf"),
 					align: CENTER,
 					size: Std.int(Math.min((tabWidth / tabNames[i].length), 28))
-				});
+				}
+			]);
 
 			var tab:Panel = new Panel([
 				{
@@ -168,7 +165,7 @@ class TestChartingState extends MusicBeatState
 					y: box[2].y + 80,
 					width: 730,
 					height: 500,
-					color: 0x2a353535
+					color: 0xFF353535
 				}
 			]);
 
