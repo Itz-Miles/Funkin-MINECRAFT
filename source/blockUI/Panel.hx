@@ -12,6 +12,7 @@ enum abstract ButtonState(Int) from Int to Int
 	var RELEASED = 1;
 	var HOVERED = 2;
 	var CLICKED = 3;
+	var PUSHED = 4;
 }
 
 /**
@@ -61,6 +62,7 @@ class Panel extends FlxSpriteContainer
 	public var onClick:Array<Void->Void> = new Array();
 	public var onHover:Array<Void->Void> = new Array();
 	public var onRelease:Array<Void->Void> = new Array();
+	public var onPush:Array<Void->Void> = new Array();
 
 	public var buttonStates:Array<ButtonState> = new Array();
 
@@ -73,10 +75,10 @@ class Panel extends FlxSpriteContainer
 		super();
 		_layerFunctions.push([]);
 
-			for (layer in layers ?? [])
-			{
-				addLayerInternal(layer);
-			}
+		for (layer in layers ?? [])
+		{
+			addLayerInternal(layer);
+		}
 
 		scrollFactor.set(0, 0);
 	}
@@ -122,18 +124,25 @@ class Panel extends FlxSpriteContainer
 			obj = text;
 		}
 
-		if (layer.onClick != null || layer.onHover != null || layer.onRelease != null)
+		if (layer.onClick != null || layer.onHover != null || layer.onRelease != null || layer.onPush != null)
 		{
 			buttonStates.push(RELEASED);
 			buttons.push(obj);
+
 			if (layer.onClick != null)
 			{
 				onClick.push(() -> layer.onClick(obj));
 			}
+			else if (layer.onPush != null)
+			{
+				onPush.push(() -> layer.onPush(obj));
+			}
+
 			if (layer.onHover != null)
 			{
 				onHover.push(() -> layer.onHover(obj));
 			}
+
 			if (layer.onRelease != null)
 			{
 				onRelease.push(() -> layer.onRelease(obj));
@@ -159,30 +168,47 @@ class Panel extends FlxSpriteContainer
 			if (buttonStates[i] == DISABLED || !buttons[i].visible)
 				continue;
 
+			var isPush = onPush[i] != null;
+
 			if (FlxG.mouse.overlaps(buttons[i], this.camera))
 			{
-				if (FlxG.mouse.released && buttonStates[i] != HOVERED)
+				if (FlxG.mouse.released && buttonStates[i] != HOVERED && buttonStates[i] != PUSHED)
 				{
 					buttonStates[i] = HOVERED;
-
 					if (onHover[i] != null)
 						onHover[i]();
 				}
 
 				if (FlxG.mouse.justPressed)
 				{
-					buttonStates[i] = CLICKED;
-
-					if (onClick[i] != null)
-						onClick[i]();
+					if (isPush)
+					{
+						if (buttonStates[i] == PUSHED)
+						{
+							buttonStates[i] = RELEASED;
+							if (onRelease[i] != null)
+								onRelease[i]();
+						}
+						else
+						{
+							buttonStates[i] = PUSHED;
+							if (onPush[i] != null)
+								onPush[i]();
+						}
+					}
+					else
+					{
+						buttonStates[i] = CLICKED;
+						if (onClick[i] != null)
+							onClick[i]();
+					}
 				}
 			}
 			else
 			{
-				if (buttonStates[i] != RELEASED)
+				if (buttonStates[i] != RELEASED && buttonStates[i] != PUSHED)
 				{
 					buttonStates[i] = RELEASED;
-
 					if (onRelease[i] != null)
 						onRelease[i]();
 				}
