@@ -1,5 +1,7 @@
 package editors;
 
+import flixel.tweens.FlxTween;
+import flixel.util.FlxColor;
 import blockUI.Layer;
 import blockUI.Panel;
 import flixel.FlxG;
@@ -77,16 +79,49 @@ class TestChartingState extends MusicBeatState
 					width: tabWidth,
 					height: 50,
 					color: 0xFFcedae4,
+					onPush: function(obj)
+					{
+						for (i in 0...panel.buttons.length)
+						{
+							if (panel.buttons[i] != obj)
+							{
+								panel.buttonStates[i] = RELEASED;
+								panel.onRelease[i]();
+							}
+						}
+
+						FlxTween.completeTweensOf(obj);
+						FlxTween.completeTweensOf(panel.fields[i]);
+						FlxTween.color(obj, 0.1, obj.color, FlxColor.GREEN);
+						FlxTween.color(panel.fields[i], 0.1, panel.fields[i].color, FlxColor.WHITE);
+						FlxTween.tween(obj.offset, {y: -30}, 0.1);
+						FlxTween.tween(panel.fields[i].offset, {y: -5}, 0.1);
+					},
 					onHover: function(obj)
 					{
-						obj.offset.y = -30;
-						panel.fields[i].offset.y = -5;
+						FlxTween.completeTweensOf(obj);
+						FlxTween.completeTweensOf(panel.fields[i]);
+						FlxTween.tween(obj.offset, {y: -23}, 0.1);
+						FlxTween.tween(panel.fields[i].offset, {y: 2}, 0.1);
 					},
 					onRelease: function(obj)
 					{
-						obj.offset.y = -25;
-						panel.fields[i].offset.y = 0;
+						FlxTween.completeTweensOf(obj);
+						FlxTween.completeTweensOf(panel.fields[i]);
+						FlxTween.color(obj, 0.1, obj.color, FlxColor.WHITE);
+						FlxTween.color(panel.fields[i], 0.1, panel.fields[i].color, FlxColor.BLACK);
+						FlxTween.tween(obj.offset, {y: -25}, 0.1);
+						FlxTween.tween(panel.fields[i].offset, {y: 0}, 0.1);
 					},
+					_functions: [
+						function(obj)
+						{
+							obj.color = FlxColor.WHITE;
+							panel.fields[i].color = FlxColor.BLACK;
+							FlxTween.tween(obj.offset, {y: -25}, 0.1);
+							FlxTween.tween(panel.fields[i].offset, {y: 0}, 0.1);
+						},
+					]
 				});
 
 			panel.addLayer(
@@ -95,13 +130,14 @@ class TestChartingState extends MusicBeatState
 					y: layers[2].y + 25,
 					width: tabWidth,
 					height: 0,
-					color: 0x00000000,
+					color: 0xFFFFFFFF,
 					text: tabNames[i],
 					font: Paths.font("Minecrafter.ttf"),
 					align: CENTER,
-					size: Std.int(Math.min((tabWidth / tabNames[i].length), 25))
+					size: Std.int(Math.min((tabWidth / tabNames[i].length), 28))
 				});
 		}
+		panel.runAcrossLayers(0);
 	}
 
 	override function update(elapsed:Float)
