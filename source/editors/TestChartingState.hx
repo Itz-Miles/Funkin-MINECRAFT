@@ -1,5 +1,6 @@
 package editors;
 
+import flixel.text.FlxText;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import blockUI.Layer;
@@ -8,7 +9,7 @@ import flixel.FlxG;
 
 class TestChartingState extends MusicBeatState
 {
-	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];
+	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info', 'modchart'];
 
 	var tabs:Array<Panel>;
 
@@ -154,28 +155,30 @@ class TestChartingState extends MusicBeatState
 					width: 730,
 					height: 500,
 					color: 0xff353535
-				},
-				{
-					x: box[2].x + margin,
-					y: box[2].y + 150,
-					width: 730,
-					height: 500,
-					color: 0xffffffff,
-					size: 24,
-					align: CENTER,
-					font: Paths.font("Monocraft.ttf"),
-					text: tabNames[i],
-					_functions: [
-						function(obj)
-						{
-							obj.scale.set(8, 8);
-						}
-					]
 				}
 			]);
 
 			add(tab);
 			tabs.push(tab);
+		}
+
+		tabs[3].addLayer(
+			{
+				x: box[2].x + margin * 2,
+				y: box[2].y + 90,
+				width: 710,
+				height: 480,
+				color: 0xffffffff,
+				font: Paths.font("Monocraft.ttf"),
+				align: LEFT,
+				text: "W/S, Up/Down, Wheel - Set Conductor's strum time\nA/D - Go to the previous/next section\nLeft/Right - Change Selection Snap" +
+				#if FLX_PITCH "\n[ / ] - Change Song Playback Rate\nALT + Left [ / ] - Reset Song Playback Rate" +
+				#end "\nHold Shift to move 4x faster\nHold Control and click on an arrow to select it\nZ/X - Zoom in/out\nEnter - Play your chart\nQ/E - Decrease/Increase Note Sustain Length\nSpace - Stop/Resume song",
+				size: 20,
+			});
+
+		for (tab in tabs)
+		{
 			tab.runAcrossLayers(0);
 		}
 
