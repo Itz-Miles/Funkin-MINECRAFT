@@ -93,11 +93,11 @@ class TestChartingState extends MusicBeatState
 							{
 								uiBox.buttonStates[i] = RELEASED;
 								uiBox.onRelease[i]();
-								tabs[i].visible = false;
+								tabs[i].visible = tabs[i].active = false;
 							}
 							else
 							{
-								tabs[i].visible = true;
+								tabs[i].visible = tabs[i].active = true;
 							}
 						}
 
