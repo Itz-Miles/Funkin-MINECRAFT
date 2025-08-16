@@ -175,6 +175,28 @@ class TestChartingState extends MusicBeatState
 
 		tabs[3].addLayer(
 			{
+				x: box[2].x + margin * 4,
+				y: box[2].y + 100,
+				width: 710,
+				height: 480,
+				color: 0xffffffff,
+				font: Paths.font("Monocraft.ttf"),
+				align: LEFT,
+				text: "W/S, Up/Down, Wheel - Set Conductor's time
+				A/D - Seek Previous/Next Section
+				Left/Right - Change Selection Snap
+				[ / ] - Change Playback Rate + ALT to Reset
+				CRTL + Click - Select Arrow
+				Z/X - Zoom in/out
+				Shift - 4x Faster Actions
+				Enter - Play your chart
+				Q/E - Decrease/Increase Note Sustain Length
+				Space - Stop/Resume song",
+				size: 18
+			});
+
+		tabs[4].addLayer(
+			{
 				x: box[2].x + margin * 2,
 				y: box[2].y + 90,
 				width: 710,
@@ -182,9 +204,12 @@ class TestChartingState extends MusicBeatState
 				color: 0xffffffff,
 				font: Paths.font("Monocraft.ttf"),
 				align: LEFT,
-				text: "W/S, Up/Down, Wheel - Set Conductor's strum time\nA/D - Go to the previous/next section\nLeft/Right - Change Selection Snap" +
-				#if FLX_PITCH "\n[ / ] - Change Song Playback Rate\nALT + Left [ / ] - Reset Song Playback Rate" +
-				#end "\nHold Shift to move 4x faster\nHold Control and click on an arrow to select it\nZ/X - Zoom in/out\nEnter - Play your chart\nQ/E - Decrease/Increase Note Sustain Length\nSpace - Stop/Resume song",
+				text: "Time: 100.00 / 100.00
+				Section: 50 / 100
+				Beat: 200 / 400
+				Step: 800 / 1600
+				Beat Snap: 16th
+				Zoom: 1.0x",
 				size: 20,
 			});
 
