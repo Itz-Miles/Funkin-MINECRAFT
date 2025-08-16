@@ -1,5 +1,7 @@
 package;
 
+import flixel.tweens.FlxEase;
+import flixel.tweens.FlxTween;
 import flixel.*;
 import flixel.addons.ui.FlxUIPopup;
 import flixel.text.FlxText;
@@ -18,15 +20,11 @@ class Prompt extends MusicBeatSubstate
 	public var okc:Void->Void;
 	public var cancelc:Void->Void;
 
-	var buttons:FlxSprite = new FlxSprite(473.3, 450);
 	var theText:String = '';
 	var goAnyway:Bool = false;
-	var UI_box:FlxUIPopup;
 	var panel:FlxSprite;
-	var panelbg:FlxSprite;
 	var buttonAccept:FlxButton;
 	var buttonNo:FlxButton;
-	var cornerSize:Int = 10;
 
 	public function new(promptText:String = '', defaultSelected:Int = 0, okCallback:Void->Void, cancelCallback:Void->Void, acceptOnDefault:Bool = false,
 			option1:String = null, option2:String = null)
@@ -70,23 +68,29 @@ class Prompt extends MusicBeatSubstate
 		}
 		else
 		{
-			panel = new FlxSprite(0, 0);
-			panelbg = new FlxSprite(0, 0);
-			makeSelectorGraphic(panel, 300, 150, 0xff999999);
-			makeSelectorGraphic(panelbg, 304, 154, 0xff000000);
+			var bg:FlxSprite = new FlxSprite().makeGraphic(1, 1, FlxColor.BLACK);
+			bg.scale.set(1290, 730);
+			bg.alpha = 0;
+			bg.scrollFactor.set();
+			bg.screenCenter();
+			add(bg);
+			FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quintOut});
+
+			panel = new FlxSprite(0, 0).makeGraphic(1, 1, FlxColor.BLACK);
+			panel.scale.set(400, 250);
+			panel.updateHitbox();
 			panel.scrollFactor.set();
 			panel.screenCenter();
-			panelbg.scrollFactor.set();
-			panelbg.screenCenter();
 
-			add(panelbg);
 			add(panel);
 			add(buttonAccept);
 			add(buttonNo);
-			// add(buttons);
+
+
 			var text:FlxText = new FlxText(buttonNo.width * 2, panel.y, 300, theText, 16);
 			text.alignment = 'center';
 			add(text);
+
 			text.screenCenter();
 			buttonAccept.screenCenter();
 			buttonNo.screenCenter();
@@ -96,38 +100,5 @@ class Prompt extends MusicBeatSubstate
 			buttonNo.y = panel.y + panel.height - 30;
 			text.scrollFactor.set();
 		}
-	}
-
-	function makeSelectorGraphic(panel:FlxSprite, w, h, color:FlxColor)
-	{
-		panel.makeGraphic(w, h, color);
-		panel.pixels.fillRect(new Rectangle(0, 190, panel.width, 5), 0x0);
-		panel.pixels.fillRect(new Rectangle(0, 0, cornerSize, cornerSize), 0x0); // top left
-		drawCircleCornerOnSelector(panel, false, false, color);
-		panel.pixels.fillRect(new Rectangle(panel.width - cornerSize, 0, cornerSize, cornerSize), 0x0); // top right
-		drawCircleCornerOnSelector(panel, true, false, color);
-		panel.pixels.fillRect(new Rectangle(0, panel.height - cornerSize, cornerSize, cornerSize), 0x0); // bottom left
-		drawCircleCornerOnSelector(panel, false, true, color);
-		panel.pixels.fillRect(new Rectangle(panel.width - cornerSize, panel.height - cornerSize, cornerSize, cornerSize), 0x0); // bottom right
-		drawCircleCornerOnSelector(panel, true, true, color);
-	}
-
-	function drawCircleCornerOnSelector(panel:FlxSprite, flipX:Bool, flipY:Bool, color:FlxColor)
-	{
-		var antiX:Float = (panel.width - cornerSize);
-		var antiY:Float = flipY ? (panel.height - 1) : 0;
-		if (flipY)
-			antiY -= 2;
-		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 1), Std.int(Math.abs(antiY - 8)), 10, 3), color);
-		if (flipY)
-			antiY += 1;
-		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 2), Std.int(Math.abs(antiY - 6)), 9, 2), color);
-		if (flipY)
-			antiY += 1;
-		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 3), Std.int(Math.abs(antiY - 5)), 8, 1), color);
-		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 4), Std.int(Math.abs(antiY - 4)), 7, 1), color);
-		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 5), Std.int(Math.abs(antiY - 3)), 6, 1), color);
-		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 6), Std.int(Math.abs(antiY - 2)), 5, 1), color);
-		panel.pixels.fillRect(new Rectangle((flipX ? antiX : 8), Std.int(Math.abs(antiY - 1)), 3, 1), color);
 	}
 }
