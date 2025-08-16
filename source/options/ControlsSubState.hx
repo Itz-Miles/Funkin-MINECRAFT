@@ -7,7 +7,6 @@ import flixel.text.FlxText;
 import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import InputFormatter;
-import AttachedSprite;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.util.FlxColor;

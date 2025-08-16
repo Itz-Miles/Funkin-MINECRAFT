@@ -1,5 +1,6 @@
 package states;
 
+import objects.Note.EventNote;
 import parallax.ParallaxFG;
 import flixel.addons.ui.FlxUICursor;
 #if desktop
@@ -26,10 +27,8 @@ import openfl.utils.Assets as OpenFlAssets;
 import editors.ChartingState;
 import flixel.group.FlxGroup;
 import flixel.input.keyboard.FlxKey;
-import Note.EventNote;
 import openfl.events.KeyboardEvent;
 import ToolTip;
-import Character;
 import parallax.ParallaxBG;
 
 using StringTools;
