@@ -3,7 +3,6 @@ package options;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.FlxG;
-import Character;
 import flixel.FlxSprite;
 
 class GraphicsSubState extends BaseOptionsMenu

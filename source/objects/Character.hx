@@ -1,4 +1,4 @@
-package;
+package objects;
 
 import flixel.util.FlxColor;
 import openfl.Assets;
@@ -92,13 +92,14 @@ class Character extends FlxSprite
 				FlxG.sound.play(Paths.sound('fnf_loss_sfx'), 1);
 				FlxTween.angle(this, 0, 90, 1, {ease: FlxEase.quadInOut});
 				color.alphaFloat = 1;
-				FlxTween.color(this, 1, color, (color * 0xFFe6726a), {
-					ease: FlxEase.quadInOut,
-					onComplete: function(twn:FlxTween)
+				FlxTween.color(this, 1, color, (color * 0xFFe6726a),
 					{
-						kill();
-					}
-				});
+						ease: FlxEase.quadInOut,
+						onComplete: function(twn:FlxTween)
+						{
+							kill();
+						}
+					});
 			case SPECIAL:
 		}
 		return status = value;

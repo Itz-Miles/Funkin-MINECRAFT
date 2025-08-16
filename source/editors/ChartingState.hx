@@ -1,6 +1,6 @@
 package editors;
 
-import Character.CharacterFile;
+import objects.Character.CharacterFile;
 import flixel.util.FlxTimer;
 import flixel.addons.ui.FlxUIDropDownMenu;
 #if desktop
