@@ -1,4 +1,4 @@
-package;
+package states;
 
 import editors.TestChartingState;
 import blockUI.LayerData;
