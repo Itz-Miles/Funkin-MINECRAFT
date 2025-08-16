@@ -14,40 +14,33 @@ class TestChartingState extends MusicBeatState
 	var tabs:Array<Panel>;
 
 	var box:Array<Layer> = [
-		{
+		{// bottom
 			x: 460,
 			y: 660,
 			width: 770,
 			height: 10,
 			color: 0xff000000
 		},
-		{
+		{// border
 			x: 460,
 			y: 50,
 			width: 770,
 			height: 610,
 			color: 0xff353535
 		},
-		{
+		{// content
 			x: 470,
 			y: 60,
 			width: 750,
 			height: 590,
 			color: 0xFF0f0f0f
 		},
-		{
+		{ //content top shadow
 			x: 470,
 			y: 60,
 			width: 750,
 			height: 10,
 			color: 0xff000000
-		},
-		{
-			x: 50,
-			y: 50,
-			width: 360,
-			height: 620,
-			color: 0x70000000
 		}
 	];
 
@@ -101,16 +94,16 @@ class TestChartingState extends MusicBeatState
 							}
 						}
 						/* hot potato
-							obj.moves = uiBox.fields[i].moves = uiBox.sprites[5 + i * 2].moves = true;
-							obj.velocity.y = uiBox.fields[i].velocity.y = uiBox.sprites[5 + i * 2].velocity.y  = Math.random() * -250;
-							obj.velocity.x = uiBox.fields[i].velocity.x = uiBox.sprites[5 + i * 2].velocity.x  = Math.random() * -50;
-							obj.acceleration.y = uiBox.fields[i].acceleration.y  = uiBox.sprites[5 + i * 2].acceleration.y = 300;
+							obj.moves = uiBox.fields[i].moves = uiBox.sprites[box.length + i * 2].moves = true;
+							obj.velocity.y = uiBox.fields[i].velocity.y = uiBox.sprites[box.length + i * 2].velocity.y  = Math.random() * -250;
+							obj.velocity.x = uiBox.fields[i].velocity.x = uiBox.sprites[box.length + i * 2].velocity.x  = Math.random() * -50;
+							obj.acceleration.y = uiBox.fields[i].acceleration.y  = uiBox.sprites[box.length + i * 2].acceleration.y = 300;
 						 */
 
-						FlxTween.completeTweensOf(uiBox.sprites[5 + i * 2]);
+						FlxTween.completeTweensOf(uiBox.sprites[box.length + i * 2]);
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
-						FlxTween.color(uiBox.sprites[5 + i * 2], 0.1, uiBox.sprites[5 + i * 2].color, 0xFF44BD44);
+						FlxTween.color(uiBox.sprites[box.length + i * 2], 0.1, uiBox.sprites[box.length + i * 2].color, 0xFF44BD44);
 						FlxTween.color(obj, 0.1, obj.color, FlxColor.GREEN);
 						FlxTween.color(uiBox.fields[i], 0.1, uiBox.fields[i].color, FlxColor.WHITE);
 						FlxTween.tween(obj.offset, {y: -30}, 0.1);
@@ -118,7 +111,7 @@ class TestChartingState extends MusicBeatState
 					},
 					onHover: function(obj)
 					{
-						FlxTween.completeTweensOf(uiBox.sprites[5 + i * 2]);
+						FlxTween.completeTweensOf(uiBox.sprites[box.length + i * 2]);
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
 						FlxTween.tween(obj.offset, {y: -23}, 0.1);
@@ -127,10 +120,10 @@ class TestChartingState extends MusicBeatState
 					onRelease: function(obj)
 					{
 						tabs[i].visible = tabs[i].active = false;
-						FlxTween.completeTweensOf(uiBox.sprites[5 + i * 2]);
+						FlxTween.completeTweensOf(uiBox.sprites[box.length + i * 2]);
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
-						FlxTween.color(uiBox.sprites[5 + i * 2], 0.1, uiBox.sprites[5 + i * 2].color, FlxColor.WHITE);
+						FlxTween.color(uiBox.sprites[box.length + i * 2], 0.1, uiBox.sprites[box.length + i * 2].color, FlxColor.WHITE);
 						FlxTween.color(obj, 0.1, obj.color, FlxColor.WHITE);
 						FlxTween.color(uiBox.fields[i], 0.1, uiBox.fields[i].color, FlxColor.BLACK);
 						FlxTween.tween(obj.offset, {y: -25}, 0.1);
