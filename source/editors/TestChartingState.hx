@@ -170,6 +170,7 @@ class TestChartingState extends MusicBeatState
 			]);
 
 			add(tab);
+			tab.visible = false;
 			tabs.push(tab);
 		}
 
