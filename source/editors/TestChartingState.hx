@@ -10,7 +10,14 @@ import flixel.FlxG;
 class TestChartingState extends MusicBeatState
 {
 	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];
+	static var bg:Int = 0xFFFFFFFF;
+	static var bdr:Int = 0xFFFFFFFF;
+	static var margin = 10;
 
+	// UI VARIABLES
+	var songName:String = "";
+
+	// PANELS
 	var tabs:Array<Panel>;
 
 	var box:Array<Layer> = [
@@ -41,6 +48,13 @@ class TestChartingState extends MusicBeatState
 			width: 700,
 			height: 10,
 			color: 0xff000000
+		},
+		{
+			x: 520 + margin,
+			y: 140,
+			width: 700 - margin * 2,
+			height: 520 - margin * 2,
+			color: 0xFF353535
 		}
 	];
 
@@ -57,7 +71,6 @@ class TestChartingState extends MusicBeatState
 
 		tabs = new Array<Panel>();
 
-		var margin = 10;
 		var tabWidth = (box[2].width - margin * 2 - (margin * (tabNames.length - 1))) / tabNames.length;
 
 		for (i in 0...tabNames.length)
@@ -152,21 +165,38 @@ class TestChartingState extends MusicBeatState
 				}
 			]);
 
-			var tab:Panel = new Panel([
-				{
-					x: box[2].x + margin,
-					y: box[2].y + 80,
-					width: box[2].width - margin * 2,
-					height: box[2].height - margin - 80,
-					color: 0xFF353535
-				}
-			]);
+			var tab:Panel = new Panel();
 
 			add(tab);
 			tab.visible = false;
 			tabs.push(tab);
 		}
-
+		tabs[0].addLayers([
+			{
+				x: box[4].x + margin,
+				y: box[4].y + margin,
+				width: (box[4].width / 3) - margin,
+				height: 36,
+				color: 0xFF000000
+			},
+			{
+				x: box[4].x + margin,
+				y: box[4].y + margin,
+				width: (box[4].width / 3) - margin,
+				height: 6,
+				color: 0xFF0F0F0F
+			},
+			{
+				x: box[4].x + margin + 5,
+				y: box[4].y + margin,
+				width: (box[4].width / 3) - margin,
+				height: 36,
+				text: "stalstruck",
+				font: Paths.font("Monocraft.ttf"),
+				color: 0xFFFFFFFF,
+				size: 24
+			}
+		]);
 		tabs[3].addLayer(
 			{
 				x: box[2].x + margin * 4,
