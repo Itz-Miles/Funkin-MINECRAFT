@@ -86,7 +86,7 @@ class ControlsSubState extends MusicBeatSubstate
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "bind your controls     ";
-		header.onClick[0] = function()
+		header.buttons[0].onClick = function()
 		{
 			close();
 		};

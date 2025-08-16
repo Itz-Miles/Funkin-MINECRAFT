@@ -85,16 +85,15 @@ class TestChartingState extends MusicBeatState
 					color: 0xFFcedae4,
 					onPush: function(obj)
 					{
-						for (i in 0...uiBox.buttons.length)
+						for (button in uiBox.buttons)
 						{
-							if (uiBox.buttons[i] != obj)
+							if (button.sprite != obj)
 							{
-								if (uiBox.buttonStates[i] != RELEASED)
+								if (button.state != RELEASED)
 								{
-									uiBox.buttonStates[i] = RELEASED;
-									uiBox.onRelease[i]();
+									button.state = RELEASED;
+									button.onRelease();
 								}
-								tabs[i].visible = tabs[i].active = false;
 							}
 							else
 							{
@@ -127,6 +126,7 @@ class TestChartingState extends MusicBeatState
 					},
 					onRelease: function(obj)
 					{
+						tabs[i].visible = tabs[i].active = false;
 						FlxTween.completeTweensOf(uiBox.sprites[5 + i * 2]);
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);

@@ -145,8 +145,9 @@ class MainMenuState extends MusicBeatState
 					onHover: function(obj)
 					{
 						curSelection = i;
-						for (release in sideBar.onRelease)
-							release();
+						for (button in sideBar.buttons)
+							button.onRelease();
+						
 						sideBar.fields[i].alpha = 1;
 						sideBar.fields[i].offset.y = 2;
 						obj.offset.y = -44;
@@ -251,25 +252,25 @@ class MainMenuState extends MusicBeatState
 		}
 		if (controls.UI_UP_P)
 		{
-			for (release in sideBar.onRelease)
-				release();
+			for (button in sideBar.buttons)
+				button.onRelease();
 
 			curSelection--;
 
-			sideBar.onHover[curSelection]();
+			sideBar.buttons[curSelection].onHover();
 		}
 		if (controls.UI_DOWN_P)
 		{
-			for (release in sideBar.onRelease)
-				release();
+			for (button in sideBar.buttons)
+				button.onRelease();
 
 			curSelection++;
-			sideBar.onHover[curSelection]();
+			sideBar.buttons[curSelection].onHover();
 		}
 
 		if (controls.ACCEPT)
 		{
-			sideBar.onClick[curSelection]();
+			sideBar.buttons[curSelection].onClick();
 		}
 
 		if (!selected)
@@ -327,7 +328,7 @@ class MainMenuState extends MusicBeatState
 
 		new FlxTimer().start(0.25, function(tmr:FlxTimer)
 		{
-			sideBar.onHover[curSelection]();
+			sideBar.buttons[curSelection].onHover();
 		});
 
 		if (curSelection == 0)

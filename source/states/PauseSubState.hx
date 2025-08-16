@@ -76,7 +76,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = dead ? "you have suffered defeat" : "the game is suspended";
-		header.onClick[0] = function()
+		header.buttons[0].onClick = function()
 		{
 			close();
 		};
