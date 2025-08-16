@@ -6,7 +6,6 @@ import flixel.tweens.FlxEase;
 #if desktop
 import Discord.DiscordClient;
 #end
-import MainMenuState;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.text.FlxText;

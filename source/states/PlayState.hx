@@ -1,4 +1,4 @@
-package;
+package states;
 
 import parallax.ParallaxFG;
 import flixel.addons.ui.FlxUICursor;
@@ -389,12 +389,13 @@ class PlayState extends MusicBeatState
 			}
 			scoreTxt.scale.x = 1.075;
 			scoreTxt.scale.y = 1.075;
-			scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2, {
-				onComplete: function(twn:FlxTween)
+			scoreTxtTween = FlxTween.tween(scoreTxt.scale, {x: 1, y: 1}, 0.2,
 				{
-					scoreTxtTween = null;
-				}
-			});
+					onComplete: function(twn:FlxTween)
+					{
+						scoreTxtTween = null;
+					}
+				});
 		}
 	}
 
@@ -497,12 +498,13 @@ class PlayState extends MusicBeatState
 				for (i in 0...event[1].length)
 				{
 					var newEventNote:Array<Dynamic> = [event[0], event[1][i][0], event[1][i][1], event[1][i][2]];
-					var subEvent:EventNote = {
-						strumTime: newEventNote[0] + ClientPrefs.data.noteOffset,
-						event: newEventNote[1],
-						value1: newEventNote[2],
-						value2: newEventNote[3]
-					};
+					var subEvent:EventNote =
+						{
+							strumTime: newEventNote[0] + ClientPrefs.data.noteOffset,
+							event: newEventNote[1],
+							value1: newEventNote[2],
+							value2: newEventNote[3]
+						};
 					// subEvent.strumTime -= eventNoteEarlyTrigger(subEvent);
 					eventNotes.push(subEvent);
 					eventPushed(subEvent);
@@ -515,12 +517,13 @@ class PlayState extends MusicBeatState
 			for (i in 0...event[1].length)
 			{
 				var newEventNote:Array<Dynamic> = [event[0], event[1][i][0], event[1][i][1], event[1][i][2]];
-				var subEvent:EventNote = {
-					strumTime: newEventNote[0] + ClientPrefs.data.noteOffset,
-					event: newEventNote[1],
-					value1: newEventNote[2],
-					value2: newEventNote[3]
-				};
+				var subEvent:EventNote =
+					{
+						strumTime: newEventNote[0] + ClientPrefs.data.noteOffset,
+						event: newEventNote[1],
+						value1: newEventNote[2],
+						value2: newEventNote[3]
+					};
 				// subEvent.strumTime -= eventNoteEarlyTrigger(subEvent);
 				eventNotes.push(subEvent);
 				eventPushed(subEvent);
@@ -753,7 +756,7 @@ class PlayState extends MusicBeatState
 			if (FlxG.keys.justPressed.SEVEN)
 				openChartEditor();
 			if (FlxG.keys.justPressed.EIGHT)
-				LoadingState.loadAndSwitchState(new CharacterDebugState(), true);
+				LoadingState.loadAndSwitchState(new editors.CharacterDebugState(), true);
 		}
 
 		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
@@ -1035,13 +1038,14 @@ class PlayState extends MusicBeatState
 				var args:Array<String> = value1.split(", ");
 				var initialSpeed:Float = camSpeed;
 				camSpeed = Std.parseFloat(args[0]);
-				camSpeedTween = FlxTween.tween(this, {camSpeed: initialSpeed}, Std.parseFloat(args[1]), {
-					ease: CoolUtil.easeFromString(value2),
-					onComplete: function(twn:FlxTween)
+				camSpeedTween = FlxTween.tween(this, {camSpeed: initialSpeed}, Std.parseFloat(args[1]),
 					{
-						camSpeedTween = null;
-					}
-				});
+						ease: CoolUtil.easeFromString(value2),
+						onComplete: function(twn:FlxTween)
+						{
+							camSpeedTween = null;
+						}
+					});
 
 			case 'Camera Speed Set':
 				camSpeed = Std.parseFloat(value1);
@@ -1079,13 +1083,14 @@ class PlayState extends MusicBeatState
 				}
 				else
 				{
-					songSpeedTween = FlxTween.tween(this, {songSpeed: newValue}, val2, {
-						ease: FlxEase.linear,
-						onComplete: function(twn:FlxTween)
+					songSpeedTween = FlxTween.tween(this, {songSpeed: newValue}, val2,
 						{
-							songSpeedTween = null;
-						}
-					});
+							ease: FlxEase.linear,
+							onComplete: function(twn:FlxTween)
+							{
+								songSpeedTween = null;
+							}
+						});
 				}
 		}
 	}
@@ -1419,13 +1424,14 @@ class PlayState extends MusicBeatState
 		{
 			killNotes();
 			camZoomTarget *= 1.5;
-			FlxTween.tween(FlxG.sound.music, {pitch: 0}, 1.5, {
-				ease: FlxEase.expoIn,
-				onComplete: function(twn:FlxTween)
+			FlxTween.tween(FlxG.sound.music, {pitch: 0}, 1.5,
 				{
-					openSubState(new PauseSubState());
-				}
-			});
+					ease: FlxEase.expoIn,
+					onComplete: function(twn:FlxTween)
+					{
+						openSubState(new PauseSubState());
+					}
+				});
 		}
 
 		songMisses++;

@@ -1,3 +1,5 @@
+package editors;
+
 import flixel.util.FlxTimer;
 import flixel.text.FlxText;
 import flixel.FlxCamera;

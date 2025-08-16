@@ -1,3 +1,5 @@
+package states;
+
 import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
 import flixel.FlxG;

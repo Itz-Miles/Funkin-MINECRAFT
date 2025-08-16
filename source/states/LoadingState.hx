@@ -1,4 +1,4 @@
-package;
+package states;
 
 // import parallax.ParallaxDebugState;
 import flixel.tweens.FlxEase;

@@ -1,4 +1,4 @@
-package;
+package states;
 
 import lime.system.System;
 import parallax.ParallaxBG;

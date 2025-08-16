@@ -5,7 +5,6 @@ import flixel.FlxG;
 import lime.system.System;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
-import MusicBeatState;
 
 class LayerData
 {
