@@ -15,6 +15,16 @@ enum abstract ButtonState(Int) from Int to Int
 	var PUSHED = 4;
 }
 
+typedef ButtonData =
+{
+	var sprite:FlxSprite;
+	var state:ButtonState;
+	var onClick:Void->Void;
+	var onHover:Void->Void;
+	var onRelease:Void->Void;
+	var onPush:Void->Void;
+}
+
 /**
  * A simple UI panel composed of multiple colored sprite layers.
  */
@@ -47,7 +57,7 @@ class Panel extends FlxSpriteContainer
 	/**
 	 * An array of this panel's button layers.
 	 */
-	public var buttons:Array<FlxSprite> = [];
+	public var buttons:Array<ButtonData> = [];
 
 	/**
 	 * An array of this panel's sprite layers.
@@ -58,11 +68,6 @@ class Panel extends FlxSpriteContainer
 	 * An array of each layer's functions. [0] is the panel itself.
 	 */
 	private var _layerFunctions:Array<Array<Void->Void>> = new Array();
-
-	public var onClick:Array<Void->Void> = new Array();
-	public var onHover:Array<Void->Void> = new Array();
-	public var onRelease:Array<Void->Void> = new Array();
-	public var onPush:Array<Void->Void> = new Array();
 
 	public var buttonStates:Array<ButtonState> = new Array();
 
@@ -116,7 +121,7 @@ class Panel extends FlxSpriteContainer
 		if (layer.text == null)
 		{
 			obj = new FlxSprite();
-			obj.makeGraphic(1, 1, layer.color);
+			obj.makeGraphic(1, 1, layer.color); // low ram usage
 			obj.setPosition(layer.x, layer.y);
 			obj.scale.set(layer.width, layer.height);
 			obj.updateHitbox();
@@ -133,27 +138,16 @@ class Panel extends FlxSpriteContainer
 
 		if (layer.onClick != null || layer.onHover != null || layer.onRelease != null || layer.onPush != null)
 		{
-			buttonStates.push(RELEASED);
-			buttons.push(obj);
-
-			if (layer.onClick != null)
-			{
-				onClick.push(() -> layer.onClick(obj));
-			}
-			else if (layer.onPush != null)
-			{
-				onPush.push(() -> layer.onPush(obj));
-			}
-
-			if (layer.onHover != null)
-			{
-				onHover.push(() -> layer.onHover(obj));
-			}
-
-			if (layer.onRelease != null)
-			{
-				onRelease.push(() -> layer.onRelease(obj));
-			}
+			var button:ButtonData =
+				{
+					sprite: obj,
+					state: RELEASED,
+					onClick: layer.onClick != null ? () -> layer.onClick(obj) : null,
+					onHover: layer.onHover != null ? () -> layer.onHover(obj) : null,
+					onRelease: layer.onRelease != null ? () -> layer.onRelease(obj) : null,
+					onPush: layer.onPush != null ? () -> layer.onPush(obj) : null
+				};
+			buttons.push(button);
 		}
 
 		add(obj);
@@ -170,54 +164,55 @@ class Panel extends FlxSpriteContainer
 	{
 		super.update(elapsed);
 
-		for (i in 0...buttons.length)
+		for (button in buttons)
 		{
-			if (buttonStates[i] == DISABLED || !buttons[i].visible)
+			if (button.state == DISABLED || !button.sprite.visible)
 				continue;
 
-			var isPush = onPush[i] != null;
+			var isPush = button.onPush != null;
 
-			if (FlxG.mouse.overlaps(buttons[i], this.camera))
+			if (FlxG.mouse.overlaps(button.sprite, this.camera))
 			{
-				if (FlxG.mouse.released && buttonStates[i] != HOVERED && buttonStates[i] != PUSHED)
+				// FlxG.mouse.released is any frame the mouse is not held - different from JustReleased
+				if (FlxG.mouse.released && button.state != HOVERED && button.state != PUSHED)
 				{
-					buttonStates[i] = HOVERED;
-					if (onHover[i] != null)
-						onHover[i]();
+					button.state = HOVERED;
+					if (button.onHover != null)
+						button.onHover();
 				}
 
 				if (FlxG.mouse.justPressed)
 				{
 					if (isPush)
 					{
-						if (buttonStates[i] == PUSHED)
+						if (button.state == PUSHED)
 						{
-							buttonStates[i] = RELEASED;
-							if (onRelease[i] != null)
-								onRelease[i]();
+							button.state = RELEASED;
+							if (button.onRelease != null)
+								button.onRelease();
 						}
 						else
 						{
-							buttonStates[i] = PUSHED;
-							if (onPush[i] != null)
-								onPush[i]();
+							button.state = PUSHED;
+							if (button.onPush != null)
+								button.onPush();
 						}
 					}
 					else
 					{
-						buttonStates[i] = CLICKED;
-						if (onClick[i] != null)
-							onClick[i]();
+						button.state = CLICKED;
+						if (button.onClick != null)
+							button.onClick();
 					}
 				}
 			}
 			else
 			{
-				if (buttonStates[i] != RELEASED && buttonStates[i] != PUSHED)
+				if (button.state != RELEASED && button.state != PUSHED)
 				{
-					buttonStates[i] = RELEASED;
-					if (onRelease[i] != null)
-						onRelease[i]();
+					button.state = RELEASED;
+					if (button.onRelease != null)
+						button.onRelease();
 				}
 			}
 		}
@@ -232,8 +227,7 @@ class Panel extends FlxSpriteContainer
 	}
 
 	/**
-	 * Runs each layer's function by index.
-	 * Runs everything if not given. 
+	 * Runs each layer's function by index. 
 	 */
 	public function runAcrossLayers(?index:Int = 0):Void
 	{
