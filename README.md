@@ -96,29 +96,67 @@ lime build mac
 # Credits:
 
 # Credits:
-
-## Funkin' MINECRAFT
-
-| **Developer/ParallaxLT** | **It'z_Miles** <img src="./assets/shared/images/icons/miles.png" width="16">                                                                      |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **GitHub Contributors**  | [contributors](https://github.com/Itz-Miles/Funkin-Minecraft/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16"> |
-
-## Psych Engine
-
-| **Programmer/Owner of Psych** | **Shadow Mario** <img src="./assets/shared/images/icons/shadowmario.png" width="16">                                                               |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **New Input System**          | shubs <img src="./assets/shared/images/icons/shubs.png" width="16">                                                                                |  |
-| **GitHub Contributors**       | [contributors](https://github.com/ShadowMario/FNF-PsychEngine/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16"> |
-
-## Funkin' Crew
-
-| **Programmer of FNF**   | **ninjamuffin99** <img src="./assets/shared/images/icons/ninjamuffin99.png" width="16">                                                  |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| **Animator of FNF**     | **PhantomArcade** <img src="./assets/shared/images/icons/phantomarcade.png" width="16">                                                  |
-| **Artist of FNF**       | **evilsk8r** <img src="./assets/shared/images/icons/evilsk8r.png" width="16">                                                            |
-| **Composer of FNF**     | **kawaisprite** <img src="./assets/shared/images/icons/kawaisprite.png" width="16">                                                      |
-| **GitHub Contributors** | [contributors](https://github.com/FunkinCrew/Funkin/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16"> |
-
+<h2>Funkin&#39; MINECRAFT</h2>
+<table>
+	<thead>
+		<tr>
+			<th><strong>Developer/ParallaxLT</strong></th>
+			<th><strong>It&#39;z_Miles</strong> <img src="./assets/shared/images/icons/miles.png" width="16"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>GitHub Contributors</strong></td>
+			<td><a href="https://github.com/Itz-Miles/Funkin-Minecraft/graphs/contributors">contributors</a> <img src= "./assets/shared/images/icons/github.png" width="16"></td>
+		</tr>
+	</tbody>
+</table>
+<h2>Psych Engine</h2>
+<table>
+	<thead>
+		<tr>
+			<th><strong>Programmer/Owner of Psych</strong></th>
+			<th><strong>Shadow Mario</strong> <img src="./assets/shared/images/icons/shadowmario.png" width="16"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>New Input System</strong></td>
+			<td>shubs <img src="./assets/shared/images/icons/shubs.png" width="16"></td>
+		</tr>
+		<tr>
+			<td><strong>GitHub Contributors</strong></td>
+			<td><a href="https://github.com/ShadowMario/FNF-PsychEngine/graphs/contributors">contributors</a> <img src= "./assets/shared/images/icons/github.png" width="16"></td>
+		</tr>
+	</tbody>
+</table>
+<h2>Funkin&#39; Crew</h2>
+<table>
+	<thead>
+		<tr>
+			<th><strong>Programmer of FNF</strong></th>
+			<th><strong>ninjamuffin99</strong> <img src="./assets/shared/images/icons/ninjamuffin99.png" width="16"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Animator of FNF</strong></td>
+			<td><strong>PhantomArcade</strong> <img src="./assets/shared/images/icons/phantomarcade.png" width="16"></td>
+		</tr>
+		<tr>
+			<td><strong>Artist of FNF</strong></td>
+			<td><strong>evilsk8r</strong> <img src="./assets/shared/images/icons/evilsk8r.png" width="16"></td>
+		</tr>
+		<tr>
+			<td><strong>Composer of FNF</strong></td>
+			<td><strong>kawaisprite</strong> <img src="./assets/shared/images/icons/kawaisprite.png" width="16"></td>
+		</tr>
+		<tr>
+			<td><strong>GitHub Contributors</strong></td>
+			<td><a href="https://github.com/FunkinCrew/Funkin/graphs/contributors">contributors</a> <img src= "./assets/shared/images/icons/github.png" width="16"></td>
+		</tr>
+	</tbody>
+</table>
 
 # Licensing
 
