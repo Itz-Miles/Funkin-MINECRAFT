@@ -107,8 +107,7 @@ lime build mac
 
 | **Programmer/Owner of Psych** | **Shadow Mario** <img src="./assets/shared/images/icons/shadowmario.png" width="16">                                                               |
 | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **New Input System**          | shubs <img src="./assets/shared/images/icons/shubs.png" width="16">                                                                                |
-| **HxCodec Video Support**     | PolybiusProxy <img src="./assets/shared/images/icons/polybiusproxy.png" width="16">                                                                |
+| **New Input System**          | shubs <img src="./assets/shared/images/icons/shubs.png" width="16">                                                                                |  |
 | **GitHub Contributors**       | [contributors](https://github.com/ShadowMario/FNF-PsychEngine/graphs/contributors) <img src= "./assets/shared/images/icons/github.png" width="16"> |
 
 ## Funkin' Crew
