@@ -14,31 +14,31 @@ class TestChartingState extends MusicBeatState
 	var tabs:Array<Panel>;
 
 	var box:Array<Layer> = [
-		{// bottom
-			x: 460,
+		{ // bottom
+			x: 510,
 			y: 660,
-			width: 770,
+			width: 720,
 			height: 10,
 			color: 0xff000000
 		},
-		{// border
-			x: 460,
+		{ // border
+			x: 510,
 			y: 50,
-			width: 770,
+			width: 720,
 			height: 610,
 			color: 0xff353535
 		},
-		{// content
-			x: 470,
+		{ // content
+			x: 520,
 			y: 60,
-			width: 750,
+			width: 700,
 			height: 590,
 			color: 0xFF0f0f0f
 		},
-		{ //content top shadow
-			x: 470,
+		{ // content top shadow
+			x: 520,
 			y: 60,
-			width: 750,
+			width: 700,
 			height: 10,
 			color: 0xff000000
 		}
@@ -148,7 +148,7 @@ class TestChartingState extends MusicBeatState
 					text: tabNames[i],
 					font: Paths.font("Minecrafter.ttf"),
 					align: CENTER,
-					size: Std.int(Math.min((tabWidth / tabNames[i].length), 28))
+					size: Std.int(Math.min((tabWidth / tabNames[i].length * 1.1), 28))
 				}
 			]);
 
@@ -156,8 +156,8 @@ class TestChartingState extends MusicBeatState
 				{
 					x: box[2].x + margin,
 					y: box[2].y + 80,
-					width: 730,
-					height: 500,
+					width: box[2].width - margin * 2,
+					height: box[2].height - margin - 80,
 					color: 0xFF353535
 				}
 			]);
@@ -171,8 +171,8 @@ class TestChartingState extends MusicBeatState
 			{
 				x: box[2].x + margin * 4,
 				y: box[2].y + 100,
-				width: 710,
-				height: 480,
+				width: box[2].width,
+				height: box[2].height,
 				color: 0xffffffff,
 				font: Paths.font("Monocraft.ttf"),
 				align: LEFT,
@@ -193,8 +193,8 @@ class TestChartingState extends MusicBeatState
 			{
 				x: box[2].x + margin * 2,
 				y: box[2].y + 90,
-				width: 710,
-				height: 480,
+				width: box[2].width - margin * 2,
+				height: box[2].height - margin * 2,
 				color: 0xffffffff,
 				font: Paths.font("Monocraft.ttf"),
 				align: LEFT,
