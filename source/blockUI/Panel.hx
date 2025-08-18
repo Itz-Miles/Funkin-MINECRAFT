@@ -23,6 +23,7 @@ typedef ButtonData =
 	var onHover:Void->Void;
 	var onRelease:Void->Void;
 	var onPush:Void->Void;
+	var isPush:Bool;
 }
 
 /**
@@ -142,10 +143,11 @@ class Panel extends FlxSpriteContainer
 				{
 					sprite: obj,
 					state: RELEASED,
-					onClick: layer.onClick != null ? () -> layer.onClick(obj) : null,
-					onHover: layer.onHover != null ? () -> layer.onHover(obj) : null,
-					onRelease: layer.onRelease != null ? () -> layer.onRelease(obj) : null,
-					onPush: layer.onPush != null ? () -> layer.onPush(obj) : null
+					onClick: () -> if (layer.onClick != null) layer.onClick(obj),
+					onHover: () -> if (layer.onHover != null) layer.onHover(obj),
+					onRelease: () -> if (layer.onRelease != null) layer.onRelease(obj),
+					onPush: () -> if (layer.onPush != null) layer.onPush(obj),
+					isPush: layer.onPush != null
 				};
 			buttons.push(button);
 		}
@@ -169,8 +171,6 @@ class Panel extends FlxSpriteContainer
 			if (button.state == DISABLED || !button.sprite.visible)
 				continue;
 
-			var isPush = button.onPush != null;
-
 			if (FlxG.mouse.overlaps(button.sprite, this.camera))
 			{
 				// FlxG.mouse.released is any frame the mouse is not held - different from JustReleased
@@ -183,26 +183,23 @@ class Panel extends FlxSpriteContainer
 
 				if (FlxG.mouse.justPressed)
 				{
-					if (isPush)
+					if (button.isPush)
 					{
 						if (button.state == PUSHED)
 						{
 							button.state = RELEASED;
-							if (button.onRelease != null)
-								button.onRelease();
+							button.onRelease();
 						}
 						else
 						{
 							button.state = PUSHED;
-							if (button.onPush != null)
-								button.onPush();
+							button.onPush();
 						}
 					}
 					else
 					{
 						button.state = CLICKED;
-						if (button.onClick != null)
-							button.onClick();
+						button.onClick();
 					}
 				}
 			}
@@ -211,8 +208,7 @@ class Panel extends FlxSpriteContainer
 				if (button.state != RELEASED && button.state != PUSHED)
 				{
 					button.state = RELEASED;
-					if (button.onRelease != null)
-						button.onRelease();
+					button.onRelease();
 				}
 			}
 		}
@@ -227,13 +223,13 @@ class Panel extends FlxSpriteContainer
 	}
 
 	/**
-	 * Runs each layer's function by index. 
+	 * Runs each layer's `n`th function by index. 
 	 */
-	public function runAcrossLayers(?index:Int = 0):Void
+	public function runAcrossLayers(index:Int = 0):Void
 	{
 		for (functionsArray in _layerFunctions)
 		{
-			if (index != null && functionsArray[index] != null)
+			if (index < functionsArray.length && functionsArray[index] != null)
 			{
 				functionsArray[index]();
 			}
