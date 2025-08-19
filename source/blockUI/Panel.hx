@@ -177,8 +177,7 @@ class Panel extends FlxSpriteContainer
 				if (FlxG.mouse.released && button.state != HOVERED && button.state != PUSHED)
 				{
 					button.state = HOVERED;
-					if (button.onHover != null)
-						button.onHover();
+					button.onHover();
 				}
 
 				if (FlxG.mouse.justPressed)
