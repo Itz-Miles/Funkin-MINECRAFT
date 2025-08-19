@@ -37,6 +37,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 	public var title:String;
 	public var rpcTitle:String;
 
+	var accepted:Bool = false;
+
 	public function new()
 	{
 		super();
@@ -152,15 +154,19 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 		if (controls.BACK)
 		{
-			close();
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
+			close();
+		}
+		else
+		{
+			accepted = FlxG.mouse.justPressed || controls.ACCEPT;
 		}
 
 		if (nextAccept <= 0)
 		{
 			if (curOption.type == 'bool')
 			{
-				if (controls.ACCEPT)
+				if (accepted)
 				{
 					FlxG.sound.play(Paths.sound('scrollMenu'), 0.3);
 					curOption.setValue((curOption.getValue() == true) ? false : true);
@@ -172,7 +178,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			{
 				if (curOption.type == 'keybind')
 				{
-					if (controls.ACCEPT)
+					if (accepted)
 					{
 						bindingBlack = new FlxSprite().makeGraphic(1, 1, FlxColor.WHITE);
 						bindingBlack.scale.set(1280, 720);
