@@ -88,7 +88,7 @@ class ControlsSubState extends MusicBeatSubstate
 		header.text = "bind your controls     ";
 		header.buttons[0].onClick = function()
 		{
-			close();
+			closeState();
 		};
 		controllerSpr = new FlxSprite(845, 9).loadGraphic(Paths.image('settings/controller_type', "shared"), true, 18, 0);
 		controllerSpr.antialiasing = false;
@@ -241,7 +241,7 @@ class ControlsSubState extends MusicBeatSubstate
 		{
 			if (FlxG.keys.justPressed.ESCAPE || FlxG.gamepads.anyJustPressed(B))
 			{
-				close();
+				closeState();
 				return;
 			}
 			if (FlxG.keys.justPressed.CONTROL
@@ -435,6 +435,12 @@ class ControlsSubState extends MusicBeatSubstate
 			}
 		}
 		super.update(elapsed);
+	}
+
+	function closeState()
+	{
+		FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
+		close();
 	}
 
 	function closeBinding()

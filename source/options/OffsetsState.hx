@@ -132,8 +132,7 @@ class OffsetsState extends MusicBeatState
 				zoomTween.cancel();
 			if (beatTween != null)
 				beatTween.cancel();
-
-			persistentUpdate = false;
+			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3); // it doesnt work like that miles
 			FlxG.switchState(() -> new options.OptionsState());
 		}
 
@@ -162,26 +161,28 @@ class OffsetsState extends MusicBeatState
 
 			if (zoomTween != null)
 				zoomTween.cancel();
-			zoomTween = FlxTween.tween(FlxG.camera, {zoom: 1}, 120 / Conductor.bpm, {
-				ease: FlxEase.circOut,
-				onComplete: function(twn:FlxTween)
+			zoomTween = FlxTween.tween(FlxG.camera, {zoom: 1}, 120 / Conductor.bpm,
 				{
-					zoomTween = null;
-				}
-			});
+					ease: FlxEase.circOut,
+					onComplete: function(twn:FlxTween)
+					{
+						zoomTween = null;
+					}
+				});
 
 			beatText.alpha = 1;
 			beatText.y = 320;
 			beatText.velocity.y = -150;
 			if (beatTween != null)
 				beatTween.cancel();
-			beatTween = FlxTween.tween(beatText, {alpha: 0}, 1, {
-				ease: FlxEase.sineIn,
-				onComplete: function(twn:FlxTween)
+			beatTween = FlxTween.tween(beatText, {alpha: 0}, 1,
 				{
-					beatTween = null;
-				}
-			});
+					ease: FlxEase.sineIn,
+					onComplete: function(twn:FlxTween)
+					{
+						beatTween = null;
+					}
+				});
 		}
 
 		lastBeatHit = curBeat;
