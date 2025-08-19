@@ -4,6 +4,24 @@ All notable changes will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [0.1.0] - August 19 2025
+
+### Added
+* Added push-button support to blockUI.
+* Added bindable onPush function for buttons.
+* Added support for creating arrays of layers after panel creation.
+* Added a super early chart editor UI layout. Press 8 in the Freeplay Menu.
+
+### Changed
+* Implemented mouse and gamepad support for the settings submenus.
+* Reorganized the codebase structure into states and objects.
+* Moved some utillity functions CoolUtil to more fitting classes.
+
+### Removed
+* Removed some unused imports.
+
+
 ## [0.0.3] - August 13 2025
 
 ### Added
@@ -31,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Removed some placeholder credits for now.
 * Removed some unused imports.
 
+
 ## [0.0.2] - August 5 2025
 
 ### Added
@@ -43,9 +62,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Improved the transition betwwen the Main Menu and Title Menu
 * Changed the keyboard/controller assets to be "more retro".
 
-<img src="https://github.com/Itz-Miles/Funkin-MINECRAFT/blob/ebd7f7bfa8c1be2106173217c4bb55293628dfa9/assets/shared/images/controllertype.png?raw=true" width="128">
-<img src="https://github.com/Itz-Miles/Funkin-MINECRAFT/blob/53c11d61782bffc18ea98c61cf4db4e1d06c6594/assets/shared/images/settings/controller_type.png?raw=true" width="128">
-
 ### Fixed
 * Upgraded to flixel 5.9.0 to fix camera blendmode issues.
 * Fixed Main Menu message with cliprect.
@@ -53,6 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 * Removed some unused classes.
 * Removed unused imports.
+
 
 ## [0.0.1] - July 25 2025
 
