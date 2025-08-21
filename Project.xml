@@ -41,8 +41,8 @@
 
 	<classpath name="source"/>
 
-	<assets path="assets/preload" rename="assets" embed="true" exclude="*.ogg" if="web"/>
-	<assets path="assets/preload" rename="assets" embed="true" exclude="*.mp3" unless="web"/>
+	<assets path="assets/preload" rename="assets" exclude="*.ogg" if="web"/>
+	<assets path="assets/preload" rename="assets" exclude="*.mp3" unless="web"/>
 
 	<library name="songs" preload="true" />
 	<library name="shared" preload="false" />
@@ -53,22 +53,22 @@
 	<library name="rift" preload="false" />
 	<library name="ruins" preload="false" />
 
-	<assets path="assets/songs" embed="true" library="songs" exclude="*.ogg" if="web"/>
-	<assets path="assets/songs" embed="true" library="songs" exclude="*.mp3" unless="web"/>
-	<assets path="assets/shared" embed="true" library="shared" exclude="*.ogg" if="web"/>
-	<assets path="assets/shared" embed="true" library="shared" exclude="*.mp3" unless="web"/>
-	<assets path="assets/arch" embed="true" library="arch" exclude="*.ogg" if="web"/>
-	<assets path="assets/arch" embed="true" library="arch" exclude="*.mp3" unless="web"/>
-	<assets path="assets/camp" embed="true" library="camp" exclude="*.ogg" if="web"/>
-	<assets path="assets/camp" embed="true" library="camp" exclude="*.mp3" unless="web"/>
-	<assets path="assets/forge" embed="true" library="forge" exclude="*.ogg" if="web"/>
-	<assets path="assets/forge" embed="true" library="forge" exclude="*.mp3" unless="web"/>
-	<assets path="assets/gates" embed="true" library="gates" exclude="*.ogg" if="web"/>
-	<assets path="assets/gates" embed="true" library="gates" exclude="*.mp3" unless="web"/>
-	<assets path="assets/rift" embed="true" library="rift" exclude="*.ogg" if="web"/>
-	<assets path="assets/rift" embed="true" library="rift" exclude="*.mp3" unless="web"/>
-	<assets path="assets/ruins" embed="true" library="ruins" exclude="*.ogg" if="web"/>
-	<assets path="assets/ruins" embed="true" library="ruins" exclude="*.mp3" unless="web"/>
+	<assets path="assets/songs" library="songs" exclude="*.ogg" if="web"/>
+	<assets path="assets/songs" library="songs" exclude="*.mp3" unless="web"/>
+	<assets path="assets/shared" library="shared" exclude="*.ogg" if="web"/>
+	<assets path="assets/shared" library="shared" exclude="*.mp3" unless="web"/>
+	<assets path="assets/arch" library="arch" exclude="*.ogg" if="web"/>
+	<assets path="assets/arch" library="arch" exclude="*.mp3" unless="web"/>
+	<assets path="assets/camp" library="camp" exclude="*.ogg" if="web"/>
+	<assets path="assets/camp" library="camp" exclude="*.mp3" unless="web"/>
+	<assets path="assets/forge" library="forge" exclude="*.ogg" if="web"/>
+	<assets path="assets/forge" library="forge" exclude="*.mp3" unless="web"/>
+	<assets path="assets/gates" library="gates" exclude="*.ogg" if="web"/>
+	<assets path="assets/gates" library="gates" exclude="*.mp3" unless="web"/>
+	<assets path="assets/rift" library="rift" exclude="*.ogg" if="web"/>
+	<assets path="assets/rift" library="rift" exclude="*.mp3" unless="web"/>
+	<assets path="assets/ruins" library="ruins" exclude="*.ogg" if="web"/>
+	<assets path="assets/ruins" library="ruins" exclude="*.mp3" unless="web"/>
 
 	<assets path="assets/fonts" embed="true"/>
 
