@@ -71,6 +71,11 @@ typedef AnimArray =
 
 class Character extends FlxSprite
 {
+	/**
+	 * A list of the character files found in the filesystem.
+	 */
+	public static var charactersList:Array<String> = [];
+
 	public var status(default, set):CharacterStatus = IDLING;
 
 	function set_status(value:CharacterStatus)
