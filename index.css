@@ -19,6 +19,7 @@
 	--prime: #ffcc00;
 	--alpha: #ffa500;
 	--beta: #c9a100;
+	--rim: #655100;
 
 	--load: #368528;
 
@@ -28,6 +29,7 @@
 
 html {
 	scroll-behavior: smooth;
+	-webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -55,7 +57,7 @@ section {
 	color: var(--prime);
 	text-align: center;
 	font-weight: lighter;
-	text-shadow: 0px -6px 0 rgb(101, 81, 0);
+	text-shadow: 0px -0.06em 0 var(--rim);
 }
 
 h2 {
@@ -177,6 +179,7 @@ p a:hover {
 	border-bottom: 0.15em var(--prime) solid;
 	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431), 0px 5px 5px 2px #ffdd0047;
 	margin-top: 0.2em;
+	outline: 2px solid var(--rim);
 }
 
 .avatar {
@@ -301,6 +304,7 @@ p a:hover {
 	box-shadow: inset 0px 0px 0px 3px rgba(255, 255, 255, 0.5), 0px 0px 12px 3px rgba(255, 225, 0, 0.75);
 	border-bottom-color: var(--beta);
 	word-spacing: -0.2em;
+	outline-color: var(--rim);
 }
 
 .button.github {
