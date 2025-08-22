@@ -3,7 +3,6 @@ package;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.*;
-import flixel.addons.ui.FlxUIPopup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;

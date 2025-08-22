@@ -9,6 +9,7 @@ import flixel.FlxG;
 
 class TestChartingState extends MusicBeatState
 {
+	public static var GRID_SIZE:Int = 40;
 	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];
 	static var bg:Int = 0xFFFFFFFF;
 	static var bdr:Int = 0xFFFFFFFF;
