@@ -20,7 +20,7 @@
 	--alpha: #ffa500;
 	--beta: #c9a100;
 
-	--load: #00ff00;
+	--load: #368528;
 
 	--inset: inset 0px 0px 0px 0.25em #323232;
 	--shade: 0px 5px 20px 5px #00000063;
@@ -285,7 +285,7 @@ p a:hover {
 	transition: all 0.1s ease-in-out;
 	margin: 0.5em 0em 0em 0em;
 	text-align: center;
-	gap: 0.75em;
+	gap: 0.25em;
 	max-height: 2em;
 	outline: 2px solid black;
 }
@@ -319,8 +319,6 @@ p a:hover {
 	margin-top: 0.7em;
 	border-bottom-width: 0.1em;
 }
-
-
 
 .table-wrapper {
 	width: 100%;
@@ -369,13 +367,13 @@ p a:hover {
 	text-align: center;
 	font-family: 'minecrafter', sans-serif;
 	font-weight: lighter;
-	font-size: 1em;
-	background-color: #22a31d;
+	font-size: 1.4em;
+	background-color: var(--load);
 	color: white;
 	padding: 0.5em 0.5em;
 	text-decoration: none;
-	border-bottom: 0.25em solid #197e3e;
-	transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+	border-bottom: 0.3em solid #174c10;
+	transition: background-color 0.1s ease-in-out, margin 0.1s ease-in-out;
 	display: inline-block;
 	outline: 2px solid black;
 }
@@ -385,7 +383,7 @@ p a:hover {
 }
 
 .platform-button:active {
-	background-color: #136434;
+	background-color: #0a5829;
 }
 
 .changelog-wrapper {
@@ -448,7 +446,7 @@ p a:hover {
 	padding: 1em;
 	height: 50vh;
 	overflow-y: auto;
-	font-family: 'Segoe UI';
+	font-family: 'Segoe UI', 'sans-serif';
 }
 
 .changelog-content p {
