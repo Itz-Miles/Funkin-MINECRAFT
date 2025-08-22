@@ -2,7 +2,6 @@ package states;
 
 import objects.Note.EventNote;
 import parallax.ParallaxFG;
-import flixel.addons.ui.FlxUICursor;
 #if desktop
 import Discord.DiscordClient;
 #end
@@ -24,7 +23,6 @@ import flixel.util.FlxSort;
 import flixel.util.FlxStringUtil;
 import flixel.util.FlxTimer;
 import openfl.utils.Assets as OpenFlAssets;
-import editors.ChartingState;
 import flixel.group.FlxGroup;
 import flixel.input.keyboard.FlxKey;
 import openfl.events.KeyboardEvent;
@@ -935,7 +933,7 @@ class PlayState extends MusicBeatState
 		chartingMode = true;
 		camUI.fade(FlxG.camera.bgColor, 0.25, false, function()
 		{
-			FlxG.switchState(() -> new ChartingState());
+			FlxG.switchState(() -> new TestChartingState());
 		});
 	}
 

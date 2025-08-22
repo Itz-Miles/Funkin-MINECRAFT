@@ -369,7 +369,6 @@ class MainMenuState extends MusicBeatState
 				case 0:
 					LoadingState.loadAndSwitchState(new PlayState(), true);
 				case 1:
-					// FlxG.switchState(()-> new ChartingState());
 					FlxG.switchState(() -> new FreeplayState());
 				case 2:
 					FlxG.switchState(() -> new options.OptionsState());

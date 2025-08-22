@@ -8,7 +8,6 @@ import flixel.tweens.FlxEase;
 #if desktop
 import Discord.DiscordClient;
 #end
-import editors.ChartingState;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup.FlxTypedGroup;
@@ -270,13 +269,6 @@ class FreeplayState extends MusicBeatState
 			trace('CURRENT WEEK: ' + WeekData.getWeekFileName());
 
 			if (FlxG.keys.justPressed.SEVEN)
-			{
-				new FlxTimer().start(0.25, function(tmr:FlxTimer)
-				{
-					LoadingState.loadAndSwitchState(new ChartingState());
-				});
-			}
-			else if (FlxG.keys.justPressed.EIGHT)
 			{
 				new FlxTimer().start(0.25, function(tmr:FlxTimer)
 				{

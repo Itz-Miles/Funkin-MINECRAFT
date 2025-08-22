@@ -1,7 +1,6 @@
 package objects;
 
 import flixel.FlxSprite;
-import editors.ChartingState;
 
 using StringTools;
 
@@ -40,7 +39,7 @@ class Note extends FlxSprite
 		{
 			case EVENT:
 				loadGraphic(Paths.image('chart editor/eventArrow', "shared"));
-				setGraphicSize(ChartingState.GRID_SIZE, ChartingState.GRID_SIZE);
+				setGraphicSize(TestChartingState.GRID_SIZE, TestChartingState.GRID_SIZE);
 			case NOTE:
 				scale.y = 0.7;
 				loadGraphic(Paths.image('notes/${_laneKeys[lane % 4]}', "shared"));
