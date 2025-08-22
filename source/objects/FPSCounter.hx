@@ -1,5 +1,6 @@
 package objects;
 
+import flixel.math.FlxMath;
 import flixel.FlxG;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
@@ -66,7 +67,7 @@ class FPSCounter extends TextField
 
 		then = now;
 		currentFPS = times.length < FlxG.updateFramerate ? times.length : FlxG.updateFramerate;
-		text = 'FPS: $currentFPS[${Std.int(1000 / currentFPS)}ms]\nRAM: ${flixel.util.FlxStringUtil.formatBytes(System.totalMemory)}';
+		text = 'FPS: $currentFPS[${Std.int(1000 / currentFPS)}ms]\nRAM: ${FlxMath.roundDecimal(System.totalMemory / 1048576, 2)}MB';
 		// The frametime is currently a lie. Using deltaTime causes the TextField to regen more frequently, which is hideously memory intensive.
 	}
 }
