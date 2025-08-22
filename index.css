@@ -248,7 +248,7 @@ p a:hover {
 	background-color: var(--bar);
 }
 
-.character-card h3 {
+.character-card h2 {
 	margin: 0em 0 0em;
 	font-family: 'minecrafter', sans-serif;
 	font-weight: lighter;
@@ -458,7 +458,6 @@ p a:hover {
 
 footer.legal {
 	background-color: #1a1a1a;
-	color: #888;
 	text-align: center;
 	font-size: 0.9em;
 	padding: 2em 1em;
