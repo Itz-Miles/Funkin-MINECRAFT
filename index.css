@@ -87,7 +87,7 @@ p {
 	margin-bottom: min(10vh, 10vw);
 	padding-top: 20vh;
 	margin-top: -20vh;
-	background-image: url('assets/panorama.png');
+	background-image: url('assets/panorama.webp');
 	background-size: cover;
 	background-position: center top;
 	background-repeat: no-repeat;
@@ -212,7 +212,7 @@ p a:hover {
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background-image: url('assets/panorama.png');
+	background-image: url('assets/panorama.webp');
 	background-size: cover;
 	background-position: center;
 	background-attachment: fixed;
