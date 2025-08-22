@@ -14,7 +14,7 @@ using StringTools;
 
 class Paths
 {
-	inline public static var SOUND_EXT = #if web "mp3" #else "ogg" #end;
+	inline public static var SOUND_EXT = "ogg";
 
 	public static function excludeAsset(key:String)
 	{
