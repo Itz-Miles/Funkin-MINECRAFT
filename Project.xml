@@ -93,8 +93,6 @@
 	<!-- ____________________ Libraries ____________________ -->
 
 	<haxelib name="flixel"/>
-	<haxelib name="flixel-addons"/>
-	<haxelib name="flixel-ui"/>
 	<haxelib name="hxcpp"/>
 	<haxelib name="parallaxlt"/>
 	<haxelib name="hxcpp-debug-server" if="debug"/>
@@ -111,6 +109,4 @@
 	<error value="Seems like you're using Haxe ${haxe}. See https://haxe.org/download for 4.3.7" if="${haxe != 4.3.7}"/>
 
 	<error value="flixel ${flixel} isn't supported. Run the setup script for the proper lib versions!" if="${flixel != 5.9.0}"/>
-	<error value="flixel-addons ${flixel-addons} isn't supported. Run the setup script for the proper lib versions!" if="${flixel-addons != 3.3.2}"/>
-	<error value="flixel-ui ${flixel-ui} isn't supported. Run the setup script for the proper lib versions!" if="${flixel-ui != 2.6.3}"/>
 </project>
