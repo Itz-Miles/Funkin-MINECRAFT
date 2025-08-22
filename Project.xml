@@ -64,7 +64,7 @@
 
 	<assets path="assets/fonts" embed="true"/>
 
-	<assets path="README.md" rename='README.txt'/>
+	<assets path="art/PLEASE_README.md" rename='README.txt'/>
 
 	<!-- ____________________ Customization ____________________ -->
 
