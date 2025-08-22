@@ -1,10 +1,9 @@
 package states;
 
 import flixel.FlxG;
-import flixel.addons.ui.FlxUIState;
 import flixel.FlxState;
 
-class MusicBeatState extends FlxUIState
+class MusicBeatState extends FlxState
 {
 	var curSection:Int = 0;
 	var stepsToDo:Int = 0;
