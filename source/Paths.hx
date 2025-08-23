@@ -265,4 +265,23 @@ class Paths
 		localTrackedAssets.push(gottenPath);
 		return currentTrackedSounds.get(gottenPath);
 	}
+	/*
+		var url = "https://avatars.githubusercontent.com/u/95124554?u=810545ff222794e115788bdaf418f2877f51744d&v=4&s=256";
+
+		var sprite = new FlxSprite(100, 100);
+
+		Image.loadFromFile(url).onComplete(function(image:Image)
+		{
+			if (image != null)
+			{
+				trace("Image loaded successfully!");
+				sprite.loadGraphic(BitmapData.fromImage(image));
+				add(sprite);
+			}
+			else
+			{
+				trace("Failed to load image from URL: " + url);
+			};
+		});
+	 */
 }
