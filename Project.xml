@@ -40,9 +40,9 @@
 	<set name="BUILD_DIR" value="export/32bit" if="32bits"/>
 
 	<classpath name="source"/>
-
-	<assets path="assets/preload" rename="assets"/>
-	<assets path="assets/preload" rename="assets"/>
+	<assets path="assets/characters" library="default"/>
+	<assets path="assets/data" library="default"/>
+	<assets path="assets/weeks" library="default"/>
 
 	<library name="songs" preload="true"/>
 	<library name="shared" preload="false"/>
