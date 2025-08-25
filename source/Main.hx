@@ -144,7 +144,7 @@ class Main extends Sprite
 		dateNow = dateNow.replace(" ", "_");
 		dateNow = dateNow.replace(":", "'");
 
-		path = "./crash/" + "FunkinMinecraftFlixel" + dateNow + ".txt";
+		path = "./crash/" + "FunkinMinecraft" + dateNow + ".txt";
 
 		for (stackItem in callStack)
 		{
