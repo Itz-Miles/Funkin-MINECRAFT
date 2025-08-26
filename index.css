@@ -164,7 +164,7 @@ p a:hover {
 	text-decoration: none;
 	margin: 0.1em 0.25em 0.1em 0.25em;
 	font-weight: lighter;
-	transition: box-shadow 0.1s ease-in-out, color 0.1s ease-in-out, margin 0.1s ease-in-out, border 0.1s ease-in-out;
+	transition: all 0.1s ease-in-out;
 	outline: 2px solid black;
 }
 
@@ -177,9 +177,9 @@ p a:hover {
 .nav-links a:active {
 	color: var(--alpha);
 	border-bottom: 0.15em var(--prime) solid;
-	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431), 0px 5px 5px 2px #ffdd0047;
+	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431), 0px 5px 5px 2px #ffdd0047, -2px 0px 3px 2px #ffdd0030, 2px 0px 3px 2px #ffdd0047;
 	margin-top: 0.2em;
-	outline: 2px solid var(--rim);
+	outline: 2px solid black;
 }
 
 .avatar {
