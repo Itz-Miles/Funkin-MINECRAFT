@@ -1,6 +1,6 @@
 package states;
 
-import editors.TestChartingState;
+import editors.ChartEditor;
 import blockUI.LayerData;
 import blockUI.Panel;
 import flixel.util.FlxTimer;
@@ -272,7 +272,7 @@ class FreeplayState extends MusicBeatState
 			{
 				new FlxTimer().start(0.25, function(tmr:FlxTimer)
 				{
-					LoadingState.loadAndSwitchState(new TestChartingState());
+					LoadingState.loadAndSwitchState(new ChartEditor());
 				});
 			}
 			else

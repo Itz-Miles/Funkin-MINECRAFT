@@ -39,7 +39,7 @@ class Note extends FlxSprite
 		{
 			case EVENT:
 				loadGraphic(Paths.image('chart editor/eventArrow', "shared"));
-				setGraphicSize(TestChartingState.GRID_SIZE, TestChartingState.GRID_SIZE);
+				setGraphicSize(ChartEditor.GRID_SIZE, ChartEditor.GRID_SIZE);
 			case NOTE:
 				scale.y = 0.7;
 				loadGraphic(Paths.image('notes/${_laneKeys[lane % 4]}', "shared"));
