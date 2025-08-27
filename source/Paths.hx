@@ -14,6 +14,7 @@ using StringTools;
 
 class Paths
 {
+	public static var RAW_REPO:String = "https://raw.githubusercontent.com/Itz-Miles/Funkin-MINECRAFT/refs/heads/main/";
 	inline public static var SOUND_EXT = "ogg";
 
 	public static function excludeAsset(key:String)
