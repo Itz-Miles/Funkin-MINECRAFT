@@ -162,7 +162,7 @@ p a:hover {
 	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431), 0px 5px 5px 2px #00000043;
 	border-bottom: var(--botm) 0.3em solid;
 	text-decoration: none;
-	margin: 0.1em 0.25em 0.1em 0.25em;
+	margin: 0.2em 0.25em 0.1em 0.25em;
 	font-weight: lighter;
 	transition: all 0.1s ease-in-out;
 	outline: 2px solid black;
@@ -171,14 +171,14 @@ p a:hover {
 .nav-links a:hover {
 	color: var(--beta);
 	border-bottom: var(--botm) 0.4em solid;
-	margin-top: 0em;
+	margin-top: 0.1em;
 }
 
 .nav-links a:active {
 	color: var(--alpha);
-	border-bottom: 0.15em var(--prime) solid;
+	border-bottom: 0.1em var(--prime) solid;
 	box-shadow: inset 0px 0px 0px 2px rgba(255, 255, 255, 0.431), 0px 5px 5px 2px #ffdd0047, -2px 0px 3px 2px #ffdd0030, 2px 0px 3px 2px #ffdd0047;
-	margin-top: 0.2em;
+	margin-top: 0.4em;
 	outline: 2px solid black;
 }
 
@@ -486,8 +486,8 @@ footer.legal a:hover {
 }
 
 ::-webkit-scrollbar {
-	width: 12px;
-	height: 12px;
+	width: 0.75em;
+	height: 0.75em;
 }
 
 ::-webkit-scrollbar-track {
