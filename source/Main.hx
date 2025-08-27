@@ -108,6 +108,7 @@ class Main extends Sprite
 			DiscordClient.initialize();
 			Application.current.window.onClose.add(function()
 			{
+				ClientPrefs.saveSettings();
 				DiscordClient.shutdown();
 			});
 		}
