@@ -15,6 +15,7 @@ using StringTools;
 class Paths
 {
 	public static var RAW_REPO:String = "https://raw.githubusercontent.com/Itz-Miles/Funkin-MINECRAFT/refs/heads/main/";
+	public static var JS_DELIVR:String = "";
 	inline public static var SOUND_EXT = "ogg";
 
 	public static function excludeAsset(key:String)
@@ -192,6 +193,21 @@ class Paths
 		var songKey:String = '${formatToSongPath(song)}/Inst';
 		var inst = returnSound('songs', songKey);
 		return inst;
+	}
+
+	public static function loadImg()
+	{
+		return null;
+	}
+
+	public static function loadSnd()
+	{
+		return null;
+	}
+
+	public static function loadFile()
+	{
+		return null;
 	}
 
 	static public function image(key:String, ?library:String):FlxGraphic
