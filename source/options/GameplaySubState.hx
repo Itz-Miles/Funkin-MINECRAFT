@@ -9,6 +9,10 @@ class GameplaySubState extends BaseOptionsMenu
 		title = 'determine your gameplay';
 		rpcTitle = 'Gameplay';
 
+		var option:Option = new Option('Auto Pause', "The game is supended when its window isn't focused.", 'autoPause', 'bool');
+		addOption(option);
+		option.onChange = onChangeAutoPause;
+
 		var option:Option = new Option('Downscroll', // Name
 			'Notes scroll downwards from the top of the screen.', // Description
 			'downScroll', // Save data variable name
@@ -42,10 +46,19 @@ class GameplaySubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		option.decimals = 1;
 		option.onChange = onChangeHitsoundVolume;
+		
+		#if !html
+		var option:Option = new Option('Check for Updates', 'On Release builds, turn this on to check for updates when you start the game.',
+			'checkForUpdates', 'bool');
+		addOption(option);
+		#end
 
 		super();
 	}
 
 	function onChangeHitsoundVolume()
 		FlxG.sound.play(Paths.sound('hitsound'), ClientPrefs.data.hitsoundVolume);
+
+	function onChangeAutoPause()
+		FlxG.autoPause = ClientPrefs.data.autoPause;
 }
