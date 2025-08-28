@@ -58,20 +58,15 @@ class GraphicsSubState extends BaseOptionsMenu
 		option.onChange = onChangeFPSCounter;
 		#end
 
-		var option:Option = new Option('Auto Pause', "The game is supended when its window isn't focused.", 'autoPause', 'bool');
-		addOption(option);
-		option.onChange = onChangeAutoPause;
 		#if !mobile
 		var option:Option = new Option('Fullscreen', "The game's window envelops the entire screen.", 'fullscreen', 'bool');
 		addOption(option);
 		option.onChange = onChangeFullscreen;
 		#end
 
-		#if CHECK_FOR_UPDATES
-		var option:Option = new Option('Check for Updates', 'On Release builds, turn this on to check for updates when you start the game.',
-			'checkForUpdates', 'bool');
+		var option:Option = new Option('Use JsDelivr CDN', "Uses jsDelivr to load base game web assets.\nUses raw.githubusercontent.com otherwise.",
+			'jsDelivrCDN', 'bool');
 		addOption(option);
-		#end
 
 		super();
 		insert(1, boyfriend);
@@ -127,9 +122,6 @@ class GraphicsSubState extends BaseOptionsMenu
 			Main.fpsVar.visible = ClientPrefs.data.showFPS;
 	}
 	#end
-
-	function onChangeAutoPause()
-		FlxG.autoPause = ClientPrefs.data.autoPause;
 
 	function onChangeFullscreen()
 		FlxG.fullscreen = ClientPrefs.data.fullscreen;

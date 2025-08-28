@@ -19,6 +19,7 @@ import flixel.input.gamepad.FlxGamepadInputID;
 	public var hudAlpha:Float = 1;
 	public var noteOffset:Int = 0;
 	public var timeBarType:String = 'Time Left';
+	public var jsDelivrCDN:Bool = true;
 	public var firstIntro:Bool = true;
 	public var totems:Int = 0;
 	public var healthBarAlpha:Float = 1;
