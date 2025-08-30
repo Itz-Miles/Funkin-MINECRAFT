@@ -19,14 +19,14 @@ import haxe.io.Path;
 
 class LoadingState extends MusicBeatState
 {
-	public static var stage(default, set):String = "arch";
+	public static var stage(default, set):String = "aero_archways";
 
 	static function set_stage(value:String):String
 	{
 		if (value != null)
 			return stage = value;
 		else
-			return stage = "arch";
+			return stage = "aero_archways";
 	}
 
 	var target:FlxState;

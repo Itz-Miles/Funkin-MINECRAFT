@@ -47,7 +47,7 @@ class MainMenuState extends MusicBeatState
 
 		persistentUpdate = persistentDraw = true;
 
-		var bg:ParallaxBG = new ParallaxBG('arch', 0.2);
+		var bg:ParallaxBG = new ParallaxBG('aero_archways', 0.2);
 		add(bg);
 
 		if (curSelection != 5)
@@ -217,7 +217,7 @@ class MainMenuState extends MusicBeatState
 		header.runAcrossLayers(0);
 		add(header);
 
-		var fg:ParallaxFG = new ParallaxFG('arch', 0.2);
+		var fg:ParallaxFG = new ParallaxFG('aero_archways', 0.2);
 		fg.setPosition(-130, -70);
 		add(fg);
 

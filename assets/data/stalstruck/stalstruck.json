@@ -122,7 +122,7 @@
 		"name": "stalstruck",
 		"needsVoices": false,
 		"arrowSkin": "",
-		"stage": "arch",
+		"stage": "aero_archways",
 		"opponents": [
 			"miles_arch"
 		],

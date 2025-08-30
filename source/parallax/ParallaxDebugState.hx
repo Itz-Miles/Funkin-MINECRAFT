@@ -8,10 +8,10 @@ class ParallaxDebugState extends MusicBeatState
 
 	override function create()
 	{
-		var bg:ParallaxBG = new ParallaxBG('arch');
+		var bg:ParallaxBG = new ParallaxBG();
 		add(bg);
 
-		var fg:ParallaxFG = new ParallaxFG('arch');
+		var fg:ParallaxFG = new ParallaxFG();
 		fg.setPosition(-130, -70);
 		add(fg);
 	}

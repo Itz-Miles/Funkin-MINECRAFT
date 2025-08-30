@@ -31,7 +31,7 @@ class Song
 	public var needsVoices:Bool = false;
 	public var arrowSkin:String = "";
 	public var speed:Float = 1;
-	public var stage:String = "arch";
+	public var stage:String = "aero_archways";
 	public var players:Array<String> = ["bf"];
 	public var opponents:Array<String> = ["dad"];
 	public var neutrals:Array<String> = ["gf"];

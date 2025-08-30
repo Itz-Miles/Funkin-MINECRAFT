@@ -140,8 +140,10 @@ class Paths
 
 	inline static function getLibraryPathForce(file:String, library:String)
 	{
-		var returnPath = '$library:assets/$library/$file';
-		return returnPath;
+		if (library.startsWith("levels/")) // very hacky, change later
+			return '${library.substring(7)}:assets/$library/$file';
+		else
+			return '$library:assets/$library/$file';
 	}
 
 	inline public static function getPreloadPath(file:String = '')
