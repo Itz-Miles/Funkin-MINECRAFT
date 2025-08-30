@@ -53,19 +53,11 @@
 	<library name="shared" preload="false"/>
 	<library name="aero_archways" preload="true"/>
 	<library name="camp_combat" preload="false"/>
-	<library name="forge" preload="false"/>
-	<library name="gates" preload="false"/>
-	<library name="rift" preload="false"/>
-	<library name="ruins" preload="false"/>
 
 	<assets path="assets/songs" library="songs"/>
 	<assets path="assets/shared" library="shared"/>
 	<assets path="assets/levels/aero_archways" library="aero_archways"/>
 	<assets path="assets/levels/camp_combat" library="camp_combat"/>
-	<assets path="assets/forge" library="forge"/>
-	<assets path="assets/gates" library="gates"/>
-	<assets path="assets/rift" library="rift"/>
-	<assets path="assets/ruins" library="ruins"/>
 
 	<!--</section>-->
 
