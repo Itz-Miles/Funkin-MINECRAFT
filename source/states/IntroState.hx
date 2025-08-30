@@ -51,6 +51,8 @@ class IntroState extends MusicBeatState
 
 		super.create();
 
+		Level.reloadList();
+
 		if (ClientPrefs.data.totems > 37)
 			ClientPrefs.data.totems = 37; // ok?
 

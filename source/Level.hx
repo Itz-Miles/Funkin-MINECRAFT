@@ -6,6 +6,12 @@ class Level
 	 * A list of the level directories found in the filesystem.
 	 */
 	public static var levelsList:Array<String>;
+
+	public static function reloadList()
+	{
+		levelsList = CoolUtil.coolTextFile(Paths.getPreloadPath('levels/levels.txt'));
+		trace('Levels: $levelsList');
+	}
 }
 
 typedef LevelData =
