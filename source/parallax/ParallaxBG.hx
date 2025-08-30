@@ -201,7 +201,7 @@ class ParallaxBG extends FlxTypedGroup<FlxSprite>
 						});
 				}
 
-			case 'camp':
+			case 'camp_combat':
 				FlxG.camera.bgColor = 0xffff7142;
 				var sky:FlxSprite = FlxGradient.createGradientFlxSprite(1920, 1080, [0xFFFF0000, 0x000000, 0xFF00059A]);
 				add(sky);

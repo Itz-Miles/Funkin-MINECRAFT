@@ -78,13 +78,11 @@ class ParallaxFG extends FlxTypedGroup<FlxBasic>
 
 				setPosition(-130, -70);
 
-			case 'camp':
+			case 'camp_combat':
 			case 'forge':
 			case 'gates':
 			case 'rift':
-				FlxG.camera.bgColor = 0xff5a0707;
 			case 'ruins':
-				FlxG.camera.bgColor = 0xff898336;
 		}
 	}
 
