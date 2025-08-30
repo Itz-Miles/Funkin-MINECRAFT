@@ -1,2 +1,2 @@
-areo_archways
+aero_archways
 camp_combat
