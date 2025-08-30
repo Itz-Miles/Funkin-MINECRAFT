@@ -9,3 +9,10 @@ import sys.io.*;
 #elseif js
 import js.html.*;
 #end
+import blockUI.*;
+import blockUI.Panel.ButtonData;
+import blockUI.Panel.ButtonState;
+
+import flixel.FlxG;
+import flixel.FlxSprite;
+import flixel.FlxObject;
