@@ -1,6 +1,0 @@
-arch
-camp
-forge
-gates
-rift
-ruins
