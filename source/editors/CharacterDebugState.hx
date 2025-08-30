@@ -20,13 +20,13 @@ class CharacterDebugState extends MusicBeatState
 		camUI = new FlxCamera();
 		camUI.bgColor.alpha = 0;
 		FlxG.cameras.add(camUI, false);
-		var bg:ParallaxBG = new ParallaxBG('arch');
+		var bg:ParallaxBG = new ParallaxBG('aero_archways');
 		add(bg);
 
 		char = new Character(0, 0, charToLoad);
 		add(char);
 
-		var fg:ParallaxFG = new ParallaxFG('arch');
+		var fg:ParallaxFG = new ParallaxFG('aero_archways');
 		fg.setPosition(-130, -70);
 		add(fg);
 

@@ -22,13 +22,12 @@ class ParallaxFG extends FlxTypedGroup<FlxBasic>
 	 */
 	public var y(default, set):Float = 0;
 
-	public function new(stage:String = 'arch', scrollMult:Float = 1.0)
+	public function new(stage:String = 'aero_archways', scrollMult:Float = 1.0)
 	{
 		super();
-
 		switch (stage)
 		{
-			case 'arch':
+			case 'aero_archways':
 				if (ClientPrefs.data.particlePercentage > 0)
 				{
 					var particles:Int = Std.int(ClientPrefs.data.particlePercentage * 200);
@@ -69,7 +68,7 @@ class ParallaxFG extends FlxTypedGroup<FlxBasic>
 				}
 				if (ClientPrefs.data.shaders)
 				{
-					var rays:FlxSprite = new FlxSprite(50, -30, Paths.image('archway/rays', stage));
+					var rays:FlxSprite = new FlxSprite(50, -30, Paths.image('rays', "levels/" + stage));
 					rays.scrollFactor.set(0.7 * scrollMult, 0.7 * scrollMult);
 					rays.blend = ADD;
 					rays.scale.set(1.4, 1.4);

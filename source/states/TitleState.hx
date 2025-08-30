@@ -34,7 +34,7 @@ class TitleState extends MusicBeatState
 
 		super.create();
 
-		var bg:ParallaxBG = new ParallaxBG('arch');
+		var bg:ParallaxBG = new ParallaxBG('aero_archways');
 		add(bg);
 
 		titleGF = new Character(710, 220, "titleGF", "shared");
@@ -70,7 +70,7 @@ class TitleState extends MusicBeatState
 
 		FlxTween.tween(splashText.scale, {x: 0.96, y: 0.96}, 0.1, {ease: FlxEase.cubeOut});
 
-		var fg:ParallaxFG = new ParallaxFG('arch');
+		var fg:ParallaxFG = new ParallaxFG('aero_archways');
 		fg.setPosition(-130, -70);
 		add(fg);
 
