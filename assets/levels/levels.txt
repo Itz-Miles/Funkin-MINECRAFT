@@ -1,1 +1,2 @@
 areo_archways
+camp_combat
