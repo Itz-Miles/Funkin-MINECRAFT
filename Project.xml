@@ -42,12 +42,13 @@
 	<classpath name="source"/>
 
 	<!--<section unless="sys">-->
-	<!--will change these later-->
+	<!--will change these later for a URL/File hybrid-->
 
 	<assets path="assets/characters" library="default"/>
 	<assets path="assets/data" library="default"/>
 	<assets path="assets/weeks" library="default"/>
 	<assets path="assets/levels" library="default"/>
+	<assets path="assets/stories" library="default"/>
 
 	<library name="songs" preload="true"/>
 	<library name="shared" preload="false"/>
