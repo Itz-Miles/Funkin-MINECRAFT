@@ -153,7 +153,11 @@ class TitleState extends MusicBeatState
 						ease: FlxEase.cubeIn,
 						onComplete: function(twn:FlxTween)
 						{
-							System.exit(0);
+							FlxG.sound.play(Paths.sound('fnf_loss_sfx'), 1);
+							new FlxTimer().start(0.25, function(tmr:FlxTimer)
+							{
+								System.exit(0);
+							});
 						}
 					});
 			}
