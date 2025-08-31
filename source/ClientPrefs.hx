@@ -10,6 +10,7 @@ import flixel.input.gamepad.FlxGamepadInputID;
 	public var fullscreen:Bool = false;
 	public var downScroll:Bool = false;
 	public var showFPS:Bool = true;
+	public var showBuildInfo:Bool = true;
 	public var autoPause:Bool = true;
 	public var variableTimestep:Bool = true;
 	public var antialiasing:Bool = true;

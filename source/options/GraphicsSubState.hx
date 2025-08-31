@@ -56,9 +56,12 @@ class GraphicsSubState extends BaseOptionsMenu
 		var option:Option = new Option('Performance Display', "Displays the game's performance metrics.", 'showFPS', 'bool');
 		addOption(option);
 		option.onChange = onChangeFPSCounter;
-		#end
+		/*
+			var option:Option = new Option('Build Information', "Displays the game's build information.", 'showBuildInfo', 'bool');
+			addOption(option);
+			option.onChange = onChangebuildInfo;
+		 */
 
-		#if !mobile
 		var option:Option = new Option('Fullscreen', "The game's window envelops the entire screen.", 'fullscreen', 'bool');
 		addOption(option);
 		option.onChange = onChangeFullscreen;
@@ -120,6 +123,12 @@ class GraphicsSubState extends BaseOptionsMenu
 	{
 		if (Main.fpsVar != null)
 			Main.fpsVar.visible = ClientPrefs.data.showFPS;
+	}
+
+	function onChangebuildInfo()
+	{
+		if (Main.buildInfo != null)
+			Main.buildInfo.visible = ClientPrefs.data.showBuildInfo;
 	}
 	#end
 

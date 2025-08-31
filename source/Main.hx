@@ -100,6 +100,12 @@ class Main extends Sprite
 		{
 			fpsVar.visible = ClientPrefs.data.showFPS;
 		}
+		/*
+			if (buildInfo != null)
+			{
+				buildInfo.visible = ClientPrefs.data.showBuildInfo;
+			}
+		 */
 		#end
 
 		#if desktop
