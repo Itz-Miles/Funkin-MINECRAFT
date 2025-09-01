@@ -7,7 +7,7 @@ import blockUI.Layer;
 import blockUI.Panel;
 import flixel.FlxG;
 
-class ChartEditor extends MusicBeatState
+class SongEditor extends MusicBeatState
 {
 	public static var GRID_SIZE:Int = 40;
 	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];

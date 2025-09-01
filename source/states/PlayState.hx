@@ -751,7 +751,7 @@ class PlayState extends MusicBeatState
 		if (!endingSong && !inCutscene && !isStoryMode)
 		{
 			if (FlxG.keys.justPressed.SEVEN)
-				openChartEditor();
+				openSongEditor();
 			if (FlxG.keys.justPressed.EIGHT)
 				LoadingState.loadAndSwitchState(new editors.CharacterDebugState(), true);
 		}
@@ -927,13 +927,13 @@ class PlayState extends MusicBeatState
 		}
 	}
 
-	function openChartEditor()
+	function openSongEditor()
 	{
 		cancelMusicFadeTween();
 		chartingMode = true;
 		camUI.fade(FlxG.camera.bgColor, 0.25, false, function()
 		{
-			FlxG.switchState(() -> new ChartEditor());
+			FlxG.switchState(() -> new SongEditor());
 		});
 	}
 
@@ -1187,7 +1187,7 @@ class PlayState extends MusicBeatState
 
 			if (chartingMode)
 			{
-				openChartEditor();
+				openSongEditor();
 				return;
 			}
 
