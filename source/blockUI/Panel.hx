@@ -70,8 +70,6 @@ class Panel extends FlxSpriteContainer
 	 */
 	private var _layerFunctions:Array<Array<Void->Void>> = new Array();
 
-	public var buttonStates:Array<ButtonState> = new Array();
-
 	/**
 	 * Constructs the panel using an array of layer definitions.
 	 * @param layers Array of Layers (x, y, width, height, color, text, font, size).
@@ -116,10 +114,22 @@ class Panel extends FlxSpriteContainer
 				addFunction(0, () -> _function(this));
 			return;
 		}
+		_layerFunctions.push([]);
 
 		var obj:FlxSprite = null;
 
-		if (layer.text == null)
+		if (layer.group != null)
+		{
+			var group:FlxSpriteContainer = new FlxSpriteContainer();
+
+			add(obj);
+			for (sublayer in layer.group)
+			{
+				addLayerInternal(sublayer);
+			}
+			obj = group;
+		}
+		else if (layer.text == null)
 		{
 			obj = new FlxSprite();
 			obj.makeGraphic(1, 1, layer.color); // low ram usage
@@ -127,6 +137,7 @@ class Panel extends FlxSpriteContainer
 			obj.scale.set(layer.width, layer.height);
 			obj.updateHitbox();
 			sprites.push(obj);
+			add(obj);
 		}
 		else
 		{
@@ -135,6 +146,7 @@ class Panel extends FlxSpriteContainer
 			text.text = layer.text;
 			fields.push(text);
 			obj = text;
+			add(obj);
 		}
 
 		if (layer.onClick != null || layer.onHover != null || layer.onRelease != null || layer.onPush != null)
@@ -152,9 +164,6 @@ class Panel extends FlxSpriteContainer
 			buttons.push(button);
 		}
 
-		add(obj);
-
-		_layerFunctions.push([]);
 		if (layer._functions != null)
 		{
 			for (_function in layer._functions)
@@ -168,6 +177,9 @@ class Panel extends FlxSpriteContainer
 
 		for (button in buttons)
 		{
+			if (button == null)
+				continue;
+
 			if (button.state == DISABLED || !button.sprite.visible)
 				continue;
 

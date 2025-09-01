@@ -21,4 +21,5 @@ typedef Layer =
 	var ?onPush:FlxSprite->Void;
 	var ?onHover:FlxSprite->Void;
 	var ?onRelease:FlxSprite->Void;
+	var ?group:Array<Layer>;
 }
