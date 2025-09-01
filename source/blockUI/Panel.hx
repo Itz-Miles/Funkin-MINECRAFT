@@ -106,7 +106,7 @@ class Panel extends FlxSpriteContainer
 	/**
 	 * Internal helper to handle layer creation logic for both constructor and addLayer().
 	 */
-	private function addLayerInternal(layer:Layer):Void
+	private function addLayerInternal(layer:Layer, ?parent:FlxSpriteContainer):Void
 	{
 		if (isOnlyFunctions(layer))
 		{
@@ -125,7 +125,7 @@ class Panel extends FlxSpriteContainer
 			add(obj);
 			for (sublayer in layer.group)
 			{
-				addLayerInternal(sublayer);
+				addLayerInternal(sublayer, group);
 			}
 			obj = group;
 		}
@@ -169,6 +169,9 @@ class Panel extends FlxSpriteContainer
 			for (_function in layer._functions)
 				addFunction(_layerFunctions.length - 1, () -> _function(obj));
 		}
+
+		if (parent != null)
+			parent.add(obj);
 	}
 
 	override public function update(elapsed:Float)
