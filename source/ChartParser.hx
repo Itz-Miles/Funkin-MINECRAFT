@@ -2,7 +2,7 @@ package;
 
 import flixel.math.FlxMath;
 import Section.SwagSection;
-import Song.SwagSong;
+import Song.SongData;
 
 using StringTools;
 
@@ -13,7 +13,7 @@ class ChartParser
 	 * used with the current chart format that we have (from 0.2.8);
 	 * @return an array full of notes from your chart data
 	 */
-	public static function parseSongChart(songData:SwagSong):Array<Note>
+	public static function parseSongChart(songData:SongData):Array<Note>
 	{
 		var lane:Array<SwagSection>;
 		var unspawnNotes:Array<Note> = [];

@@ -5,7 +5,7 @@ import parallax.ParallaxFG;
 #if desktop
 import Discord.DiscordClient;
 #end
-import Song.SwagSong;
+import Song.SongData;
 import flixel.FlxCamera;
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -50,7 +50,7 @@ class PlayState extends MusicBeatState
 	var bg:ParallaxBG;
 	var fg:ParallaxFG;
 
-	public static var SONG:SwagSong = null;
+	public static var SONG:SongData = null;
 	public static var isStoryMode:Bool = false;
 	public static var storyWeek:Int = 0;
 	public static var storyPlaylist:Array<String> = [];

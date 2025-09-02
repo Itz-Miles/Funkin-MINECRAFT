@@ -6,7 +6,7 @@ import lime.utils.Assets;
 
 using StringTools;
 
-typedef SwagSong =
+typedef SongData =
 {
 	var name:String;
 	var sections:Array<SwagSection>;
@@ -108,7 +108,7 @@ class Song
 		this.bpm = bpm;
 	}
 
-	public static function loadFromJson(jsonInput:String, ?folder:String):SwagSong
+	public static function loadFromJson(jsonInput:String, ?folder:String):SongData
 	{
 		var rawJson = null;
 
@@ -129,9 +129,9 @@ class Song
 		return songJson;
 	}
 
-	public static function parseJSON(rawJson:String):SwagSong
+	public static function parseJSON(rawJson:String):SongData
 	{
-		var swag:SwagSong = cast Json.parse(rawJson).song;
+		var swag:SongData = cast Json.parse(rawJson).song;
 		return swag;
 	}
 }

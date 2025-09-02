@@ -1,6 +1,6 @@
 package;
 
-import Song.SwagSong;
+import Song.SongData;
 
 typedef BPMChangeEvent =
 {
@@ -146,7 +146,7 @@ class Conductor
 		return Math.floor(getStepRounded(time) * 0.25);
 	}
 
-	public static function mapBPMChanges(song:SwagSong)
+	public static function mapBPMChanges(song:SongData)
 	{
 		bpmChangeMap = [];
 
@@ -175,7 +175,7 @@ class Conductor
 		trace("new BPM map BUDDY " + bpmChangeMap);
 	}
 
-	static function getSectionBeats(song:SwagSong, section:Int)
+	static function getSectionBeats(song:SongData, section:Int)
 	{
 		var val:Null<Float> = null;
 		if (song.sections[section] != null)
