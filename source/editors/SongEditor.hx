@@ -321,4 +321,41 @@ class SongEditor extends MusicBeatState
 			FlxG.switchState(() -> new FreeplayState());
 		}
 	}
+
+	// static function to create a button with x, y, width, height, text, border color, auto font size, and onClick function
+	public static function button(x:Float, y:Float, width:Float, height:Float, text:String, borderColor:Int, onClick:Void->Void):Dynamic
+	{
+		var button =
+			{
+				x: x,
+				y: y,
+				width: width,
+				height: height,
+				color: borderColor,
+				size: Std.int(Math.min((width / text.length * 1.1), height * 0.8)),
+				font: Paths.font("Minecrafter.ttf"),
+				onPush: function(obj)
+				{
+					obj.color = FlxColor.GRAY;
+				},
+				onHover: function(obj)
+				{
+					obj.color = FlxColor.GRAY;
+				},
+				onRelease: function(obj)
+				{
+					obj.color = FlxColor.WHITE;
+					if (onClick != null)
+						onClick();
+				},
+				_functions: [
+					function(obj)
+					{
+						obj.color = FlxColor.WHITE;
+					},
+				]
+			};
+
+		return button;
+	}
 }
