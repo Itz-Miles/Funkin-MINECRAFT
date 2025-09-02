@@ -1,5 +1,6 @@
 package blockUI;
 
+import flixel.text.FlxInputText;
 import flixel.FlxSprite;
 import flixel.text.FlxText.FlxTextAlign;
 import flixel.util.FlxColor;
@@ -21,5 +22,6 @@ typedef Layer =
 	var ?onPush:FlxSprite->Void;
 	var ?onHover:FlxSprite->Void;
 	var ?onRelease:FlxSprite->Void;
+	var ?onChange:FlxInputText->Void;
 	var ?group:Array<Layer>;
 }

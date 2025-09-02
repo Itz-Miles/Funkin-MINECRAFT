@@ -1,5 +1,6 @@
 package blockUI;
 
+import flixel.text.FlxInputText;
 import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.FlxSprite;
@@ -128,6 +129,20 @@ class Panel extends FlxSpriteContainer
 				addLayerInternal(sublayer, group);
 			}
 			obj = group;
+		}
+		if (layer.onChange != null)
+		{
+			var input = new FlxInputText(layer.x, layer.y, layer.width, layer.text, layer.size, layer.color);
+			input.setFormat(layer.font, layer.size, layer.color, layer.align);
+			input.backgroundColor = 0xFF000000;
+			input.fieldBorderColor = 0xFFFFFFFF;
+			input.fieldBorderThickness = 4;
+
+			input.onTextChange.add((_, c) -> layer.onChange(input));
+
+			fields.push(input);
+			obj = input;
+			add(obj);
 		}
 		else if (layer.text == null)
 		{
