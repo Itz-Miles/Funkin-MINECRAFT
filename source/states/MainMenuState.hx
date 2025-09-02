@@ -39,7 +39,6 @@ class MainMenuState extends MusicBeatState
 		Conductor.bpm = 100;
 
 		WeekData.reloadWeekFiles(true);
-		Difficulty.resetList();
 
 		#if desktop
 		DiscordClient.changePresence("In the Menus", null);
@@ -344,13 +343,9 @@ class MainMenuState extends MusicBeatState
 			PlayState.storyPlaylist = songArray;
 			PlayState.isStoryMode = true;
 
-			var diffic = Difficulty.getFilePath(1);
-			if (diffic == null)
-				diffic = '';
-
 			PlayState.storyDifficulty = 1;
 
-			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase() + diffic, PlayState.storyPlaylist[0].toLowerCase());
+			PlayState.SONG = Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase(), PlayState.storyPlaylist[0].toLowerCase());
 			PlayState.campaignScore = 0;
 			PlayState.campaignMisses = 0;
 		}

@@ -15,7 +15,7 @@ class GameWorld extends MusicBeatState
 	/**
 	 * The current Difficulty
 	 */
-	public static var DIFFICULTY:String = "normal"; // replace with Difficulty enum later
+	public static var DIFFICULTY:Difficulty = NORMAL; // replace with Difficulty enum later
 
 	/**
 	 * Whether or not the game is in Story Mode

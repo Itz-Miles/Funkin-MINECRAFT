@@ -35,7 +35,7 @@ class ResetScoreSubState extends MusicBeatSubstate
 		{
 			name = WeekData.weeksLoaded.get(WeekData.weeksList[week]).weekName;
 		}
-		name += ' (' + Difficulty.getString(difficulty) + ')?';
+		// name += ' (' + Difficulty.getString(difficulty) + ')?';
 
 		bg = new FlxSprite().makeGraphic(1, 1, FlxColor.WHITE);
 		bg.origin.set();
