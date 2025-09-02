@@ -1,5 +1,7 @@
 package states;
 
+import Song.SongData;
+
 /**
  * The Game World state, used for gameplay.
  */
@@ -8,7 +10,7 @@ class GameWorld extends MusicBeatState
 	/**
 	 * The currently loaded SongData
 	 */
-	public static var SONG:String = "song"; // replace with SongData typedef later
+	public static var SONG:SongData;
 
 	/**
 	 * The current Difficulty
