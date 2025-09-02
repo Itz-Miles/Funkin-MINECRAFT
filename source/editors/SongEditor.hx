@@ -10,13 +10,18 @@ import flixel.FlxG;
 class SongEditor extends MusicBeatState
 {
 	public static var GRID_SIZE:Int = 40;
-	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info'];
-	static var bg:Int = 0xFFFFFFFF;
-	static var bdr:Int = 0xFFFFFFFF;
+	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info', 'auto'];
+
+	// UI colors
+	var BTN_RIM:Int = 0xff5f697a;
+	var BTN_FACE:Int = 0xffcedae4;
+
+	// margin
 	static var margin = 10;
 
 	// UI VARIABLES
-	var songName:String = "";
+	var songName:String = "stalstruck";
+	var songAuthor:String = "It'z Miles";
 
 	// PANELS
 	var tabs:Array<Panel>;
@@ -55,7 +60,7 @@ class SongEditor extends MusicBeatState
 			y: 140,
 			width: 700 - margin * 2,
 			height: 520 - margin * 2,
-			color: 0xFF353535
+			color: 0xFF454545
 		}
 	];
 
@@ -82,14 +87,14 @@ class SongEditor extends MusicBeatState
 					y: box[2].y + 50,
 					width: tabWidth,
 					height: 20,
-					color: 0xff5f697a,
+					color: BTN_RIM,
 				},
 				{
 					x: box[2].x + margin + ((tabWidth + margin) * i),
 					y: box[2].y + 10,
 					width: tabWidth,
 					height: 50,
-					color: 0xFFcedae4,
+					color: BTN_FACE,
 					onPush: function(obj)
 					{
 						for (button in uiBox.buttons)
@@ -107,12 +112,6 @@ class SongEditor extends MusicBeatState
 								tabs[i].visible = tabs[i].active = true;
 							}
 						}
-						/* hot potato
-							obj.moves = uiBox.fields[i].moves = uiBox.sprites[box.length + i * 2].moves = true;
-							obj.velocity.y = uiBox.fields[i].velocity.y = uiBox.sprites[box.length + i * 2].velocity.y  = Math.random() * -250;
-							obj.velocity.x = uiBox.fields[i].velocity.x = uiBox.sprites[box.length + i * 2].velocity.x  = Math.random() * -50;
-							obj.acceleration.y = uiBox.fields[i].acceleration.y  = uiBox.sprites[box.length + i * 2].acceleration.y = 300;
-						 */
 
 						FlxTween.completeTweensOf(uiBox.sprites[box.length + i * 2]);
 						FlxTween.completeTweensOf(obj);
@@ -174,29 +173,35 @@ class SongEditor extends MusicBeatState
 		}
 		tabs[0].addLayers([
 			{
-				x: box[4].x + margin,
-				y: box[4].y + margin,
+				x: box[4].x + margin * 2,
+				y: box[4].y + margin * 2,
 				width: (box[4].width / 3) - margin,
 				height: 36,
-				color: 0xFF000000
-			},
-			{
-				x: box[4].x + margin,
-				y: box[4].y + margin,
-				width: (box[4].width / 3) - margin,
-				height: 6,
-				color: 0xFF0F0F0F
-			},
-			{
-				x: box[4].x + margin + 5,
-				y: box[4].y + margin,
-				width: (box[4].width / 3) - margin,
-				height: 36,
-				text: "stalstruck",
+				text: songName,
+				onChange: function(obj)
+				{
+					songName = obj.text;
+					trace("Song name changed to: " + songName);
+				},
 				font: Paths.font("Monocraft.ttf"),
 				color: 0xFFFFFFFF,
 				size: 24
-			}
+			},
+			{
+				x: box[4].x + margin * 2,
+				y: box[4].y + margin * 5 + 36,
+				width: (box[4].width / 3) - margin,
+				height: 36,
+				text: songAuthor,
+				onChange: function(obj)
+				{
+					songAuthor = obj.text;
+					trace("Song author changed to: " + songAuthor);
+				},
+				font: Paths.font("Monocraft.ttf"),
+				color: 0xFFFFFFFF,
+				size: 24
+			},
 		]);
 		tabs[3].addLayer(
 			{
@@ -237,6 +242,67 @@ class SongEditor extends MusicBeatState
 				Zoom: 1.0x",
 				size: 20,
 			});
+		// autosave panel, five long boxes with save data (dummy)
+
+		for (i in 1...6)
+		{
+			tabs[5].addLayers([
+				{
+					x: box[2].x + margin * 2,
+					y: box[2].y + 90 + ((box[2].height - 100) / 5) * (i - 1),
+					width: box[2].width - margin * 5 - 100,
+					height: (box[2].height - 100) / 5 - margin,
+					color: 0xff505050
+				},
+				{
+					x: box[2].x + margin * 4,
+					y: box[2].y + 100 + ((box[2].height - 100) / 5) * (i - 1),
+					width: box[2].width - margin * 5 - 100,
+					height: (box[2].height - 100) / 5 - margin,
+					color: 0xffdcdcdc,
+					font: Paths.font("Monocraft.ttf"),
+					align: LEFT,
+					text: "Autosave Slot " + i + "\nSong: " + songName,
+					size: 26
+				},
+				{
+					x: box[2].x + box[2].width - margin * 2 - 100,
+					y: box[2].y + 90 + ((box[2].height - 100) / 5) * (i - 1),
+					width: 100,
+					height: ((box[2].height - 100) / 5 - margin) / 2 - margin / 2,
+					color: 0xff637a5f,
+				},
+				{
+					x: box[2].x + box[2].width - margin * 2 - 100,
+					y: box[2].y + 140 + ((box[2].height - 100) / 5) * (i - 1),
+					width: 100,
+					height: ((box[2].height - 100) / 5 - margin) / 2 - margin / 2,
+					color: 0xffa83232,
+				},
+				{
+					x: box[2].x + box[2].width - margin * 2 - 100,
+					y: box[2].y + 90 + ((box[2].height - 100) / 5) * (i - 1),
+					width: 100,
+					height: ((box[2].height - 100) / 5 - margin) / 2 - margin / 2,
+					color: 0xff44BD44,
+					font: Paths.font("Monocraft.ttf"),
+					align: CENTER,
+					text: "Load",
+					size: 20
+				},
+				{
+					x: box[2].x + box[2].width - margin * 2 - 100,
+					y: box[2].y + 140 + ((box[2].height - 100) / 5) * (i - 1),
+					width: 100,
+					height: ((box[2].height - 100) / 5 - margin) / 2 - margin / 2,
+					color: 0xffFF4444,
+					font: Paths.font("Monocraft.ttf"),
+					align: CENTER,
+					text: "Erase",
+					size: 20
+				}
+			]);
+		}
 
 		for (tab in tabs)
 		{
