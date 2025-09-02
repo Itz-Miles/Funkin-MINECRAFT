@@ -1,6 +1,6 @@
 package;
 
-import Section.SwagSection;
+import Section.SectionData;
 import haxe.Json;
 import lime.utils.Assets;
 
@@ -9,7 +9,8 @@ using StringTools;
 typedef SongData =
 {
 	var name:String;
-	var sections:Array<SwagSection>;
+	var ?author:String;
+	var sections:Array<SectionData>;
 	var events:Array<Dynamic>;
 	var bpm:Float;
 	var needsVoices:Bool;
@@ -25,7 +26,7 @@ typedef SongData =
 class Song
 {
 	public var name:String = "stalstruck";
-	public var sections:Array<SwagSection> = [];
+	public var sections:Array<SectionData> = [];
 	public var events:Array<Dynamic> = [];
 	public var bpm:Float = 159;
 	public var needsVoices:Bool = false;
@@ -80,7 +81,7 @@ class Song
 			songJson.events = [];
 			for (secNum in 0...songJson.sections.length)
 			{
-				var sec:SwagSection = songJson.sections[secNum];
+				var sec:SectionData = songJson.sections[secNum];
 
 				var i:Int = 0;
 				var notes:Array<Dynamic> = sec.notes;

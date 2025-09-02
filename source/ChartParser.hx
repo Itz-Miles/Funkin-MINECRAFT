@@ -1,7 +1,7 @@
 package;
 
 import flixel.math.FlxMath;
-import Section.SwagSection;
+import Section.SectionData;
 import Song.SongData;
 
 using StringTools;
@@ -15,7 +15,7 @@ class ChartParser
 	 */
 	public static function parseSongChart(songData:SongData):Array<Note>
 	{
-		var lane:Array<SwagSection>;
+		var lane:Array<SectionData>;
 		var unspawnNotes:Array<Note> = [];
 
 		lane = songData.sections;

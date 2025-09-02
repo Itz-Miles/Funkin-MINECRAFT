@@ -1,6 +1,6 @@
 package;
 
-typedef SwagSection =
+typedef SectionData =
 {
 	var notes:Array<Dynamic>;
 	var beats:Float;
