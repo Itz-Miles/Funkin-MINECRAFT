@@ -752,8 +752,6 @@ class PlayState extends MusicBeatState
 		{
 			if (FlxG.keys.justPressed.SEVEN)
 				openSongEditor();
-			if (FlxG.keys.justPressed.EIGHT)
-				LoadingState.loadAndSwitchState(new editors.CharacterDebugState(), true);
 		}
 
 		var mult:Float = FlxMath.lerp(1, iconP1.scale.x, CoolUtil.boundTo(1 - (elapsed * 9), 0, 1));
