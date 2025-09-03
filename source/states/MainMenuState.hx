@@ -94,7 +94,7 @@ class MainMenuState extends MusicBeatState
 						function(obj)
 						{
 							FlxTween.completeTweensOf(obj);
-							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
 						},
 						function(obj)
 						{
@@ -120,13 +120,13 @@ class MainMenuState extends MusicBeatState
 						{
 							obj.setPosition(-80, 130 + (i * 94) + (i * 10));
 							obj.alpha = 0;
-							FlxTween.tween(obj, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.42 + (i * 0.1)});
+							FlxTween.tween(obj, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
 							obj.offset.y = -43;
 						},
 						function(obj)
 						{
 							FlxTween.completeTweensOf(obj);
-							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
 						},
 						function(obj)
 						{
@@ -168,9 +168,6 @@ class MainMenuState extends MusicBeatState
 						obj.offset.y = -47;
 					}
 				});
-		}
-		for (i in 0...5)
-		{
 			sideBar.addLayer(
 				{ // button
 					width: 340,
@@ -191,7 +188,7 @@ class MainMenuState extends MusicBeatState
 						function(obj)
 						{
 							FlxTween.completeTweensOf(obj);
-							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.3 - (i * 0.1)});
+							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
 						},
 						function(obj)
 						{
@@ -208,6 +205,7 @@ class MainMenuState extends MusicBeatState
 					]
 				});
 		}
+
 		sideBar.runAcrossLayers(0);
 		add(sideBar);
 
