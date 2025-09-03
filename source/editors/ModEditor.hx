@@ -8,6 +8,11 @@ class ModEditor extends MusicBeatState
 	override function create()
 	{
 		super.create();
+
+		var header:Panel = new Panel(LayerData.HEADER);
+		header.text = "modify game content";
+		header.runAcrossLayers(0);
+		add(header);
 	}
 
 	override function update(elapsed:Float)
