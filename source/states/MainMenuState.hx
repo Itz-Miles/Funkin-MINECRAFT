@@ -77,133 +77,69 @@ class MainMenuState extends MusicBeatState
 
 		for (i in 0...5)
 		{
-			sideBar.addLayer(
-				{
-					width: 340,
-					height: 84,
-					color: 0xCF0F0F0F,
-					_functions: [
-						function(obj)
-						{
-							obj.setPosition(-80, 140 + (i * 94) + (i * 10));
-							if (ClientPrefs.data.shaders)
-								obj.blend = MULTIPLY;
-							obj.alpha = 0;
-							FlxTween.tween(obj, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
-						},
-						function(obj)
-						{
-							FlxTween.completeTweensOf(obj);
-							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
-						},
-						function(obj)
-						{
-							FlxTween.completeTweensOf(obj);
-							if (curSelection != i)
+			for (j in 0...3)
+			{
+				sideBar.addLayer(
+					{
+						width: 340,
+						height: 84,
+						color: j == 0 ? 0xCF0F0F0F : j == 1 ? 0xC1444444 : 0xFFFFFFFF,
+						text: j == 2 ? labels[i] : null,
+						align: CENTER,
+						font: Paths.font("Monocraft.ttf"),
+						size: 48,
+						_functions: [
+							function(obj)
 							{
-								FlxTween.tween(obj, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
-							}
-							else
-							{
-								FlxTween.tween(obj, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
-							}
-						}
-					]
-				});
-			sideBar.addLayer(
-				{
-					width: 340,
-					height: 84,
-					color: 0xC1444444,
-					_functions: [
-						function(obj)
-						{
-							obj.setPosition(-80, 130 + (i * 94) + (i * 10));
-							obj.alpha = 0;
-							FlxTween.tween(obj, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
-							obj.offset.y = -43;
-						},
-						function(obj)
-						{
-							FlxTween.completeTweensOf(obj);
-							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
-						},
-						function(obj)
-						{
-							FlxTween.completeTweensOf(obj);
-							if (curSelection != i)
-							{
-								FlxTween.tween(obj, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
-							}
-							else
-							{
-								FlxTween.tween(obj, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
-							}
-						}
+								obj.setPosition(-80, 140 + (i * 94) + (i * 10));
 
-					],
-					onHover: function(obj)
-					{
-						curSelection = i;
-						for (button in sideBar.buttons)
-							button.onRelease();
+								if (j == 0 && ClientPrefs.data.shaders)
+									obj.blend = MULTIPLY;
+								else if (j == 1)
+									obj.offset.y = -35;
+								obj.alpha = 0;
+								FlxTween.tween(obj, {alpha: j == 2 ? 0.4 : 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
+							},
+							function(obj)
+							{
+								FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
+							},
+							function(obj)
+							{
+								FlxTween.completeTweensOf(obj);
+								if (curSelection != i)
+									FlxTween.tween(obj, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
+								else
+									FlxTween.tween(obj, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
+							},
+						],
+						onHover: j == 1 ? function(obj)
+						{
+							curSelection = i;
+							for (button in sideBar.buttons)
+								button.onRelease();
 
-						sideBar.fields[i].alpha = 1;
-						sideBar.fields[i].offset.y = 2;
-						obj.offset.y = -39;
-					},
-					onRelease: function(obj)
-					{
-						if (curSelection != i)
+							sideBar.fields[i].alpha = 1;
+							sideBar.fields[i].offset.y = 2;
+							obj.offset.y = -30;
+						} : null,
+						onRelease: j == 1 ? function(obj)
 						{
-							sideBar.fields[i].alpha = 0.4;
-							sideBar.fields[i].offset.y = 0;
-							obj.offset.y = -43;
-						}
-					},
-					onClick: function(obj)
-					{
-						select();
-						sideBar.fields[i].offset.y = -2;
-						obj.offset.y = -47;
-					}
-				});
-			sideBar.addLayer(
-				{ // button
-					width: 340,
-					height: 84,
-					text: "",
-					size: 48,
-					align: CENTER,
-					font: Paths.font("Monocraft.ttf"),
-					_functions: [
-						function(obj)
-						{
-							var text:FlxText = cast obj;
-							text.setPosition(-80, 140 + (i * 94) + (i * 10));
-							text.alpha = 0;
-							text.text = labels[i];
-							FlxTween.tween(obj, {alpha: 0.4, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
-						},
-						function(obj)
-						{
-							FlxTween.completeTweensOf(obj);
-							FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
-						},
-						function(obj)
-						{
-							FlxTween.completeTweensOf(obj);
 							if (curSelection != i)
 							{
-								FlxTween.tween(obj, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
+								sideBar.fields[i].alpha = 0.4;
+								sideBar.fields[i].offset.y = 0;
+								obj.offset.y = -35;
 							}
-							else
-							{
-								FlxTween.tween(obj, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
-							}
-						}
-					]
-				});
+						} : null,
+						onClick: j == 1 ? function(obj)
+						{
+							select();
+							sideBar.fields[i].offset.y = -2;
+							obj.offset.y = -38;
+						} : null
+					});
+			}
 		}
 
 		sideBar.runAcrossLayers(0);
