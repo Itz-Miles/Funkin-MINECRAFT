@@ -13,5 +13,10 @@ class ModEditor extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
+		if (controls.BACK)
+		{
+			FlxG.switchState(new MainMenuState());
+		}
 	}
 }
