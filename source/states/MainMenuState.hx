@@ -30,7 +30,7 @@ class MainMenuState extends MusicBeatState
 
 	var backed:Bool = false;
 
-	static var labels:Array<String> = ['story mode', 'freeplay', 'settings', 'credits'];
+	static var labels:Array<String> = ['story mode', 'freeplay', 'settings', 'modpacks', 'credits'];
 	public static var curSelection(default, set):Int = 5;
 	static var selected:Bool = true;
 
@@ -75,17 +75,17 @@ class MainMenuState extends MusicBeatState
 		}
 		sideBar = new Panel();
 
-		for (i in 0...4)
+		for (i in 0...5)
 		{
 			sideBar.addLayer(
 				{
-					width: 326,
-					height: 96,
+					width: 340,
+					height: 84,
 					color: 0xCF0F0F0F,
 					_functions: [
 						function(obj)
 						{
-							obj.setPosition(-80, 160 + (i * 108) + (i * 7));
+							obj.setPosition(-80, 140 + (i * 94) + (i * 10));
 							if (ClientPrefs.data.shaders)
 								obj.blend = MULTIPLY;
 							obj.alpha = 0;
@@ -112,15 +112,16 @@ class MainMenuState extends MusicBeatState
 				});
 			sideBar.addLayer(
 				{
-					width: 326,
-					height: 96,
+					width: 340,
+					height: 84,
 					color: 0xC1444444,
 					_functions: [
 						function(obj)
 						{
-							obj.setPosition(-80, 150 + (i * 108) + (i * 7));
+							obj.setPosition(-80, 130 + (i * 94) + (i * 10));
 							obj.alpha = 0;
 							FlxTween.tween(obj, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.42 + (i * 0.1)});
+							obj.offset.y = -43;
 						},
 						function(obj)
 						{
@@ -146,10 +147,10 @@ class MainMenuState extends MusicBeatState
 						curSelection = i;
 						for (button in sideBar.buttons)
 							button.onRelease();
-						
+
 						sideBar.fields[i].alpha = 1;
 						sideBar.fields[i].offset.y = 2;
-						obj.offset.y = -44;
+						obj.offset.y = -39;
 					},
 					onRelease: function(obj)
 					{
@@ -157,23 +158,23 @@ class MainMenuState extends MusicBeatState
 						{
 							sideBar.fields[i].alpha = 0.4;
 							sideBar.fields[i].offset.y = 0;
-							obj.offset.y = -48;
+							obj.offset.y = -43;
 						}
 					},
 					onClick: function(obj)
 					{
 						select();
 						sideBar.fields[i].offset.y = -2;
-						obj.offset.y = -52;
+						obj.offset.y = -47;
 					}
 				});
 		}
-		for (i in 0...4)
+		for (i in 0...5)
 		{
 			sideBar.addLayer(
 				{ // button
-					width: 326,
-					height: 96,
+					width: 340,
+					height: 84,
 					text: "",
 					size: 48,
 					align: CENTER,
@@ -182,9 +183,8 @@ class MainMenuState extends MusicBeatState
 						function(obj)
 						{
 							var text:FlxText = cast obj;
-							text.setPosition(-80, 165 + (i * 108) + (i * 7));
+							text.setPosition(-80, 140 + (i * 94) + (i * 10));
 							text.alpha = 0;
-							text.letterSpacing = -3;
 							text.text = labels[i];
 							FlxTween.tween(obj, {alpha: 0.4, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
 						},
@@ -228,10 +228,10 @@ class MainMenuState extends MusicBeatState
 	@:noCompletion
 	static function set_curSelection(value:Int):Int
 	{
-		if (value > 3)
+		if (value > labels.length - 1)
 			value = 0;
 		if (value < 0)
-			value = 3;
+			value = labels.length - 1;
 
 		if (!selected && curSelection != value)
 		{
@@ -368,6 +368,8 @@ class MainMenuState extends MusicBeatState
 				case 2:
 					FlxG.switchState(() -> new options.OptionsState());
 				case 3:
+					FlxG.switchState(() -> new ModEditor());
+				case 4:
 					FlxG.switchState(() -> new CreditsState());
 			}
 		});
