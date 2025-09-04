@@ -187,6 +187,13 @@ class LayerData
 	{
 		return [
 			{ // button shadow
+				x: x - 2,
+				y: y - 2 + rimSize,
+				width: width + 4,
+				height: height + 4,
+				color: FlxColor.BLACK,
+			},
+			{ // button shadow
 				x: x,
 				y: y + rimSize,
 				width: width,
@@ -195,9 +202,9 @@ class LayerData
 			},
 			{ // button rim
 				x: x,
-				y: y,
+				y: y + rimSize,
 				width: width,
-				height: height + rimSize,
+				height: height,
 				color: FlxColor.fromInt(color).getDarkened(0.3),
 			},
 			{ // button backing
@@ -213,7 +220,28 @@ class LayerData
 				width: width - borderSize * 2,
 				height: height - borderSize * 2,
 				color: color,
-				onClick: onClick
+				onClick: function(obj)
+				{
+					obj.last.last.last.sprite.offset.y = ((-height - rimSize) * 0.5) + rimSize * 0.5;
+					obj.last.sprite.offset.y = (-height * 0.5) - rimSize * 0.5;
+					obj.sprite.offset.y = (-height * 0.5 + (borderSize)) - rimSize * 0.5;
+					obj.next.sprite.offset.y = -rimSize * 0.5;
+					onClick(obj);
+				},
+				onHover: function(obj)
+				{
+					obj.last.last.last.sprite.offset.y = ((-height - rimSize) * 0.5) - rimSize * 0.5;
+					obj.last.sprite.offset.y = (-height * 0.5) + rimSize * 0.5;
+					obj.sprite.offset.y = (-height * 0.5 + (borderSize)) + rimSize * 0.5;
+					obj.next.sprite.offset.y = rimSize * 0.5;
+				},
+				onRelease: function(obj)
+				{
+					obj.last.last.last.sprite.offset.y = ((-height - rimSize) * 0.5);
+					obj.last.sprite.offset.y = (-height * 0.5);
+					obj.sprite.offset.y = (-height * 0.5 + (borderSize));
+					obj.next.sprite.offset.y = 0;
+				}
 			},
 			{ // button text
 				x: x + borderSize * 2,
@@ -225,14 +253,6 @@ class LayerData
 				font: Paths.font("Monocraft.ttf"),
 				size: Std.int(Math.min((width - borderSize * 4) / (text.length * 0.8), (height - 4 - borderSize * 4) * 0.75)),
 				align: CENTER,
-				onHover: function(obj)
-				{
-					obj.sprite.offset.y = rimSize * 0.5;
-				},
-				onRelease: function(obj)
-				{
-					obj.sprite.offset.y = 0;
-				}
 			},
 		];
 	}

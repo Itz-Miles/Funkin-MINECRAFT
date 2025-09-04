@@ -56,6 +56,13 @@ class ModEditor extends MusicBeatState
 					color: 0xFF222222,
 				},
 				{
+					x: 60,
+					y: 160,
+					width: 1160,
+					height: 8,
+					color: 0xFF000000,
+				},
+				{
 					x: 70,
 					y: 170,
 					width: 1140,
@@ -81,17 +88,25 @@ class ModEditor extends MusicBeatState
 
 			popup.addLayers(LayerData.createButton("ok, that's pretty cool!", 60, 590, 575, 50, 4, 8, 0xFF00AA00, function(obj)
 			{
-				new FlxTimer().start(0.15, function(tmr)
-				{
-					popup.kill();
-				});
+				FlxG.sound.play(Paths.sound('confirmMenu'), 0.3);
+				/*
+					new FlxTimer().start(2.5, function(tmr)
+					{
+						//popup.kill();
+					});
+				 */
 			}));
 
 			popup.addLayers(LayerData.createButton("do NOT show me this again.", 645, 590, 575, 50, 4, 8, 0xFFAA0000, function(obj)
 			{
+				FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 				FlxG.save.data.showModEditorPopup = false;
 				FlxG.save.flush();
-				popup.kill();
+
+				new FlxTimer().start(0.25, function(tmr)
+				{
+					popup.kill();
+				});
 			}));
 			add(popup);
 
