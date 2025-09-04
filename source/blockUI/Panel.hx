@@ -27,6 +27,13 @@ typedef ButtonData =
 	var isPush:Bool;
 }
 
+typedef LayerObject =
+{
+	var sprite:FlxSprite;
+	var last:Null<LayerObject>;
+	var next:Null<LayerObject>;
+}
+
 /**
  * A simple UI panel composed of multiple colored sprite layers.
  */
@@ -69,7 +76,9 @@ class Panel extends FlxSpriteContainer
 	/**
 	 * An array of each layer's functions. [0] is the panel itself.
 	 */
-	private var _layerFunctions:Array<Array<Void->Void>> = new Array();
+	private var _layerFunctions:Array<Array<Void->Void>> = [];
+
+	public var layers:Array<LayerObject> = [];
 
 	/**
 	 * Constructs the panel using an array of layer definitions.
@@ -111,8 +120,25 @@ class Panel extends FlxSpriteContainer
 	{
 		if (isOnlyFunctions(layer))
 		{
+			var layerObj:LayerObject =
+				{
+					sprite: this,
+					last: null,
+					next: null
+				};
+			layerObj.last = layerObj;
+			layerObj.next = layerObj;
+
+			layers.push(layerObj);
+
+			if (layers.length > 0 && layers[layers.length - 1] != null)
+			{
+				layers[layers.length - 1].next = layerObj;
+				layerObj.last = layers[layers.length - 1];
+			}
+
 			for (_function in layer._functions)
-				addFunction(0, () -> _function(this));
+				addFunction(0, () -> _function(layerObj));
 			return;
 		}
 		_layerFunctions.push([]);
@@ -164,16 +190,33 @@ class Panel extends FlxSpriteContainer
 			add(obj);
 		}
 
+		var layerObj:LayerObject =
+			{
+				sprite: obj,
+				last: null,
+				next: null
+			};
+		layerObj.last = layerObj;
+		layerObj.next = layerObj;
+
+		if (layers.length > 0 && layers[layers.length - 1] != null)
+		{
+			layers[layers.length - 1].next = layerObj;
+			layerObj.last = layers[layers.length - 1];
+		}
+
+		layers.push(layerObj);
+
 		if (layer.onClick != null || layer.onHover != null || layer.onRelease != null || layer.onPush != null)
 		{
 			var button:ButtonData =
 				{
 					sprite: obj,
 					state: RELEASED,
-					onClick: () -> if (layer.onClick != null) layer.onClick(obj),
-					onHover: () -> if (layer.onHover != null) layer.onHover(obj),
-					onRelease: () -> if (layer.onRelease != null) layer.onRelease(obj),
-					onPush: () -> if (layer.onPush != null) layer.onPush(obj),
+					onClick: () -> if (layer.onClick != null) layer.onClick(layerObj),
+					onHover: () -> if (layer.onHover != null) layer.onHover(layerObj),
+					onRelease: () -> if (layer.onRelease != null) layer.onRelease(layerObj),
+					onPush: () -> if (layer.onPush != null) layer.onPush(layerObj),
 					isPush: layer.onPush != null
 				};
 			buttons.push(button);
@@ -182,7 +225,7 @@ class Panel extends FlxSpriteContainer
 		if (layer._functions != null)
 		{
 			for (_function in layer._functions)
-				addFunction(_layerFunctions.length - 1, () -> _function(obj));
+				addFunction(_layerFunctions.length - 1, () -> _function(layerObj));
 		}
 
 		if (parent != null)

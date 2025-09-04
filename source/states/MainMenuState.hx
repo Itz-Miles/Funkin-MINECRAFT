@@ -91,26 +91,26 @@ class MainMenuState extends MusicBeatState
 						_functions: [
 							function(obj)
 							{
-								obj.setPosition(-80, 140 + (i * 94) + (i * 10));
+								obj.sprite.setPosition(-80, 140 + (i * 94) + (i * 10));
 
 								if (j == 0 && ClientPrefs.data.shaders)
-									obj.blend = MULTIPLY;
+									obj.sprite.blend = MULTIPLY;
 								else if (j == 1)
-									obj.offset.y = -35;
-								obj.alpha = 0;
-								FlxTween.tween(obj, {alpha: j == 2 ? 0.4 : 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
+									obj.sprite.offset.y = -35;
+								obj.sprite.alpha = 0;
+								FlxTween.tween(obj.sprite, {alpha: j == 2 ? 0.4 : 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
 							},
 							function(obj)
 							{
-								FlxTween.tween(obj, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
+								FlxTween.tween(obj.sprite, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
 							},
 							function(obj)
 							{
-								FlxTween.completeTweensOf(obj);
+								FlxTween.completeTweensOf(obj.sprite);
 								if (curSelection != i)
-									FlxTween.tween(obj, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
+									FlxTween.tween(obj.sprite, {alpha: 0, x: -80}, 0.5, {ease: FlxEase.quintOut});
 								else
-									FlxTween.tween(obj, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
+									FlxTween.tween(obj.sprite, {alpha: 0, x: 180}, 1, {ease: FlxEase.quintIn});
 							},
 						],
 						onHover: j == 1 ? function(obj)
@@ -121,7 +121,7 @@ class MainMenuState extends MusicBeatState
 
 							sideBar.fields[i].alpha = 1;
 							sideBar.fields[i].offset.y = 2;
-							obj.offset.y = -30;
+							obj.sprite.offset.y = -30;
 						} : null,
 						onRelease: j == 1 ? function(obj)
 						{
@@ -129,14 +129,14 @@ class MainMenuState extends MusicBeatState
 							{
 								sideBar.fields[i].alpha = 0.4;
 								sideBar.fields[i].offset.y = 0;
-								obj.offset.y = -35;
+								obj.sprite.offset.y = -35;
 							}
 						} : null,
 						onClick: j == 1 ? function(obj)
 						{
 							select();
 							sideBar.fields[i].offset.y = -2;
-							obj.offset.y = -38;
+							obj.sprite.offset.y = -38;
 						} : null
 					});
 			}

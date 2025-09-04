@@ -99,7 +99,7 @@ class SongEditor extends MusicBeatState
 					{
 						for (button in uiBox.buttons)
 						{
-							if (button.sprite != obj)
+							if (button.sprite != obj.sprite)
 							{
 								if (button.state != RELEASED)
 								{
@@ -117,9 +117,9 @@ class SongEditor extends MusicBeatState
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
 						FlxTween.color(uiBox.sprites[box.length + i * 2], 0.1, uiBox.sprites[box.length + i * 2].color, 0xFF44BD44);
-						FlxTween.color(obj, 0.1, obj.color, FlxColor.GREEN);
+						FlxTween.color(obj.sprite, 0.1, obj.sprite.color, FlxColor.GREEN);
 						FlxTween.color(uiBox.fields[i], 0.1, uiBox.fields[i].color, FlxColor.WHITE);
-						FlxTween.tween(obj.offset, {y: -30}, 0.1);
+						FlxTween.tween(obj.sprite.offset, {y: -30}, 0.1);
 						FlxTween.tween(uiBox.fields[i].offset, {y: -5}, 0.1);
 					},
 					onHover: function(obj)
@@ -127,7 +127,7 @@ class SongEditor extends MusicBeatState
 						FlxTween.completeTweensOf(uiBox.sprites[box.length + i * 2]);
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
-						FlxTween.tween(obj.offset, {y: -23}, 0.1);
+						FlxTween.tween(obj.sprite.offset, {y: -23}, 0.1);
 						FlxTween.tween(uiBox.fields[i].offset, {y: 2}, 0.1);
 					},
 					onRelease: function(obj)
@@ -137,17 +137,17 @@ class SongEditor extends MusicBeatState
 						FlxTween.completeTweensOf(obj);
 						FlxTween.completeTweensOf(uiBox.fields[i]);
 						FlxTween.color(uiBox.sprites[box.length + i * 2], 0.1, uiBox.sprites[box.length + i * 2].color, FlxColor.WHITE);
-						FlxTween.color(obj, 0.1, obj.color, FlxColor.WHITE);
+						FlxTween.color(obj.sprite, 0.1, obj.sprite.color, FlxColor.WHITE);
 						FlxTween.color(uiBox.fields[i], 0.1, uiBox.fields[i].color, FlxColor.BLACK);
-						FlxTween.tween(obj.offset, {y: -25}, 0.1);
+						FlxTween.tween(obj.sprite.offset, {y: -25}, 0.1);
 						FlxTween.tween(uiBox.fields[i].offset, {y: 0}, 0.1);
 					},
 					_functions: [
 						function(obj)
 						{
-							obj.color = FlxColor.WHITE;
+							obj.sprite.color = FlxColor.WHITE;
 							uiBox.fields[i].color = FlxColor.BLACK;
-							FlxTween.tween(obj.offset, {y: -25}, 0.1);
+							FlxTween.tween(obj.sprite.offset, {y: -25}, 0.1);
 							FlxTween.tween(uiBox.fields[i].offset, {y: 0}, 0.1);
 						},
 					]

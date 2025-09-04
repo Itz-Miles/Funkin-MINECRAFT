@@ -1,5 +1,6 @@
 package blockUI;
 
+import blockUI.Panel.LayerObject;
 import flixel.text.FlxInputText;
 import flixel.FlxSprite;
 import flixel.text.FlxText.FlxTextAlign;
@@ -17,11 +18,11 @@ typedef Layer =
 	var ?font:String;
 	var ?size:Int;
 	var ?align:FlxTextAlign;
-	var ?_functions:Array<FlxSprite->Void>;
-	var ?onClick:FlxSprite->Void;
-	var ?onPush:FlxSprite->Void;
-	var ?onHover:FlxSprite->Void;
-	var ?onRelease:FlxSprite->Void;
+	var ?_functions:Array<LayerObject->Void>;
+	var ?onClick:LayerObject->Void;
+	var ?onPush:LayerObject->Void;
+	var ?onHover:LayerObject->Void;
+	var ?onRelease:LayerObject->Void;
 	var ?onChange:FlxInputText->Void;
 	var ?group:Array<Layer>;
 }

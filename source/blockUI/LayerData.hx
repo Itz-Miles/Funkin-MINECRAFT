@@ -1,5 +1,6 @@
 package blockUI;
 
+import blockUI.Panel.LayerObject;
 import blockUI.Layer;
 import flixel.FlxG;
 import lime.system.System;
@@ -13,16 +14,16 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.y = -72;
-					FlxTween.tween(obj, {y: 50}, 1.5, {ease: FlxEase.elasticOut});
+					obj.sprite.y = -72;
+					FlxTween.tween(obj.sprite, {y: 50}, 1.5, {ease: FlxEase.elasticOut});
 				},
 				function(obj)
 				{ // tween in
-					FlxTween.tween(obj, {y: -72}, 1, {ease: FlxEase.quintInOut});
+					FlxTween.tween(obj.sprite, {y: -72}, 1, {ease: FlxEase.quintInOut});
 				},
 				function(obj)
 				{ // substate
-					obj.y = 50;
+					obj.sprite.y = 50;
 				},
 			]
 		},
@@ -35,9 +36,9 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 28}, 1.5, {ease: FlxEase.elasticOut});
+					obj.sprite.scale.x *= 0.95;
+					obj.sprite.scale.y *= 1.8;
+					FlxTween.tween(obj.sprite, {"scale.x": 1180, "scale.y": 28}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
 		},
@@ -50,9 +51,9 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {"scale.x": 1180, "scale.y": 64}, 1.5, {ease: FlxEase.elasticOut});
+					obj.sprite.scale.x *= 0.95;
+					obj.sprite.scale.y *= 1.8;
+					FlxTween.tween(obj.sprite, {"scale.x": 1180, "scale.y": 64}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
 		},
@@ -65,9 +66,9 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 48}, 1.5, {ease: FlxEase.elasticOut});
+					obj.sprite.scale.x *= 0.95;
+					obj.sprite.scale.y *= 1.8;
+					FlxTween.tween(obj.sprite, {"scale.x": 1164, "scale.y": 48}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
 		},
@@ -80,9 +81,9 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {"scale.x": 1164, "scale.y": 6}, 1.5, {ease: FlxEase.elasticOut});
+					obj.sprite.scale.x *= 0.95;
+					obj.sprite.scale.y *= 1.8;
+					FlxTween.tween(obj.sprite, {"scale.x": 1164, "scale.y": 6}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
 		},
@@ -95,17 +96,17 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.05;
-					FlxTween.tween(obj, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
+					obj.sprite.scale.x *= 0.95;
+					obj.sprite.scale.y *= 1.05;
+					FlxTween.tween(obj.sprite, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
 				},
 				function(obj)
 				{
-					FlxTween.tween(obj, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
+					FlxTween.tween(obj.sprite, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
 				},
 				function(obj)
 				{
-					obj.x = 64;
+					obj.sprite.x = 64;
 				}
 			]
 		},
@@ -118,33 +119,33 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.scale.x *= 0.95;
-					obj.scale.y *= 1.05;
-					obj.offset.y = -16;
-					FlxTween.tween(obj, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
+					obj.sprite.scale.x *= 0.95;
+					obj.sprite.scale.y *= 1.05;
+					obj.sprite.offset.y = -16;
+					FlxTween.tween(obj.sprite, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
 				},
 				function(obj)
 				{
-					FlxTween.tween(obj, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
+					FlxTween.tween(obj.sprite, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
 				},
 				function(obj)
 				{
-					obj.offset.y = -16;
-					obj.x = 64;
+					obj.sprite.offset.y = -16;
+					obj.sprite.x = 64;
 				}
 			],
 			onClick: function(obj)
 			{
 				@:bypassAccessor Controls.instance.BACK = true;
-				obj.offset.y = -18;
+				obj.sprite.offset.y = -18;
 			},
 			onHover: function(obj)
 			{
-				obj.offset.y = -14;
+				obj.sprite.offset.y = -14;
 			},
 			onRelease: function(obj)
 			{
-				obj.offset.y = -16;
+				obj.sprite.offset.y = -16;
 			}
 		},
 		{ // header
@@ -160,25 +161,79 @@ class LayerData
 			_functions: [
 				function(obj)
 				{ // fade in
-					obj.screenCenter(X);
-					obj.alpha = 0;
-					obj.scale.x *= 0.9;
-					obj.scale.y *= 1.8;
-					FlxTween.tween(obj, {alpha: 1, "scale.x": 1, "scale.y": 1}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0});
+					obj.sprite.screenCenter(X);
+					obj.sprite.alpha = 0;
+					obj.sprite.scale.x *= 0.9;
+					obj.sprite.scale.y *= 1.8;
+					FlxTween.tween(obj.sprite, {alpha: 1, "scale.x": 1, "scale.y": 1}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0});
 				},
 				function(obj)
 				{ // fade out
-					obj.alpha = 1;
-					FlxTween.tween(obj, {alpha: 0}, 1.5, {ease: FlxEase.quintIn, startDelay: 0});
+					obj.sprite.alpha = 1;
+					FlxTween.tween(obj.sprite, {alpha: 0}, 1.5, {ease: FlxEase.quintIn, startDelay: 0});
 				},
 				function(obj)
 				{ // substate
-					obj.screenCenter(X);
-					obj.y = 60;
-					obj.scale.set(1.02, 1.02);
-					FlxTween.tween(obj, {y: 66, "scale.x": 1, "scale.y": 1}, 0.5, {ease: FlxEase.quintOut, startDelay: 0});
+					obj.sprite.screenCenter(X);
+					obj.sprite.y = 60;
+					obj.sprite.scale.set(1.02, 1.02);
+					FlxTween.tween(obj.sprite, {y: 66, "scale.x": 1, "scale.y": 1}, 0.5, {ease: FlxEase.quintOut, startDelay: 0});
 				},
 			],
 		}
 	];
+
+	public static function createButton(text:String = "button", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4, color:Int = 0xFF888888, ?shadowColor:Int = 0x35000000, ?onClick:LayerObject->Void):Array<Layer>
+	{
+		return [
+			{ // button shadow
+				x: x,
+				y: y + rimSize,
+				width: width,
+				height: height + rimSize,
+				color: shadowColor,
+			},
+			{ // button rim
+				x: x,
+				y: y,
+				width: width,
+				height: height + rimSize,
+				color: FlxColor.fromInt(color).getDarkened(0.3),
+			},
+			{ // button backing
+				x: x,
+				y: y,
+				width: width,
+				height: height,
+				color: FlxColor.fromInt(color).getLightened(0.1),
+			},
+			{ // button face
+				x: x + borderSize,
+				y: y + borderSize,
+				width: width - borderSize * 2,
+				height: height - borderSize * 2,
+				color: color,
+				onClick: onClick
+			},
+			{ // button text
+				x: x + borderSize * 2,
+				y: y + borderSize * 2,
+				width: width - borderSize * 4,
+				height: (height - borderSize * 4),
+				color: FlxColor.WHITE,
+				text: text,
+				font: Paths.font("Monocraft.ttf"),
+				size: Std.int(Math.min((width - borderSize * 4) / (text.length * 0.8), (height - 4 - borderSize * 4) * 0.75)),
+				align: CENTER,
+				onHover: function(obj)
+				{
+					obj.sprite.offset.y = rimSize * 0.5;
+				},
+				onRelease: function(obj)
+				{
+					obj.sprite.offset.y = 0;
+				}
+			},
+		];
+	}
 }
