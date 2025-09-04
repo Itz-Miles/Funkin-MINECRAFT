@@ -13,10 +13,21 @@ class ModEditor extends MusicBeatState
 	{
 		super.create();
 
+		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "modify game content";
 		header.runAcrossLayers(0);
 		add(header);
+
+		var button:Panel = new Panel(LayerData.createButton("modpack", 50 + 393, 250, 393, 196, 8, 24, 0xFF504D5B, null, function(obj)
+		{
+			FlxG.sound.play(Paths.sound('missnote1'), 0.3);
+		}));
+		button.visible = false;
+		add(button);
+
 		if (FlxG.save.data.showModEditorPopup == null)
 			FlxG.save.data.showModEditorPopup = true;
 
@@ -106,6 +117,7 @@ class ModEditor extends MusicBeatState
 				new FlxTimer().start(0.25, function(tmr)
 				{
 					popup.kill();
+					button.visible = true;
 				});
 			}));
 			add(popup);

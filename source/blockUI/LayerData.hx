@@ -186,11 +186,12 @@ class LayerData
 	public static function createButton(text:String = "button", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4, color:Int = 0xFF888888, ?shadowColor:Int = 0x35000000, ?onClick:LayerObject->Void):Array<Layer>
 	{
 		return [
-			{ // button shadow
-				x: x - 2,
-				y: y - 2 + rimSize,
-				width: width + 4,
-				height: height + 4,
+
+			{ // button outline
+				x: x - borderSize,
+				y: y - borderSize + rimSize,
+				width: width + borderSize * 2,
+				height: height + borderSize * 2,
 				color: FlxColor.BLACK,
 			},
 			{ // button shadow
@@ -222,30 +223,42 @@ class LayerData
 				color: color,
 				onClick: function(obj)
 				{
-					obj.last.last.last.sprite.offset.y = ((-height - rimSize) * 0.5) + rimSize * 0.5;
-					obj.last.sprite.offset.y = (-height * 0.5) - rimSize * 0.5;
-					obj.sprite.offset.y = (-height * 0.5 + (borderSize)) - rimSize * 0.5;
-					obj.next.sprite.offset.y = -rimSize * 0.5;
+					FlxTween.completeTweensOf(obj.last.last.last.sprite.offset);
+					FlxTween.completeTweensOf(obj.last.sprite.offset);
+					FlxTween.completeTweensOf(obj.sprite.offset);
+					FlxTween.completeTweensOf(obj.next.sprite.offset);
+					FlxTween.tween(obj.last.last.last.sprite.offset, {y: ((-height - rimSize) * 0.5) + rimSize * 0.5}, 0.1);
+					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) - rimSize * 0.5}, 0.1);
+					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) - rimSize * 0.5}, 0.1);
+					FlxTween.tween(obj.next.sprite.offset, {y: -rimSize * 0.5}, 0.1);
 					onClick(obj);
 				},
 				onHover: function(obj)
 				{
-					obj.last.last.last.sprite.offset.y = ((-height - rimSize) * 0.5) - rimSize * 0.5;
-					obj.last.sprite.offset.y = (-height * 0.5) + rimSize * 0.5;
-					obj.sprite.offset.y = (-height * 0.5 + (borderSize)) + rimSize * 0.5;
-					obj.next.sprite.offset.y = rimSize * 0.5;
+					FlxTween.completeTweensOf(obj.last.last.last.sprite.offset);
+					FlxTween.completeTweensOf(obj.last.sprite.offset);
+					FlxTween.completeTweensOf(obj.sprite.offset);
+					FlxTween.completeTweensOf(obj.next.sprite.offset);
+					FlxTween.tween(obj.last.last.last.sprite.offset, {y: ((-height - rimSize) * 0.5) - rimSize * 0.5}, 0.05);
+					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) + rimSize * 0.5}, 0.05);
+					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) + rimSize * 0.5}, 0.05);
+					FlxTween.tween(obj.next.sprite.offset, {y: rimSize * 0.5}, 0.05);
 				},
 				onRelease: function(obj)
 				{
-					obj.last.last.last.sprite.offset.y = ((-height - rimSize) * 0.5);
-					obj.last.sprite.offset.y = (-height * 0.5);
-					obj.sprite.offset.y = (-height * 0.5 + (borderSize));
-					obj.next.sprite.offset.y = 0;
+					FlxTween.completeTweensOf(obj.last.last.last.sprite.offset);
+					FlxTween.completeTweensOf(obj.last.sprite.offset);
+					FlxTween.completeTweensOf(obj.sprite.offset);
+					FlxTween.completeTweensOf(obj.next.sprite.offset);
+					FlxTween.tween(obj.last.last.last.sprite.offset, {y: ((-height - rimSize) * 0.5)}, 0.05);
+					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5)}, 0.05);
+					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize))}, 0.05);
+					FlxTween.tween(obj.next.sprite.offset, {y: 0}, 0.05);
 				}
 			},
 			{ // button text
 				x: x + borderSize * 2,
-				y: y + borderSize * 2,
+				y: y + borderSize * 2 + ((height - borderSize * 4) * 0.5) - Std.int(Math.min((((width - borderSize * 4) / (text.length * 0.8) + 4) / 3) * 4, (height - borderSize * 4)) * 0.5),
 				width: width - borderSize * 4,
 				height: (height - borderSize * 4),
 				color: FlxColor.WHITE,
