@@ -133,9 +133,8 @@ class IntroState extends MusicBeatState
 		{
 			var money:FlxText = new FlxText(0, 0, 0, textArray[i], size);
 			money.setFormat(Paths.font("Monocraft.ttf"), size,
-				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat,
-					FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat),
-				CENTER, OUTLINE, 0xffffffff);
+				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat), CENTER, OUTLINE,
+				0xffffffff);
 			money.borderSize = size / 12;
 			money.screenCenter(X);
 			money.scale.y = scale;
@@ -155,9 +154,8 @@ class IntroState extends MusicBeatState
 		{
 			var coolText:FlxText = new FlxText(0, 0, 0, text, size);
 			coolText.setFormat(Paths.font("Monocraft.ttf"), size,
-				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat,
-					FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat),
-				CENTER, OUTLINE, 0xffffffff);
+				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat), CENTER, OUTLINE,
+				0xffffffff);
 			coolText.borderSize = size / 12;
 			coolText.screenCenter(X);
 			coolText.x -= 250;
@@ -236,9 +234,10 @@ class IntroState extends MusicBeatState
 		FlxTween.tween(FlxG.camera, {zoom: 10}, 1, {ease: FlxEase.quadIn}); // torn between this & beat 22/0.5 duration
 		FlxG.camera.fade(0xff82aafa, 1, false, function()
 		{
+			GameWorld.SKY_COLOR = 0xff82aafa;
 			ClientPrefs.data.firstIntro = false;
 			FlxG.save.data.firstIntro = false;
-			FlxG.switchState(() -> new TitleState());
+			FlxG.switchState(() -> new GameWorld());
 		}, true);
 	}
 }
