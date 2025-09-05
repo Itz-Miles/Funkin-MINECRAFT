@@ -287,7 +287,7 @@ class MainMenuState extends MusicBeatState
 		{
 			new FlxTimer().start(0.8, function(tmr:FlxTimer)
 			{
-				FlxG.camera.fade(FlxG.camera.bgColor, 0.3, false);
+				// FlxG.camera.fade(FlxG.camera.bgColor, 0.3, false);
 			});
 		}
 
@@ -302,7 +302,7 @@ class MainMenuState extends MusicBeatState
 				case 2:
 					FlxG.switchState(() -> new options.OptionsState());
 				case 3:
-					FlxG.switchState(() -> new ModEditor());
+					openSubState(new ModEditor());
 				case 4:
 					FlxG.switchState(() -> new CreditsState());
 			}

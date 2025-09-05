@@ -7,14 +7,19 @@ import flixel.tweens.FlxTween;
 /**
  * The Mod Editor serves as a hub for adding and creating mods.
  */
-class ModEditor extends MusicBeatState
+class ModEditor extends MusicBeatSubstate
 {
 	override function create()
 	{
 		super.create();
-
-		Paths.clearStoredMemory();
-		Paths.clearUnusedMemory();
+		var bg:FlxSprite = new FlxSprite();
+		bg.makeGraphic(1, 1, FlxG.camera.bgColor);
+		bg.scale.set(1290, 730);
+		bg.alpha = 0;
+		bg.scrollFactor.set();
+		bg.screenCenter();
+		add(bg);
+		FlxTween.tween(bg, {alpha: 0.7}, 0.5, {ease: FlxEase.quintOut});
 
 		var header:Panel = new Panel(LayerData.HEADER);
 		header.text = "modify game content";
@@ -132,7 +137,8 @@ class ModEditor extends MusicBeatState
 
 		if (controls.BACK)
 		{
-			FlxG.switchState(new MainMenuState());
+			close();
+			FlxG.resetState();
 		}
 	}
 }
