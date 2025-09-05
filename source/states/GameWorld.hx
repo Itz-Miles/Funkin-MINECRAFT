@@ -8,6 +8,11 @@ import Song.SongData;
 class GameWorld extends MusicBeatState
 {
 	/**
+	 * The Game World's instance.
+	 */
+	static var instance:GameWorld;
+
+	/**
 	 * The currently loaded SongData
 	 */
 	public static var SONG:SongData;
@@ -35,9 +40,20 @@ class GameWorld extends MusicBeatState
 
 	static var _targetEnvColor:FlxColor = SKY_COLOR;
 
+	// UI SUBMENUS
+	// title substate
+	var mainMenu:MainMenuState;
+	// story substate
+	// pause substate
+
+	public static function changeMenu(state:FlxSubState)
+	{
+		instance.openSubState(state);
+	}
 	override public function create():Void
 	{
 		super.create();
+		instance = this;
 	}
 
 	override public function update(elapsed:Float):Void
