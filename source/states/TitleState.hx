@@ -18,7 +18,7 @@ import flixel.util.FlxTimer;
 
 using StringTools;
 
-class TitleState extends MusicBeatState
+class TitleState extends MusicBeatSubstate
 {
 	var logoBl:FlxSprite;
 	var splashText:FlxText;
@@ -29,7 +29,6 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
 		super.create();
@@ -141,7 +140,8 @@ class TitleState extends MusicBeatState
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					FlxG.switchState(() -> new MainMenuState());
+					// FlxG.switchState(MainMenuState.new);
+					switchMenu(new MainMenuState());
 				});
 			}
 			if (controls.BACK)

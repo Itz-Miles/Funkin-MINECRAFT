@@ -24,13 +24,20 @@ class MusicBeatSubstate extends FlxSubState
 
 	override function create()
 	{
-		super.create();
+		trace("state created: " + Type.getClass(this));
 		openCallback = refresh;
+		super.create();
 	}
 
 	public function refresh()
 	{
+		trace("state refreshed: " + Type.getClass(this));
 		// refresh anything new, like dyanmic content
+	}
+
+	public function switchMenu(state:FlxSubState)
+	{
+		GameWorld.switchMenu(state);
 	}
 
 	override function update(elapsed:Float)

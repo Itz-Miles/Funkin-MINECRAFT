@@ -19,7 +19,7 @@ import flixel.text.FlxText;
 
 using StringTools;
 
-class MainMenuState extends MusicBeatState
+class MainMenuState extends MusicBeatSubstate
 {
 	var header:Panel;
 	var sideBar:Panel;
@@ -298,13 +298,13 @@ class MainMenuState extends MusicBeatState
 				case 0:
 					LoadingState.loadAndSwitchState(new PlayState(), true);
 				case 1:
-					FlxG.switchState(() -> new FreeplayState());
+					GameWorld.switchMenu(new FreeplayState());
 				case 2:
-					FlxG.switchState(() -> new options.OptionsState());
+					GameWorld.switchMenu(new options.OptionsState());
 				case 3:
-					openSubState(new ModEditor());
+					GameWorld.switchMenu(new ModEditor());
 				case 4:
-					FlxG.switchState(() -> new CreditsState());
+					GameWorld.switchMenu(new CreditsState());
 			}
 		});
 	}

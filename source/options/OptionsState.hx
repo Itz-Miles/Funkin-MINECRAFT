@@ -14,7 +14,7 @@ import flixel.tweens.FlxTween;
 
 using StringTools;
 
-class OptionsState extends MusicBeatState
+class OptionsState extends MusicBeatSubstate
 {
 	public static var fromPlayState:Bool = false;
 

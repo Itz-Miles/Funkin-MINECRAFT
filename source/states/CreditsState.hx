@@ -15,7 +15,7 @@ import flixel.tweens.FlxTween;
 
 using StringTools;
 
-class CreditsState extends MusicBeatState
+class CreditsState extends MusicBeatSubstate
 {
 	var curSelected:Int = -1;
 

@@ -40,20 +40,21 @@ class GameWorld extends MusicBeatState
 
 	static var _targetEnvColor:FlxColor = SKY_COLOR;
 
-	// UI SUBMENUS
-	// title substate
-	var mainMenu:MainMenuState;
-	// story substate
-	// pause substate
-
-	public static function changeMenu(state:FlxSubState)
+	public static function switchMenu(state:FlxSubState)
 	{
+		instance.closeSubState();
 		instance.openSubState(state);
 	}
+
 	override public function create():Void
 	{
 		super.create();
 		instance = this;
+		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+
+		// destroySubStates = false;
+		switchMenu(new TitleState());
 	}
 
 	override public function update(elapsed:Float):Void
