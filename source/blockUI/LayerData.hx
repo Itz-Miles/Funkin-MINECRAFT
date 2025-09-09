@@ -227,10 +227,10 @@ class LayerData
 					FlxTween.completeTweensOf(obj.last.sprite.offset);
 					FlxTween.completeTweensOf(obj.sprite.offset);
 					FlxTween.completeTweensOf(obj.next.sprite.offset);
-					FlxTween.tween(obj.last.last.last.sprite.offset, {y: ((-height - rimSize) * 0.5) + rimSize * 0.5}, 0.1);
-					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) - rimSize * 0.5}, 0.1);
-					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) - rimSize * 0.5}, 0.1);
-					FlxTween.tween(obj.next.sprite.offset, {y: -rimSize * 0.5}, 0.1);
+					FlxTween.tween(obj.last.last.last.sprite.offset, {y: ((-height - rimSize) * 0.5) + rimSize * 0.5}, 0.05);
+					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) - rimSize * 0.5}, 0.05);
+					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) - rimSize * 0.5}, 0.05);
+					FlxTween.tween(obj.next.sprite.offset, {y: -rimSize * 0.5}, 0.05);
 					onClick(obj);
 				},
 				onHover: function(obj)
