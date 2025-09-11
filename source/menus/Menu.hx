@@ -1,14 +1,20 @@
 package menus;
 
-import flixel.group.FlxContainer;
-
 /**
  * The Menu class
  */
-class Menu extends FlxContainer
+class Menu extends FlxSpriteContainer
 {
+	var bg:FlxSprite;
+
 	public function create()
 	{
+		bg = new FlxSprite().makeGraphic(1, 1, GameWorld.SKY_COLOR);
+		bg.scale.set(FlxG.width, FlxG.height);
+		bg.screenCenter();
+		add(bg);
+		bg.alpha = 0;
+		FlxTween.tween(bg, {alpha: 0.5}, 0.5, {ease: FlxEase.quintOut});
 	}
 
 	public function refresh()

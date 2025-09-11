@@ -1,5 +1,8 @@
 package states;
 
+import parallax.ParallaxBG;
+import parallax.ParallaxFG;
+import menus.StoryMenu;
 import Song.SongData;
 
 /**
@@ -54,7 +57,18 @@ class GameWorld extends MusicBeatState
 		Paths.clearUnusedMemory();
 
 		// destroySubStates = false;
-		switchMenu(new TitleState());
+		// switchMenu(new TitleState());
+
+		var bg:ParallaxBG = new ParallaxBG('aero_archways', 0.2);
+		add(bg);
+
+		var storyMenu:StoryMenu = new StoryMenu();
+		storyMenu.create();
+		add(storyMenu);
+
+		var fg:ParallaxFG = new ParallaxFG('aero_archways', 0.2);
+		fg.setPosition(-130, -70);
+		add(fg);
 	}
 
 	override public function update(elapsed:Float):Void
