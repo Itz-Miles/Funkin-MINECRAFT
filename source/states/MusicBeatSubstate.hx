@@ -37,7 +37,7 @@ class MusicBeatSubstate extends FlxSubState
 
 	public function switchMenu(state:FlxSubState)
 	{
-		GameWorld.switchMenu(state);
+		// GameWorld.switchMenu(state);
 	}
 
 	override function update(elapsed:Float)

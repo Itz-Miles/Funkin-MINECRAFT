@@ -296,15 +296,15 @@ class MainMenuState extends MusicBeatSubstate
 			switch (curSelection)
 			{
 				case 0:
-					LoadingState.loadAndSwitchState(new PlayState(), true);
+					// LoadingState.loadAndSwitchState(new PlayState(), true);
 				case 1:
-					GameWorld.switchMenu(new FreeplayState());
+					// GameWorld.switchMenu(new FreeplayState());
 				case 2:
-					GameWorld.switchMenu(new options.OptionsState());
+					// GameWorld.switchMenu(new options.OptionsState());
 				case 3:
-					GameWorld.switchMenu(new ModEditor());
+					// GameWorld.switchMenu(new ModEditor());
 				case 4:
-					GameWorld.switchMenu(new CreditsState());
+					// GameWorld.switchMenu(new CreditsState());
 			}
 		});
 	}
