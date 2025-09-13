@@ -10,7 +10,7 @@ class TitleMenu extends Menu
 
 	override public function refresh()
 	{
-		super.refresh();
+		
 	}
 
 	override public function beatHit(?curBeat:Int)
