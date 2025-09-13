@@ -183,7 +183,7 @@ class MainMenuState extends MusicBeatSubstate
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;
 		}
-		if (controls.UI_UP_P)
+		if (Controls.UI_UP_P)
 		{
 			for (button in sideBar.buttons)
 				button.onRelease();
@@ -192,7 +192,7 @@ class MainMenuState extends MusicBeatSubstate
 
 			sideBar.buttons[curSelection].onHover();
 		}
-		if (controls.UI_DOWN_P)
+		if (Controls.UI_DOWN_P)
 		{
 			for (button in sideBar.buttons)
 				button.onRelease();
@@ -201,14 +201,14 @@ class MainMenuState extends MusicBeatSubstate
 			sideBar.buttons[curSelection].onHover();
 		}
 
-		if (controls.ACCEPT)
+		if (Controls.ACCEPT)
 		{
 			sideBar.buttons[curSelection].onClick();
 		}
 
 		if (!selected)
 		{
-			if (controls.BACK)
+			if (Controls.BACK)
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 				selected = true;

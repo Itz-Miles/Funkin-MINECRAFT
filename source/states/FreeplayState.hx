@@ -176,9 +176,9 @@ class FreeplayState extends MusicBeatSubstate
 
 	override function update(elapsed:Float)
 	{
-		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
-		var accepted = controls.ACCEPT || FlxG.keys.justPressed.SEVEN || FlxG.keys.justPressed.EIGHT;
+		var upP = Controls.UI_UP_P;
+		var downP = Controls.UI_DOWN_P;
+		var accepted = Controls.ACCEPT || FlxG.keys.justPressed.SEVEN || FlxG.keys.justPressed.EIGHT;
 
 		if (!accepted)
 			if (FlxG.sound.music.volume < 0.7)
@@ -222,7 +222,7 @@ class FreeplayState extends MusicBeatSubstate
 				holdTime = 0;
 			}
 
-			if (controls.UI_DOWN || controls.UI_UP)
+			if (Controls.UI_DOWN || Controls.UI_UP)
 			{
 				var checkLastHold:Int = Math.floor((holdTime - 0.5) * 10);
 				holdTime += elapsed;
@@ -230,20 +230,20 @@ class FreeplayState extends MusicBeatSubstate
 
 				if (holdTime > 0.5 && checkNewHold - checkLastHold > 0)
 				{
-					changeSelection((checkNewHold - checkLastHold) * (controls.UI_UP ? -shiftMult : shiftMult));
+					changeSelection((checkNewHold - checkLastHold) * (Controls.UI_UP ? -shiftMult : shiftMult));
 					changeDiff();
 				}
 			}
 		}
 
-		if (controls.UI_LEFT_P)
+		if (Controls.UI_LEFT_P)
 			changeDiff(-1);
-		else if (controls.UI_RIGHT_P)
+		else if (Controls.UI_RIGHT_P)
 			changeDiff(1);
 		else if (upP || downP)
 			changeDiff();
 
-		if (controls.BACK)
+		if (Controls.BACK)
 		{
 			persistentUpdate = false;
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
@@ -285,7 +285,7 @@ class FreeplayState extends MusicBeatSubstate
 
 			FlxG.sound.music.volume = 0;
 		}
-		else if (controls.RESET)
+		else if (Controls.RESET)
 		{
 			persistentUpdate = false;
 			openSubState(new ResetScoreSubState(songs[curSelected].songName, curDifficulty, songs[curSelected].songCharacter));

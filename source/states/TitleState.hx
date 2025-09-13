@@ -90,7 +90,7 @@ class TitleState extends MusicBeatSubstate
 			FlxG.sound.music.volume += 0.5 * elapsed;
 		}
 
-		if (FlxG.mouse.justPressed || controls.ACCEPT)
+		if (FlxG.mouse.justPressed || Controls.ACCEPT)
 			pressedEnter = true;
 
 		#if mobile
@@ -144,7 +144,7 @@ class TitleState extends MusicBeatSubstate
 					switchMenu(new MainMenuState());
 				});
 			}
-			if (controls.BACK)
+			if (Controls.BACK)
 			{
 				transitioning = true;
 				FlxG.camera.fade(#if html5 FlxColor.BLACK #else 0xFF0F0F0F #end, 2, false);

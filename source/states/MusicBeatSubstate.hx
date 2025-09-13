@@ -17,10 +17,6 @@ class MusicBeatSubstate extends FlxSubState
 
 	var curDecStep:Float = 0;
 	var curDecBeat:Float = 0;
-	var controls(get, never):Controls;
-
-	inline function get_controls():Controls
-		return Controls.instance;
 
 	override function create()
 	{

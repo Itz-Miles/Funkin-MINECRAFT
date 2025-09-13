@@ -22,16 +22,16 @@ class ParallaxDebugState extends MusicBeatState
 			amount = 500;
 		else
 			amount = 100;
-		if (controls.UI_UP)
+		if (Controls.UI_UP)
 			FlxG.camera.scroll.y -= amount * elapsed;
 
-		if (controls.UI_DOWN)
+		if (Controls.UI_DOWN)
 			FlxG.camera.scroll.y += amount * elapsed;
 
-		if (controls.UI_LEFT)
+		if (Controls.UI_LEFT)
 			FlxG.camera.scroll.x -= amount * elapsed;
 
-		if (controls.UI_RIGHT)
+		if (Controls.UI_RIGHT)
 			FlxG.camera.scroll.x += amount * elapsed;
 
 		if (FlxG.keys.pressed.Z)
@@ -51,7 +51,7 @@ class ParallaxDebugState extends MusicBeatState
 			FlxG.camera.zoom += FlxG.mouse.wheel * amount * 0.1 * elapsed;
 		}
 
-		if (controls.BACK)
+		if (Controls.BACK)
 			FlxG.switchState(() -> new MainMenuState());
 	}
 }

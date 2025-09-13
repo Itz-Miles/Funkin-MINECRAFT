@@ -146,7 +146,7 @@ class LayerData
 			],
 			onClick: function(obj)
 			{
-				@:bypassAccessor Controls.instance.BACK = true;
+				@:bypassAccessor Controls.BACK = true;
 				obj.sprite.offset.y = -18;
 			},
 			onHover: function(obj)

@@ -90,26 +90,26 @@ class OffsetsState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		if (controls.UI_LEFT_P || controls.UI_DOWN_P)
+		if (Controls.UI_LEFT_P || Controls.UI_DOWN_P)
 		{
 			barPercent = Math.max(delayMin, Math.min(ClientPrefs.data.noteOffset - 1, delayMax));
 			updateNoteDelay();
 		}
-		else if (controls.UI_RIGHT_P || controls.UI_UP_P)
+		else if (Controls.UI_RIGHT_P || Controls.UI_UP_P)
 		{
 			barPercent = Math.max(delayMin, Math.min(ClientPrefs.data.noteOffset + 1, delayMax));
 			updateNoteDelay();
 		}
 
 		var mult:Int = 1;
-		if (controls.UI_LEFT || controls.UI_RIGHT)
+		if (Controls.UI_LEFT || Controls.UI_RIGHT)
 		{
 			holdTime += elapsed;
-			if (controls.UI_LEFT)
+			if (Controls.UI_LEFT)
 				mult = -1;
 		}
 
-		if (controls.UI_LEFT_R || controls.UI_RIGHT_R)
+		if (Controls.UI_LEFT_R || Controls.UI_RIGHT_R)
 			holdTime = 0;
 
 		if (holdTime > 0.5)
@@ -119,14 +119,14 @@ class OffsetsState extends MusicBeatState
 			updateNoteDelay();
 		}
 
-		if (controls.RESET)
+		if (Controls.RESET)
 		{
 			holdTime = 0;
 			barPercent = 0;
 			updateNoteDelay();
 		}
 
-		if (controls.BACK)
+		if (Controls.BACK)
 		{
 			if (zoomTween != null)
 				zoomTween.cancel();

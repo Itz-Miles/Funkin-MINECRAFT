@@ -143,23 +143,23 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			return;
 		}
 
-		if (controls.UI_UP_P)
+		if (Controls.UI_UP_P)
 		{
 			changeSelection(-1);
 		}
-		if (controls.UI_DOWN_P)
+		if (Controls.UI_DOWN_P)
 		{
 			changeSelection(1);
 		}
 
-		if (controls.BACK)
+		if (Controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 			close();
 		}
 		else
 		{
-			accepted = FlxG.mouse.justPressed || controls.ACCEPT;
+			accepted = FlxG.mouse.justPressed || Controls.ACCEPT;
 		}
 
 		if (nextAccept <= 0)
@@ -201,16 +201,16 @@ class BaseOptionsMenu extends MusicBeatSubstate
 						FlxG.sound.play(Paths.sound('scrollMenu'), 0.3);
 					}
 				}
-				else if (controls.UI_LEFT || controls.UI_RIGHT)
+				else if (Controls.UI_LEFT || Controls.UI_RIGHT)
 				{
-					var pressed = (controls.UI_LEFT_P || controls.UI_RIGHT_P);
+					var pressed = (Controls.UI_LEFT_P || Controls.UI_RIGHT_P);
 					if (holdTime > 0.5 || pressed)
 					{
 						if (pressed)
 						{
 							var add:Dynamic = null;
 							if (curOption.type != 'string')
-								add = controls.UI_LEFT ? -curOption.changeValue : curOption.changeValue;
+								add = Controls.UI_LEFT ? -curOption.changeValue : curOption.changeValue;
 
 							switch (curOption.type)
 							{
@@ -234,7 +234,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 								case 'string':
 									var num:Int = curOption.curOption; // lol
-									if (controls.UI_LEFT_P)
+									if (Controls.UI_LEFT_P)
 										--num;
 									else
 										num++;
@@ -254,7 +254,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 						}
 						else if (curOption.type != 'string')
 						{
-							holdValue += curOption.scrollSpeed * elapsed * (controls.UI_LEFT ? -1 : 1);
+							holdValue += curOption.scrollSpeed * elapsed * (Controls.UI_LEFT ? -1 : 1);
 							if (holdValue < curOption.minValue)
 								holdValue = curOption.minValue;
 							else if (holdValue > curOption.maxValue)
@@ -276,7 +276,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 					if (curOption.type != 'string')
 						holdTime += elapsed;
 				}
-				else if (controls.UI_LEFT_R || controls.UI_RIGHT_R)
+				else if (Controls.UI_LEFT_R || Controls.UI_RIGHT_R)
 				{
 					if (holdTime > 0.5)
 						FlxG.sound.play(Paths.sound('scrollMenu'), 0.3);
@@ -284,7 +284,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				}
 			}
 
-			if (controls.RESET)
+			if (Controls.RESET)
 			{
 				var leOption:Option = optionsArray[curSelected];
 				if (leOption.type != 'keybind')
@@ -299,7 +299,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 				}
 				else
 				{
-					leOption.setValue(!Controls.instance.controllerMode ? leOption.defaultKeys.keyboard : leOption.defaultKeys.gamepad);
+					leOption.setValue(!Controls.controllerMode ? leOption.defaultKeys.keyboard : leOption.defaultKeys.gamepad);
 					updateBind(leOption);
 				}
 				leOption.change();
@@ -330,11 +330,11 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			holdingEsc += elapsed;
 			if (holdingEsc > 0.5)
 			{
-				if (!controls.controllerMode)
+				if (!Controls.controllerMode)
 					curOption.keys.keyboard = "none";
 				else
 					curOption.keys.gamepad = "none";
-				updateBind(!controls.controllerMode ? InputFormatter.getKeyName(NONE) : InputFormatter.getGamepadName(NONE));
+				updateBind(!Controls.controllerMode ? InputFormatter.getKeyName(NONE) : InputFormatter.getGamepadName(NONE));
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 				closeBinding();
 			}
@@ -343,7 +343,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		{
 			holdingEsc = 0;
 			var changed:Bool = false;
-			if (!controls.controllerMode)
+			if (!Controls.controllerMode)
 			{
 				if (FlxG.keys.justPressed.ANY || FlxG.keys.justReleased.ANY)
 				{
@@ -403,7 +403,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			if (changed)
 			{
 				var key:String = null;
-				if (!controls.controllerMode)
+				if (!Controls.controllerMode)
 				{
 					if (curOption.keys.keyboard == null)
 						curOption.keys.keyboard = 'NONE';
@@ -436,7 +436,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 			if (text == null)
 				text = 'NONE';
 
-			if (!controls.controllerMode)
+			if (!Controls.controllerMode)
 				text = InputFormatter.getKeyName(FlxKey.fromString(text));
 			else
 				text = InputFormatter.getGamepadName(FlxGamepadInputID.fromString(text));
@@ -460,7 +460,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 	function playstationCheck(alpha:Alphabet)
 	{
-		if (!controls.controllerMode)
+		if (!Controls.controllerMode)
 			return;
 
 		var gamepad:FlxGamepad = FlxG.gamepads.firstActive;

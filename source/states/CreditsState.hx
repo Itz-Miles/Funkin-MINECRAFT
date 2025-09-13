@@ -229,8 +229,8 @@ class CreditsState extends MusicBeatSubstate
 			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
 		}
 
-		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
+		var upP = Controls.UI_UP_P;
+		var downP = Controls.UI_DOWN_P;
 
 		if (upP)
 		{
@@ -241,7 +241,7 @@ class CreditsState extends MusicBeatSubstate
 			changeSelection(1);
 		}
 
-		if (controls.BACK)
+		if (Controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 			header.runAcrossLayers(1);
@@ -255,7 +255,7 @@ class CreditsState extends MusicBeatSubstate
 				FlxG.switchState(() -> new MainMenuState());
 			}, true);
 		}
-		if (controls.ACCEPT)
+		if (Controls.ACCEPT)
 		{
 			CoolUtil.browserLoad(creditsStuff[curSelected][3]);
 		}

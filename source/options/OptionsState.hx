@@ -111,12 +111,12 @@ class OptionsState extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
-		if (controls.UI_UP_P)
+		if (Controls.UI_UP_P)
 		{
 			curSelection--;
 			updateItems();
 		}
-		if (controls.UI_DOWN_P)
+		if (Controls.UI_DOWN_P)
 		{
 			curSelection++;
 			updateItems();
@@ -137,7 +137,7 @@ class OptionsState extends MusicBeatSubstate
 					openSelectedSubstate(options[curSelection]);
 			}
 
-		if (controls.BACK)
+		if (Controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 			header.runAcrossLayers(1);
@@ -158,7 +158,7 @@ class OptionsState extends MusicBeatSubstate
 				}
 			}, true);
 		}
-		else if (controls.ACCEPT)
+		else if (Controls.ACCEPT)
 			openSelectedSubstate(options[curSelection]);
 	}
 

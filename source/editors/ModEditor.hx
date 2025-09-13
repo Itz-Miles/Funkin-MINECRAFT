@@ -135,7 +135,7 @@ class ModEditor extends MusicBeatSubstate
 	{
 		super.update(elapsed);
 
-		if (controls.BACK)
+		if (Controls.BACK)
 		{
 			close();
 			FlxG.resetState();

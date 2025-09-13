@@ -116,11 +116,11 @@ class PauseSubState extends MusicBeatSubstate
 
 		super.update(elapsed);
 
-		if (controls.UI_UP_P)
+		if (Controls.UI_UP_P)
 		{
 			curSelection--;
 		}
-		if (controls.UI_DOWN_P)
+		if (Controls.UI_DOWN_P)
 		{
 			curSelection++;
 		}
@@ -139,7 +139,7 @@ class PauseSubState extends MusicBeatSubstate
 					accept();
 			}
 
-		if (controls.ACCEPT)
+		if (Controls.ACCEPT)
 		{
 			accept();
 		}

@@ -112,7 +112,7 @@ class Option
 	{
 		var value = Reflect.getProperty(ClientPrefs.data, variable);
 		if (type == 'keybind')
-			return !Controls.instance.controllerMode ? value.keyboard : value.gamepad;
+			return !Controls.controllerMode ? value.keyboard : value.gamepad;
 		return value;
 	}
 
@@ -121,7 +121,7 @@ class Option
 		if (type == 'keybind')
 		{
 			var keys = Reflect.getProperty(ClientPrefs.data, variable);
-			if (!Controls.instance.controllerMode)
+			if (!Controls.controllerMode)
 				keys.keyboard = value;
 			else
 				keys.gamepad = value;

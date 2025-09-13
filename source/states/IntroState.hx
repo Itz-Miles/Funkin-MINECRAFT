@@ -98,7 +98,7 @@ class IntroState extends MusicBeatState
 
 		if (!pressedEnter)
 		{
-			if (FlxG.mouse.justPressed || controls.ACCEPT)
+			if (FlxG.mouse.justPressed || Controls.ACCEPT)
 				pressedEnter = true;
 
 			#if mobile
