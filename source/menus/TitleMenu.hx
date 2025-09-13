@@ -40,8 +40,45 @@ class TitleMenu extends Menu
 		}
 	}
 
+	override public function update(elapsed:Float)
+	{
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
+
+		if (FlxG.sound.music.volume < 1)
+		{
+			FlxG.sound.music.volume += 0.5 * elapsed;
+		}
+		super.update(elapsed);
+	}
+
 	override public function beatHit(?curBeat:Int)
 	{
 		super.beatHit(curBeat);
+
+		if (splashText != null && Menu.transitioning)
+			FlxTween.tween(splashText.scale, {x: 1, y: 1}, 0.165,
+				{
+					ease: FlxEase.cubeOut,
+					onComplete: function(twn:FlxTween)
+					{
+						FlxTween.tween(splashText.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut});
+					}
+				});
+		if (logo != null && Menu.transitioning)
+			FlxTween.tween(logo.scale, {x: 1, y: 1}, 0.165,
+				{
+					ease: FlxEase.cubeOut,
+					onComplete: function(twn:FlxTween)
+					{
+						FlxTween.tween(logo.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut});
+					}
+				});
+		/*
+			if (titleGF != null)
+			{
+				titleGF.beatHit(curBeat);
+			}
+		 */
 	}
 }
