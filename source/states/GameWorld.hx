@@ -88,6 +88,8 @@ class GameWorld extends MusicBeatState
 		var fg:ParallaxFG = new ParallaxFG('aero_archways', 0.2);
 		fg.setPosition(-130, -70);
 		FG.add(fg);
+
+		switchMenu(Menu.STORY);
 	}
 
 	override public function update(elapsed:Float):Void

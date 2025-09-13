@@ -21,11 +21,11 @@ class Menu extends FlxSpriteContainer
 		FlxTween.tween(bg, {alpha: 0.5}, 0.5, {ease: FlxEase.quintOut});
 	}
 
-	public function beatHit()
+	public function beatHit(?curBeat:Int)
 	{
 	}
 
-	public function sectionHit()
+	public function sectionHit(?curSection:Int)
 	{
 	}
 }
