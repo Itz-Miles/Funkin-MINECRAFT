@@ -4,6 +4,7 @@ import states.PlayState;
 import objects.*;
 import editors.*;
 import menus.*;
+import Controls;
 #if sys
 import sys.*;
 import sys.io.*;
