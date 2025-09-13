@@ -82,10 +82,10 @@ class GameWorld extends MusicBeatState
 		add(UI);
 		add(FG);
 
-		var bg:ParallaxBG = new ParallaxBG('aero_archways', 0.2);
+		var bg:ParallaxBG = new ParallaxBG('aero_archways');
 		BG.add(bg);
 
-		var fg:ParallaxFG = new ParallaxFG('aero_archways', 0.2);
+		var fg:ParallaxFG = new ParallaxFG('aero_archways');
 		fg.setPosition(-130, -70);
 		FG.add(fg);
 
