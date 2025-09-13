@@ -5,6 +5,8 @@ package menus;
  */
 class Menu extends FlxSpriteContainer
 {
+	public static var transitioning:Bool = true;
+
 	var bg:FlxSprite;
 
 	public function create()
@@ -28,6 +30,15 @@ class Menu extends FlxSpriteContainer
 	public function sectionHit(?curSection:Int)
 	{
 	}
+}
+
+var TITLE(get, default):TitleMenu;
+
+function get_TITLE():TitleMenu
+{
+	if (TITLE == null)
+		TITLE = new TitleMenu();
+	return TITLE;
 }
 
 var STORY(get, default):StoryMenu;
