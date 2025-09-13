@@ -45,7 +45,7 @@ class GameWorld extends MusicBeatState
 
 	public static var BG:FlxGroup = new FlxGroup();
 
-	public static var UI:FlxGroup = new FlxGroup();
+	public static var UI:FlxTypedGroup<Menu> = new FlxTypedGroup<Menu>();
 
 	public static var FG:FlxGroup = new FlxGroup();
 
@@ -100,7 +100,21 @@ class GameWorld extends MusicBeatState
 
 	override public function beatHit()
 	{
-		if (MusicBeatState.getCurBeat() % 2 == 0)
-			switchMenu(Menu.STORY);
+		super.beatHit();
+
+		for (i in 0...UI.members.length)
+		{
+			UI.members[i].beatHit();
+		}
+	}
+
+	override public function sectionHit()
+	{
+		super.sectionHit();
+
+		for (i in 0...UI.members.length)
+		{
+			UI.members[i].sectionHit();
+		}
 	}
 }

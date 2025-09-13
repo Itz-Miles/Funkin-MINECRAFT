@@ -20,6 +20,14 @@ class Menu extends FlxSpriteContainer
 		bg.alpha = 0;
 		FlxTween.tween(bg, {alpha: 0.5}, 0.5, {ease: FlxEase.quintOut});
 	}
+
+	public function beatHit()
+	{
+	}
+
+	public function sectionHit()
+	{
+	}
 }
 
 var STORY(get, default):StoryMenu;
