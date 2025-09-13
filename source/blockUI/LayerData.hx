@@ -14,6 +14,7 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
+					FlxTween.cancelTweensOf(obj.sprite);
 					obj.sprite.y = -72;
 					FlxTween.tween(obj.sprite, {y: 50}, 1.5, {ease: FlxEase.elasticOut});
 				},
@@ -36,8 +37,9 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.sprite.scale.x *= 0.95;
-					obj.sprite.scale.y *= 1.8;
+					FlxTween.cancelTweensOf(obj.sprite);
+					obj.sprite.scale.x = 1180 * 0.95;
+					obj.sprite.scale.y = 28 * 1.8;
 					FlxTween.tween(obj.sprite, {"scale.x": 1180, "scale.y": 28}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
@@ -51,8 +53,9 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.sprite.scale.x *= 0.95;
-					obj.sprite.scale.y *= 1.8;
+					FlxTween.cancelTweensOf(obj.sprite);
+					obj.sprite.scale.x = 1180 * 0.95;
+					obj.sprite.scale.y = 64 * 1.8;
 					FlxTween.tween(obj.sprite, {"scale.x": 1180, "scale.y": 64}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
@@ -66,8 +69,9 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.sprite.scale.x *= 0.95;
-					obj.sprite.scale.y *= 1.8;
+					FlxTween.cancelTweensOf(obj.sprite);
+					obj.sprite.scale.x = 1164 * 0.95;
+					obj.sprite.scale.y = 48 * 1.8;
 					FlxTween.tween(obj.sprite, {"scale.x": 1164, "scale.y": 48}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
@@ -81,8 +85,9 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.sprite.scale.x *= 0.95;
-					obj.sprite.scale.y *= 1.8;
+					FlxTween.cancelTweensOf(obj.sprite);
+					obj.sprite.scale.x = 1164 * 0.95;
+					obj.sprite.scale.y = 6 * 1.8;
 					FlxTween.tween(obj.sprite, {"scale.x": 1164, "scale.y": 6}, 1.5, {ease: FlxEase.elasticOut});
 				},
 			]
@@ -96,12 +101,15 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.sprite.scale.x *= 0.95;
-					obj.sprite.scale.y *= 1.05;
+					FlxTween.cancelTweensOf(obj.sprite);
+					obj.sprite.x = 86;
+					obj.sprite.scale.x = 38 * 0.95;
+					obj.sprite.scale.y = 38 * 1.05;
 					FlxTween.tween(obj.sprite, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
 				},
 				function(obj)
 				{
+					FlxTween.cancelTweensOf(obj.sprite);
 					FlxTween.tween(obj.sprite, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
 				},
 				function(obj)
@@ -119,8 +127,10 @@ class LayerData
 			_functions: [
 				function(obj)
 				{
-					obj.sprite.scale.x *= 0.95;
-					obj.sprite.scale.y *= 1.05;
+					FlxTween.cancelTweensOf(obj.sprite);
+					obj.sprite.x = 86;
+					obj.sprite.scale.x = 38 * 0.95;
+					obj.sprite.scale.y = 38 * 1.05;
 					obj.sprite.offset.y = -16;
 					FlxTween.tween(obj.sprite, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
 				},
@@ -161,10 +171,11 @@ class LayerData
 			_functions: [
 				function(obj)
 				{ // fade in
+					FlxTween.cancelTweensOf(obj.sprite);
 					obj.sprite.screenCenter(X);
 					obj.sprite.alpha = 0;
-					obj.sprite.scale.x *= 0.9;
-					obj.sprite.scale.y *= 1.8;
+					obj.sprite.scale.x = 0.9;
+					obj.sprite.scale.y = 1.8;
 					FlxTween.tween(obj.sprite, {alpha: 1, "scale.x": 1, "scale.y": 1}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0});
 				},
 				function(obj)
@@ -223,10 +234,10 @@ class LayerData
 				color: color,
 				onClick: function(obj)
 				{
-					FlxTween.completeTweensOf(obj.last.last.last.sprite.offset);
-					FlxTween.completeTweensOf(obj.last.sprite.offset);
-					FlxTween.completeTweensOf(obj.sprite.offset);
-					FlxTween.completeTweensOf(obj.next.sprite.offset);
+					FlxTween.cancelTweensOf(obj.last.last.last.sprite.offset);
+					FlxTween.cancelTweensOf(obj.last.sprite.offset);
+					FlxTween.cancelTweensOf(obj.sprite.offset);
+					FlxTween.cancelTweensOf(obj.next.sprite.offset);
 					FlxTween.tween(obj.last.last.last.sprite.offset, {y: ((-height - rimSize) * 0.5) + rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) - rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) - rimSize * 0.5}, 0.05);
@@ -235,10 +246,10 @@ class LayerData
 				},
 				onHover: function(obj)
 				{
-					FlxTween.completeTweensOf(obj.last.last.last.sprite.offset);
-					FlxTween.completeTweensOf(obj.last.sprite.offset);
-					FlxTween.completeTweensOf(obj.sprite.offset);
-					FlxTween.completeTweensOf(obj.next.sprite.offset);
+					FlxTween.cancelTweensOf(obj.last.last.last.sprite.offset);
+					FlxTween.cancelTweensOf(obj.last.sprite.offset);
+					FlxTween.cancelTweensOf(obj.sprite.offset);
+					FlxTween.cancelTweensOf(obj.next.sprite.offset);
 					FlxTween.tween(obj.last.last.last.sprite.offset, {y: ((-height - rimSize) * 0.5) - rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) + rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) + rimSize * 0.5}, 0.05);
@@ -246,10 +257,10 @@ class LayerData
 				},
 				onRelease: function(obj)
 				{
-					FlxTween.completeTweensOf(obj.last.last.last.sprite.offset);
-					FlxTween.completeTweensOf(obj.last.sprite.offset);
-					FlxTween.completeTweensOf(obj.sprite.offset);
-					FlxTween.completeTweensOf(obj.next.sprite.offset);
+					FlxTween.cancelTweensOf(obj.last.last.last.sprite.offset);
+					FlxTween.cancelTweensOf(obj.last.sprite.offset);
+					FlxTween.cancelTweensOf(obj.sprite.offset);
+					FlxTween.cancelTweensOf(obj.next.sprite.offset);
 					FlxTween.tween(obj.last.last.last.sprite.offset, {y: ((-height - rimSize) * 0.5)}, 0.05);
 					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5)}, 0.05);
 					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize))}, 0.05);

@@ -11,6 +11,13 @@ class MusicBeatState extends FlxState
 	var curStep:Int = 0;
 	var curBeat:Int = 0;
 
+	public static function getCurBeat()
+	{
+		return instance.curBeat;
+	}
+
+	public static var instance:MusicBeatState;
+
 	var curDecStep:Float = 0;
 	var curDecBeat:Float = 0;
 	var controls(get, never):Controls;
@@ -20,6 +27,12 @@ class MusicBeatState extends FlxState
 
 	override function create()
 	{
+	}
+
+	override public function new()
+	{
+		super();
+		instance = this;
 	}
 
 	override function update(elapsed:Float)

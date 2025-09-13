@@ -9,12 +9,12 @@ class StoryMenu extends Menu
 		super.create();
 		header = new Panel(LayerData.HEADER);
 		header.text = "understand the stories";
-		header.runAcrossLayers(0);
 		add(header);
 	}
 
 	override public function refresh()
 	{
+		header.runAcrossLayers(0);
 		super.refresh();
 	}
 }

@@ -13,11 +13,20 @@ class Menu extends FlxSpriteContainer
 		bg.scale.set(FlxG.width, FlxG.height);
 		bg.screenCenter();
 		add(bg);
-		bg.alpha = 0;
-		FlxTween.tween(bg, {alpha: 0.5}, 0.5, {ease: FlxEase.quintOut});
 	}
 
 	public function refresh()
 	{
+		bg.alpha = 0;
+		FlxTween.tween(bg, {alpha: 0.5}, 0.5, {ease: FlxEase.quintOut});
 	}
+}
+
+var STORY(get, default):StoryMenu;
+
+function get_STORY():StoryMenu
+{
+	if (STORY == null)
+		STORY = new StoryMenu();
+	return STORY;
 }

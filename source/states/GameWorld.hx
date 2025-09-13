@@ -3,7 +3,6 @@ package states;
 import menus.Menu;
 import parallax.ParallaxBG;
 import parallax.ParallaxFG;
-import menus.StoryMenu;
 import Song.SongData;
 
 /**
@@ -44,22 +43,30 @@ class GameWorld extends MusicBeatState
 
 	static var _targetEnvColor:FlxColor = SKY_COLOR;
 
-	public static var BG:FlxContainer = new FlxContainer();
+	public static var BG:FlxGroup = new FlxGroup();
 
-	public static var UI:FlxContainer = new FlxContainer();
+	public static var UI:FlxGroup = new FlxGroup();
 
-	public static var FG:FlxContainer = new FlxContainer();
+	public static var FG:FlxGroup = new FlxGroup();
 
 	public static function switchMenu(menu:Menu)
 	{
-		if (menu == null)
+		while (UI.length > 0)
 		{
-			menu = Type.createInstance(Type.getClass(menu), []);
+			UI.remove(UI.members[UI.members.length - 1], true);
+		}
+
+		if (menu.members.length < 1)
+		{
+			// trace("creating: " + Type.getClassName(Type.getClass(menu)));
 			menu.create();
+			UI.add(menu);
 			menu.refresh();
 		}
 		else
 		{
+			// trace("refreshing: " + Type.getClassName(Type.getClass(menu)));
+			UI.add(menu);
 			menu.refresh();
 		}
 	}
@@ -71,19 +78,12 @@ class GameWorld extends MusicBeatState
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
-		// destroySubStates = false;
-		// switchMenu(new TitleState());
-
 		add(BG);
 		add(UI);
 		add(FG);
 
 		var bg:ParallaxBG = new ParallaxBG('aero_archways', 0.2);
 		BG.add(bg);
-
-		var storyMenu:StoryMenu = new StoryMenu();
-		storyMenu.create();
-		UI.add(storyMenu);
 
 		var fg:ParallaxFG = new ParallaxFG('aero_archways', 0.2);
 		fg.setPosition(-130, -70);
@@ -92,6 +92,15 @@ class GameWorld extends MusicBeatState
 
 	override public function update(elapsed:Float):Void
 	{
+		if (FlxG.sound.music != null)
+			Conductor.songPosition = FlxG.sound.music.time;
+
 		super.update(elapsed);
+	}
+
+	override public function beatHit()
+	{
+		if (MusicBeatState.getCurBeat() % 2 == 0)
+			switchMenu(Menu.STORY);
 	}
 }
