@@ -1,5 +1,7 @@
 package menus;
 
+import lime.system.System;
+
 class TitleMenu extends Menu
 {
 	var logo:FlxSprite;
@@ -23,6 +25,7 @@ class TitleMenu extends Menu
 
 	override public function refresh()
 	{
+		Menu.transitioning = false;
 		if (Menu.previous != null)
 		{
 			logo.alpha = 0;
@@ -49,10 +52,43 @@ class TitleMenu extends Menu
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;
 		}
-
-		if (Controls.ACCEPT)
+		if (!Menu.transitioning)
 		{
-			GameWorld.switchMenu(Menu.STORY);
+			if (Controls.ACCEPT)
+			{
+				FlxTween.completeTweensOf(splashText);
+				FlxTween.completeTweensOf(logo);
+				FlxG.sound.play(Paths.sound('confirmMenu'), 0.3);
+				// @formatter:off
+				FlxTween.tween(splashText, {alpha: 0, "scale.x": 1.2,"scale.y": 1.2, y: 660}, 0.5, {ease: FlxEase.quadIn});
+				// @formatter:on
+				FlxTween.tween(logo, {alpha: 0, "scale.x": 1.4, "scale.y": 1.4}, 0.5, {ease: FlxEase.quadIn});
+
+				Menu.transitioning = true;
+
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					GameWorld.switchMenu(Menu.STORY); // for now
+				});
+			}
+
+			if (Controls.BACK)
+			{
+				Menu.transitioning = true;
+				FlxG.camera.fade(#if html5 FlxColor.BLACK #else 0xFF0F0F0F #end, 2, false);
+				FlxTween.tween(FlxG.sound.music, {pitch: 0}, 2,
+					{
+						ease: FlxEase.cubeIn,
+						onComplete: function(twn:FlxTween)
+						{
+							FlxG.sound.play(Paths.sound('fnf_loss_sfx'), 1);
+							new FlxTimer().start(0.25, function(tmr:FlxTimer)
+							{
+								System.exit(0);
+							});
+						}
+					});
+			}
 		}
 		super.update(elapsed);
 	}
@@ -60,25 +96,27 @@ class TitleMenu extends Menu
 	override public function beatHit(?curBeat:Int)
 	{
 		super.beatHit(curBeat);
-
-		if (splashText != null && Menu.transitioning)
-			FlxTween.tween(splashText.scale, {x: 1, y: 1}, 0.165,
-				{
-					ease: FlxEase.cubeOut,
-					onComplete: function(twn:FlxTween)
+		if (!Menu.transitioning)
+		{
+			if (splashText != null)
+				FlxTween.tween(splashText.scale, {x: 1, y: 1}, 0.165,
 					{
-						FlxTween.tween(splashText.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut});
-					}
-				});
-		if (logo != null && Menu.transitioning)
-			FlxTween.tween(logo.scale, {x: 1, y: 1}, 0.165,
-				{
-					ease: FlxEase.cubeOut,
-					onComplete: function(twn:FlxTween)
+						ease: FlxEase.cubeOut,
+						onComplete: function(twn:FlxTween)
+						{
+							FlxTween.tween(splashText.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut});
+						}
+					});
+			if (logo != null)
+				FlxTween.tween(logo.scale, {x: 1, y: 1}, 0.165,
 					{
-						FlxTween.tween(logo.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut});
-					}
-				});
+						ease: FlxEase.cubeOut,
+						onComplete: function(twn:FlxTween)
+						{
+							FlxTween.tween(logo.scale, {x: 0.975, y: 0.975}, 0.165, {ease: FlxEase.cubeOut});
+						}
+					});
+		}
 		/*
 			if (titleGF != null)
 			{
