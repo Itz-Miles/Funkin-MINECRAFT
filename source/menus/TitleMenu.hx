@@ -23,7 +23,7 @@ class TitleMenu extends Menu
 
 	override public function refresh()
 	{
-		if (MainMenuState.curSelection != 5)
+		if (Menu.previous != null)
 		{
 			logo.alpha = 0;
 			FlxTween.tween(logo, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
@@ -48,6 +48,11 @@ class TitleMenu extends Menu
 		if (FlxG.sound.music.volume < 1)
 		{
 			FlxG.sound.music.volume += 0.5 * elapsed;
+		}
+
+		if (Controls.ACCEPT)
+		{
+			GameWorld.switchMenu(Menu.STORY);
 		}
 		super.update(elapsed);
 	}

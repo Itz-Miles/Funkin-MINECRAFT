@@ -6,6 +6,8 @@ package menus;
 class Menu extends FlxSpriteContainer
 {
 	public static var transitioning:Bool = true;
+	public static var current:Menu;
+	public static var previous:Menu;
 
 	var bg:FlxSprite;
 

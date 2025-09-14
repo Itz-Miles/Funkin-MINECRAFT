@@ -51,6 +51,9 @@ class GameWorld extends MusicBeatState
 
 	public static function switchMenu(menu:Menu)
 	{
+		Menu.previous = Menu.current;
+		Menu.current = menu;
+
 		while (UI.length > 0)
 		{
 			UI.remove(UI.members[UI.members.length - 1], true);
