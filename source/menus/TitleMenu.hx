@@ -75,7 +75,7 @@ class TitleMenu extends Menu
 
 				new FlxTimer().start(1, function(tmr:FlxTimer)
 				{
-					GameWorld.switchMenu(Menu.STORY); // for now
+					GameWorld.switchMenu(Menu.MAIN);
 				});
 			}
 

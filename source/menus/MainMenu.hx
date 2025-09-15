@@ -1,19 +1,16 @@
 package menus;
 
-class StoryMenu extends Menu
+class MainMenu extends Menu
 {
-
 	override public function create()
 	{
-		super.create();
 		header = new Panel(LayerData.HEADER);
-		header.text = "understand the stories";
+		header.text = "select a submenu";
 		add(header);
 	}
 
 	override public function refresh()
 	{
 		header.runAcrossLayers(0);
-		super.refresh();
 	}
 }

@@ -10,6 +10,7 @@ class Menu extends FlxSpriteContainer
 	public static var previous:Menu;
 
 	var bg:FlxSprite;
+	var header:Panel;
 
 	public function create()
 	{
@@ -41,6 +42,15 @@ function get_TITLE():TitleMenu
 	if (TITLE == null)
 		TITLE = new TitleMenu();
 	return TITLE;
+}
+
+var MAIN(get, default):MainMenu;
+
+function get_MAIN():MainMenu
+{
+	if (MAIN == null)
+		MAIN = new MainMenu();
+	return MAIN;
 }
 
 var STORY(get, default):StoryMenu;
