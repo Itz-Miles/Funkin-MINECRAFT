@@ -221,7 +221,6 @@ class MainMenuState extends MusicBeatSubstate
 
 				new FlxTimer().start(1.1, function(tmr:FlxTimer)
 				{
-					FlxG.switchState(() -> new TitleState());
 				});
 			}
 		}
