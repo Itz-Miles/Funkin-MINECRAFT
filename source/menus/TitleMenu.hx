@@ -4,12 +4,19 @@ import lime.system.System;
 
 class TitleMenu extends Menu
 {
+	var titleGF:Character;
 	var logo:FlxSprite;
 
 	var splashText:FlxText;
 
 	override public function create()
 	{
+		Paths.clearUnusedMemory();
+
+		titleGF = new Character(710, 220, "titleGF", "shared"); // for now
+		add(titleGF);
+		titleGF.scrollFactor.set(0.565789474, 0.565789474);
+
 		logo = new FlxSprite(-15, -10).loadGraphic(Paths.image('logos/logo', "shared"));
 		logo.antialiasing = ClientPrefs.data.antialiasing;
 		add(logo);
@@ -54,10 +61,10 @@ class TitleMenu extends Menu
 		}
 		if (!Menu.transitioning)
 		{
-			if (Controls.ACCEPT)
+			if (FlxG.mouse.justPressed || Controls.ACCEPT)
 			{
-				FlxTween.completeTweensOf(splashText);
-				FlxTween.completeTweensOf(logo);
+				FlxTween.cancelTweensOf(splashText);
+				FlxTween.cancelTweensOf(logo);
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.3);
 				// @formatter:off
 				FlxTween.tween(splashText, {alpha: 0, "scale.x": 1.2,"scale.y": 1.2, y: 660}, 0.5, {ease: FlxEase.quadIn});
@@ -96,6 +103,7 @@ class TitleMenu extends Menu
 	override public function beatHit(?curBeat:Int)
 	{
 		super.beatHit(curBeat);
+
 		if (!Menu.transitioning)
 		{
 			if (splashText != null)
@@ -117,11 +125,10 @@ class TitleMenu extends Menu
 						}
 					});
 		}
-		/*
-			if (titleGF != null)
-			{
-				titleGF.beatHit(curBeat);
-			}
-		 */
+
+		if (titleGF != null)
+		{
+			titleGF.beatHit(curBeat);
+		}
 	}
 }
