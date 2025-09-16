@@ -107,10 +107,11 @@ class Panel extends FlxSpriteContainer
 	 */
 	public function addLayers(?layers:Array<Layer>):Void
 	{
-		for (i in 0...layers.length ?? [].length)
-		{
-			addLayerInternal(layers[i]);
-		}
+		if (layers != null)
+			for (i in 0...layers.length)
+			{
+				addLayerInternal(layers[i]);
+			}
 	}
 
 	/**

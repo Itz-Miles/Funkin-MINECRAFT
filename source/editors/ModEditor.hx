@@ -7,23 +7,16 @@ import flixel.tweens.FlxTween;
 /**
  * The Mod Editor serves as a hub for adding and creating mods.
  */
-class ModEditor extends MusicBeatSubstate
+class ModEditor extends Menu
 {
+	var popup:Panel;
+
 	override function create()
 	{
 		super.create();
-		var bg:FlxSprite = new FlxSprite();
-		bg.makeGraphic(1, 1, FlxG.camera.bgColor);
-		bg.scale.set(1290, 730);
-		bg.alpha = 0;
-		bg.scrollFactor.set();
-		bg.screenCenter();
-		add(bg);
-		FlxTween.tween(bg, {alpha: 0.7}, 0.5, {ease: FlxEase.quintOut});
 
-		var header:Panel = new Panel(LayerData.HEADER);
+		header = new Panel(LayerData.HEADER);
 		header.text = "modify game content";
-		header.runAcrossLayers(0);
 		add(header);
 
 		var button:Panel = new Panel(LayerData.createButton("modpack", 50 + 393, 250, 393, 196, 8, 24, 0xFF504D5B, null, function(obj)
@@ -38,7 +31,7 @@ class ModEditor extends MusicBeatSubstate
 
 		if (!FlxG.save.data.showModEditorPopup)
 		{
-			var popup:Panel = new Panel();
+			popup = new Panel([]);
 			popup.addLayers([
 				{
 					_functions: [
@@ -102,7 +95,7 @@ class ModEditor extends MusicBeatSubstate
 				}
 			]);
 
-			popup.addLayers(LayerData.createButton("ok, that's pretty cool!", 60, 590, 575, 50, 4, 8, 0xFF00AA00, function(obj)
+			popup.addLayers(LayerData.createButton("ok, that's pretty cool!", 60, 590, 575, 50, 4, 8, 0xFF00AA00, null, null, function(obj)
 			{
 				FlxG.sound.play(Paths.sound('confirmMenu'), 0.3);
 				/*
@@ -113,7 +106,7 @@ class ModEditor extends MusicBeatSubstate
 				 */
 			}));
 
-			popup.addLayers(LayerData.createButton("do NOT show me this again.", 645, 590, 575, 50, 4, 8, 0xFFAA0000, function(obj)
+			popup.addLayers(LayerData.createButton("do NOT show me this again.", 645, 590, 575, 50, 4, 8, 0xFFAA0000, null, null, function(obj)
 			{
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 				FlxG.save.data.showModEditorPopup = false;
@@ -126,9 +119,14 @@ class ModEditor extends MusicBeatSubstate
 				});
 			}));
 			add(popup);
-
-			popup.runAcrossLayers(0);
 		}
+	}
+
+	override public function refresh()
+	{
+		super.refresh();
+		header.runAcrossLayers(0);
+		popup.runAcrossLayers(0);
 	}
 
 	override function update(elapsed:Float)
@@ -137,8 +135,7 @@ class ModEditor extends MusicBeatSubstate
 
 		if (Controls.BACK)
 		{
-			close();
-			FlxG.resetState();
+			GameWorld.switchMenu(Menu.MAIN);
 		}
 	}
 }

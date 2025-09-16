@@ -65,3 +65,12 @@ function get_STORY():StoryMenu
 		STORY = new StoryMenu();
 	return STORY;
 }
+
+var MOD(get, default):ModEditor;
+
+function get_MOD():ModEditor
+{
+	if (MOD == null)
+		MOD = new ModEditor();
+	return MOD;
+}

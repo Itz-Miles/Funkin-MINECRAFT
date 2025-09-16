@@ -241,7 +241,7 @@ class MainMenu extends Menu
 				case 2:
 					GameWorld.switchMenu(Menu.STORY);
 				case 3:
-					GameWorld.switchMenu(Menu.STORY);
+					GameWorld.switchMenu(Menu.MOD);
 				case 4:
 					GameWorld.switchMenu(Menu.STORY);
 			}
