@@ -3,7 +3,7 @@ package menus;
 /**
  * The Menu class
  */
-class Menu extends FlxSpriteContainer
+class Menu extends FlxContainer
 {
 	public static var transitioning:Bool = true;
 	public static var current:Menu;
@@ -16,14 +16,18 @@ class Menu extends FlxSpriteContainer
 	{
 		bg = new FlxSprite().makeGraphic(1, 1, GameWorld.SKY_COLOR);
 		bg.scale.set(FlxG.width, FlxG.height);
+		bg.scrollFactor.set();
 		bg.screenCenter();
 		add(bg);
 	}
 
 	public function refresh()
 	{
-		bg.alpha = 0;
-		FlxTween.tween(bg, {alpha: 0.5}, 0.5, {ease: FlxEase.quintOut});
+		if (bg != null)
+		{
+			bg.alpha = 0;
+			FlxTween.tween(bg, {alpha: 0.5}, 0.5, {ease: FlxEase.quintOut});
+		}
 	}
 
 	public function beatHit(?curBeat:Int)
