@@ -194,7 +194,8 @@ class LayerData
 		}
 	];
 
-	public static function createButton(text:String = "button", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4, color:Int = 0xFF888888, ?shadowColor:Int = 0x35000000, ?onClick:LayerObject->Void):Array<Layer>
+	public static function createButton(text:String = "button", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4, color:Int = 0xFF888888, ?borderColor:Int = 0xFF000000, ?shadowColor:Int = 0x35000000,
+			?onClick:LayerObject->Void, ?onHover:LayerObject->Void, ?onRelease:LayerObject->Void):Array<Layer>
 	{
 		return [
 
@@ -203,7 +204,7 @@ class LayerData
 				y: y - borderSize + rimSize,
 				width: width + borderSize * 2,
 				height: height + borderSize * 2,
-				color: FlxColor.BLACK,
+				color: borderColor,
 			},
 			{ // button shadow
 				x: x,
@@ -242,7 +243,8 @@ class LayerData
 					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) - rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) - rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.next.sprite.offset, {y: -rimSize * 0.5}, 0.05);
-					onClick(obj);
+					if (onClick != null)
+						onClick(obj);
 				},
 				onHover: function(obj)
 				{
@@ -254,6 +256,8 @@ class LayerData
 					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) + rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) + rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.next.sprite.offset, {y: rimSize * 0.5}, 0.05);
+					if (onHover != null)
+						onHover(obj);
 				},
 				onRelease: function(obj)
 				{
@@ -265,6 +269,8 @@ class LayerData
 					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5)}, 0.05);
 					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize))}, 0.05);
 					FlxTween.tween(obj.next.sprite.offset, {y: 0}, 0.05);
+					if (onRelease != null)
+						onRelease(obj);
 				}
 			},
 			{ // button text
