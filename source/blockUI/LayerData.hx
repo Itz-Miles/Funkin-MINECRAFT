@@ -97,26 +97,7 @@ class LayerData
 			y: 14,
 			width: 38,
 			height: 38,
-			color: 0xff2e2e2e,
-			_functions: [
-				function(obj)
-				{
-					FlxTween.cancelTweensOf(obj.sprite);
-					obj.sprite.x = 86;
-					obj.sprite.scale.x = 38 * 0.95;
-					obj.sprite.scale.y = 38 * 1.05;
-					FlxTween.tween(obj.sprite, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
-				},
-				function(obj)
-				{
-					FlxTween.cancelTweensOf(obj.sprite);
-					FlxTween.tween(obj.sprite, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
-				},
-				function(obj)
-				{
-					obj.sprite.x = 64;
-				}
-			]
+			color: 0xff2e2e2e
 		},
 		{ // button
 			x: 86,
@@ -128,6 +109,14 @@ class LayerData
 				function(obj)
 				{
 					FlxTween.cancelTweensOf(obj.sprite);
+					obj.last.sprite.alpha = 1;
+					obj.last.sprite.x = 86;
+					obj.last.sprite.scale.x = 38 * 0.95;
+					obj.last.sprite.scale.y = 38 * 1.05;
+					FlxTween.tween(obj.last.sprite, {x: 64, "scale.x": 38, "scale.y": 38}, 1.5, {ease: FlxEase.elasticOut});
+
+					FlxTween.cancelTweensOf(obj.sprite);
+					obj.sprite.alpha = 1;
 					obj.sprite.x = 86;
 					obj.sprite.scale.x = 38 * 0.95;
 					obj.sprite.scale.y = 38 * 1.05;
@@ -136,10 +125,15 @@ class LayerData
 				},
 				function(obj)
 				{
+					FlxTween.cancelTweensOf(obj.last.sprite);
+					FlxTween.tween(obj.last.sprite, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
+
 					FlxTween.tween(obj.sprite, {alpha: 0}, 1.5, {ease: FlxEase.quintOut});
 				},
 				function(obj)
 				{
+					obj.last.sprite.x = 64;
+
 					obj.sprite.offset.y = -16;
 					obj.sprite.x = 64;
 				}
