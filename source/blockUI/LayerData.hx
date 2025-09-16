@@ -280,4 +280,10 @@ class LayerData
 			},
 		];
 	}
+
+	public static function createSlider(description:String = "", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4, color:Int = 0xFF888888, ?borderColor:Int = 0xFF000000, ?shadowColor:Int = 0x35000000,
+			?onClick:LayerObject->Void, ?onHover:LayerObject->Void, ?onRelease:LayerObject->Void):Array<Layer>
+	{
+		return [];
+	}
 }
