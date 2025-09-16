@@ -33,8 +33,6 @@ class MainMenu extends Menu
 		if (Menu.previous != Menu.TITLE)
 			FlxG.camera.fade(FlxG.camera.bgColor, 0.5, true);
 
-		selected = false;
-
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
@@ -54,13 +52,23 @@ class MainMenu extends Menu
 					_functions: [
 						function(obj)
 						{
-							obj.sprite.setPosition(-80, 140 + (i * 94) + (i * 10));
+							obj.sprite.setPosition(-380, 140 + (i * 94) + (i * 10));
 							obj.sprite.alpha = 0;
-							FlxTween.tween(obj.sprite, {alpha: 1, x: 58}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
+							sideBar[i].fields[0].alpha = 0;
+							FlxTween.tween(sideBar[i].fields[0], {alpha: curSelection == i ? 1 : 0.4}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
+
+							FlxTween.tween(obj.sprite, {alpha: 1, x: 58}, 1.3,
+								{ease: FlxEase.elasticOut,
+									startDelay: 0.4 + (i * 0.1),
+									onComplete: function(_)
+									{
+										selected = false;
+									}
+								});
 						},
 						function(obj)
 						{
-							FlxTween.tween(obj.sprite, {alpha: 0, x: -326}, 1, {ease: FlxEase.quintOut, startDelay: 0.4 - (i * 0.1)});
+							FlxTween.tween(obj.sprite, {alpha: 0, x: -326}, 0.8, {ease: FlxEase.backIn, startDelay: 0.4 - (i * 0.1)});
 						},
 						function(obj)
 						{
@@ -101,6 +109,7 @@ class MainMenu extends Menu
 
 	override public function refresh()
 	{
+		selected = true;
 		Paths.clearUnusedMemory();
 		FlxG.camera.follow(camFollow, NO_DEAD_ZONE, 0.07);
 
@@ -120,7 +129,7 @@ class MainMenu extends Menu
 		if (value < 0)
 			value = labels.length - 1;
 
-		if (!selected && curSelection != value)
+		if (!selected)
 		{
 			FlxG.sound.play(Paths.sound('scrollMenu'), 0.3);
 		}
@@ -137,21 +146,21 @@ class MainMenu extends Menu
 			FlxG.sound.music.volume += 0.5 * elapsed;
 		}
 
-		if (Controls.UI_UP_P)
-		{
-			curSelection--;
-
-			sideBar[curSelection].buttons[0].onHover();
-		}
-		else if (Controls.UI_DOWN_P)
-		{
-			curSelection++;
-
-			sideBar[curSelection].buttons[0].onHover();
-		}
-
 		if (!selected)
 		{
+			if (Controls.UI_UP_P)
+			{
+				curSelection--;
+
+				sideBar[curSelection].buttons[0].onHover();
+			}
+			else if (Controls.UI_DOWN_P)
+			{
+				curSelection++;
+
+				sideBar[curSelection].buttons[0].onHover();
+			}
+
 			if (Controls.ACCEPT)
 			{
 				sideBar[curSelection].buttons[0].onHover();
@@ -170,8 +179,10 @@ class MainMenu extends Menu
 				for (i in 0...sideBar.length)
 					sideBar[i].runAcrossLayers(1);
 
-				new FlxTimer().start(1.1, function(tmr:FlxTimer)
+				new FlxTimer().start(1.5, function(tmr:FlxTimer)
 				{
+					selected = false;
+					backed = false;
 					GameWorld.switchMenu(Menu.TITLE);
 				});
 			}

@@ -2,7 +2,6 @@ package menus;
 
 class StoryMenu extends Menu
 {
-
 	override public function create()
 	{
 		super.create();
@@ -15,5 +14,14 @@ class StoryMenu extends Menu
 	{
 		header.runAcrossLayers(0);
 		super.refresh();
+	}
+
+	override public function update(elapsed:Float)
+	{
+		super.update(elapsed);
+		if (Controls.BACK)
+		{
+			GameWorld.switchMenu(Menu.MAIN);
+		}
 	}
 }
