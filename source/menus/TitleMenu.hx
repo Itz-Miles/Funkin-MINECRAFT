@@ -32,6 +32,8 @@ class TitleMenu extends Menu
 
 	override public function refresh()
 	{
+		logo.y = -10;
+		splashText.y = 560;
 		Menu.transitioning = false;
 		if (Menu.previous != null)
 		{
