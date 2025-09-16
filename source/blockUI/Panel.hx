@@ -107,9 +107,9 @@ class Panel extends FlxSpriteContainer
 	 */
 	public function addLayers(?layers:Array<Layer>):Void
 	{
-		for (layer in layers ?? [])
+		for (i in 0...layers.length ?? [].length)
 		{
-			addLayerInternal(layer);
+			addLayerInternal(layers[i]);
 		}
 	}
 
@@ -236,51 +236,51 @@ class Panel extends FlxSpriteContainer
 	{
 		super.update(elapsed);
 
-		for (button in buttons)
+		for (i in 0...buttons.length)
 		{
-			if (button == null)
+			if (buttons[i] == null)
 				continue;
 
-			if (button.state == DISABLED || !button.sprite.visible)
+			if (buttons[i].state == DISABLED || !buttons[i].sprite.visible)
 				continue;
 
-			if (FlxG.mouse.overlaps(button.sprite, this.camera))
+			if (FlxG.mouse.overlaps(buttons[i].sprite, this.camera))
 			{
 				// FlxG.mouse.released is any frame the mouse is not held - different from JustReleased
-				if (FlxG.mouse.released && button.state != HOVERED && button.state != PUSHED)
+				if (FlxG.mouse.released && buttons[i].state != HOVERED && buttons[i].state != PUSHED)
 				{
-					button.state = HOVERED;
-					button.onHover();
+					buttons[i].state = HOVERED;
+					buttons[i].onHover();
 				}
 
 				if (FlxG.mouse.justPressed)
 				{
-					if (button.isPush)
+					if (buttons[i].isPush)
 					{
-						if (button.state == PUSHED)
+						if (buttons[i].state == PUSHED)
 						{
-							button.state = RELEASED;
-							button.onRelease();
+							buttons[i].state = RELEASED;
+							buttons[i].onRelease();
 						}
 						else
 						{
-							button.state = PUSHED;
-							button.onPush();
+							buttons[i].state = PUSHED;
+							buttons[i].onPush();
 						}
 					}
 					else
 					{
-						button.state = CLICKED;
-						button.onClick();
+						buttons[i].state = CLICKED;
+						buttons[i].onClick();
 					}
 				}
 			}
 			else
 			{
-				if (button.state != RELEASED && button.state != PUSHED)
+				if (buttons[i].state != RELEASED && buttons[i].state != PUSHED)
 				{
-					button.state = RELEASED;
-					button.onRelease();
+					buttons[i].state = RELEASED;
+					buttons[i].onRelease();
 				}
 			}
 		}
