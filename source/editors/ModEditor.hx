@@ -64,7 +64,7 @@ class ModEditor extends Menu
 		{
 			content.addLayers(LayerData.createButton(editorLabels[i], 740, 240 + (102 * i), 460, 72, 4, 12, 0xFF4B4A4E, null, function(obj)
 			{
-				FlxG.sound.play(Paths.sound('missnote1'), 0.3);
+				selectMenu(i);
 			}));
 		}
 
@@ -81,7 +81,7 @@ class ModEditor extends Menu
 						{
 							obj.sprite.y = 50;
 							obj.sprite.alpha = 0;
-							FlxTween.tween(obj.sprite, {y: 0, alpha: 1}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.5});
+							FlxTween.tween(obj.sprite, {y: 0, alpha: 1}, 1.5, {ease: FlxEase.elasticOut, startDelay: 0.7});
 						}
 					]
 				},
@@ -157,6 +157,7 @@ class ModEditor extends Menu
 				new FlxTimer().start(0.25, function(tmr)
 				{
 					popup.kill();
+					content.active = true;
 				});
 			}));
 			add(popup);
@@ -165,8 +166,13 @@ class ModEditor extends Menu
 
 	override public function refresh()
 	{
-		super.refresh();
+		if (Menu.previous == Menu.MAIN)
+		{
+			super.refresh();
+		}
+		content.active = false;
 		header.runAcrossLayers(0);
+		popup.revive();
 		popup.runAcrossLayers(0);
 	}
 
@@ -177,6 +183,21 @@ class ModEditor extends Menu
 		if (Controls.BACK)
 		{
 			GameWorld.switchMenu(Menu.MAIN);
+		}
+	}
+
+	static function selectMenu(index:Int)
+	{
+		switch (index)
+		{
+			case 0:
+				GameWorld.switchMenu(Menu.MAIN);
+			case 1:
+				GameWorld.switchMenu(Menu.MAIN);
+			case 2:
+				GameWorld.switchMenu(Menu.MAIN);
+			case 3:
+				GameWorld.switchMenu(Menu.SONG);
 		}
 	}
 }

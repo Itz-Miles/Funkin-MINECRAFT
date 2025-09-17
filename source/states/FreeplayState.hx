@@ -272,7 +272,7 @@ class FreeplayState extends MusicBeatSubstate
 			{
 				new FlxTimer().start(0.25, function(tmr:FlxTimer)
 				{
-					LoadingState.loadAndSwitchState(new SongEditor());
+					//LoadingState.loadAndSwitchState(new SongEditor());
 				});
 			}
 			else

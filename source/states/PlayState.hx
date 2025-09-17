@@ -926,7 +926,7 @@ class PlayState extends MusicBeatState
 		chartingMode = true;
 		camUI.fade(FlxG.camera.bgColor, 0.25, false, function()
 		{
-			FlxG.switchState(() -> new SongEditor());
+			//FlxG.switchState(() -> new SongEditor());
 		});
 	}
 

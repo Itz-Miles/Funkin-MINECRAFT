@@ -7,7 +7,7 @@ import blockUI.Layer;
 import blockUI.Panel;
 import flixel.FlxG;
 
-class SongEditor extends MusicBeatState
+class SongEditor extends Menu
 {
 	public static var GRID_SIZE:Int = 40;
 	static final tabNames:Array<String> = ['song', 'note', 'event', 'ctrl', 'info', 'auto'];
@@ -63,15 +63,14 @@ class SongEditor extends MusicBeatState
 		}
 	];
 
+	var uiBox:Panel;
+
 	override function create()
 	{
-		Paths.clearStoredMemory();
+		super.create();
 		Paths.clearUnusedMemory();
 
-		if (FlxG.sound.music != null)
-			FlxG.sound.music.stop();
-
-		var uiBox:Panel = new Panel(box);
+		uiBox = new Panel(box);
 		add(uiBox);
 
 		tabs = new Array<Panel>();
@@ -289,6 +288,14 @@ class SongEditor extends MusicBeatState
 				}
 			]);
 		}
+	}
+
+	override public function refresh()
+	{
+		bg.alpha = 0.5;
+
+		if (FlxG.sound.music != null)
+			FlxG.sound.music.stop();
 
 		for (tab in tabs)
 		{
@@ -304,7 +311,7 @@ class SongEditor extends MusicBeatState
 		if (Controls.BACK)
 		{
 			FlxG.sound.playMusic(Paths.music('where_are_we_going'));
-			FlxG.switchState(() -> new FreeplayState());
+			GameWorld.switchMenu(Menu.MOD);
 		}
 	}
 

@@ -74,3 +74,12 @@ function get_MOD():ModEditor
 		MOD = new ModEditor();
 	return MOD;
 }
+
+var SONG(get, default):SongEditor;
+
+function get_SONG():SongEditor
+{
+	if (SONG == null)
+		SONG = new SongEditor();
+	return SONG;
+}
