@@ -11,6 +11,10 @@ class ModEditor extends Menu
 {
 	var popup:Panel;
 
+	var content:Panel;
+
+	static var editorLabels:Array<String> = ["story editor", "level editor", "char editor", "song editor"];
+
 	override function create()
 	{
 		super.create();
@@ -19,12 +23,50 @@ class ModEditor extends Menu
 		header.text = "modify game content";
 		add(header);
 
-		var button:Panel = new Panel(LayerData.createButton("modpack", 50 + 393, 250, 393, 196, 8, 24, 0xFF504D5B, null, function(obj)
+		content = new Panel();
+		add(content);
+		content.addLayers([
+			{
+				x: 60,
+				y: 160,
+				width: 600,
+				height: 500,
+				color: 0x70000000
+			},
+			{
+				x: 720,
+				y: 160,
+				width: 500,
+				height: 500,
+				color: 0x70000000
+			},
+			{
+				x: 70,
+				y: 170,
+				size: 32,
+				font: Paths.font("Monocraft.ttf"),
+				color: 0xFFFFFFFF,
+				text: "load and configure modpacks",
+				align: LEFT
+			},
+			{
+				x: 740,
+				y: 170,
+				size: 32,
+				font: Paths.font("Monocraft.ttf"),
+				color: 0xFFFFFFFF,
+				text: "...or create your own!",
+				align: LEFT
+			}
+		]);
+
+		for (i in 0...editorLabels.length)
 		{
-			FlxG.sound.play(Paths.sound('missnote1'), 0.3);
-		}));
-		button.visible = false;
-		add(button);
+			content.addLayers(LayerData.createButton(editorLabels[i], 740, 240 + (102 * i), 460, 72, 4, 12, 0xFF4B4A4E, null, function(obj)
+			{
+				FlxG.sound.play(Paths.sound('missnote1'), 0.3);
+			}));
+		}
 
 		if (FlxG.save.data.showModEditorPopup == null)
 			FlxG.save.data.showModEditorPopup = true;
@@ -115,7 +157,6 @@ class ModEditor extends Menu
 				new FlxTimer().start(0.25, function(tmr)
 				{
 					popup.kill();
-					button.visible = true;
 				});
 			}));
 			add(popup);
