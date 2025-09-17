@@ -19,6 +19,7 @@ typedef Layer =
 	var ?size:Int;
 	var ?align:FlxTextAlign;
 	var ?_functions:Array<LayerObject->Void>;
+	var ?onPress:LayerObject->Void;
 	var ?onClick:LayerObject->Void;
 	var ?onPush:LayerObject->Void;
 	var ?onHover:LayerObject->Void;

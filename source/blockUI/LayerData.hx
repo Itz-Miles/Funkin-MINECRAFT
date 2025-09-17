@@ -138,10 +138,13 @@ class LayerData
 					obj.sprite.x = 64;
 				}
 			],
+			onPress: function(obj)
+			{
+				obj.sprite.offset.y = -18;
+			},
 			onClick: function(obj)
 			{
 				@:bypassAccessor Controls.BACK = true;
-				obj.sprite.offset.y = -18;
 			},
 			onHover: function(obj)
 			{
@@ -227,7 +230,7 @@ class LayerData
 				width: width - borderSize * 2,
 				height: height - borderSize * 2,
 				color: color,
-				onClick: function(obj)
+				onPress: function(obj)
 				{
 					FlxTween.cancelTweensOf(obj.last.last.last.sprite.offset);
 					FlxTween.cancelTweensOf(obj.last.sprite.offset);
@@ -237,6 +240,9 @@ class LayerData
 					FlxTween.tween(obj.last.sprite.offset, {y: (-height * 0.5) - rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.sprite.offset, {y: (-height * 0.5 + (borderSize)) - rimSize * 0.5}, 0.05);
 					FlxTween.tween(obj.next.sprite.offset, {y: -rimSize * 0.5}, 0.05);
+				},
+				onClick: function(obj)
+				{
 					if (onClick != null)
 						onClick(obj);
 				},

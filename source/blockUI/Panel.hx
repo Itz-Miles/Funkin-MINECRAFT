@@ -12,8 +12,9 @@ enum abstract ButtonState(Int) from Int to Int
 	var DISABLED = 0;
 	var RELEASED = 1;
 	var HOVERED = 2;
-	var CLICKED = 3;
-	var PUSHED = 4;
+	var PRESSED = 3;
+	var CLICKED = 4;
+	var PUSHED = 5;
 }
 
 typedef ButtonData =
@@ -22,6 +23,7 @@ typedef ButtonData =
 	var state:ButtonState;
 	var onClick:Void->Void;
 	var onHover:Void->Void;
+	var onPress:Void->Void;
 	var onRelease:Void->Void;
 	var onPush:Void->Void;
 	var isPush:Bool;
@@ -215,6 +217,7 @@ class Panel extends FlxSpriteContainer
 					sprite: obj,
 					state: RELEASED,
 					onClick: () -> if (layer.onClick != null) layer.onClick(layerObj),
+					onPress: () -> if (layer.onPress != null) layer.onPress(layerObj),
 					onHover: () -> if (layer.onHover != null) layer.onHover(layerObj),
 					onRelease: () -> if (layer.onRelease != null) layer.onRelease(layerObj),
 					onPush: () -> if (layer.onPush != null) layer.onPush(layerObj),
@@ -248,7 +251,7 @@ class Panel extends FlxSpriteContainer
 			if (FlxG.mouse.overlaps(buttons[i].sprite, this.camera))
 			{
 				// FlxG.mouse.released is any frame the mouse is not held - different from JustReleased
-				if (FlxG.mouse.released && buttons[i].state != HOVERED && buttons[i].state != PUSHED)
+				if (FlxG.mouse.released && buttons[i].state != HOVERED && buttons[i].state != PUSHED && buttons[i].state != PRESSED)
 				{
 					buttons[i].state = HOVERED;
 					buttons[i].onHover();
@@ -271,9 +274,14 @@ class Panel extends FlxSpriteContainer
 					}
 					else
 					{
-						buttons[i].state = CLICKED;
-						buttons[i].onClick();
+						buttons[i].state = PRESSED;
+						buttons[i].onPress();
 					}
+				}
+				if (FlxG.mouse.justReleased && buttons[i].state == PRESSED)
+				{
+					buttons[i].state = CLICKED;
+					buttons[i].onClick();
 				}
 			}
 			else

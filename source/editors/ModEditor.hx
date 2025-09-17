@@ -172,7 +172,8 @@ class ModEditor extends Menu
 		}
 		content.active = false;
 		header.runAcrossLayers(0);
-		popup.revive();
+		if (popup != null)
+			popup.revive();
 		popup.runAcrossLayers(0);
 	}
 
