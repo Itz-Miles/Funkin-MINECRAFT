@@ -55,7 +55,8 @@ class SongEditor extends Menu
 			height: 10,
 			color: 0xff000000
 		},
-		{x: 520 + margin,
+		{
+			x: 520 + margin,
 			y: 140,
 			width: 700 - margin * 2,
 			height: 520 - margin * 2,
@@ -80,13 +81,15 @@ class SongEditor extends Menu
 		for (i in 0...tabNames.length)
 		{
 			uiBox.addLayers([
-				{x: box[2].x + margin + ((tabWidth + margin) * i),
+				{
+					x: box[2].x + margin + ((tabWidth + margin) * i),
 					y: box[2].y + 50,
 					width: tabWidth,
 					height: 20,
 					color: BTN_RIM,
 				},
-				{x: box[2].x + margin + ((tabWidth + margin) * i),
+				{
+					x: box[2].x + margin + ((tabWidth + margin) * i),
 					y: box[2].y + 10,
 					width: tabWidth,
 					height: 50,
@@ -148,7 +151,8 @@ class SongEditor extends Menu
 						},
 					]
 				},
-				{x: box[2].x + margin + ((tabWidth + margin) * i),
+				{
+					x: box[2].x + margin + ((tabWidth + margin) * i),
 					y: box[2].y + 25,
 					width: tabWidth,
 					height: 0,
@@ -167,7 +171,8 @@ class SongEditor extends Menu
 			tabs.push(tab);
 		}
 		tabs[0].addLayers([
-			{x: box[4].x + margin * 2,
+			{
+				x: box[4].x + margin * 2,
 				y: box[4].y + margin * 2,
 				width: (box[4].width / 3) - margin,
 				height: 36,
@@ -181,7 +186,8 @@ class SongEditor extends Menu
 				color: 0xFFFFFFFF,
 				size: 24
 			},
-			{x: box[4].x + margin * 2,
+			{
+				x: box[4].x + margin * 2,
 				y: box[4].y + margin * 5 + 36,
 				width: (box[4].width / 3) - margin,
 				height: 36,
@@ -197,7 +203,8 @@ class SongEditor extends Menu
 			},
 		]);
 		tabs[3].addLayer(
-			{x: box[2].x + margin * 4,
+			{
+				x: box[2].x + margin * 4,
 				y: box[2].y + 100,
 				width: box[2].width,
 				height: box[2].height,
@@ -218,7 +225,8 @@ class SongEditor extends Menu
 			});
 
 		tabs[4].addLayer(
-			{x: box[2].x + margin * 2,
+			{
+				x: box[2].x + margin * 2,
 				y: box[2].y + 90,
 				width: box[2].width - margin * 2,
 				height: box[2].height - margin * 2,
@@ -238,13 +246,15 @@ class SongEditor extends Menu
 		for (i in 1...6)
 		{
 			tabs[5].addLayers([
-				{x: box[2].x + margin * 2,
+				{
+					x: box[2].x + margin * 2,
 					y: box[2].y + 90 + ((box[2].height - 100) / 5) * (i - 1),
 					width: box[2].width - margin * 5 - 100,
 					height: (box[2].height - 100) / 5 - margin,
 					color: 0xff505050
 				},
-				{x: box[2].x + margin * 4,
+				{
+					x: box[2].x + margin * 4,
 					y: box[2].y + 100 + ((box[2].height - 100) / 5) * (i - 1),
 					width: box[2].width - margin * 5 - 100,
 					height: (box[2].height - 100) / 5 - margin,
@@ -254,19 +264,22 @@ class SongEditor extends Menu
 					text: "Autosave Slot " + i + "\nSong: " + songName,
 					size: 26
 				},
-				{x: box[2].x + box[2].width - margin * 2 - 100,
+				{
+					x: box[2].x + box[2].width - margin * 2 - 100,
 					y: box[2].y + 90 + ((box[2].height - 100) / 5) * (i - 1),
 					width: 100,
 					height: ((box[2].height - 100) / 5 - margin) / 2 - margin / 2,
 					color: 0xff637a5f,
 				},
-				{x: box[2].x + box[2].width - margin * 2 - 100,
+				{
+					x: box[2].x + box[2].width - margin * 2 - 100,
 					y: box[2].y + 140 + ((box[2].height - 100) / 5) * (i - 1),
 					width: 100,
 					height: ((box[2].height - 100) / 5 - margin) / 2 - margin / 2,
 					color: 0xffa83232,
 				},
-				{x: box[2].x + box[2].width - margin * 2 - 100,
+				{
+					x: box[2].x + box[2].width - margin * 2 - 100,
 					y: box[2].y + 90 + ((box[2].height - 100) / 5) * (i - 1),
 					width: 100,
 					height: ((box[2].height - 100) / 5 - margin) / 2 - margin / 2,
@@ -276,7 +289,8 @@ class SongEditor extends Menu
 					text: "Load",
 					size: 20
 				},
-				{x: box[2].x + box[2].width - margin * 2 - 100,
+				{
+					x: box[2].x + box[2].width - margin * 2 - 100,
 					y: box[2].y + 140 + ((box[2].height - 100) / 5) * (i - 1),
 					width: 100,
 					height: ((box[2].height - 100) / 5 - margin) / 2 - margin / 2,

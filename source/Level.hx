@@ -25,6 +25,7 @@ typedef Chunk =
 	 * A list of this chunk's level objects.
 	 */
 	var objects:Array<LevelObject>;
+
 	/**
 	 * OPTIONAL: This chunk's bgColor to fade into.
 	 */

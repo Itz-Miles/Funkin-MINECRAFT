@@ -45,7 +45,6 @@ class LevelEditor extends MusicBeatState
 	}
 }
 
-
 class MetaLevelObject
 {
 	/**

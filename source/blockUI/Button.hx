@@ -17,7 +17,8 @@ class Button extends FlxContainer
 	/**
 	 * Makes (or recycles) a Button.
 	 */
-	public static function make(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, ?Color:Int = FlxColor.GRAY, ?LabelColor:Int = FlxColor.WHITE, ?OutlineColor:Int = FlxColor.BLACK):Button
+	public static function make(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, ?Color:Int = FlxColor.GRAY,
+			?LabelColor:Int = FlxColor.WHITE, ?OutlineColor:Int = FlxColor.BLACK):Button
 	{
 		var button:Button = cache.recycle(Button, Button.new);
 

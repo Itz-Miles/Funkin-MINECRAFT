@@ -242,7 +242,8 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camUI];
 		add(timeBarBG);
 
-		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this, 'songPercent', 0, 1);
+		timeBar = new FlxBar(timeBarBG.x + 4, timeBarBG.y + 4, LEFT_TO_RIGHT, Std.int(timeBarBG.width - 8), Std.int(timeBarBG.height - 8), this,
+			'songPercent', 0, 1);
 		timeBar.scrollFactor.set();
 		timeBar.createFilledBar(0xFF000000, 0xFFFFFFFF);
 		timeBar.numDivisions = 800;
@@ -495,7 +496,8 @@ class PlayState extends MusicBeatState
 				{
 					var newEventNote:Array<Dynamic> = [event[0], event[1][i][0], event[1][i][1], event[1][i][2]];
 					var subEvent:EventNote =
-						{strumTime: newEventNote[0] + ClientPrefs.data.noteOffset,
+						{
+							strumTime: newEventNote[0] + ClientPrefs.data.noteOffset,
 							event: newEventNote[1],
 							value1: newEventNote[2],
 							value2: newEventNote[3]
@@ -513,7 +515,8 @@ class PlayState extends MusicBeatState
 			{
 				var newEventNote:Array<Dynamic> = [event[0], event[1][i][0], event[1][i][1], event[1][i][2]];
 				var subEvent:EventNote =
-					{strumTime: newEventNote[0] + ClientPrefs.data.noteOffset,
+					{
+						strumTime: newEventNote[0] + ClientPrefs.data.noteOffset,
 						event: newEventNote[1],
 						value1: newEventNote[2],
 						value2: newEventNote[3]
@@ -625,7 +628,8 @@ class PlayState extends MusicBeatState
 			babyArrow.cameras = [camUI];
 			if (player == 1)
 			{
-				FlxTween.tween(babyArrow.scale, {x: Note.swagWidth / babyArrow.frameWidth, y: Note.swagWidth / babyArrow.frameWidth}, 1, {ease: FlxEase.sineOut, startDelay: 0.6 + (0.1 * i)});
+				FlxTween.tween(babyArrow.scale, {x: Note.swagWidth / babyArrow.frameWidth, y: Note.swagWidth / babyArrow.frameWidth}, 1,
+					{ease: FlxEase.sineOut, startDelay: 0.6 + (0.1 * i)});
 
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 150, alpha: targetAlpha}, 1, {ease: FlxEase.bounceOut, startDelay: 0.6 + (0.1 * i)});
 				playerStrums.push(babyArrow);
@@ -633,7 +637,8 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
-				FlxTween.tween(babyArrow.scale, {x: Note.swagWidth / babyArrow.frameWidth, y: Note.swagWidth / babyArrow.frameWidth}, 1, {ease: FlxEase.sineOut, startDelay: 0.9 - (0.1 * i)});
+				FlxTween.tween(babyArrow.scale, {x: Note.swagWidth / babyArrow.frameWidth, y: Note.swagWidth / babyArrow.frameWidth}, 1,
+					{ease: FlxEase.sineOut, startDelay: 0.9 - (0.1 * i)});
 				FlxTween.tween(babyArrow, {y: babyArrow.y + 150, alpha: targetAlpha}, 1, {ease: FlxEase.bounceOut, startDelay: 0.9 - (0.1 * i)});
 
 				opponentStrums.push(babyArrow);
@@ -1097,7 +1102,8 @@ class PlayState extends MusicBeatState
 
 		if (neutralGroup[0] != null && SONG.sections[curSection].gfSection)
 		{
-			camTarget.set(neutralGroup[0].getMidpoint().x + neutralGroup[0].cameraOffsets[0], neutralGroup[0].getMidpoint().y + neutralGroup[0].cameraOffsets[1]);
+			camTarget.set(neutralGroup[0].getMidpoint().x + neutralGroup[0].cameraOffsets[0],
+				neutralGroup[0].getMidpoint().y + neutralGroup[0].cameraOffsets[1]);
 			camZoomTarget = neutralGroup[0].zoom;
 			return;
 		}
@@ -1112,7 +1118,8 @@ class PlayState extends MusicBeatState
 	{
 		if (isDad)
 		{
-			camTarget.set(opponentGroup[0].getMidpoint().x + opponentGroup[0].cameraOffsets[0], opponentGroup[0].getMidpoint().y + opponentGroup[0].cameraOffsets[1]);
+			camTarget.set(opponentGroup[0].getMidpoint().x + opponentGroup[0].cameraOffsets[0],
+				opponentGroup[0].getMidpoint().y + opponentGroup[0].cameraOffsets[1]);
 			camZoomTarget = opponentGroup[0].zoom;
 		}
 		else

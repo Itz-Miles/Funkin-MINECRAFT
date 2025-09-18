@@ -133,8 +133,9 @@ class IntroState extends MusicBeatState
 		{
 			var money:FlxText = new FlxText(0, 0, 0, textArray[i], size);
 			money.setFormat(Paths.font("Monocraft.ttf"), size,
-				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat), CENTER, OUTLINE,
-				0xffffffff);
+				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat,
+					FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat),
+				CENTER, OUTLINE, 0xffffffff);
 			money.borderSize = size / 12;
 			money.screenCenter(X);
 			money.scale.y = scale;
@@ -154,8 +155,9 @@ class IntroState extends MusicBeatState
 		{
 			var coolText:FlxText = new FlxText(0, 0, 0, text, size);
 			coolText.setFormat(Paths.font("Monocraft.ttf"), size,
-				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat), CENTER, OUTLINE,
-				0xffffffff);
+				FlxColor.fromRGBFloat(FlxG.camera.bgColor.redFloat * FlxG.camera.bgColor.alphaFloat,
+					FlxG.camera.bgColor.greenFloat * FlxG.camera.bgColor.alphaFloat, FlxG.camera.bgColor.blueFloat * FlxG.camera.bgColor.alphaFloat),
+				CENTER, OUTLINE, 0xffffffff);
 			coolText.borderSize = size / 12;
 			coolText.screenCenter(X);
 			coolText.x -= 250;

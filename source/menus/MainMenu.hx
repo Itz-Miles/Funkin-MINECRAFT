@@ -55,10 +55,12 @@ class MainMenu extends Menu
 							obj.sprite.setPosition(-380, 140 + (i * 94) + (i * 10));
 							obj.sprite.alpha = 0;
 							sideBar[i].fields[0].alpha = 0;
-							FlxTween.tween(sideBar[i].fields[0], {alpha: curSelection == i ? 1 : 0.4}, 1.3, {ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
+							FlxTween.tween(sideBar[i].fields[0], {alpha: curSelection == i ? 1 : 0.4}, 1.3,
+								{ease: FlxEase.elasticOut, startDelay: 0.4 + (i * 0.1)});
 
 							FlxTween.tween(obj.sprite, {alpha: 1, x: 58}, 1.3,
-								{ease: FlxEase.elasticOut,
+								{
+									ease: FlxEase.elasticOut,
 									startDelay: 0.4 + (i * 0.1),
 									onComplete: function(_)
 									{

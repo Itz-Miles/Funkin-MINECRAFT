@@ -363,6 +363,7 @@ class Panel extends FlxSpriteContainer
 	 */
 	static function isOnlyFunctions(layer:Layer):Bool
 	{
-		return layer.x == null && layer.y == null && layer.width == null && layer.height == null && layer.color == null && layer.text == null && layer.font == null && layer.size == null && layer.align == null && layer._functions != null;
+		return layer.x == null && layer.y == null && layer.width == null && layer.height == null && layer.color == null && layer.text == null
+			&& layer.font == null && layer.size == null && layer.align == null && layer._functions != null;
 	}
 }

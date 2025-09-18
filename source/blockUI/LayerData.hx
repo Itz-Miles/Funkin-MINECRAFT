@@ -191,8 +191,9 @@ class LayerData
 		}
 	];
 
-	public static function createButton(text:String = "button", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4, color:Int = 0xFF888888, ?borderColor:Int = 0xFF000000, ?shadowColor:Int = 0x35000000,
-			?onClick:LayerObject->Void, ?onHover:LayerObject->Void, ?onRelease:LayerObject->Void):Array<Layer>
+	public static function createButton(text:String = "button", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4,
+			color:Int = 0xFF888888, ?borderColor:Int = 0xFF000000, ?shadowColor:Int = 0x35000000, ?onClick:LayerObject->Void, ?onHover:LayerObject->Void,
+			?onRelease:LayerObject->Void):Array<Layer>
 	{
 		return [
 
@@ -275,7 +276,10 @@ class LayerData
 			},
 			{ // button text
 				x: x + borderSize * 2,
-				y: y + borderSize * 2 + ((height - borderSize * 4) * 0.5) - Std.int(Math.min((((width - borderSize * 4) / (text.length * 0.8) + 4) / 3) * 4, (height - borderSize * 4)) * 0.5),
+				y: y
+				+ borderSize * 2
+				+ ((height - borderSize * 4) * 0.5)
+				- Std.int(Math.min((((width - borderSize * 4) / (text.length * 0.8) + 4) / 3) * 4, (height - borderSize * 4)) * 0.5),
 				width: width - borderSize * 4,
 				height: (height - borderSize * 4),
 				color: FlxColor.WHITE,
@@ -287,8 +291,9 @@ class LayerData
 		];
 	}
 
-	public static function createSlider(description:String = "", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4, color:Int = 0xFF888888, ?borderColor:Int = 0xFF000000, ?shadowColor:Int = 0x35000000,
-			?onClick:LayerObject->Void, ?onHover:LayerObject->Void, ?onRelease:LayerObject->Void):Array<Layer>
+	public static function createSlider(description:String = "", x:Int = 0, y:Int = 0, width:Int = 100, height:Int = 50, borderSize:Int = 2, rimSize:Int = 4,
+			color:Int = 0xFF888888, ?borderColor:Int = 0xFF000000, ?shadowColor:Int = 0x35000000, ?onClick:LayerObject->Void, ?onHover:LayerObject->Void,
+			?onRelease:LayerObject->Void):Array<Layer>
 	{
 		return [];
 	}

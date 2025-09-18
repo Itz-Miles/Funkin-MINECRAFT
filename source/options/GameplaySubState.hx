@@ -1,6 +1,6 @@
 package options;
-import options.Option;
 
+import options.Option;
 import flixel.FlxG;
 
 class GameplaySubState extends BaseOptionsMenu
@@ -47,7 +47,7 @@ class GameplaySubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		option.decimals = 1;
 		option.onChange = onChangeHitsoundVolume;
-		
+
 		#if !html5
 		var option:Option = new Option('Check for Updates', 'On Release builds, turn this on to check for updates when you start the game.',
 			'checkForUpdates', 'bool');
