@@ -50,6 +50,7 @@ class Button extends FlxSpriteContainer
 
 	function setup(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, Color:Int, LabelColor:Int, OutlineColor:Int)
 	{
+		setPosition(X, Y);
 		// outline.setPosition(-BorderSize, -BorderSize);
 		outline.setGraphicSize(Width + (BorderSize * 2), Height + (BorderSize * 2));
 		outline.color = OutlineColor;
@@ -57,12 +58,12 @@ class Button extends FlxSpriteContainer
 		rim.setGraphicSize(Width, Height);
 		rim.color = FlxColor.fromInt(Color).getDarkened(0.3);
 
-		// border.y -= RimSize;
+		//border.y -= RimSize;
 		border.setGraphicSize(Width, Height);
 		border.color = FlxColor.fromInt(Color).getLightened(0.1);
 
 		// face.x += BorderSize;
-		// face.y += BorderSize - RimSize;
+		//face.y -= BorderSize + RimSize;
 		face.setGraphicSize(Width - (BorderSize * 2), Height - (BorderSize * 2));
 		face.color = Color;
 
@@ -72,8 +73,6 @@ class Button extends FlxSpriteContainer
 		label.setFormat(Paths.font("Monocraft.ttf"), fntSize, LabelColor, CENTER);
 		label.text = Label;
 
-		x = X;
-		y = Y;
 		scrollFactor.set();
 	}
 
@@ -88,5 +87,7 @@ class Button extends FlxSpriteContainer
 			y -= 100 * elapsed;
 		if (Controls.UI_DOWN)
 			y += 100 * elapsed;
+		if (FlxG.keys.justPressed.B)
+			trace('position: $x, $y');
 	}
 }
