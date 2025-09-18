@@ -12,18 +12,5 @@
 		"doWhile": "next",
 		"tryBody": "next",
 		"tryCatch": "next"
-	},
-	"wrapping": {
-		"methodChain": {
-			"defaultWrap": "fillLine",
-			"defaultLocation": "afterLast",
-			"rules": []
-		},
-		"opAddSubChain": {
-			"defaultWrap": "fillLine",
-			"defaultLocation": "beforeLast",
-			"rules": []
-		},
-		"maxLineLength": 256
 	}
 }
