@@ -17,7 +17,6 @@ class StoryMenu extends Menu
 
 	override public function refresh()
 	{
-		trace(button.x);
 		header.runAcrossLayers(0);
 		super.refresh();
 	}
@@ -29,5 +28,7 @@ class StoryMenu extends Menu
 		{
 			GameWorld.switchMenu(Menu.MAIN);
 		}
+		if (FlxG.keys.justPressed.B)
+			trace('mouse position: ${FlxG.mouse.viewX}, ${FlxG.mouse.viewY}');
 	}
 }
