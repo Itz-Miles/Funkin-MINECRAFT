@@ -94,8 +94,7 @@ class ParallaxBG extends FlxTypedGroup<FlxSprite>
 				add(piece07);
 
 				var piece20:ParallaxSprite = new ParallaxSprite(482, 0, Paths.image('piece_08', "levels/" + stage));
-				piece20.fixate(768, 432, 0.478070175 * scrollMult, 0.478070175 * scrollMult, 0.298245614 * scrollMult, 0.298245614 * scrollMult,
-					'vertical'); // inaccurate
+				piece20.fixate(768, 432, 0.478070175 * scrollMult, 0.478070175 * scrollMult, 0.298245614 * scrollMult, 0.298245614 * scrollMult, 'vertical'); // inaccurate
 				add(piece20);
 
 				var piece09:ParallaxSprite = new ParallaxSprite(0, 512, Paths.image('piece_09', "levels/" + stage));
@@ -119,8 +118,7 @@ class ParallaxBG extends FlxTypedGroup<FlxSprite>
 				add(piece14);
 
 				var piece15:ParallaxSprite = new ParallaxSprite(0, 93, Paths.image('piece_14', "levels/" + stage));
-				piece15.fixate(768, 432, 0.571428571 * scrollMult, 0.571428571 * scrollMult, 0.571428571 * scrollMult, 0.571428571 * scrollMult,
-					'vertical'); // offscreen pt1
+				piece15.fixate(768, 432, 0.571428571 * scrollMult, 0.571428571 * scrollMult, 0.571428571 * scrollMult, 0.571428571 * scrollMult, 'vertical'); // offscreen pt1
 				add(piece15);
 
 				var piece17:ParallaxSprite = new ParallaxSprite(17, 0, Paths.image('piece_15', "levels/" + stage));
@@ -180,7 +178,7 @@ class ParallaxBG extends FlxTypedGroup<FlxSprite>
 				add(piece29);
 
 				setPosition(-130, -70);
-				if (FlxG.state is MainMenuState && MainMenuState.curSelection == 0)
+				if (false /*FlxG.state is MainMenuState && MainMenuState.curSelection == 0*/)
 				{
 					var message:FlxText = new FlxText(500, 240, 0, "ItzMilesDev\nleft the game", 16);
 					message.setFormat(Paths.font('Monocraft.ttf'), 16, 0xFFFFFF, CENTER, OUTLINE, 0xAA000000);

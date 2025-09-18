@@ -690,7 +690,7 @@ class PlayState extends MusicBeatState
 		{
 			FlxG.sound.music.pause();
 			vocals.pause();
-			openSubState(new PauseSubState());
+			// openSubState(new PauseSubState());
 		}
 		super.onFocusLost();
 	}
@@ -739,7 +739,7 @@ class PlayState extends MusicBeatState
 			{
 				FlxG.sound.music.pause();
 				vocals.pause();
-				openSubState(new PauseSubState());
+				// openSubState(new PauseSubState());
 			}
 		}
 
@@ -926,7 +926,7 @@ class PlayState extends MusicBeatState
 		chartingMode = true;
 		camUI.fade(FlxG.camera.bgColor, 0.25, false, function()
 		{
-			//FlxG.switchState(() -> new SongEditor());
+			// FlxG.switchState(() -> new SongEditor());
 		});
 	}
 
@@ -1194,7 +1194,7 @@ class PlayState extends MusicBeatState
 					FlxG.sound.playMusic(Paths.music('where_are_we_going'));
 
 					cancelMusicFadeTween();
-					FlxG.switchState(() -> new CreditsState());
+					// FlxG.switchState(() -> new CreditsState());
 
 					Highscore.saveWeekScore(WeekData.getWeekFileName(), campaignScore, storyDifficulty);
 
@@ -1218,7 +1218,7 @@ class PlayState extends MusicBeatState
 			{
 				trace('WENT BACK TO FREEPLAY??');
 				cancelMusicFadeTween();
-				FlxG.switchState(() -> new FreeplayState());
+				// FlxG.switchState(() -> new FreeplayState());
 				FlxG.sound.playMusic(Paths.music('where_are_we_going'));
 				changedDifficulty = false;
 			}
@@ -1415,7 +1415,7 @@ class PlayState extends MusicBeatState
 					ease: FlxEase.expoIn,
 					onComplete: function(twn:FlxTween)
 					{
-						openSubState(new PauseSubState());
+						// openSubState(new PauseSubState());
 					}
 				});
 		}

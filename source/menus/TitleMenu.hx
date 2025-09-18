@@ -41,7 +41,6 @@ class TitleMenu extends Menu
 			FlxTween.tween(logo, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
 			splashText.alpha = 0;
 			FlxTween.tween(splashText, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
-			@:bypassAccessor MainMenuState.curSelection = 5;
 		}
 		else
 		{
