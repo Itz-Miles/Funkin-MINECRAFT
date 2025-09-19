@@ -75,14 +75,14 @@ class IntroState extends MusicBeatState
 		introGF = new Character(550, 195, 'outlineGF', "shared");
 		add(introGF);
 
-		logoSpr = new FlxSprite(0, 720 * 0.4).loadGraphic(Paths.image('logos/sike engine', "shared"));
+		logoSpr = new FlxSprite(0, 720 * 0.4).loadGraphic(Paths.image('logos/logo_flixel', "shared"));
 		logoSpr.visible = false;
 		logoSpr.setGraphicSize(Std.int(1280 * 0.5));
 		logoSpr.updateHitbox();
 		logoSpr.antialiasing = ClientPrefs.data.antialiasing;
 		logoSpr.screenCenter(X);
 		logoSpr.x -= 250;
-		logoSpr.y -= 150;
+		logoSpr.y -= 100;
 		add(logoSpr);
 
 		createCoolText([' Built on '], -30);
@@ -208,7 +208,6 @@ class IntroState extends MusicBeatState
 					logoSpr.updateHitbox();
 					logoSpr.screenCenter(X);
 					logoSpr.x -= 250;
-					logoSpr.y += 50;
 				case 8:
 					logoSpr.visible = true;
 				case 13:
