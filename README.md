@@ -160,7 +160,7 @@ lime build mac
 
 # Licensing
 
-Funkin MINECRAFT is not an official MINECRAFT product. Not approved by or assosiated with Mojang Studios.
+Funkin MINECRAFT is not an official MINECRAFT product. Not approved by nor associated with Mojang Studios.
 
 The source code for Funkin' MINECRAFT is licensed under the [Apache License 2.0](https://opensource.org/licenses/Apache-2.0). See the [LICENSE](./LICENSE) file for more details.
 
