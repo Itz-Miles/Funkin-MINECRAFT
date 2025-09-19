@@ -203,7 +203,7 @@ class IntroState extends MusicBeatState
 					deleteCoolText();
 				case 7:
 					createCoolText([' Based on '], -30);
-					logoSpr.loadGraphic(Paths.image('logos/titlelogo', "shared"));
+					logoSpr.loadGraphic(Paths.image('logos/logo_fnf', "shared"));
 					logoSpr.setGraphicSize(Std.int(1280 / 3));
 					logoSpr.updateHitbox();
 					logoSpr.screenCenter(X);
