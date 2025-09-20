@@ -10,6 +10,7 @@ import Song.SongData;
  */
 class GameWorld extends MusicBeatState
 {
+	public static var player:Character;
 	public static var GRAVITY:Float = 9.8;
 
 	/**
