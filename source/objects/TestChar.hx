@@ -20,7 +20,7 @@ class TestChar extends FlxSprite
 	function set_heightCM(value:Float):Float
 	{
 		loadGraphic(Paths.image("characters/bf_nomodel", "shared"));
-		setGraphicSize(widthCM * 0.01 * LevelEditor.BLOCK_SIZE, (value * 0.01) * LevelEditor.BLOCK_SIZE);
+		setGraphicSize(widthCM * 0.01 * Physics.BLOCK_SIZE, (value * 0.01) * LevelEditor.BLOCK_SIZE);
 		updateHitbox();
 		return heightCM = value;
 	}
@@ -43,7 +43,7 @@ class TestChar extends FlxSprite
 		speed = Speed;
 		color = FlxColor.CYAN;
 		moves = true;
-		acceleration.y = GameWorld.GRAVITY * LevelEditor.BLOCK_SIZE;
+		acceleration.y = Physics.gravity * Physics.BLOCK_SIZE;
 		setFacingFlip(RIGHT, true, false);
 		setFacingFlip(LEFT, false, false);
 	}
@@ -56,9 +56,9 @@ class TestChar extends FlxSprite
 		{
 			y = FlxG.height - height - 250;
 			velocity.y = 0;
-			velocity.y = (speed * 0.5) * LevelEditor.BLOCK_SIZE * inputVertical;
-			acceleration.x = speed * LevelEditor.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 5 : 1);
-			drag.x = speed * 2 * LevelEditor.BLOCK_SIZE;
+			velocity.y = (speed * 0.5) * Physics.BLOCK_SIZE * inputVertical;
+			acceleration.x = speed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 5 : 1);
+			drag.x = speed * 2 * Physics.BLOCK_SIZE;
 			facing = inputHorizontal > 0 ? RIGHT : inputHorizontal < 0 ? LEFT : NONE;
 		}
 		else

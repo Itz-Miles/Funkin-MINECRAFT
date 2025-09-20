@@ -17,15 +17,6 @@ class LevelEditor extends MusicBeatState
 	 */
 	public var metaLevelObjects:Array<MetaLevelObject>;
 
-	/**
-	 * The size of a block in pixels.
-	 */
-	public static inline var BLOCK_SIZE:Int = 128;
-
-	/**
-	 * The size of a chunk in blocks.
-	 */
-	public static inline var CHUNK_SIZE:Int = 10;
 
 	public function new()
 	{
