@@ -94,7 +94,7 @@ class GameWorld extends MusicBeatState
 		fg.setPosition(-130, -70);
 		FG.add(fg);
 
-		var char:TestChar = new TestChar(100, 100, 50, 100, 10);
+		var char:TestChar = new TestChar(100, 100, 100, 125, 10);
 		add(char);
 
 		switchMenu(Menu.TITLE);

@@ -42,13 +42,13 @@ class TestChar extends FlxSprite
 	{
 		super.update(elapsed);
 		getInputs();
-		if (y > FlxG.height - height - 200)
+		if (y > FlxG.height - height - 250)
 		{
-			y = FlxG.height - height - 200;
+			y = FlxG.height - height - 250;
 			velocity.y = 0;
 			velocity.y = (speed * 0.5) * LevelEditor.BLOCK_SIZE * inputVertical;
 			acceleration.x = speed * LevelEditor.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 5 : 1);
-			drag.x = speed * LevelEditor.BLOCK_SIZE;
+			drag.x = speed * 2 * LevelEditor.BLOCK_SIZE;
 		}
 		else
 		{
