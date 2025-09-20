@@ -5,6 +5,7 @@ import objects.*;
 import editors.*;
 import menus.*;
 import Controls;
+import Physics;
 #if sys
 import sys.*;
 import sys.io.*;
