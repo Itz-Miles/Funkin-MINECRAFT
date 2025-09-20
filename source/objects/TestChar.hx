@@ -2,6 +2,13 @@ package objects;
 
 import flixel.math.FlxPoint;
 
+enum abstract State(Int) from Int to Int
+{
+	var IDLE = 0;
+	var STUNNED = 1;
+	var DEAD = 2;
+}
+
 class TestChar extends FlxSprite
 {
 	public var widthCM:Float;
@@ -12,6 +19,7 @@ class TestChar extends FlxSprite
 
 	function set_heightCM(value:Float):Float
 	{
+		loadGraphic(Paths.image("characters/bf_nomodel", "shared"));
 		setGraphicSize(widthCM * 0.01 * LevelEditor.BLOCK_SIZE, (value * 0.01) * LevelEditor.BLOCK_SIZE);
 		updateHitbox();
 		return heightCM = value;
@@ -36,6 +44,8 @@ class TestChar extends FlxSprite
 		color = FlxColor.CYAN;
 		moves = true;
 		acceleration.y = GameWorld.GRAVITY * LevelEditor.BLOCK_SIZE;
+		setFacingFlip(RIGHT, true, false);
+		setFacingFlip(LEFT, false, false);
 	}
 
 	override public function update(elapsed:Float)
@@ -49,6 +59,7 @@ class TestChar extends FlxSprite
 			velocity.y = (speed * 0.5) * LevelEditor.BLOCK_SIZE * inputVertical;
 			acceleration.x = speed * LevelEditor.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 5 : 1);
 			drag.x = speed * 2 * LevelEditor.BLOCK_SIZE;
+			facing = inputHorizontal > 0 ? RIGHT : inputHorizontal < 0 ? LEFT : NONE;
 		}
 		else
 		{
@@ -58,12 +69,14 @@ class TestChar extends FlxSprite
 
 		if (x > FlxG.width - width)
 		{
-			velocity.x = -velocity.x * 0.5;
+			velocity.x = -velocity.x * 0.75;
+			facing = LEFT;
 			x = FlxG.width - width;
 		}
 		if (x < 0)
 		{
-			velocity.x = -velocity.x * 0.5;
+			facing = RIGHT;
+			velocity.x = -velocity.x * 0.75;
 			x = 0;
 		}
 	}
