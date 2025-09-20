@@ -14,11 +14,6 @@ class GameWorld extends MusicBeatState
 	public static var GRAVITY:Float = 9.8;
 
 	/**
-	 * The Game World's instance.
-	 */
-	public static var instance:GameWorld;
-
-	/**
 	 * The currently loaded SongData
 	 */
 	public static var SONG:SongData;
@@ -80,7 +75,7 @@ class GameWorld extends MusicBeatState
 	override public function create():Void
 	{
 		super.create();
-		instance = this;
+		
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
