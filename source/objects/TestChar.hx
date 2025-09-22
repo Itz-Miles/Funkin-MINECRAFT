@@ -20,7 +20,7 @@ class TestChar extends FlxSprite
 	function set_heightCM(value:Float):Float
 	{
 		loadGraphic(Paths.image("characters/bf_nomodel", "shared"));
-		setGraphicSize(widthCM * 0.01 * Physics.BLOCK_SIZE, (value * 0.01) * LevelEditor.BLOCK_SIZE);
+		setGraphicSize(widthCM * 0.01 * Physics.BLOCK_SIZE, (value * 0.01) * Physics.BLOCK_SIZE);
 		updateHitbox();
 		return heightCM = value;
 	}
