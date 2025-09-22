@@ -17,6 +17,8 @@ class TestChar extends FlxSprite
 
 	public var speed:Float;
 
+	var testBurst:Bool = true;
+
 	function set_heightCM(value:Float):Float
 	{
 		loadGraphic(Paths.image("characters/bf_nomodel", "shared"));
@@ -52,13 +54,26 @@ class TestChar extends FlxSprite
 	{
 		super.update(elapsed);
 		getInputs();
+
+		if (FlxG.keys.justPressed.SIX)
+		{
+			testBurst = !testBurst;
+			trace("test burst:" + testBurst);
+		}
+
 		if (y > FlxG.height - height - 250)
 		{
 			y = FlxG.height - height - 250;
 			velocity.y = 0;
 			velocity.y = (speed * 0.5) * Physics.BLOCK_SIZE * inputVertical;
 			acceleration.x = speed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 5 : 1);
-			drag.x = speed * 2 * Physics.BLOCK_SIZE;
+
+			if (velocity.x > 0 && inputHorizontal < 0 || velocity.x < 0 && inputHorizontal > 0)
+				acceleration.x = 0;
+			if (testBurst && (velocity.x < 128 && velocity.x > -128))
+				acceleration.x *= 10;
+
+			drag.x = speed * 3 * Physics.BLOCK_SIZE;
 			facing = inputHorizontal > 0 ? RIGHT : inputHorizontal < 0 ? LEFT : NONE;
 		}
 		else
