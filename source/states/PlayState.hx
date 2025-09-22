@@ -726,7 +726,7 @@ class PlayState extends MusicBeatState
 
 		super.update(elapsed);
 
-		if (playerGroup[0].status == DEAD)
+		if (playerGroup[0].state == DEAD)
 		{
 			camTarget.set(playerGroup[0].getMidpoint().x + playerGroup[0].cameraOffsets[0], playerGroup[0].getMidpoint().y + playerGroup[0].cameraOffsets[1]);
 		}
@@ -1097,7 +1097,7 @@ class PlayState extends MusicBeatState
 
 	function moveCameraSection(?id:Int = 0):Void
 	{
-		if (playerGroup[0].status == DEAD || SONG.sections[curSection] == null)
+		if (playerGroup[0].state == DEAD || SONG.sections[curSection] == null)
 			return;
 
 		if (neutralGroup[0] != null && SONG.sections[curSection].gfSection)
@@ -1483,7 +1483,7 @@ class PlayState extends MusicBeatState
 
 			opponent.playAnim(animToPlay, true);
 			// opponent.holdTimer = 0;
-			if (!SONG.sections[curSection].mustHitSection && playerGroup[0].status != DEAD)
+			if (!SONG.sections[curSection].mustHitSection && playerGroup[0].state != DEAD)
 			{
 				camTarget.set(opponent.getMidpoint().x, opponent.getMidpoint().y);
 				camTarget.x += opponent.cameraOffsets[0];
@@ -1533,7 +1533,7 @@ class PlayState extends MusicBeatState
 				player.playAnim(animToPlay + note.animSuffix, true);
 				// player.holdTimer = 0;
 
-				if (SONG.sections[curSection].mustHitSection && player.status != DEAD)
+				if (SONG.sections[curSection].mustHitSection && player.state != DEAD)
 				{
 					camTarget.set(player.getMidpoint().x, player.getMidpoint().y);
 					camTarget.x += player.cameraOffsets[0];
@@ -1606,7 +1606,7 @@ class PlayState extends MusicBeatState
 		{
 			notes.sort(FlxSort.byY, ClientPrefs.data.downScroll ? FlxSort.ASCENDING : FlxSort.DESCENDING);
 
-			if (PlayState.SONG.sections[Std.int(curStep / 16)] != null && !endingSong && !camForced && playerGroup[0].status != DEAD)
+			if (PlayState.SONG.sections[Std.int(curStep / 16)] != null && !endingSong && !camForced && playerGroup[0].state != DEAD)
 			{
 				moveCameraSection(Std.int(curStep / 16));
 				if (FlxG.camera.zoom < 1.35 * camZoomTarget && curBeat % 4 == 0)

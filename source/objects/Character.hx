@@ -19,17 +19,17 @@ enum InputDirection
 	NEUTRAL;
 }
 
-enum CharacterStatus
+enum abstract State(Int) from Int to Int
 {
-	ATTACKING;
-	TAUNTING;
-	SINGING;
-	BUILDING;
-	CRAFTING;
-	IDLING;
-	STUNNED;
-	DEAD;
-	SPECIAL;
+	var IDLING:Int = 0;
+	var ATTACKING;
+	var TAUNTING;
+	var SINGING;
+	var BUILDING;
+	var CRAFTING;
+	var STUNNED;
+	var DEAD;
+	var SPECIAL;
 }
 
 typedef CharacterFile =
@@ -76,9 +76,9 @@ class Character extends FlxSprite
 	 */
 	public static var charactersList:Array<String> = [];
 
-	public var status(default, set):CharacterStatus = IDLING;
+	public var state(default, set):State = IDLING;
 
-	function set_status(value:CharacterStatus)
+	function set_state(value:State)
 	{
 		switch (value)
 		{
@@ -107,19 +107,19 @@ class Character extends FlxSprite
 					});
 			case SPECIAL:
 		}
-		return status = value;
+		return state = value;
 	}
 
 	/**
-	 * The internal float used to track how long a status should be active for.
+	 * The internal float used to track how long a state should be active for.
 	 */
-	var statusTimer(default, set):Float = 0;
+	var stateTimer(default, set):Float = 0;
 
-	function set_statusTimer(value:Float)
+	function set_stateTimer(value:Float)
 	{
 		if (value < 0)
-			status = IDLING;
-		return statusTimer = value;
+			state = IDLING;
+		return stateTimer = value;
 	}
 
 	/**
@@ -145,7 +145,7 @@ class Character extends FlxSprite
 				trace('You were saved by a totem! ${ClientPrefs.data.totems} totems left.');
 				return health = 20;
 			}
-			status = DEAD;
+			state = DEAD;
 		}
 
 		return health = value;
@@ -337,45 +337,45 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-		if (statusTimer > 0)
-			statusTimer -= 1.0 * elapsed;
+		if (stateTimer > 0)
+			stateTimer -= 1.0 * elapsed;
 		super.update(elapsed);
 	}
 
 	public function attack()
 	{
-		status = ATTACKING;
-		statusTimer = 0.25;
+		state = ATTACKING;
+		stateTimer = 0.25;
 	}
 
 	public function build()
 	{
-		status = BUILDING;
+		state = BUILDING;
 	}
 
 	public function taunt()
 	{
-		status = TAUNTING;
+		state = TAUNTING;
 	}
 
 	public function craft()
 	{
-		status = CRAFTING;
+		state = CRAFTING;
 	}
 
 	public function sing(?duration:Float)
 	{
 		if (duration != null)
-			statusTimer = duration;
+			stateTimer = duration;
 		else
-			statusTimer = singDuration;
+			stateTimer = singDuration;
 
-		status = SINGING;
+		state = SINGING;
 	}
 
 	public function miss()
 	{
-		status = STUNNED;
+		state = STUNNED;
 	}
 
 	public function jump()
@@ -385,12 +385,12 @@ class Character extends FlxSprite
 
 	public function beatHit(curBeat:Float):Void
 	{
-		if (status == IDLING)
+		if (state == IDLING)
 		{
 			if (curBeat % idleFrequency == 0)
 				dance();
 		}
-		else if (status == STUNNED)
+		else if (state == STUNNED)
 		{
 			if (curBeat % 2 == 0)
 				FlxTween.color(this, 0.25, (color * 0xff6a6ce6), intendedColor, {ease: FlxEase.quadInOut});
@@ -480,5 +480,9 @@ class Character extends FlxSprite
 		if (Math.isNaN(time) || time <= 0)
 			time = 0.6;
 		playAnim('hey', true);
+	}
+
+	function wallJump()
+	{
 	}
 }

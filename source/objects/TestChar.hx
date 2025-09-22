@@ -2,7 +2,7 @@ package objects;
 
 import flixel.math.FlxPoint;
 
-enum abstract State(Int) from Int to Int
+enum abstract TestState(Int) from Int to Int
 {
 	var IDLE = 0;
 	var STUNNED = 1;
