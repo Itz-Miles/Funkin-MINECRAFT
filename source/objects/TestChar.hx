@@ -1,5 +1,6 @@
 package objects;
 
+import flixel.util.FlxDestroyUtil;
 import flixel.math.FlxPoint;
 
 enum abstract TestState(Int) from Int to Int
@@ -11,6 +12,7 @@ enum abstract TestState(Int) from Int to Int
 
 class TestChar extends FlxSprite
 {
+	public var displayScale:FlxPoint;
 	public var widthCM:Float;
 	public var heightCM(default, set):Float;
 	public var weightKG:Float;
@@ -48,6 +50,13 @@ class TestChar extends FlxSprite
 		acceleration.y = Physics.gravity * Physics.BLOCK_SIZE;
 		setFacingFlip(RIGHT, true, false);
 		setFacingFlip(LEFT, false, false);
+	}
+
+	@:noCompletion
+	override function initVars():Void
+	{
+		super.initVars();
+		displayScale = FlxPoint.get(1, 1);
 	}
 
 	override public function update(elapsed:Float)
@@ -94,5 +103,11 @@ class TestChar extends FlxSprite
 			velocity.x = -velocity.x * 0.75;
 			x = 0;
 		}
+	}
+
+	override public function destroy()
+	{
+		super.destroy();
+		displayScale = FlxDestroyUtil.put(displayScale);
 	}
 }
