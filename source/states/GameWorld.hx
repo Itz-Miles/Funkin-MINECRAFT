@@ -10,7 +10,7 @@ import Song.SongData;
  */
 class GameWorld extends MusicBeatState
 {
-	public static var player:Character;
+	public static var player:TestChar;
 	public static var GRAVITY:Float = 9.8;
 
 	/**
@@ -47,6 +47,8 @@ class GameWorld extends MusicBeatState
 
 	public static var FG:FlxGroup = new FlxGroup();
 
+	var speed:FlxText;
+
 	public static function switchMenu(menu:Menu)
 	{
 		Menu.previous = Menu.current;
@@ -75,7 +77,7 @@ class GameWorld extends MusicBeatState
 	override public function create():Void
 	{
 		super.create();
-		
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
@@ -90,8 +92,13 @@ class GameWorld extends MusicBeatState
 		fg.setPosition(-130, -70);
 		FG.add(fg);
 
-		var char:TestChar = new TestChar(100, 100, 100, 125, 10);
-		add(char);
+		player = new TestChar(100, 100, 100, 125, 10);
+		add(player);
+
+		speed = new FlxText(200, 200, 500, "", 16);
+		speed.alignment = LEFT;
+		speed.scrollFactor.set();
+		add(speed);
 
 		switchMenu(Menu.TITLE);
 	}
@@ -100,6 +107,8 @@ class GameWorld extends MusicBeatState
 	{
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+
+		speed.text = 'speed (mps): ${player.velocity.x / Physics.BLOCK_SIZE}';
 
 		super.update(elapsed);
 	}

@@ -34,7 +34,7 @@ class TestChar extends FlxSprite
 
 	function getInputs()
 	{
-		jumpInput = Controls.JUMP;
+		jumpInput = Controls.NOTE_UP ? true : false; // Controls.JUMP;
 		inputHorizontal = Controls.NOTE_LEFT ? -1 : Controls.NOTE_RIGHT ? 1 : 0;
 	}
 
@@ -61,7 +61,7 @@ class TestChar extends FlxSprite
 
 	public function jump()
 	{
-		velocity.y = Physics.BLOCK_SIZE * 4.9 * 0.5 * 1.0; // times jump height meters
+		velocity.y = -(Physics.BLOCK_SIZE * 9.8 * 0.5) * 1.0; // times jump height meters
 	}
 
 	public function initialDash()
@@ -103,6 +103,15 @@ class TestChar extends FlxSprite
 			if (testBurst && (velocity.x < 128 && velocity.x > -128))
 				initialDash();
 
+			if (velocity.x > speed * Physics.BLOCK_SIZE)
+			{
+				velocity.x -= Physics.BLOCK_SIZE * elapsed;
+			}
+			if (velocity.x < -speed * Physics.BLOCK_SIZE)
+			{
+				velocity.x += Physics.BLOCK_SIZE * elapsed;
+			}
+
 			drag.x = speed * 3 * Physics.BLOCK_SIZE;
 			facing = inputHorizontal > 0 ? RIGHT : inputHorizontal < 0 ? LEFT : NONE;
 		}
@@ -112,17 +121,19 @@ class TestChar extends FlxSprite
 			drag.x = 0;
 		}
 
-		if (x > FlxG.width - width)
+		if (x > FlxG.width + width)
 		{
-			velocity.x = -velocity.x * 0.75;
-			facing = LEFT;
-			x = FlxG.width - width;
+			// velocity.x = -velocity.x * 0.75;
+			// facing = LEFT;
+			// x = FlxG.width - width;
+			x = 0 - width;
 		}
-		if (x < 0)
+		if (x < 0 - width)
 		{
-			facing = RIGHT;
-			velocity.x = -velocity.x * 0.75;
-			x = 0;
+			// facing = RIGHT;
+			// velocity.x = -velocity.x * 0.75;
+			// x = 0;
+			x = FlxG.width + width;
 		}
 	}
 
