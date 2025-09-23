@@ -59,6 +59,11 @@ class TestChar extends FlxSprite
 		displayScale = FlxPoint.get(1, 1);
 	}
 
+	public function jump()
+	{
+		
+	}
+
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -74,7 +79,7 @@ class TestChar extends FlxSprite
 		{
 			y = FlxG.height - height - 250;
 			velocity.y = 0;
-			velocity.y = (speed * 0.5) * Physics.BLOCK_SIZE * inputVertical;
+			velocity.y = Physics.BLOCK_SIZE * 4.9 * 0.5 * inputVertical; // times jump height meters
 			acceleration.x = speed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 5 : 1);
 
 			if (velocity.x > 0 && inputHorizontal < 0 || velocity.x < 0 && inputHorizontal > 0)
