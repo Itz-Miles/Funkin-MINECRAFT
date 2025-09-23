@@ -30,11 +30,11 @@ class TestChar extends FlxSprite
 	}
 
 	public var inputHorizontal:Float = 0;
-	public var inputVertical:Float = 0;
+	public var jumpInput:Bool = false;
 
 	function getInputs()
 	{
-		inputVertical = Controls.NOTE_DOWN ? 1 : Controls.NOTE_UP ? -1 : 0;
+		jumpInput = Controls.JUMP;
 		inputHorizontal = Controls.NOTE_LEFT ? -1 : Controls.NOTE_RIGHT ? 1 : 0;
 	}
 
@@ -61,7 +61,7 @@ class TestChar extends FlxSprite
 
 	public function jump()
 	{
-		
+		velocity.y = Physics.BLOCK_SIZE * 4.9 * 0.5 * 1.0; // times jump height meters
 	}
 
 	override public function update(elapsed:Float)
@@ -79,7 +79,8 @@ class TestChar extends FlxSprite
 		{
 			y = FlxG.height - height - 250;
 			velocity.y = 0;
-			velocity.y = Physics.BLOCK_SIZE * 4.9 * 0.5 * inputVertical; // times jump height meters
+			if (jumpInput)
+				jump();
 			acceleration.x = speed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 5 : 1);
 
 			if (velocity.x > 0 && inputHorizontal < 0 || velocity.x < 0 && inputHorizontal > 0)
