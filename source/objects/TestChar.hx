@@ -64,6 +64,11 @@ class TestChar extends FlxSprite
 		velocity.y = Physics.BLOCK_SIZE * 4.9 * 0.5 * 1.0; // times jump height meters
 	}
 
+	function grounded():Bool
+	{
+		return y > FlxG.height - height - 250; // that'll do for now
+	}
+
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
@@ -75,7 +80,7 @@ class TestChar extends FlxSprite
 			trace("test burst:" + testBurst);
 		}
 
-		if (y > FlxG.height - height - 250)
+		if (grounded())
 		{
 			y = FlxG.height - height - 250;
 			velocity.y = 0;
