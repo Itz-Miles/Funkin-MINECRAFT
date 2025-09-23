@@ -64,6 +64,11 @@ class TestChar extends FlxSprite
 		velocity.y = -(Physics.BLOCK_SIZE * 9.8 * 0.5) * 1.0; // times jump height meters
 	}
 
+	function turnAround()
+	{
+		acceleration.x = 0; // do the DRAG
+	}
+
 	public function initialDash()
 	{
 		acceleration.x *= 20;
@@ -98,12 +103,12 @@ class TestChar extends FlxSprite
 				jump();
 			acceleration.x = runSpeed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 0.5 : 1);
 
-			if (velocity.x > 0 && inputHorizontal < 0 || velocity.x < 0 && inputHorizontal > 0)
-				acceleration.x = 0;
-
 			if (testBurst && (Math.abs(velocity.x) < Physics.BLOCK_SIZE * 0.5))
 				initialDash();
 
+			if (velocity.x > 0 && inputHorizontal < 0 || velocity.x < 0 && inputHorizontal > 0)
+				turnAround();
+			
 			if (velocity.x > runSpeed * Physics.BLOCK_SIZE)
 			{
 				velocity.x -= Physics.BLOCK_SIZE * elapsed;
