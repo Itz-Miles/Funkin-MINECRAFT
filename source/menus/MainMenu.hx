@@ -113,7 +113,7 @@ class MainMenu extends Menu
 	{
 		selected = true;
 		Paths.clearUnusedMemory();
-		FlxG.camera.follow(camFollow, NO_DEAD_ZONE, 0.07);
+		FlxG.camera.follow(GameWorld.player, TOPDOWN, 0.7);
 
 		header.runAcrossLayers(0);
 

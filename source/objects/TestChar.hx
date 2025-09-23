@@ -99,48 +99,48 @@ class TestChar extends FlxSprite
 		{
 			y = FlxG.height - height - 250;
 			velocity.y = 0;
+
 			if (jumpInput)
 				jump();
-			acceleration.x = runSpeed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 0.5 : 1);
+			acceleration.x = runSpeed * Physics.BLOCK_SIZE * inputHorizontal;
+			acceleration.x *= FlxG.keys.pressed.SHIFT ? 0.5 : 1;
 
 			if (testBurst && (Math.abs(velocity.x) < Physics.BLOCK_SIZE * 0.5))
 				initialDash();
 
 			if (velocity.x > 0 && inputHorizontal < 0 || velocity.x < 0 && inputHorizontal > 0)
 				turnAround();
-			
-			if (velocity.x > runSpeed * Physics.BLOCK_SIZE)
+
+			facing = inputHorizontal > 0 ? RIGHT : inputHorizontal < 0 ? LEFT : NONE;
+
+			if (Math.abs(velocity.x) > runSpeed * (FlxG.keys.pressed.SHIFT ? 0.5 : 1) * Physics.BLOCK_SIZE)
 			{
-				velocity.x -= Physics.BLOCK_SIZE * elapsed;
-			}
-			if (velocity.x < -runSpeed * Physics.BLOCK_SIZE)
-			{
-				velocity.x += Physics.BLOCK_SIZE * elapsed;
+				acceleration.x = 0; // do the DRAG
 			}
 
 			drag.x = runSpeed * 3 * Physics.BLOCK_SIZE;
-			facing = inputHorizontal > 0 ? RIGHT : inputHorizontal < 0 ? LEFT : NONE;
 		}
 		else
 		{
 			acceleration.x = 0;
 			drag.x = 0;
 		}
-
-		if (x > FlxG.width + width)
-		{
-			// velocity.x = -velocity.x * 0.75;
-			// facing = LEFT;
-			// x = FlxG.width - width;
-			x = 0 - width;
-		}
-		if (x < 0 - width)
-		{
-			// facing = RIGHT;
-			// velocity.x = -velocity.x * 0.75;
-			// x = 0;
-			x = FlxG.width + width;
-		}
+		/*
+			if (x > FlxG.width + width)
+			{
+				// velocity.x = -velocity.x * 0.75;
+				// facing = LEFT;
+				// x = FlxG.width - width;
+				x = 0 - width;
+			}
+			if (x < 0 - width)
+			{
+				// facing = RIGHT;
+				// velocity.x = -velocity.x * 0.75;
+				// x = 0;
+				x = FlxG.width + width;
+			}
+		 */
 	}
 
 	override public function destroy()
