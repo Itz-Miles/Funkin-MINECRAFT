@@ -64,9 +64,11 @@ class TestChar extends FlxSprite
 		velocity.y = Physics.BLOCK_SIZE * 4.9 * 0.5 * 1.0; // times jump height meters
 	}
 
-	function grounded():Bool
+	public var grounded:Bool = false;
+
+	function getGrounded():Bool
 	{
-		return y > FlxG.height - height - 250; // that'll do for now
+		return grounded = y > FlxG.height - height - 250; // that'll do for now
 	}
 
 	override public function update(elapsed:Float)
@@ -74,13 +76,15 @@ class TestChar extends FlxSprite
 		super.update(elapsed);
 		getInputs();
 
+		getGrounded();
+
 		if (FlxG.keys.justPressed.SIX)
 		{
 			testBurst = !testBurst;
 			trace("test burst:" + testBurst);
 		}
 
-		if (grounded())
+		if (grounded)
 		{
 			y = FlxG.height - height - 250;
 			velocity.y = 0;
