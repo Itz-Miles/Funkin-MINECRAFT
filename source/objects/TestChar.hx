@@ -64,6 +64,11 @@ class TestChar extends FlxSprite
 		velocity.y = Physics.BLOCK_SIZE * 4.9 * 0.5 * 1.0; // times jump height meters
 	}
 
+	public function initialDash()
+	{
+		acceleration.x *= 10;
+	}
+
 	public var grounded:Bool = false;
 
 	function getGrounded():Bool
@@ -74,6 +79,7 @@ class TestChar extends FlxSprite
 	override public function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
 		getInputs();
 
 		getGrounded();
@@ -90,12 +96,12 @@ class TestChar extends FlxSprite
 			velocity.y = 0;
 			if (jumpInput)
 				jump();
-			acceleration.x = speed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 5 : 1);
+			acceleration.x = speed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 0.5 : 1);
 
 			if (velocity.x > 0 && inputHorizontal < 0 || velocity.x < 0 && inputHorizontal > 0)
 				acceleration.x = 0;
 			if (testBurst && (velocity.x < 128 && velocity.x > -128))
-				acceleration.x *= 10;
+				initialDash();
 
 			drag.x = speed * 3 * Physics.BLOCK_SIZE;
 			facing = inputHorizontal > 0 ? RIGHT : inputHorizontal < 0 ? LEFT : NONE;
