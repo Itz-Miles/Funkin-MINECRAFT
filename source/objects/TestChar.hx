@@ -17,7 +17,7 @@ class TestChar extends FlxSprite
 	public var heightCM(default, set):Float;
 	public var weightKG:Float;
 
-	public var speed:Float;
+	public var runSpeed:Float;
 
 	var testBurst:Bool = true;
 
@@ -38,13 +38,13 @@ class TestChar extends FlxSprite
 		inputHorizontal = Controls.NOTE_LEFT ? -1 : Controls.NOTE_RIGHT ? 1 : 0;
 	}
 
-	override public function new(?X:Float, ?Y:Float, ?WidthCM:Float, ?HeightCM:Float, ?Speed:Float)
+	override public function new(?X:Float, ?Y:Float, ?WidthCM:Float, ?HeightCM:Float, ?RunSpeed:Float)
 	{
 		super(X, Y);
 		makeGraphic(1, 1);
 		widthCM = WidthCM;
 		heightCM = HeightCM;
-		speed = Speed;
+		runSpeed = RunSpeed;
 		color = FlxColor.CYAN;
 		moves = true;
 		acceleration.y = Physics.gravity * Physics.BLOCK_SIZE;
@@ -66,7 +66,7 @@ class TestChar extends FlxSprite
 
 	public function initialDash()
 	{
-		acceleration.x *= 10;
+		acceleration.x *= 20;
 	}
 
 	public var grounded:Bool = false;
@@ -96,23 +96,24 @@ class TestChar extends FlxSprite
 			velocity.y = 0;
 			if (jumpInput)
 				jump();
-			acceleration.x = speed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 0.5 : 1);
+			acceleration.x = runSpeed * Physics.BLOCK_SIZE * inputHorizontal * (FlxG.keys.pressed.SHIFT ? 0.5 : 1);
 
 			if (velocity.x > 0 && inputHorizontal < 0 || velocity.x < 0 && inputHorizontal > 0)
 				acceleration.x = 0;
-			if (testBurst && (velocity.x < 128 && velocity.x > -128))
+
+			if (testBurst && (Math.abs(velocity.x) < Physics.BLOCK_SIZE * 0.5))
 				initialDash();
 
-			if (velocity.x > speed * Physics.BLOCK_SIZE)
+			if (velocity.x > runSpeed * Physics.BLOCK_SIZE)
 			{
 				velocity.x -= Physics.BLOCK_SIZE * elapsed;
 			}
-			if (velocity.x < -speed * Physics.BLOCK_SIZE)
+			if (velocity.x < -runSpeed * Physics.BLOCK_SIZE)
 			{
 				velocity.x += Physics.BLOCK_SIZE * elapsed;
 			}
 
-			drag.x = speed * 3 * Physics.BLOCK_SIZE;
+			drag.x = runSpeed * 3 * Physics.BLOCK_SIZE;
 			facing = inputHorizontal > 0 ? RIGHT : inputHorizontal < 0 ? LEFT : NONE;
 		}
 		else

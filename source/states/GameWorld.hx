@@ -95,7 +95,7 @@ class GameWorld extends MusicBeatState
 		player = new TestChar(100, 100, 100, 125, 10);
 		add(player);
 
-		speed = new FlxText(200, 200, 500, "", 16);
+		speed = new FlxText(200, 200, 500, "", 24);
 		speed.alignment = LEFT;
 		speed.scrollFactor.set();
 		add(speed);
