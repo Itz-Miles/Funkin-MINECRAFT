@@ -36,14 +36,14 @@ class MainMenu extends Menu
 		camFollow = new FlxObject(0, 0, 1, 1);
 		add(camFollow);
 
-		menuBF = new Character(660, 180, 'bf_arch', "shared");
-		menuBF.scrollFactor.set(0.565789474, 0.565789474);
-		add(menuBF);
-
 		menuGF = new Character(410, 222, 'menuGF', "shared");
 		menuGF.color = 0x7D7D7B;
 		menuGF.scrollFactor.set(0.27741228, 0.27741228);
-		add(menuGF);
+		GameWorld.BG.add(menuGF);
+
+		menuBF = new Character(660, 180, 'bf_arch', "shared");
+		menuBF.scrollFactor.set(0.565789474, 0.565789474);
+		GameWorld.BG.add(menuBF);
 
 		for (i in 0...labels.length)
 		{
@@ -113,6 +113,9 @@ class MainMenu extends Menu
 	{
 		selected = true;
 		Paths.clearUnusedMemory();
+
+		menuGF.visible = true;
+		menuBF.visible = true;
 		FlxG.camera.follow(GameWorld.player, TOPDOWN, 0.7);
 
 		header.runAcrossLayers(0);
@@ -174,6 +177,8 @@ class MainMenu extends Menu
 				FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
 				selected = true;
 				backed = true;
+				menuBF.visible = false;
+				menuGF.visible = false;
 
 				FlxTween.completeTweensOf(header);
 				header.runAcrossLayers(1);

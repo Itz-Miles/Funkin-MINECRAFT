@@ -1,5 +1,6 @@
 package states;
 
+import flixel.math.FlxMath;
 import menus.Menu;
 import parallax.ParallaxBG;
 import parallax.ParallaxFG;
@@ -95,11 +96,10 @@ class GameWorld extends MusicBeatState
 		player = new TestChar(100, 100, 100, 125, 10);
 		BG.add(player);
 
-		speed = new FlxText(200, 200, 500, "", 24);
+		speed = new FlxText(500, 560, 500, "", 24);
 		speed.alignment = LEFT;
 		speed.scrollFactor.set();
-		speed.screenCenter(X);
-		add(speed);
+		BG.add(speed);
 
 		switchMenu(Menu.TITLE);
 	}
@@ -109,7 +109,7 @@ class GameWorld extends MusicBeatState
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 
-		speed.text = 'speed (mps): ${player.velocity.x / Physics.BLOCK_SIZE}';
+		speed.text = 'speed (mps): ${FlxMath.roundDecimal(player.velocity.x / Physics.BLOCK_SIZE, 3)}';
 
 		super.update(elapsed);
 	}
