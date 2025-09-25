@@ -147,6 +147,10 @@ class Controls
 	static function get_ATTACK()
 		return FlxG.mouse.justPressed || justPressed('attack');
 
+	public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
+	public static var volumeDownKeys:Array<FlxKey> = [FlxKey.NUMPADMINUS, FlxKey.MINUS];
+	public static var volumeUpKeys:Array<FlxKey> = [FlxKey.NUMPADPLUS, FlxKey.PLUS];
+
 	// Gamepad & Keyboard stuff
 	public static var keyboardBinds:Map<String, Array<FlxKey>>;
 	public static var gamepadBinds:Map<String, Array<FlxGamepadInputID>>;

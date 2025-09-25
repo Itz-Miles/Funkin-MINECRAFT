@@ -20,10 +20,6 @@ using StringTools;
 
 class IntroState extends MusicBeatState
 {
-	public static var muteKeys:Array<FlxKey> = [FlxKey.ZERO];
-	public static var volumeDownKeys:Array<FlxKey> = [FlxKey.NUMPADMINUS, FlxKey.MINUS];
-	public static var volumeUpKeys:Array<FlxKey> = [FlxKey.NUMPADPLUS, FlxKey.PLUS];
-
 	var credGroup:FlxGroup;
 	var textGroup:FlxGroup;
 	var logoSpr:FlxSprite;
@@ -39,9 +35,9 @@ class IntroState extends MusicBeatState
 		FlxG.fixedTimestep = !ClientPrefs.data.variableTimestep;
 		FlxG.camera.fade(#if !html5 0xFF0F0F0F #else 0xFF000000 #end, 1, true);
 		// FlxTween.tween(FlxG.camera.bgColor, {alphaFloat: 1}, 3);
-		FlxG.sound.muteKeys = muteKeys;
-		FlxG.sound.volumeDownKeys = volumeDownKeys;
-		FlxG.sound.volumeUpKeys = volumeUpKeys;
+		// FlxG.sound.muteKeys = muteKeys;
+		// FlxG.sound.volumeDownKeys = volumeDownKeys;
+		// FlxG.sound.volumeUpKeys = volumeUpKeys;
 		FlxG.keys.preventDefaultKeys = [TAB];
 		FlxObject.defaultMoves = false;
 		gamepad = FlxG.gamepads.lastActive;

@@ -73,6 +73,30 @@ class Main extends Sprite
 		ClientPrefs.loadPrefs();
 		Controls.init();
 
+		FlxAssets.FONT_DEFAULT = "assets/fonts/Monocraft.ttf";
+		FlxG.game.focusLostFramerate = 60;
+		FlxG.fixedTimestep = !ClientPrefs.data.variableTimestep;
+		FlxG.camera.fade(#if !html5 0xFF0F0F0F #else 0xFF000000 #end, 1, true);
+		// FlxTween.tween(FlxG.camera.bgColor, {alphaFloat: 1}, 3);
+		FlxG.sound.muteKeys = Controls.muteKeys;
+		FlxG.sound.volumeDownKeys = Controls.volumeDownKeys;
+		FlxG.sound.volumeUpKeys = Controls.volumeUpKeys;
+		FlxG.keys.preventDefaultKeys = [TAB];
+		FlxObject.defaultMoves = false;
+
+		Paths.clearStoredMemory();
+		Paths.clearUnusedMemory();
+
+		Level.reloadList();
+		Story.reloadList();
+
+		if (ClientPrefs.data.totems > 37)
+			ClientPrefs.data.totems = 37; // ok?
+
+		FlxG.sound.playMusic(Paths.music('where_are_we_going'), 0);
+
+		FlxG.sound.music.fadeIn(4, 0, 1);
+
 		#if !mobile
 		fpsVar = new FPSCounter();
 		addChild(fpsVar);
