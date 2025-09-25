@@ -83,6 +83,15 @@ class GameWorld extends MusicBeatState
 		Paths.clearUnusedMemory();
 
 		add(BG);
+
+		player = new TestChar(100, 100, 100, 125, 10);
+		add(player);
+
+		speed = new FlxText(500, 560, 500, "", 24);
+		speed.alignment = LEFT;
+		speed.scrollFactor.set();
+		add(speed);
+
 		add(UI);
 		add(FG);
 
@@ -92,14 +101,6 @@ class GameWorld extends MusicBeatState
 		var fg:ParallaxFG = new ParallaxFG('aero_archways');
 		fg.setPosition(-130, -70);
 		FG.add(fg);
-
-		player = new TestChar(100, 100, 100, 125, 10);
-		BG.add(player);
-
-		speed = new FlxText(500, 560, 500, "", 24);
-		speed.alignment = LEFT;
-		speed.scrollFactor.set();
-		BG.add(speed);
 
 		switchMenu(Menu.TITLE);
 	}
