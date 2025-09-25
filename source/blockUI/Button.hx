@@ -15,6 +15,14 @@ class Button extends FlxSpriteContainer
 	private var label:FlxText;
 
 	/**
+	 * Frees all of the buttons so they can be recycled
+	 */
+	public static function freeAll()
+	{
+		cache.killMembers();
+	}
+
+	/**
 	 * Makes (or recycles) a Button.
 	 */
 	public static function make(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, ?Color:Int = FlxColor.GRAY,

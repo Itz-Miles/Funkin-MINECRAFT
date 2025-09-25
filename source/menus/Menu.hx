@@ -30,6 +30,11 @@ class Menu extends FlxContainer
 		}
 	}
 
+	public function close()
+	{
+		Button.freeAll();
+	}
+
 	public function beatHit(?curBeat:Int)
 	{
 	}

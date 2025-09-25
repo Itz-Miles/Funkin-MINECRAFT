@@ -57,6 +57,7 @@ class GameWorld extends MusicBeatState
 
 		while (UI.length > 0)
 		{
+			UI.members[UI.members.length - 1].close();
 			UI.remove(UI.members[UI.members.length - 1], true);
 		}
 
