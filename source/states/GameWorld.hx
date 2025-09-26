@@ -32,7 +32,7 @@ class GameWorld extends MusicBeatState
 	/**
 	 * The current sky color.
 	 */
-	public static var SKY_COLOR(default, set):FlxColor = FlxColor.CYAN;
+	public static var SKY_COLOR(default, set):FlxColor = 0xff82aafa;
 
 	static function set_SKY_COLOR(value:FlxColor):FlxColor
 	{
