@@ -80,6 +80,10 @@ class GameWorld extends MusicBeatState
 	{
 		super.create();
 
+		FlxG.sound.playMusic(Paths.music('where_are_we_going'), 0);
+
+		FlxG.sound.music.fadeIn(4, 0, 1);
+
 		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 

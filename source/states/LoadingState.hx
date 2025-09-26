@@ -38,7 +38,7 @@ class LoadingState extends MusicBeatState
 	function new(target:FlxState, stopMusic:Bool, directory:String)
 	{
 		super();
-		this.target = target != null ? target : new IntroState();
+		this.target = target != null ? target : new GameWorld();
 		this.stopMusic = stopMusic;
 		this.directory = directory;
 	}
