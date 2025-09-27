@@ -13,7 +13,7 @@ class ModEditor extends Menu
 
 	var content:Panel;
 
-	static var editorLabels:Array<String> = ["story editor", "level editor", "char editor", "song editor"];
+	static var editorLabels:Array<String> = ["adventure editor", "level editor", "character editor", "song editor"];
 
 	override function create()
 	{
@@ -192,9 +192,9 @@ class ModEditor extends Menu
 		switch (index)
 		{
 			case 0:
-				Menu.switchTo(StoryEditor);
+				Menu.switchTo(AdventureEditor);
 			case 1:
-				Menu.switchTo(StoryEditor);
+				Menu.switchTo(LevelEditor);
 			case 2:
 				Menu.switchTo(CharacterEditor);
 			case 3:

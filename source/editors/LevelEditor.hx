@@ -1,6 +1,6 @@
 package editors;
 
-class LevelEditor extends MusicBeatState
+class LevelEditor extends Menu
 {
 	/**
 	 * A list of currently loaded levels (from Level.levelsList).
@@ -15,12 +15,11 @@ class LevelEditor extends MusicBeatState
 	/**
 	 * A list of MetaLevelObjects in the level editor.
 	 */
-	public var metaLevelObjects:Array<MetaLevelObject>;
+	public var metaLevelObjects:Array<MetaLevelObject> = [];
 
-
-	public function new()
+	override public function create()
 	{
-		super();
+		super.create();
 		loadedLevels = [];
 		Level.reloadList();
 	}
@@ -29,9 +28,14 @@ class LevelEditor extends MusicBeatState
 	{
 		super.update(elapsed);
 		// loop through MetaLevelObjects update functions
-		for (metaObj in metaLevelObjects)
+		for (i in 0...metaLevelObjects.length)
 		{
-			metaObj.update(elapsed);
+			metaLevelObjects[i].update(elapsed);
+		}
+
+		if (Controls.BACK)
+		{
+			Menu.switchTo(ModEditor);
 		}
 	}
 }

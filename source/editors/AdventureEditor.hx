@@ -1,6 +1,6 @@
 package editors;
 
-class CharacterEditor extends Menu
+class AdventureEditor extends Menu
 {
 	override public function update(elapsed:Float)
 	{
