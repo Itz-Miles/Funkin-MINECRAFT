@@ -2,23 +2,20 @@ package menus;
 
 class AdventureMenu extends Menu
 {
-	var button:Button;
-
 	override public function create()
 	{
 		super.create();
 		header = new Panel(LayerData.HEADER);
 		header.text = "select your adventure";
 		add(header);
-
-		button = Button.make(100, 200, 200, 100, 5, 10, "woah", null, 0xFF000000);
-		add(button);
 	}
 
 	override public function refresh()
 	{
-		button = Button.make(100, 200, 200, 100, 5, 10, "woah", null, 0xFF000000);
-		header.runAcrossLayers(0);
+		if (Menu.previous is MainMenu)
+			header.runAcrossLayers(2);
+		else
+			header.runAcrossLayers(0);
 		super.refresh();
 	}
 
@@ -27,9 +24,12 @@ class AdventureMenu extends Menu
 		super.update(elapsed);
 		if (Controls.BACK)
 		{
-			GameWorld.switchMenu(Menu.MAIN);
+			Menu.switchTo(MainMenu);
 		}
-		if (FlxG.keys.justPressed.B)
-			trace('mouse position: ${FlxG.mouse.viewX}, ${FlxG.mouse.viewY}');
+
+		if (Controls.ACCEPT)
+		{
+			Menu.switchTo(CharacterMenu);
+		}
 	}
 }

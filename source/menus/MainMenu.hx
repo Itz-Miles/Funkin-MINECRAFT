@@ -30,7 +30,7 @@ class MainMenu extends Menu
 		DiscordClient.changePresence("In the Menus", null);
 		#end
 
-		if (Menu.previous != Menu.TITLE)
+		if (!(Menu.previous is TitleMenu))
 			FlxG.camera.fade(FlxG.camera.bgColor, 0.5, true);
 
 		camFollow = new FlxObject(0, 0, 1, 1);
@@ -190,7 +190,7 @@ class MainMenu extends Menu
 				{
 					selected = false;
 					backed = false;
-					GameWorld.switchMenu(Menu.TITLE);
+					Menu.switchTo(TitleMenu);
 				});
 			}
 		}
@@ -242,15 +242,15 @@ class MainMenu extends Menu
 			switch (curSelection)
 			{
 				case 0:
-					GameWorld.switchMenu(Menu.ADVENTURE);
+					Menu.switchTo(AdventureMenu);
 				case 1:
-					GameWorld.switchMenu(Menu.ADVENTURE);
+					Menu.switchTo(CreativeMenu);
 				case 2:
-					GameWorld.switchMenu(Menu.ADVENTURE);
+					Menu.switchTo(AdventureMenu);
 				case 3:
-					GameWorld.switchMenu(Menu.MOD);
+					Menu.switchTo(ModEditor);
 				case 4:
-					GameWorld.switchMenu(Menu.ADVENTURE);
+					Menu.switchTo(AdventureMenu);
 			}
 		});
 	}

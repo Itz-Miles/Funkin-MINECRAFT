@@ -1,10 +1,13 @@
 package menus;
+import haxe.ds.ObjectMap;
+
 
 /**
  * The Menu class
  */
 class Menu extends FlxContainer
 {
+	public static var cache:Map<String, Menu> = new Map();
 	public static var transitioning:Bool = true;
 	public static var current:Menu;
 	public static var previous:Menu;
@@ -42,49 +45,41 @@ class Menu extends FlxContainer
 	public function sectionHit(?curSection:Int)
 	{
 	}
-}
 
-var TITLE(get, default):TitleMenu;
+	public static function switchTo<T:Menu>(menuClass:Class<Menu>)
+	{
+		Menu.previous = Menu.current;
 
-function get_TITLE():TitleMenu
-{
-	if (TITLE == null)
-		TITLE = new TitleMenu();
-	return TITLE;
-}
+		var key:String = Type.getClassName(menuClass);
+		var menu:Menu = null;
 
-var MAIN(get, default):MainMenu;
+		// reuse existing or create a new one
+		if (cache.exists(key))
+		{
+			menu = cast cache.get(key);
+		}
+		else
+		{
+			menu = Type.createInstance(menuClass, []);
+			cache.set(key, menu);
+		}
 
-function get_MAIN():MainMenu
-{
-	if (MAIN == null)
-		MAIN = new MainMenu();
-	return MAIN;
-}
+		Menu.current = menu;
 
-var ADVENTURE(get, default):AdventureMenu;
+		// clear UI
+		while (GameWorld.UI.length > 0)
+		{
+			GameWorld.UI.members[GameWorld.UI.members.length - 1].close();
+			GameWorld.UI.remove(GameWorld.UI.members[GameWorld.UI.members.length - 1], true);
+		}
 
-function get_ADVENTURE():AdventureMenu
-{
-	if (ADVENTURE == null)
-		ADVENTURE = new AdventureMenu();
-	return ADVENTURE;
-}
+		// init if first time
+		if (menu.members.length < 1)
+		{
+			menu.create();
+		}
 
-var MOD(get, default):ModEditor;
-
-function get_MOD():ModEditor
-{
-	if (MOD == null)
-		MOD = new ModEditor();
-	return MOD;
-}
-
-var SONG(get, default):SongEditor;
-
-function get_SONG():SongEditor
-{
-	if (SONG == null)
-		SONG = new SongEditor();
-	return SONG;
+		GameWorld.UI.add(menu);
+		menu.refresh();
+	}
 }

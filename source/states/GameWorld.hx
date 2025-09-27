@@ -50,32 +50,6 @@ class GameWorld extends MusicBeatState
 
 	var speed:FlxText;
 
-	public static function switchMenu(menu:Menu)
-	{
-		Menu.previous = Menu.current;
-		Menu.current = menu;
-
-		while (UI.length > 0)
-		{
-			UI.members[UI.members.length - 1].close();
-			UI.remove(UI.members[UI.members.length - 1], true);
-		}
-
-		if (menu.members.length < 1)
-		{
-			// trace("creating: " + Type.getClassName(Type.getClass(menu)));
-			menu.create();
-			UI.add(menu);
-			menu.refresh();
-		}
-		else
-		{
-			// trace("refreshing: " + Type.getClassName(Type.getClass(menu)));
-			UI.add(menu);
-			menu.refresh();
-		}
-	}
-
 	override public function create():Void
 	{
 		super.create();
@@ -107,7 +81,7 @@ class GameWorld extends MusicBeatState
 		fg.setPosition(-130, -70);
 		FG.add(fg);
 
-		switchMenu(Menu.TITLE);
+		Menu.switchTo(TitleMenu);
 	}
 
 	override public function update(elapsed:Float):Void

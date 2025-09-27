@@ -1,6 +1,6 @@
 package menus;
 
-class CreativeMenu extends Menu
+class CharacterMenu extends Menu
 {
 	var button:Button;
 
@@ -8,7 +8,7 @@ class CreativeMenu extends Menu
 	{
 		super.create();
 		header = new Panel(LayerData.HEADER);
-		header.text = "dsfldskajfl;sdj";
+		header.text = "select your character";
 		add(header);
 
 		button = Button.make(100, 200, 200, 100, 5, 10, "woah", null, 0xFF000000);
@@ -27,7 +27,7 @@ class CreativeMenu extends Menu
 		super.update(elapsed);
 		if (Controls.BACK)
 		{
-			Menu.switchTo(MainMenu);
+			Menu.switchTo(AdventureMenu);
 		}
 		if (FlxG.keys.justPressed.B)
 			trace('mouse position: ${FlxG.mouse.viewX}, ${FlxG.mouse.viewY}');

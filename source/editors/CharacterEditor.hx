@@ -1,5 +1,5 @@
 package editors;
 
-class CharacterEditor extends MusicBeatState
+class CharacterEditor extends Menu
 {
 }

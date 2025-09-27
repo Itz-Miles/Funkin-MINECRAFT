@@ -166,7 +166,7 @@ class ModEditor extends Menu
 
 	override public function refresh()
 	{
-		if (Menu.previous == Menu.MAIN)
+		if (Menu.previous is MainMenu)
 		{
 			super.refresh();
 		}
@@ -183,7 +183,7 @@ class ModEditor extends Menu
 
 		if (Controls.BACK)
 		{
-			GameWorld.switchMenu(Menu.MAIN);
+			Menu.switchTo(MainMenu);
 		}
 	}
 
@@ -192,13 +192,13 @@ class ModEditor extends Menu
 		switch (index)
 		{
 			case 0:
-				GameWorld.switchMenu(Menu.MAIN);
+				Menu.switchTo(StoryEditor);
 			case 1:
-				GameWorld.switchMenu(Menu.MAIN);
+				Menu.switchTo(StoryEditor);
 			case 2:
-				GameWorld.switchMenu(Menu.MAIN);
+				Menu.switchTo(CharacterEditor);
 			case 3:
-				GameWorld.switchMenu(Menu.SONG);
+				Menu.switchTo(SongEditor);
 		}
 	}
 }

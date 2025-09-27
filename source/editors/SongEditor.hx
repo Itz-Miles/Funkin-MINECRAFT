@@ -325,7 +325,7 @@ class SongEditor extends Menu
 		if (Controls.BACK)
 		{
 			FlxG.sound.playMusic(Paths.music('where_are_we_going'));
-			GameWorld.switchMenu(Menu.MOD);
+			Menu.switchTo(ModEditor);
 		}
 	}
 }
