@@ -70,6 +70,7 @@ class Button extends FlxSpriteContainer
 
 	function setup(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, Color:Int, LabelColor:Int, OutlineColor:Int)
 	{
+		setPosition(0, 0);
 		outline.setPosition(-BorderSize, -BorderSize);
 		outline.setGraphicSize(Width + (BorderSize * 2), Height + (BorderSize * 2));
 		outline.updateHitbox();
