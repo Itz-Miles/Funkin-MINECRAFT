@@ -1,6 +1,6 @@
 package menus;
 
-class StoryMenu extends Menu
+class AdventureMenu extends Menu
 {
 	var button:Button;
 

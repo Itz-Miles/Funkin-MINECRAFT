@@ -62,13 +62,13 @@ function get_MAIN():MainMenu
 	return MAIN;
 }
 
-var STORY(get, default):StoryMenu;
+var ADVENTURE(get, default):AdventureMenu;
 
-function get_STORY():StoryMenu
+function get_ADVENTURE():AdventureMenu
 {
-	if (STORY == null)
-		STORY = new StoryMenu();
-	return STORY;
+	if (ADVENTURE == null)
+		ADVENTURE = new AdventureMenu();
+	return ADVENTURE;
 }
 
 var MOD(get, default):ModEditor;

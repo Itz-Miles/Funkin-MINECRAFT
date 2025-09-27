@@ -242,15 +242,15 @@ class MainMenu extends Menu
 			switch (curSelection)
 			{
 				case 0:
-					GameWorld.switchMenu(Menu.STORY);
+					GameWorld.switchMenu(Menu.ADVENTURE);
 				case 1:
-					GameWorld.switchMenu(Menu.STORY);
+					GameWorld.switchMenu(Menu.ADVENTURE);
 				case 2:
-					GameWorld.switchMenu(Menu.STORY);
+					GameWorld.switchMenu(Menu.ADVENTURE);
 				case 3:
 					GameWorld.switchMenu(Menu.MOD);
 				case 4:
-					GameWorld.switchMenu(Menu.STORY);
+					GameWorld.switchMenu(Menu.ADVENTURE);
 			}
 		});
 	}
