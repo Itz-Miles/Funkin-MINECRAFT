@@ -1,6 +1,6 @@
 package menus;
 
-class StoryMenu extends Menu
+class CreativeMenu extends Menu
 {
 	var button:Button;
 
@@ -8,7 +8,7 @@ class StoryMenu extends Menu
 	{
 		super.create();
 		header = new Panel(LayerData.HEADER);
-		header.text = "select your adventure";
+		header.text = "dsfldskajfl;sdj";
 		add(header);
 
 		button = Button.make(100, 200, 200, 100, 5, 10, "woah", null, 0xFF000000);

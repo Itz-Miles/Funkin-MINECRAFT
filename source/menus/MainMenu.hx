@@ -16,7 +16,7 @@ class MainMenu extends Menu
 
 	var backed:Bool = false;
 
-	static var labels:Array<String> = ['story mode', 'freeplay', 'settings', 'modpacks', 'credits'];
+	static var labels:Array<String> = ['adventure', 'creative', 'settings', 'modpacks', 'credits'];
 	public static var curSelection(default, set):Int = 0;
 	static var selected:Bool = true;
 
