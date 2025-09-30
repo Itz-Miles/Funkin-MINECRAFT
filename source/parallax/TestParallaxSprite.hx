@@ -1,6 +1,10 @@
 #if (flixel >= "5.3.1")
 package parallax;
 
+import flixel.graphics.frames.FlxFrame.FlxFrameType;
+import flixel.graphics.frames.FlxTileFrames;
+import flixel.graphics.FlxGraphic;
+import flixel.util.FlxDestroyUtil;
 import flixel.math.FlxRect;
 import flixel.system.FlxAssets.FlxGraphicAsset;
 import openfl.geom.Matrix;
@@ -35,7 +39,7 @@ enum Anchor
 }
 
 /**
- * The FlxParallaxSprite is a FlxSprite extension that performs linear transformations to mimic 3D graphics.
+ * The ParallaxSprite is a FlxSprite extension that performs linear transformations to mimic 3D graphics.
  * @author Itz-Miles
  */
 class TestParallaxSprite extends FlxSprite
@@ -82,31 +86,6 @@ class TestParallaxSprite extends FlxSprite
 		return y2 = value;
 	}
 
-	override function set_width(value:Float):Float
-	{
-		if (anchor == POINT_ONE)
-			x2 = x + value;
-		if (anchor == POINT_TWO)
-			x = x2 - value;
-		return width = value;
-	}
-
-	override function get_width():Float
-	{
-		return width = x2 - x;
-	}
-
-	override function set_height(value:Float):Float
-	{
-		y2 = y + value;
-		return height = value;
-	}
-
-	override function get_height():Float
-	{
-		return y2 - y;
-	}
-
 	/**
 	 * Controls how much the bottom left corner of this object is affected by camera scrolling. `0` = no movement (e.g. a background layer),
 	 * `1` = same movement speed as the foreground. Default value is `(1,1)`,
@@ -138,22 +117,34 @@ class TestParallaxSprite extends FlxSprite
 	var _scroll2:FlxPoint;
 
 	/**
-	 * Creates a FlxParallaxSprite at specified position with a specified graphic.
+	 * Creates a ParallaxSprite at specified position with a specified graphic.
 	 * @param graphic		The graphic to load (uses haxeflixel's default if null)
-	 * @param   X			The FlxParallaxSprite's initial X position.
+	 * @param   X			The ParallaxSprite's initial X position.
 	 * @param   Y			The FlxParllaxSprite's initial Y position.
+	 * @param   SimpleGraphic   The graphic you want to display
+	 *                          (OPTIONAL - for simple stuff only, do NOT use for animated images!).
 	 */
-	public function new(x:Float = 0, y:Float = 0, graphic:FlxGraphicAsset)
+	public function new(?X:Float = 0, ?Y:Float = 0, ?SimpleGraphic:FlxGraphicAsset)
 	{
-		super(x, y, graphic);
+		super(X, Y, SimpleGraphic);
 	}
 
+	@:noCompletion
 	override function initVars():Void
 	{
 		scrollFactor2 = FlxPoint.get(1.1, 1.1);
 		_scroll = FlxPoint.get();
 		_scroll2 = FlxPoint.get();
 		super.initVars();
+	}
+
+	override public function destroy():Void
+	{
+		super.destroy();
+
+		scrollFactor2 = FlxDestroyUtil.put(scrollFactor2);
+		_scroll = FlxDestroyUtil.put(_scroll);
+		_scroll2 = FlxDestroyUtil.put(_scroll2);
 	}
 
 	/**
@@ -182,56 +173,109 @@ class TestParallaxSprite extends FlxSprite
 		return this;
 	}
 
-	public function getCcreenBounds(?newRect:FlxRect, ?camera:FlxCamera):FlxRect
+	/**
+	 * Helper function to set the graphic's dimensions by using `scale`, allowing you to keep the current aspect ratio
+	 * should one of the numbers be `<= 0`. It might make sense to call `updateHitbox()` afterwards!
+	 *
+	 * @param   width    How wide the graphic should be. If `<= 0`, and `height` is set, the aspect ratio will be kept.
+	 * @param   height   How high the graphic should be. If `<= 0`, and `width` is set, the aspect ratio will be kept.
+	 */
+	override public function setGraphicSize(width = 0.0, height = 0.0):Void
 	{
-		if (newRect == null)
-			newRect = FlxRect.get();
+		if (width <= 0 && height <= 0)
+			return;
 
-		camera ??= FlxG.camera; // getDefaultCamera();
-		_scaledOrigin.set(origin.x * scale.x, origin.y * scale.y);
-		_scroll.set(x - camera.scroll.x * scrollFactor.x, y - camera.scroll.y * scrollFactor.y + origin.x - _scaledOrigin.x);
-		_scroll2.set(x2 - camera.scroll.x * scrollFactor2.x, y2 - camera.scroll.y * scrollFactor2.y + origin.y - _scaledOrigin.y);
-		newRect.fromTwoPoints(_scroll, _scroll2);
+		var newScaleX:Float = width / frameWidth;
+		var newScaleY:Float = height / frameHeight;
+		scale.set(newScaleX, newScaleY);
 
-		if (pixelPerfectPosition)
-			newRect.floor();
-
-		if (isPixelPerfectRender(camera))
-			newRect.floor();
-		return newRect.getRotatedBounds(angle, _scaledOrigin, newRect);
+		if (width <= 0)
+			scale.x = newScaleY;
+		else if (height <= 0)
+			scale.y = newScaleX;
 	}
 
 	/**
-	 * Calculates the smallest globally aligned bounding box that encompasses this sprite's graphic as it
-	 * would be displayed. Honors scrollFactor, rotation, scale, offset and origin.
-	 * @param newRect  Optional output `FlxRect`, if `null`, a new one is created
-	 * @param camera   Optional camera used for scrollFactor, if null `getDefaultCamera()` is used
-	 * @return A globally aligned `FlxRect` that fully contains the input sprite.
-	 * @since 4.11.0
+	 * Updates the sprite's hitbox (`width`, `height`, `offset`) according to the current `scale`.
+	 * Also calls `centerOrigin()`.
 	 */
-	override public function getScreenBounds(?newRect:FlxRect, ?camera:FlxCamera):FlxRect
+	override public function updateHitbox():Void
 	{
-		if (newRect == null)
-			newRect = FlxRect.get();
-
-		camera ??= FlxG.camera;
-
-		newRect.setPosition(x, y);
-		if (pixelPerfectPosition)
-			newRect.floor();
-		_scaledOrigin.set(origin.x * scale.x, origin.y * scale.y);
-		newRect.x += -Std.int(camera.scroll.x * scrollFactor.x) - offset.x + origin.x - _scaledOrigin.x;
-		newRect.y += -Std.int(camera.scroll.y * scrollFactor.y) - offset.y + origin.y - _scaledOrigin.y;
-		if (isPixelPerfectRender(camera))
-			newRect.floor();
-		newRect.setSize(frameWidth * Math.abs(scale.x), frameHeight * Math.abs(scale.y));
-		return newRect.getRotatedBounds(angle, _scaledOrigin, newRect);
+		width = Math.abs(scale.x) * frameWidth;
+		height = Math.abs(scale.y) * frameHeight;
+		offset.set(-0.5 * (width - frameWidth), -0.5 * (height - frameHeight));
+		centerOrigin();
 	}
 
-	override public function destroy():Void
+	/**
+	 * Resets some important variables for sprite optimization and rendering.
+	 */
+	@:noCompletion
+	override function resetHelpers():Void
 	{
-		direction = null;
-		super.destroy();
+		resetFrameSize();
+		resetSizeFromFrame();
+		_flashRect2.x = 0;
+		_flashRect2.y = 0;
+
+		if (graphic != null)
+		{
+			_flashRect2.width = graphic.width;
+			_flashRect2.height = graphic.height;
+		}
+
+		centerOrigin();
+
+		if (FlxG.renderBlit)
+		{
+			dirty = true;
+			updateFramePixels();
+		}
+	}
+
+	/**
+	 * Called by game loop, updates then blits or renders current frame of animation to the screen.
+	 */
+	override public function draw():Void
+	{
+		checkEmptyFrame();
+
+		if (alpha == 0 || _frame.type == FlxFrameType.EMPTY)
+			return;
+
+		if (dirty) // rarely
+			calcFrame(useFramePixels);
+
+		for (camera in getCamerasLegacy())
+		{
+			if (!camera.visible || !camera.exists || !isOnScreen(camera))
+				continue;
+
+			if (isSimpleRender(camera))
+				drawSimple(camera);
+			else
+				drawComplex(camera);
+
+			#if FLX_DEBUG
+			FlxBasic.visibleCount++;
+			#end
+		}
+
+		#if FLX_DEBUG
+		if (FlxG.debugger.drawDebug)
+			drawDebug();
+		#end
+	}
+
+	@:noCompletion
+	override function drawSimple(camera:FlxCamera):Void
+	{
+		getScreenPosition(_point, camera).subtractPoint(offset);
+		if (isPixelPerfectRender(camera))
+			_point.floor();
+
+		_point.copyToFlash(_flashPoint);
+		camera.copyPixels(_frame, framePixels, _flashRect, _flashPoint, colorTransform, blend, antialiasing);
 	}
 
 	@:noCompletion
@@ -274,11 +318,172 @@ class TestParallaxSprite extends FlxSprite
 		camera.drawPixels(_frame, framePixels, _matrix, colorTransform, blend, antialiasing, shader);
 	}
 
+	/**
+	 * Request (or force) that the sprite update the frame before rendering.
+	 * Useful if you are doing procedural generation or other weirdness!
+	 *
+	 * @param   Force   Force the frame to redraw, even if its not flagged as necessary.
+	 */
+	override public function drawFrame(Force:Bool = false):Void
+	{
+		if (FlxG.renderBlit)
+		{
+			if (Force || dirty)
+			{
+				dirty = true;
+				calcFrame();
+			}
+		}
+		else
+		{
+			dirty = true;
+			calcFrame(true);
+		}
+	}
+
+	/**
+	 * Helper function that adjusts the offset automatically to center the bounding box within the graphic.
+	 *
+	 * @param   AdjustPosition   Adjusts the actual X and Y position just once to match the offset change.
+	 */
+	override public function centerOffsets(AdjustPosition:Bool = false):Void
+	{
+		offset.x = (frameWidth - width) * 0.5;
+		offset.y = (frameHeight - height) * 0.5;
+		if (AdjustPosition)
+		{
+			x += offset.x;
+			y += offset.y;
+		}
+	}
+
+	/**
+	 * Retrieve the midpoint of this sprite's graphic in world coordinates.
+	 *
+	 * @param   point  The resulting point, if `null` a new one is created
+	 */
+	override public function getGraphicMidpoint(?point:FlxPoint):FlxPoint
+	{
+		final rect = getGraphicBounds();
+		point = rect.getMidpoint(point);
+		rect.put();
+		return point;
+	}
+
+	/**
+	 * Retrieves the world bounds of this sprite's graphic
+	 * **Note:** Ignores `scrollFactor`, to get the screen position of the graphic use
+	 * `getScreenBounds`
+	 *
+	 * @param   rect  The resulting rect, if `null` a new one is created
+	 * @since 5.9.0
+	 */
+	override public function getGraphicBounds(?rect:FlxRect):FlxRect
+	{
+		if (rect == null)
+			rect = FlxRect.get();
+
+		rect.set(x, y);
+		if (pixelPerfectPosition)
+			rect.floor();
+
+		_scaledOrigin.set(origin.x * scale.x, origin.y * scale.y);
+		rect.x += origin.x - offset.x - _scaledOrigin.x;
+		rect.y += origin.y - offset.y - _scaledOrigin.y;
+		rect.setSize(frameWidth * scale.x, frameHeight * scale.y);
+
+		if (angle % 360 != 0)
+			rect.getRotatedBounds(angle, _scaledOrigin, rect);
+
+		return rect;
+	}
+
+	/**
+	 * Check and see if this object is currently on screen. Differs from `FlxObject`'s implementation
+	 * in that it takes the actual graphic into account, not just the hitbox or bounding box or whatever.
+	 *
+	 * @param   Camera  Specify which game camera you want. If `null`, `FlxG.camera` is used.
+	 * @return  Whether the object is on screen or not.
+	 */
+	override public function isOnScreen(?camera:FlxCamera):Bool
+	{
+		if (camera == null)
+			camera = FlxG.camera;
+
+		return camera.containsRect(getScreenBounds(_rect, camera));
+	}
+
+	/**
+	 * Returns the result of `isSimpleRenderBlit()` if `FlxG.renderBlit` is
+	 * `true`, or `false` if `FlxG.renderTile` is `true`.
+	 */
 	override public function isSimpleRender(?camera:FlxCamera):Bool
 	{
-		if (!FlxG.renderBlit)
+		if (FlxG.renderTile)
 			return false;
-		return super.isSimpleRender(camera) && _matrix.c == 0 && _matrix.b == 0;
+
+		return isSimpleRenderBlit(camera);
+	}
+
+	/**
+	 * Determines the function used for rendering in blitting:
+	 * `copyPixels()` for simple sprites, `draw()` for complex ones.
+	 * Sprites are considered simple when they have an `angle` of `0`, a `scale` of `1`,
+	 * don't use `blend` and `pixelPerfectRender` is `true`.
+	 *
+	 * @param   camera   If a camera is passed its `pixelPerfectRender` flag is taken into account
+	 */
+	override public function isSimpleRenderBlit(?camera:FlxCamera):Bool
+	{
+		var result:Bool = (angle == 0 || bakedRotationAngle > 0) && scale.x == 1 && scale.y == 1 && blend == null;
+		result = result && (camera != null ? isPixelPerfectRender(camera) : pixelPerfectRender);
+		return result;
+	}
+
+	/**
+	 * Calculates the smallest globally aligned bounding box that encompasses this
+	 * sprite's width and height, at its current rotation.
+	 * Note, if called on a `FlxSprite`, the origin is used, but scale and offset are ignored.
+	 * Use `getScreenBounds` to use these properties.
+	 * @param newRect The optional output `FlxRect` to be returned, if `null`, a new one is created.
+	 * @return A globally aligned `FlxRect` that fully contains the input object's width and height.
+	 * @since 4.11.0
+	 */
+	override function getRotatedBounds(?newRect:FlxRect)
+	{
+		if (newRect == null)
+			newRect = FlxRect.get();
+
+		newRect.set(x, y, width, height);
+		return newRect.getRotatedBounds(angle, origin, newRect);
+	}
+
+	/**
+	 * Calculates the smallest globally aligned bounding box that encompasses this sprite's graphic as it
+	 * would be displayed. Honors scrollFactor, rotation, scale, offset and origin.
+	 * @param newRect Optional output `FlxRect`, if `null`, a new one is created.
+	 * @param camera  Optional camera used for scrollFactor, if null `FlxG.camera` is used.
+	 * @return A globally aligned `FlxRect` that fully contains the input sprite.
+	 * @since 4.11.0
+	 */
+	override public function getScreenBounds(?newRect:FlxRect, ?camera:FlxCamera):FlxRect
+	{
+		if (newRect == null)
+			newRect = FlxRect.get();
+
+		if (camera == null)
+			camera = FlxG.camera;
+
+		newRect.setPosition(x, y);
+		if (pixelPerfectPosition)
+			newRect.floor();
+		_scaledOrigin.set(origin.x * scale.x, origin.y * scale.y);
+		newRect.x += -Std.int(camera.scroll.x * scrollFactor.x) - offset.x + origin.x - _scaledOrigin.x;
+		newRect.y += -Std.int(camera.scroll.y * scrollFactor.y) - offset.y + origin.y - _scaledOrigin.y;
+		if (isPixelPerfectRender(camera))
+			newRect.floor();
+		newRect.setSize(frameWidth * Math.abs(scale.x), frameHeight * Math.abs(scale.y));
+		return newRect.getRotatedBounds(angle, _scaledOrigin, newRect);
 	}
 }
 #end
