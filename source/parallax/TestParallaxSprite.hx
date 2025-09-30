@@ -56,7 +56,7 @@ class TestParallaxSprite extends FlxSprite
 	override function set_y(value:Float):Float
 	{
 		if (anchor == POINT_ONE)
-			x2 -= x - value;
+			y2 -= y - value;
 		return y = value;
 	}
 
@@ -132,10 +132,11 @@ class TestParallaxSprite extends FlxSprite
 	@:noCompletion
 	override function initVars():Void
 	{
+		super.initVars();
+
 		scrollFactor2 = FlxPoint.get(1.1, 1.1);
 		_scroll = FlxPoint.get();
 		_scroll2 = FlxPoint.get();
-		super.initVars();
 	}
 
 	override public function destroy():Void
@@ -160,13 +161,19 @@ class TestParallaxSprite extends FlxSprite
 	public function fixate(anchorX:Int = 0, anchorY:Int = 0, scrollOneX:Float = 1, scrollOneY:Float = 1, scrollTwoX:Float = 1.1, scrollTwoY:Float = 1.1,
 			direct:String = 'horizontal'):TestParallaxSprite
 	{
+		x += anchorX;
+		y += anchorY;
+
 		switch (direct.toLowerCase())
 		{
 			case 'horizontal', 'orizzontale', 'horisontell':
 				direction = HORIZONTAL;
-
+				x2 = x + anchorX;
+				y2 = y + anchorY + frameHeight;
 			case 'vertical', 'vertikale', 'verticale', 'vertikal':
 				direction = VERTICAL;
+				x2 = x + anchorX + frameWidth;
+				y2 = y + anchorY;
 		}
 		scrollFactor.set(scrollOneX, scrollOneY);
 		scrollFactor2.set(scrollTwoX, scrollTwoY);
@@ -283,19 +290,19 @@ class TestParallaxSprite extends FlxSprite
 	{
 		_frame.prepareMatrix(_matrix, FlxFrameAngle.ANGLE_0, checkFlipX(), checkFlipY());
 		_matrix.translate(-origin.x, -origin.y);
+
+		if (direction == HORIZONTAL)
+		{
+			_matrix.c = (_scroll2.x - _scroll.x) / frameHeight;
+			_matrix.d = (_scroll2.y - _scroll.y) / frameHeight;
+		}
+		else if (direction == VERTICAL)
+		{
+			_matrix.b = (_scroll2.y - _scroll.y) / frameWidth;
+			_matrix.a = (_scroll2.x - _scroll.x) / frameWidth;
+		}
+
 		_matrix.scale(scale.x, scale.y);
-		/*
-			if (direction == HORIZONTAL)
-			{
-				_matrix.c = (_scroll2.x - _scroll.x) / frameHeight;
-				_matrix.d = (_scroll2.y - _scroll.y) / frameHeight;
-			}
-			else if (direction == VERTICAL)
-			{
-				_matrix.b = (_scroll2.y - _scroll.y) / frameWidth;
-				_matrix.a = (_scroll2.x - _scroll.x) / frameWidth;
-			}
-		 */
 
 		if (bakedRotationAngle <= 0)
 		{
@@ -474,16 +481,53 @@ class TestParallaxSprite extends FlxSprite
 		if (camera == null)
 			camera = FlxG.camera;
 
-		newRect.setPosition(x, y);
+		newRect.setPosition(Math.min(x, x2), Math.min(y, y2));
 		if (pixelPerfectPosition)
 			newRect.floor();
+
 		_scaledOrigin.set(origin.x * scale.x, origin.y * scale.y);
-		newRect.x += -Std.int(camera.scroll.x * scrollFactor.x) - offset.x + origin.x - _scaledOrigin.x;
-		newRect.y += -Std.int(camera.scroll.y * scrollFactor.y) - offset.y + origin.y - _scaledOrigin.y;
+
+		_scroll.x = -Std.int(camera.scroll.x * scrollFactor.x) - offset.x + origin.x - _scaledOrigin.x;
+		_scroll.y = -Std.int(camera.scroll.y * scrollFactor.y) - offset.y + origin.y - _scaledOrigin.y;
+
+		_scroll2.x = -Std.int(camera.scroll.x * scrollFactor2.x) - offset.x + origin.x - _scaledOrigin.x;
+		_scroll2.y = -Std.int(camera.scroll.y * scrollFactor2.y) - offset.y + origin.y - _scaledOrigin.y;
+
+		newRect.x += Math.min(_scroll.x, _scroll2.x);
+		newRect.y += Math.min(_scroll.y, _scroll2.y);
+
 		if (isPixelPerfectRender(camera))
 			newRect.floor();
-		newRect.setSize(frameWidth * Math.abs(scale.x), frameHeight * Math.abs(scale.y));
+
+		newRect.width = (frameWidth * Math.abs(scale.x)) + _scroll2.x - _scroll.x;
+		newRect.height = (frameHeight * Math.abs(scale.y)) + _scroll2.y - _scroll.y;
+
 		return newRect.getRotatedBounds(angle, _scaledOrigin, newRect);
+	}
+
+	/**
+	 * Returns the screen position of this object.
+	 *
+	 * @param   result  Optional arg for the returning point
+	 * @param   camera  The desired "screen" coordinate space. If `null`, `FlxG.camera` is used.
+	 * @return  The screen position of this object.
+	 */
+	override public function getScreenPosition(?result:FlxPoint, ?camera:FlxCamera):FlxPoint
+	{
+		if (result == null)
+			result = FlxPoint.get();
+
+		if (camera == null)
+			camera = FlxG.camera;
+
+		result.set(Math.min(x, x2), Math.min(y, y2));
+		if (pixelPerfectPosition)
+			result.floor();
+
+		result.x -= Math.min(camera.scroll.x * scrollFactor.x, camera.scroll.x * scrollFactor2.x);
+		result.y -= Math.min(camera.scroll.y * scrollFactor.y, camera.scroll.y * scrollFactor2.y);
+
+		return result;
 	}
 }
 #end
