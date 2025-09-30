@@ -8,7 +8,7 @@ haxelib install openfl
 haxelib install flixel 5.9.0
 haxelib set flixel 5.9.0
 haxelib install hxcpp
-haxelib install parallaxlt 0.0.4
+haxelib git parallaxlt https://github.com/Itz-Miles/parallaxLT
 haxelib install hxcpp-debug-server
 haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
 curl -# -O https://download.visualstudio.microsoft.com/download/pr/3105fcfe-e771-41d6-9a1c-fc971e7d03a7/8eb13958dc429a6e6f7e0d6704d43a55f18d02a253608351b6bf6723ffdaf24e/vs_Community.exe

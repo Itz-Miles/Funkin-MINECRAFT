@@ -8,8 +8,7 @@ import flixel.util.FlxGradient;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
-import flixel_5_3_1.ParallaxSprite;
-import parallax.FixedParallaxSprite;
+import parallaxlt.ParallaxSprite;
 
 /**
  * This FlxGroup contains the background elements of a Parallax stage.
@@ -70,113 +69,113 @@ class ParallaxBG extends FlxTypedGroup<FlxSprite>
 						});
 				}
 
-				var piece02:FixedParallaxSprite = new FixedParallaxSprite(0, 38, Paths.image('piece_02', "levels/" + stage));
+				var piece02:ParallaxSprite = new ParallaxSprite(0, 38, Paths.image('piece_02', "levels/" + stage));
 				piece02.fixate(768, 432, 0.728070175 * scrollMult, 0.728070175 * scrollMult, 0.350877193 * scrollMult, 0.350877193 * scrollMult, 'horizontal');
 				add(piece02);
 
-				var piece03:FixedParallaxSprite = new FixedParallaxSprite(592, 530, Paths.image('piece_03', "levels/" + stage));
+				var piece03:ParallaxSprite = new ParallaxSprite(592, 530, Paths.image('piece_03', "levels/" + stage));
 				piece03.fixate(768, 432, 0.175438596 * scrollMult, 0.175438596 * scrollMult, 0.333333333 * scrollMult, 0.333333333 * scrollMult, 'horizontal');
 				add(piece03);
 
-				var piece04:FixedParallaxSprite = new FixedParallaxSprite(658, 516, Paths.image('piece_04', "levels/" + stage));
+				var piece04:ParallaxSprite = new ParallaxSprite(658, 516, Paths.image('piece_04', "levels/" + stage));
 				piece04.fixate(768, 432, 0.254385965 * scrollMult, 0.254385965 * scrollMult, 0.285087719 * scrollMult, 0.285087719 * scrollMult, 'vertical');
 				add(piece04);
 
-				var piece05:FixedParallaxSprite = new FixedParallaxSprite(667, 523, Paths.image('piece_05', "levels/" + stage));
+				var piece05:ParallaxSprite = new ParallaxSprite(667, 523, Paths.image('piece_05', "levels/" + stage));
 				piece05.fixate(768, 432, 0.285087719 * scrollMult, 0.285087719 * scrollMult, 0.276315789 * scrollMult, 0.276315789 * scrollMult, 'vertical');
 				add(piece05);
 
-				var piece06:FixedParallaxSprite = new FixedParallaxSprite(849, 550, Paths.image('piece_06', "levels/" + stage));
+				var piece06:ParallaxSprite = new ParallaxSprite(849, 550, Paths.image('piece_06', "levels/" + stage));
 				piece06.fixate(768, 432, 0.333333333 * scrollMult, 0.333333333 * scrollMult, 0.380952381 * scrollMult, 0.380952381 * scrollMult, 'vertical');
 				add(piece06);
 
-				var piece07:FixedParallaxSprite = new FixedParallaxSprite(882, 529, Paths.image('piece_07', "levels/" + stage));
+				var piece07:ParallaxSprite = new ParallaxSprite(882, 529, Paths.image('piece_07', "levels/" + stage));
 				piece07.fixate(768, 432, 0.285087719 * scrollMult, 0.285087719 * scrollMult, 0.285087719 * scrollMult, 0.285087719 * scrollMult, 'vertical');
 				add(piece07);
 
-				var piece20:FixedParallaxSprite = new FixedParallaxSprite(482, 0, Paths.image('piece_08', "levels/" + stage));
+				var piece20:ParallaxSprite = new ParallaxSprite(482, 0, Paths.image('piece_08', "levels/" + stage));
 				piece20.fixate(768, 432, 0.478070175 * scrollMult, 0.478070175 * scrollMult, 0.298245614 * scrollMult, 0.298245614 * scrollMult,
 					'vertical'); // inaccurate
 				add(piece20);
 
-				var piece09:FixedParallaxSprite = new FixedParallaxSprite(0, 512, Paths.image('piece_09', "levels/" + stage));
+				var piece09:ParallaxSprite = new ParallaxSprite(0, 512, Paths.image('piece_09', "levels/" + stage));
 				piece09.fixate(768, 432, 0.245614035 * scrollMult, 0.245614035 * scrollMult, 1 * scrollMult, 1 * scrollMult, 'horizontal');
 				add(piece09);
 
-				var piece10:FixedParallaxSprite = new FixedParallaxSprite(939, 496, Paths.image('piece_10', "levels/" + stage));
+				var piece10:ParallaxSprite = new ParallaxSprite(939, 496, Paths.image('piece_10', "levels/" + stage));
 				piece10.fixate(768, 1032, 0.434210526 * scrollMult, 0.434210526 * scrollMult, 0.51754386 * scrollMult, 0.51754386 * scrollMult, 'vertical');
 				add(piece10);
 
-				var piece12:FixedParallaxSprite = new FixedParallaxSprite(201, 0, Paths.image('piece_11', "levels/" + stage));
+				var piece12:ParallaxSprite = new ParallaxSprite(201, 0, Paths.image('piece_11', "levels/" + stage));
 				piece12.fixate(768, 432, 0.571428571 * scrollMult, 0.571428571 * scrollMult, 0.357142857 * scrollMult, 0.357142857 * scrollMult, 'horizontal');
 				add(piece12);
 
-				var piece13:FixedParallaxSprite = new FixedParallaxSprite(511, 0, Paths.image('piece_12', "levels/" + stage));
+				var piece13:ParallaxSprite = new ParallaxSprite(511, 0, Paths.image('piece_12', "levels/" + stage));
 				piece13.fixate(768, 432, 0.428571429 * scrollMult, 0.428571429 * scrollMult, 0.321428571 * scrollMult, 0.321428571 * scrollMult, 'horizontal');
 				add(piece13);
 
-				var piece14:FixedParallaxSprite = new FixedParallaxSprite(685, 0, Paths.image('piece_13', "levels/" + stage));
+				var piece14:ParallaxSprite = new ParallaxSprite(685, 0, Paths.image('piece_13', "levels/" + stage));
 				piece14.fixate(768, 432, 0.321428571 * scrollMult, 0.321428571 * scrollMult, 0.285714286 * scrollMult, 0.285714286 * scrollMult, 'horizontal');
 				add(piece14);
 
-				var piece15:FixedParallaxSprite = new FixedParallaxSprite(0, 93, Paths.image('piece_14', "levels/" + stage));
+				var piece15:ParallaxSprite = new ParallaxSprite(0, 93, Paths.image('piece_14', "levels/" + stage));
 				piece15.fixate(768, 432, 0.571428571 * scrollMult, 0.571428571 * scrollMult, 0.571428571 * scrollMult, 0.571428571 * scrollMult,
 					'vertical'); // offscreen pt1
 				add(piece15);
 
-				var piece17:FixedParallaxSprite = new FixedParallaxSprite(17, 0, Paths.image('piece_15', "levels/" + stage));
+				var piece17:ParallaxSprite = new ParallaxSprite(17, 0, Paths.image('piece_15', "levels/" + stage));
 				piece17.fixate(768, 432, 0.820175439 * scrollMult, 0.820175439 * scrollMult, 0.429824561 * scrollMult, 0.429824561 * scrollMult, 'vertical');
 				add(piece17);
 
-				var piece18:FixedParallaxSprite = new FixedParallaxSprite(267, 0, Paths.image('piece_16', "levels/" + stage));
+				var piece18:ParallaxSprite = new ParallaxSprite(267, 0, Paths.image('piece_16', "levels/" + stage));
 				piece18.fixate(768, 432, 0.442982456 * scrollMult, 0.442982456 * scrollMult, 0.385964912 * scrollMult, 0.385964912 * scrollMult, 'vertical');
 				add(piece18);
 
-				var piece19:FixedParallaxSprite = new FixedParallaxSprite(337, 0, Paths.image('piece_17', "levels/" + stage));
+				var piece19:ParallaxSprite = new ParallaxSprite(337, 0, Paths.image('piece_17', "levels/" + stage));
 				piece19.fixate(768, 432, 0.530701754 * scrollMult, 0.530701754 * scrollMult, 0.315789474 * scrollMult, 0.315789474 * scrollMult, 'vertical');
 				add(piece19);
 
-				var piece11:FixedParallaxSprite = new FixedParallaxSprite(0, 467, Paths.image('piece_18', "levels/" + stage));
+				var piece11:ParallaxSprite = new ParallaxSprite(0, 467, Paths.image('piece_18', "levels/" + stage));
 				piece11.fixate(768, 432, 0.315789474 * scrollMult, 0.315789474 * scrollMult, 0.828947368 * scrollMult, 0.828947368 * scrollMult, 'horizontal');
 				add(piece11);
 
-				var piece16:FixedParallaxSprite = new FixedParallaxSprite(41, 0, Paths.image('piece_19', "levels/" + stage));
+				var piece16:ParallaxSprite = new ParallaxSprite(41, 0, Paths.image('piece_19', "levels/" + stage));
 				piece16.fixate(768, 432, 0.565789474 * scrollMult, 0.565789474 * scrollMult, 0.478070175 * scrollMult, 0.478070175 * scrollMult, 'vertical');
 				add(piece16);
 
-				var piece27:FixedParallaxSprite = new FixedParallaxSprite(898, 520, Paths.image('piece_10', "levels/" + stage));
+				var piece27:ParallaxSprite = new ParallaxSprite(898, 520, Paths.image('piece_10', "levels/" + stage));
 				piece27.fixate(768, 432, 0.555555556 * scrollMult, 0.555555556 * scrollMult, 0.684210526 * scrollMult, 0.684210526 * scrollMult, 'vertical');
 				add(piece27);
 
-				var piece21:FixedParallaxSprite = new FixedParallaxSprite(981, 0, Paths.image('piece_20', "levels/" + stage));
+				var piece21:ParallaxSprite = new ParallaxSprite(981, 0, Paths.image('piece_20', "levels/" + stage));
 				piece21.fixate(768, 432, 0.684210526 * scrollMult, 0.684210526 * scrollMult, 0.543859649 * scrollMult, 0.543859649 * scrollMult, 'vertical');
 				add(piece21);
 
-				var piece22:FixedParallaxSprite = new FixedParallaxSprite(1410, 94, Paths.image('piece_21', "levels/" + stage));
+				var piece22:ParallaxSprite = new ParallaxSprite(1410, 94, Paths.image('piece_21', "levels/" + stage));
 				piece22.fixate(768, 432, 0.517857143 * scrollMult, 0.517857143 * scrollMult, 0.605263158 * scrollMult, 0.605263158 * scrollMult, 'vertical');
 				add(piece22);
 
-				var piece23:FixedParallaxSprite = new FixedParallaxSprite(1195, 0, Paths.image('piece_01', "levels/" + stage));
+				var piece23:ParallaxSprite = new ParallaxSprite(1195, 0, Paths.image('piece_01', "levels/" + stage));
 				piece23.fixate(768, 432, 0.460526316 * scrollMult, 0.482142857 * scrollMult, 0.728070175 * scrollMult, 0.728070175 * scrollMult, 'vertical');
 				add(piece23);
 
-				var piece24:FixedParallaxSprite = new FixedParallaxSprite(1510, 555, Paths.image('piece_22', "levels/" + stage));
+				var piece24:ParallaxSprite = new ParallaxSprite(1510, 555, Paths.image('piece_22', "levels/" + stage));
 				piece24.fixate(768, 432, 0.688596491 * scrollMult, 0.688596491 * scrollMult, 0.688596491 * scrollMult, 0.688596491 * scrollMult, 'vertical');
 				add(piece24);
 
-				var piece25:FixedParallaxSprite = new FixedParallaxSprite(1120, 0, Paths.image('piece_23', "levels/" + stage));
+				var piece25:ParallaxSprite = new ParallaxSprite(1120, 0, Paths.image('piece_23', "levels/" + stage));
 				piece25.fixate(768, 432, 0.5 * scrollMult, 0.5 * scrollMult, 0.75877193 * scrollMult, 0.75877193 * scrollMult, 'vertical');
 				add(piece25);
 
-				var piece26:FixedParallaxSprite = new FixedParallaxSprite(0, 0, Paths.image('piece_24', "levels/" + stage));
+				var piece26:ParallaxSprite = new ParallaxSprite(0, 0, Paths.image('piece_24', "levels/" + stage));
 				piece26.fixate(768, 432, 0.657894737 * scrollMult, 0.657894737 * scrollMult, 0.657894737 * scrollMult, 0.657894737 * scrollMult, 'vertical');
 				add(piece26);
 
-				var piece28:FixedParallaxSprite = new FixedParallaxSprite(1405, 555, Paths.image('piece_25', "levels/" + stage));
+				var piece28:ParallaxSprite = new ParallaxSprite(1405, 555, Paths.image('piece_25', "levels/" + stage));
 				piece28.fixate(768, 432, 0.75 * scrollMult, 0.75 * scrollMult, 0.697368421 * scrollMult, 0.697368421 * scrollMult, 'vertical');
 				add(piece28);
 
-				var piece29:FixedParallaxSprite = new FixedParallaxSprite(1, 584, Paths.image('piece_26', "levels/" + stage));
+				var piece29:ParallaxSprite = new ParallaxSprite(1, 584, Paths.image('piece_26', "levels/" + stage));
 				piece29.fixate(768, 432, 0.807017544 * scrollMult, 0.807017544 * scrollMult, 0.807017544 * scrollMult, 0.807017544 * scrollMult, 'veetical');
 				add(piece29);
 
