@@ -68,7 +68,7 @@ class Button extends FlxSpriteContainer
 		add(label);
 	}
 
-	function setup(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, Color:Int, LabelColor:Int, OutlineColor:Int)
+	public function setup(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, Color:Int, LabelColor:Int, OutlineColor:Int)
 	{
 		setPosition(0, 0);
 		outline.setPosition(-BorderSize, -BorderSize);
