@@ -1,6 +1,7 @@
 package menus;
-import haxe.ds.ObjectMap;
 
+import flixel.FlxBasic;
+import haxe.ds.ObjectMap;
 
 /**
  * The Menu class
@@ -36,6 +37,12 @@ class Menu extends FlxContainer
 	public function close()
 	{
 		Button.freeAll();
+	}
+
+	public function tryAdd(member:FlxBasic)
+	{
+		if (members.indexOf(member) == -1)
+			add(member);
 	}
 
 	public function beatHit(?curBeat:Int)

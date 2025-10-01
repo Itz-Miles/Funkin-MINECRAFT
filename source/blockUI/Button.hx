@@ -6,6 +6,8 @@ class Button extends FlxSpriteContainer
 
 	private var outline:FlxSprite;
 
+	private var shadow:FlxSprite;
+
 	private var rim:FlxSprite;
 
 	private var border:FlxSprite;
@@ -26,11 +28,11 @@ class Button extends FlxSpriteContainer
 	 * Makes (or recycles) a Button.
 	 */
 	public static function make(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, ?Color:Int = FlxColor.GRAY,
-			?LabelColor:Int = FlxColor.WHITE, ?OutlineColor:Int = FlxColor.BLACK):Button
+			?LabelColor:Int = FlxColor.WHITE, ?OutlineColor:Int = FlxColor.BLACK, ?ShadowColor:Int = 0x35000000):Button
 	{
 		var button:Button = cache.recycle(Button, Button.new);
 
-		button.setup(X, Y, Width, Height, BorderSize, RimSize, Label, Color, LabelColor, OutlineColor);
+		button.setup(X, Y, Width, Height, BorderSize, RimSize, Label, Color, LabelColor, OutlineColor, ShadowColor);
 
 		return button;
 	}
@@ -49,6 +51,9 @@ class Button extends FlxSpriteContainer
 		outline = new FlxSprite().makeGraphic(1, 1);
 		outline.scrollFactor.set();
 
+		shadow = new FlxSprite();
+		shadow.scrollFactor.set();
+
 		rim = new FlxSprite().makeGraphic(1, 1);
 		rim.scrollFactor.set();
 
@@ -62,19 +67,27 @@ class Button extends FlxSpriteContainer
 		label.scrollFactor.set();
 
 		add(outline);
+		add(shadow);
 		add(rim);
 		add(border);
 		add(face);
 		add(label);
 	}
 
-	public function setup(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, Color:Int, LabelColor:Int, OutlineColor:Int)
+	public function setup(X:Int, Y:Int, Width:Int, Height:Int, BorderSize:Int, RimSize:Int, Label:String, Color:Int, LabelColor:Int, OutlineColor:Int,
+			ShadowColor:Int)
 	{
 		setPosition(0, 0);
 		outline.setPosition(-BorderSize, -BorderSize);
 		outline.setGraphicSize(Width + (BorderSize * 2), Height + (BorderSize * 2));
 		outline.updateHitbox();
 		outline.color = OutlineColor;
+
+		shadow.setPosition(0, RimSize);
+		shadow.makeGraphic(1, 1, ShadowColor);
+		shadow.setGraphicSize(Width, Height);
+		shadow.updateHitbox();
+		shadow.color = ShadowColor;
 
 		rim.setPosition(0, 0);
 		rim.setGraphicSize(Width, Height);
