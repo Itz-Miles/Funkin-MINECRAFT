@@ -8,7 +8,7 @@ class CreativeMenu extends Menu
 	{
 		super.create();
 		header = new Panel(LayerData.HEADER);
-		header.text = "dsfldskajfl;sdj";
+		header.text = "create your objective";
 		add(header);
 	}
 
@@ -28,7 +28,5 @@ class CreativeMenu extends Menu
 		{
 			Menu.switchTo(MainMenu);
 		}
-		if (FlxG.keys.justPressed.B)
-			trace('mouse position: ${FlxG.mouse.viewX}, ${FlxG.mouse.viewY}');
 	}
 }
