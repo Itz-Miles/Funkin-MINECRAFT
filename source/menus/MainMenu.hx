@@ -246,7 +246,7 @@ class MainMenu extends Menu
 				case 1:
 					Menu.switchTo(CreativeMenu);
 				case 2:
-					Menu.switchTo(AdventureMenu);
+					Menu.switchTo(SettingsMenu);
 				case 3:
 					Menu.switchTo(ModEditor);
 				case 4:
