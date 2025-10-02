@@ -41,6 +41,8 @@ class TitleMenu extends Menu
 			FlxTween.tween(logo, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
 			splashText.alpha = 0;
 			FlxTween.tween(splashText, {alpha: 1}, 0.5, {ease: FlxEase.cubeIn});
+			logo.scrollFactor.set(0.25, 0.25);
+			splashText.scrollFactor.set(0.25, 0.25);
 		}
 		else
 		{

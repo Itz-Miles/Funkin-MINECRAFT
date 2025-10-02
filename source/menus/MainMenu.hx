@@ -11,7 +11,7 @@ class MainMenu extends Menu
 	var sideBar:Array<Panel> = [];
 	var menuBF:Character;
 	var menuGF:Character;
-	var camFollow:FlxObject;
+	public static var camFollow:FlxObject;
 	var loadedWeeks:Array<WeekData> = [];
 
 	var backed:Bool = false;
@@ -116,7 +116,9 @@ class MainMenu extends Menu
 
 		menuGF.visible = true;
 		menuBF.visible = true;
-		FlxG.camera.follow(GameWorld.player, TOPDOWN, 0.7);
+		FlxG.camera.follow(camFollow, NO_DEAD_ZONE, 0.07);
+
+		// FlxG.camera.follow(GameWorld.player, TOPDOWN, 0.7);
 
 		header.runAcrossLayers(0);
 
