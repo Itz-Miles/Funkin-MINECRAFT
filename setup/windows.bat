@@ -5,8 +5,8 @@ cd ..
 echo Installing dependencies.
 haxelib install lime
 haxelib install openfl
-haxelib install flixel 5.9.0
-haxelib set flixel 5.9.0
+haxelib install flixel 6.1.0
+haxelib set flixel 6.1.0
 haxelib install hxcpp
 haxelib install parallaxlt
 haxelib set parallaxlt 0.0.6

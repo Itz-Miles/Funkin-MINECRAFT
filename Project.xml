@@ -108,5 +108,5 @@
 	<!-- ____________________ Errors ____________________ -->
 	<error value="Seems like you're using Haxe ${haxe}. See https://haxe.org/download for 4.3.7" if="${haxe != 4.3.7}"/>
 
-	<error value="flixel ${flixel} isn't supported. Run the setup script for the proper lib versions!" if="${flixel != 5.9.0}"/>
+	<error value="flixel ${flixel} isn't supported. Run the setup script for the proper lib versions!" if="${flixel != 6.1.0}"/>
 </project>
