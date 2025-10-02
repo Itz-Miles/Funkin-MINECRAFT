@@ -250,7 +250,7 @@ class MainMenu extends Menu
 				case 3:
 					Menu.switchTo(ModEditor);
 				case 4:
-					Menu.switchTo(AdventureMenu);
+					Menu.switchTo(CreditsMenu);
 			}
 		});
 	}
