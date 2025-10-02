@@ -306,8 +306,6 @@ class SongEditor extends Menu
 
 	override public function refresh()
 	{
-		bg.alpha = 0.5;
-
 		if (FlxG.sound.music != null)
 			FlxG.sound.music.stop();
 

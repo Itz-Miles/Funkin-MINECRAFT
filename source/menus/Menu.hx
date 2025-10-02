@@ -13,25 +13,14 @@ class Menu extends FlxContainer
 	public static var current:Menu;
 	public static var previous:Menu;
 
-	var bg:FlxSprite;
 	var header:Panel;
 
 	public function create()
 	{
-		bg = new FlxSprite().makeGraphic(1, 1, GameWorld.SKY_COLOR);
-		bg.scale.set(FlxG.width, FlxG.height);
-		bg.scrollFactor.set();
-		bg.screenCenter();
-		add(bg);
 	}
 
 	public function refresh()
 	{
-		if (bg != null)
-		{
-			bg.alpha = 0;
-			FlxTween.tween(bg, {alpha: 0.5}, 0.5, {ease: FlxEase.quintOut});
-		}
 	}
 
 	public function close()
