@@ -12,7 +12,7 @@ class AdventureMenu extends Menu
 
 	override public function refresh()
 	{
-		if (Menu.previous is MainMenu)
+		if (Menu.previous is CharacterMenu)
 			header.runAcrossLayers(2);
 		else
 			header.runAcrossLayers(0);
