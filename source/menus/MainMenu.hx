@@ -11,7 +11,9 @@ class MainMenu extends Menu
 	var sideBar:Array<Panel> = [];
 	var menuBF:Character;
 	var menuGF:Character;
+
 	public static var camFollow:FlxObject;
+
 	var loadedWeeks:Array<WeekData> = [];
 
 	var backed:Bool = false;
@@ -248,7 +250,7 @@ class MainMenu extends Menu
 				case 1:
 					Menu.switchTo(CreativeMenu);
 				case 2:
-					Menu.switchTo(SettingsMenu);
+					Menu.switchTo(options.OptionsState);
 				case 3:
 					Menu.switchTo(ModEditor);
 				case 4:

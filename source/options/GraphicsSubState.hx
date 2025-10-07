@@ -8,9 +8,9 @@ import options.Option;
 
 class GraphicsSubState extends BaseOptionsMenu
 {
-	var boyfriend:Character = null;
+	var boyfriend:Character;
 
-	public function new()
+	override public function create()
 	{
 		title = 'compromize the graphics';
 		rpcTitle = 'Graphics'; // for Discord Rich Presence
@@ -72,13 +72,14 @@ class GraphicsSubState extends BaseOptionsMenu
 			'jsDelivrCDN', 'bool');
 		addOption(option);
 
-		super();
+		super.create();
+
 		insert(1, boyfriend);
 	}
 
-	override public function beatHit():Void
+	override public function beatHit(?curBeat:Int):Void
 	{
-		boyfriend.dance(true);
+		// boyfriend.dance(true);
 	}
 
 	override public function update(elapsed:Float)

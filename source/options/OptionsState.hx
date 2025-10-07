@@ -14,7 +14,7 @@ import flixel.tweens.FlxTween;
 
 using StringTools;
 
-class OptionsState extends MusicBeatSubstate
+class OptionsState extends Menu
 {
 	public static var fromPlayState:Bool = false;
 
@@ -23,7 +23,7 @@ class OptionsState extends MusicBeatSubstate
 
 	static var curSelection(default, set):Int = 0;
 
-	var header:Panel;
+	//var header:Panel;
 
 	@:noCompletion
 	static function set_curSelection(value:Int):Int
@@ -45,13 +45,13 @@ class OptionsState extends MusicBeatSubstate
 		switch (label)
 		{
 			case ' Controls ':
-				openSubState(new options.ControlsSubState());
+				Menu.switchTo(ControlsSubState);
 			case ' Graphics ':
-				openSubState(new options.GraphicsSubState());
+				Menu.switchTo(GraphicsSubState);
 			case ' Gameplay ':
-				openSubState(new options.GameplaySubState());
+				Menu.switchTo(GameplaySubState);
 			case ' Offsets ':
-				LoadingState.loadAndSwitchState(new options.OffsetsState());
+				Menu.switchTo(OffsetsState);
 		}
 	}
 
@@ -60,16 +60,13 @@ class OptionsState extends MusicBeatSubstate
 
 	override function create()
 	{
-		Paths.clearStoredMemory();
-		Paths.clearUnusedMemory();
-
 		#if desktop
 		DiscordClient.changePresence("Options", null);
 		#end
 
 		grpOptions = new Array<FlxText>();
 
-		persistentDraw = persistentUpdate = false;
+		// persistentDraw = persistentUpdate = false;
 
 		for (i in 0...options.length)
 		{
@@ -100,9 +97,9 @@ class OptionsState extends MusicBeatSubstate
 		super.create();
 	}
 
-	override function closeSubState()
+	override function close()
 	{
-		super.closeSubState();
+		super.close();
 		// header.text = "choose your preferences";
 		ClientPrefs.saveSettings();
 	}
@@ -147,14 +144,15 @@ class OptionsState extends MusicBeatSubstate
 				{ // Check if player came from playstate.
 					FlxG.sound.music.volume = 0.0;
 					LoadingState.stage = PlayState.SONG.stage;
-					LoadingState.loadAndSwitchState(new PlayState());
+					// LoadingState.loadAndSwitchState(new PlayState());
+					Menu.switchTo(MainMenu);
 					FlxG.sound.music.volume = 0;
 					OptionsState.fromPlayState = false;
 				}
 				else
 				{ // No? Then return to the main menu.
 					Conductor.bpm = 100;
-					FlxG.switchState(() -> new MainMenuState());
+					Menu.switchTo(MainMenu);
 				}
 			}, true);
 		}

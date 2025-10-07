@@ -21,7 +21,7 @@ import flixel.text.FlxText;
 
 using StringTools;
 
-class BaseOptionsMenu extends MusicBeatSubstate
+class BaseOptionsMenu extends Menu
 {
 	private var curOption:Option = null;
 	private var curSelected:Int = 0;
@@ -39,9 +39,9 @@ class BaseOptionsMenu extends MusicBeatSubstate
 
 	var accepted:Bool = false;
 
-	public function new()
+	override public function create()
 	{
-		super();
+		super.create();
 
 		if (title == null)
 			title = 'Options';
@@ -65,6 +65,7 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		descBox.scale.set(1180, 140);
 		descBox.origin.set(0, 0);
 		descBox.alpha = 0.6;
+		descBox.scrollFactor.set();
 		add(descBox);
 		FlxTween.tween(descBox, {y: 530}, 1.1, {ease: FlxEase.elasticOut, startDelay: 0.4});
 
@@ -155,7 +156,8 @@ class BaseOptionsMenu extends MusicBeatSubstate
 		if (Controls.BACK)
 		{
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3);
-			close();
+			// close();
+			Menu.switchTo(MainMenu);
 		}
 		else
 		{

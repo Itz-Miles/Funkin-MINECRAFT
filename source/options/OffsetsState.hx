@@ -14,7 +14,7 @@ import flixel.ui.FlxBar;
 
 using StringTools;
 
-class OffsetsState extends MusicBeatState
+class OffsetsState extends Menu
 {
 	var boyfriend:Character;
 	var gf:Character;
@@ -29,7 +29,6 @@ class OffsetsState extends MusicBeatState
 
 	override public function create()
 	{
-		Paths.clearStoredMemory();
 		Paths.clearUnusedMemory();
 
 		// Cameras
@@ -133,7 +132,7 @@ class OffsetsState extends MusicBeatState
 			if (beatTween != null)
 				beatTween.cancel();
 			FlxG.sound.play(Paths.sound('cancelMenu'), 0.3); // it doesnt work like that miles
-			FlxG.switchState(() -> new options.OptionsState());
+			Menu.switchTo(OptionsState);
 		}
 
 		Conductor.songPosition = FlxG.sound.music.time;
@@ -143,7 +142,7 @@ class OffsetsState extends MusicBeatState
 	var zoomTween:FlxTween;
 	var lastBeatHit:Int = -1;
 
-	override public function beatHit()
+	override public function beatHit(?curBeat:Int = 0)
 	{
 		super.beatHit();
 
