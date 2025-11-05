@@ -122,7 +122,13 @@ class MainMenu extends Menu
 
 		// FlxG.camera.follow(GameWorld.player, TOPDOWN, 0.7);
 
-		header.runAcrossLayers(0);
+		if (Menu.previous is TitleMenu)
+			header.runAcrossLayers(0);
+		else
+		{
+			header.runAcrossLayers(0);
+			header.runAcrossLayers(2);
+		}
 
 		for (i in 0...sideBar.length)
 			sideBar[i].runAcrossLayers(0);
