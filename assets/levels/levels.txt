@@ -1,2 +1,3 @@
 aero_archways
 camp_combat
+downfall_zone

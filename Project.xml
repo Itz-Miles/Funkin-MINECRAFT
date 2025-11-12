@@ -54,11 +54,13 @@
 	<library name="shared" preload="false"/>
 	<library name="aero_archways" preload="true"/>
 	<library name="camp_combat" preload="false"/>
+	<library name="downfall_zone" preload="false"/>
 
 	<assets path="assets/songs" library="songs"/>
 	<assets path="assets/shared" library="shared"/>
 	<assets path="assets/levels/aero_archways" library="aero_archways"/>
 	<assets path="assets/levels/camp_combat" library="camp_combat"/>
+	<assets path="assets/levels/downfall_zone" library="downfall_zone"/>
 
 	<!--</section>-->
 
