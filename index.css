@@ -57,7 +57,6 @@ section {
 	color: var(--prime);
 	text-align: center;
 	font-weight: lighter;
-	text-shadow: 0px -0.06em 0 var(--rim);
 }
 
 h2 {
@@ -242,6 +241,7 @@ p a:hover {
 	overflow-x: auto;
 	padding: 1em;
 	scroll-snap-type: x mandatory;
+	scroll-padding: 15px;
 }
 
 .character-card {
@@ -257,12 +257,14 @@ p a:hover {
 }
 
 .character-card img {
-	width: 80%;
+	width: 160px;
+	height: 160px;
 	object-fit: cover;
 	margin: 0.5em;
 	padding: 0.5em;
 	border: 3px solid var(--prime);
 	background-color: var(--bar);
+	image-rendering: pixelated;
 }
 
 .character-card h2 {
