@@ -239,27 +239,36 @@ p a:hover {
 	display: flex;
 	gap: 1em;
 	overflow-x: auto;
-	padding: 1em;
+	padding: 0.5em;
+	padding-bottom: 1em;
 	scroll-snap-type: x mandatory;
 	scroll-padding: 15px;
 }
 
 .character-card {
+	display: flex;
+	flex-direction: row;
+	width: 400px;
+	height: 200px;
 	background-color: var(--pg);
-	width: 200px;
 	border-bottom: var(--pb) 0.5em solid;
 	box-shadow: var(--inset), var(--shade);
 	flex: 0 0 auto;
-	text-align: center;
 	color: var(--face);
 	scroll-snap-align: start;
 	outline: 2px solid black;
 }
 
+.character-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: auto;
+	padding: 1em;
+}
+
 .character-card img {
-	width: 160px;
-	height: 160px;
-	object-fit: cover;
+	height: auto;
 	margin: 0.5em;
 	padding: 0.5em;
 	border: 3px solid var(--prime);
@@ -276,10 +285,21 @@ p a:hover {
 }
 
 .character-card p {
+	background-color: var(--bg);
 	font-size: 1em;
-	margin: 0em;
+	margin-top: 1em;
+	margin-bottom: 0em;
 	padding: 0.5em;
-	overflow-y: hidden;
+	height: 100%;
+	overflow-y: auto;
+}
+
+@media (aspect-ratio < 0.9) {
+	.character-card {
+		flex-direction: column;
+		width: 200px;
+		height: auto;
+	}
 }
 
 .external-buttons {
