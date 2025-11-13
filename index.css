@@ -53,7 +53,7 @@ section {
 .section-header {
 	font-family: 'minecrafter', sans-serif;
 	margin: 0.5em 0em 0.5em 0em;
-	font-size: 7.5vw;
+	font-size: 7.4vw;
 	color: var(--prime);
 	text-align: center;
 	font-weight: lighter;
@@ -71,6 +71,7 @@ h2 {
 	box-shadow: var(--inset), var(--shade);
 	outline: 2px solid black;
 	text-indent: 0em;
+	text-align: center;
 }
 
 p {
@@ -216,7 +217,7 @@ p a:hover {
 
 .characters-section {
 	position: relative;
-	margin-bottom: -4em;
+	margin-bottom: -3em;
 	margin-top: -2vw;
 	background-color: transparent;
 	overflow: hidden;
@@ -245,7 +246,7 @@ p a:hover {
 	padding: 0.5em;
 	padding-bottom: 1em;
 	scroll-snap-type: x mandatory;
-	scroll-padding: 15px;
+	scroll-padding: 14px;
 }
 
 .character-card {
