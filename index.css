@@ -70,11 +70,13 @@ h2 {
 	border-bottom: var(--pb) 0.5em solid;
 	box-shadow: var(--inset), var(--shade);
 	outline: 2px solid black;
+	text-indent: 0em;
 }
 
 p {
 	font-size: 1.2em;
 	padding: 0.75em;
+	text-indent: 4em;
 }
 
 .title {
@@ -98,6 +100,7 @@ p {
 }
 
 .hero-content p {
+	text-indent: 0em;
 	padding: 0.2em 0em 0.2em 0em;
 	font-size: min(3vh, 2.4vw);
 	width: min(112vh, 90vw);
@@ -285,6 +288,7 @@ p a:hover {
 }
 
 .character-card p {
+	text-indent: 1em;
 	background-color: var(--bg);
 	font-size: 1em;
 	margin-top: 1em;
