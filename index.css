@@ -23,7 +23,7 @@
 
 	--load: #368528;
 
-	--inset: inset 0px 0px 0px 0.25em #323232;
+	--inset: inset 0px 0px 0px 0.25em #3f3f3f;
 	--shade: 0px 5px 20px 5px #00000063;
 }
 
@@ -151,8 +151,8 @@ p a:hover {
 }
 
 .nav-links {
-	background-color: #30303ad6;
-	backdrop-filter: saturate(180%) blur(6px);
+	background-color: #40404ebc;
+	backdrop-filter: blur(6px);
 	outline: 0.2em solid black;
 	display: flex;
 	overflow-x: scroll;
