@@ -22,6 +22,8 @@
 	--rim: #655100;
 
 	--load: #368528;
+	--load-hvr: #27ae60;
+	--load-prs: #073e1d;
 
 	--inset: inset 0px 0px 0px 0.25em #3f3f3f;
 	--shade: 0px 5px 20px 5px #00000063;
@@ -424,11 +426,11 @@ p a:hover {
 }
 
 .platform-button:hover {
-	background-color: #27ae60;
+	background-color: var(--load-hvr);
 }
 
 .platform-button:active {
-	background-color: #0a5829;
+	background-color: var(--load-prs);
 }
 
 .changelog-wrapper {
