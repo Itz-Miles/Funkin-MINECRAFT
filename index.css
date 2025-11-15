@@ -27,6 +27,7 @@
 
 	--inset: inset 0px 0px 0px 0.25em #3f3f3f;
 	--shade: 0px 5px 20px 5px #00000063;
+	--clear: #40404ebc;
 }
 
 html {
@@ -153,7 +154,7 @@ p a:hover {
 }
 
 .nav-links {
-	background-color: #40404ebc;
+	background-color: var(--clear);
 	backdrop-filter: blur(6px);
 	outline: 0.2em solid black;
 	display: flex;
@@ -199,8 +200,8 @@ p a:hover {
 }
 
 .avatar {
-	background-color: #30303ad6;
-	backdrop-filter: saturate(180%) blur(6px);
+	background-color: var(--clear);
+	backdrop-filter: blur(6px);
 	box-shadow: inset 0px 0em 0px 0.2em #757575, #0c0c1099 0 0.2em 0.5em 0.4em;
 	height: 4em;
 	outline: 0.2em solid black;
@@ -446,6 +447,7 @@ p a:hover {
 	border-radius: 0px;
 	padding: 1em;
 	margin: 0.25em;
+	text-indent: 0em;
 }
 
 .tab-menu {
